@@ -1,0 +1,9 @@
+{
+  "name": "arhpotolki.info",
+  "version": "2.0.0",
+  "description": "the roots of legacy foundation",
+  "main": "index.js",
+  "author": "pp",
+  "license": "MIT",
+  "private": true
+}
