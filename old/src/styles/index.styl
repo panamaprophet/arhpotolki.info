@@ -1,0 +1,398 @@
+@require "variables"
+@require "animations"
+@require "components/*"
+
+*
+	margin: 0
+	padding: 0
+	box-sizing: border-box
+
+html, body 
+	width: 100%
+	height: 100%
+
+body
+	font: normal 100% 'PT Sans', sans-serif
+	line-height: 1.5
+	letter-spacing: -0.1px
+	word-spacing: 1px
+	color: #333
+
+img
+	vertical-align: top
+
+
+
+::-webkit-input-placeholder
+	color: rgba(33,33,33,0.7)
+::-moz-placeholder
+	color: rgba(33,33,33,0.7)
+:-moz-placeholder
+	color: rgba(33,33,33,0.7)
+:-ms-input-placeholder
+	color: rgba(33,33,33,0.7)
+
+
+.application {
+	width: 100%;
+	height: 100%;
+}
+
+
+.scroll-down {
+	position: absolute;
+	bottom: 64px;
+	left: 50%;
+	margin-left: -24px;
+	cursor: pointer;
+	color: $blue;
+	// animation: colorize 8s ease-in-out infinite;
+}
+
+.scroll-down__arrow {
+	width: 48px;
+	height: 48px;
+	display: block;
+	border: 2px solid currentColor;
+	border-radius: 50%;
+	z-index: 2;
+	text-align: center;
+	line-height: 46px;
+	flex-shrink: 0;
+	color: $blue;
+}
+
+.scroll-down__arrow:before {
+	transform: rotate(-45deg);
+	transform-origin: center center;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	content: '';
+	border: 2px solid currentColor;
+	border-width: 0 0 2px 2px;
+}
+
+
+
+.block {
+	width: 100%;
+	position: relative;
+}
+
+.block__content {
+	max-width: 940px;
+	margin: 0 auto;
+	width: 100%;
+}
+
+.block--full-height {
+	min-height: 100%;
+}
+
+.block--flex {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-flow: column wrap;
+}
+
+
+.block--dark {
+	background: #428bca;
+	color: #fff;
+}
+
+.block--green {
+	background: $green;
+	color: #333;
+}
+
+
+
+.title
+	width: 100%
+	text-align: center
+	display: block
+	font-family: "PT Sans Narrow"
+	font-weight: bold
+	padding: 48px 0
+	// letter-spacing: 1px
+
+.title--condensed
+	padding: 48px 0 8px
+	color: inherit
+	margin: 0
+	line-height: 1
+
+.title--light
+	color: #fff
+
+.subtitle
+	width: 100%
+	text-align: center
+	display: block
+	color: $darkBlue
+	font-family: "PT Sans Narrow"
+	font-weight: bold
+
+
+.description
+	margin: 40px 0
+	padding: 32px 0 30px
+	background: transparent //$green //rgba(8, 70, 97, 0.1)
+	color: #333
+	font-size: 1.0em
+	text-shadow: 0 1px 0 rgba(255,255,255,0.5)
+	padding: 16px
+	
+	.block__content
+		max-width: 920px
+		// columns: 2
+
+	p
+		// text-indent: 12.5px
+		-webkit-margin-before: 0
+		-webkit-margin-after: 0
+		-webkit-column-break-inside: avoid
+
+		&:not(:last-child)
+			padding-bottom: 16px
+
+
+
+.contacts {
+	text-align: center;
+	font-size: 0.8em;
+}
+
+
+.map {
+	height: 300px;
+	border-top: 2px solid $green;
+}
+
+
+
+.howto
+	// margin: 0 0 48px
+
+.howto__list
+	margin: 0 16px 0
+	padding: 0 16px 16px
+	list-style: none
+
+	display: flex
+	flex-flow: row nowrap
+	justify-content: space-between
+	align-items: flex-start
+
+.howto__list-item
+	margin: 0 16px
+	text-align: center
+
+.howto__list-item__icon
+	background: $green
+	border-radius: 50%
+	margin: 0 auto
+	// opacity: 0.78
+	width: 64px
+
+	& img
+		width: 100%
+
+.howto__list-item__title
+	margin-top: 16px
+
+
+
+.logo
+	width: 400px
+	max-width: 90%
+	height: auto
+	shape-rendering: geometricPrecision
+	text-rendering: geometricPrecision
+	fill-rule: evenodd
+	clip-rule: evenodd
+	
+.header__footer
+	position: absolute
+	bottom: 0
+	// height: 64px
+	padding: 16px
+	// background: orange
+	left: 16px
+	right: 16px
+	display: flex
+	flex-flow: row nowrap
+	justify-content: center
+	align-items: center
+	
+.header__scroll-down
+	width: 48px
+	
+.header__action,
+.header__phone
+	// width: calc(50% - 24px)
+	font-family: 'PT Sans Narrow'
+	font-size: 1.55em
+	cursor: pointer
+	
+
+.header__phone
+	margin-left: 16px
+	// font-size: 1.1em
+	position: absolute
+	top: 36px
+	right: 96px
+	text-align: right
+	color: $orange
+	
+	height: 37px
+	line-height: 37px
+
+.header__action
+	margin-right: 16px
+	text-align: right
+	background: none
+	color: $blue
+
+	&:before
+		position: absolute
+		transform: rotate(45deg) translateY(-68%)
+		transform-origin: center center
+		display: inline-block
+		width: 16px
+		height: 16px
+		// content: ''
+		border: 2px solid currentColor
+		border-width: 0 0 2px 2px
+		left: -19px
+		top: 50%
+		position: absolute
+		background: #fff
+		color: $green
+
+.str0
+	stroke: $darkBlue
+	stroke-width: 7.62 
+
+.str1
+	stroke: $blue
+	stroke-width: 7.62 
+
+.str2
+	stroke: $orange
+	stroke-width: 7.62 
+
+.fil5
+	fill: $blue
+	
+.fil3
+	fill: $green
+
+.fil4
+	fill: $orange
+
+.fil0
+	fill: $darkBlue
+	fill-rule: nonzero
+
+.fil1
+	fill: $blue
+	fill-rule: nonzero
+
+.fil2
+	fill: $orange
+	fill-rule: nonzero
+
+
+.input-field
+	border: none
+	border-bottom: 1px solid #ccc
+	padding: 8px
+	// width: 100%
+	margin: 8px 0
+	outline: none
+	flex-shrink: 1
+	transition: all 100ms ease-in-out
+	// background: #fff
+	// font-size: 1.2em
+
+	// border: none
+	background: none //#fff
+	outline: none
+	// padding: 16px 16px 16px 0
+	// margin-bottom: 4px
+	width: 100%
+	font-size: 1em
+	// border-bottom: 1px dotted #333
+	color: #333
+	transition: background 250ms ease-in-out
+
+
+.selector
+	width: 100%
+	height: 120px
+	background: lightgreen
+	position: relative
+	cursor: pointer
+	padding: 8px
+	margin-bottom: 8px
+
+.selector:after
+	content: ''
+	position: absolute
+	top: 0
+	left: 0
+	width: calc(100% - 16px)
+	height: calc(100% - 16px)
+	display: block
+	margin: 8px
+	border: 1px dashed #333
+	transition: all 250ms ease-in-out
+
+.selector:hover:after
+	background: rgba(255,255,255,0.5)
+
+.selector__field
+	width: 100%
+	height: 100%
+	-webkit-appearance: none
+	position: absolute
+	top: 0
+	left: 0
+	opacity: 0
+	z-index: 10
+	cursor: pointer
+
+.selector__meta
+	width: 100%
+	height: calc(100% - 16px)
+
+	display: flex
+	flex-flow: column wrap
+	justify-content: center
+	align-items: center
+	position: absolute
+	z-index: 5
+
+.selector__title
+	font-size: 1.210em
+
+.selector__subtitle
+	font-size: 0.62em
+	opacity: 0.5
+	
+
+.icon--eco
+	height: 96px
+	width: 96px
+	left: 26px
+	background: url('i/icons/eco.png') center center no-repeat
+	background-size: contain
+	position: absolute
+	top: 6px
+	margin-top: 8px
+
+@require "media-queries"
