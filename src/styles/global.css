@@ -1,0 +1,26 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  font: "PT Sans", sans-serif;
+  line-height: 1.5;
+  letter-spacing: -0.1px;
+  word-spacing: 1px;
+  color: #333;
+}
+
+img {
+  vertical-align: top;
+}
