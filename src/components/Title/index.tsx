@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./style.module.css";
 
-function BlockTitle({ children }) {
+function Title({ children }) {
   return <h2 className={styles.title}>{children}</h2>;
 }
 
-export default BlockTitle;
+export default Title;

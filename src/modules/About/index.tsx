@@ -2,13 +2,13 @@ import React from "react";
 import styles from "./styles.module.css";
 import about from "./about";
 import Card from "./components/Card";
-import BlockTitle from "../../components/BlockTitle";
+import Title from "../../components/Title";
 
 function About() {
   return (
     <section id="advantages" className={styles.about}>
       <div className={`${styles.about__content} layout`}>
-        <BlockTitle>Только у нас:</BlockTitle>
+        <Title>Только у нас:</Title>
         <ul className={styles.advantagesList}>
           {about.map((item) => (
             <li className={styles.advantages__item} key={item.text}>
