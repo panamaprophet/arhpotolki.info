@@ -1,0 +1,13 @@
+.filter__item {
+  display: inline-block;
+  background: #cccccc;
+  margin: 0 2px 4px;
+  padding: 8px;
+  cursor: pointer;
+  user-select: none;
+  transition: 200ms ease-in;
+}
+
+.filter__item__active {
+  background: #f7a136;
+}
