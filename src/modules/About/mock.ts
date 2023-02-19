@@ -3,7 +3,7 @@ type item = {
   text: string;
 };
 
-const about: item[] = [
+const mock: item[] = [
   {
     svg: "/icons/advantages/1.png",
     text: "Работаем по всей Архангельской области",
@@ -54,4 +54,4 @@ const about: item[] = [
   },
 ];
 
-export default about;
+export default mock;

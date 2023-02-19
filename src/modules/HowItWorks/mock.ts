@@ -1,4 +1,4 @@
-const cards = [
+const mock = [
   {
     svg: "/icons/scheme/6.png",
     text: "Вы звоните или оставляете заявку",
@@ -25,4 +25,4 @@ const cards = [
   },
 ];
 
-export default cards;
+export default mock;

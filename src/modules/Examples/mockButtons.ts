@@ -1,4 +1,4 @@
-const buttons = [
+const mockButtons = [
   {
     category: "Простые",
   },
@@ -31,4 +31,4 @@ const buttons = [
   },
 ];
 
-export default buttons;
+export default mockButtons;

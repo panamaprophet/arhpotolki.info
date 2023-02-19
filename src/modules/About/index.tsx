@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./styles.module.css";
-import about from "./about";
+import mock from "./mock";
 import Card from "./components/Card";
 import Title from "../../components/Title";
 
@@ -10,7 +10,7 @@ function About() {
       <div className={`${styles.about__content} layout`}>
         <Title>Только у нас:</Title>
         <ul className={styles.advantagesList}>
-          {about.map((item) => (
+          {mock.map((item) => (
             <li className={styles.advantages__item} key={item.text}>
               <Card path={item.svg} text={item.text} />
             </li>

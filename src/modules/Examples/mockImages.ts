@@ -1,4 +1,4 @@
-const buttons = [
+const mockImages = [
   { path: "/gallery/1.png", category: "Простые" },
   { path: "/gallery/2.png", category: "Простые" },
   { path: "/gallery/3.png", category: "Многоуровневые" },
@@ -37,4 +37,4 @@ const buttons = [
   { path: "/gallery/36.png", category: "Простые" },
 ];
 
-export default buttons;
+export default mockImages;
