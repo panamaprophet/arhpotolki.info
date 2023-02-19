@@ -1,0 +1,25 @@
+.howto {
+  margin: 0 16px 0;
+  padding: 0 16px 16px;
+  list-style: none;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.howto__item {
+  margin: 0 16px;
+  text-align: center;
+}
+
+.howto__list__item__icon {
+  background: #f7a136;
+  border-radius: 50%;
+  margin: 0 auto;
+  width: 64px;
+}
+
+.howto__list__item__title {
+  margin-top: 16px;
+}

@@ -1,0 +1,11 @@
+.certificates__list {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.certificates__list__item {
+  flex-shrink: 1;
+  margin: 0 8px;
+}

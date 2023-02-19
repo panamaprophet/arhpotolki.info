@@ -1,0 +1,26 @@
+.settings__buttons {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.settings__button {
+  padding: 8px;
+  white-space: nowrap;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.input__field {
+  flex-grow: 1;
+}
+
+.settings__notice {
+  color: #ccc;
+  text-align: center;
+  margin-top: 16px;
+}
