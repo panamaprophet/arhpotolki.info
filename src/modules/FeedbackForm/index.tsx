@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./styles.module.css";
 import Title from "../../components/Title";
 
-function Application() {
+function FeedbackForm() {
   return (
     <section id="application" className={styles.application}>
       <div className="layout">
@@ -38,4 +38,4 @@ function Application() {
   );
 }
 
-export default Application;
+export default FeedbackForm;
