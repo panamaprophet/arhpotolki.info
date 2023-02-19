@@ -27,7 +27,7 @@ function Examples() {
   const FullGallery = () => (
     <ul className={styles.gallery}>
       {gallery.map((img) => (
-        <li className={styles.gallery__item}>
+        <li key={img.path} className={styles.gallery__item}>
           <Image key={img.path} path={img.path} />
         </li>
       ))}
@@ -48,8 +48,8 @@ function Examples() {
       </ul>
       <ul className={styles.gallery}>
         {filteredGallery.map((img) => (
-          <li className={styles.gallery__item}>
-            <Image key={img.path} path={img.path} />
+          <li key={img.path} className={styles.gallery__item}>
+            <Image path={img.path} />
           </li>
         ))}
       </ul>
