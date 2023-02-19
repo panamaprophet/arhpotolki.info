@@ -1,26 +1,16 @@
-// import type { AppProps } from 'next/app';
 import { SessionProvider } from 'next-auth/react';
-import { AppProps } from 'next/app';
-import { NextPage } from 'next/types';
-import { ReactElement, ReactNode } from 'react';
+import Head from 'next/head';
 
 import '../styles/global.css';
 
 
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-    getLayout?: (page: ReactElement) => ReactNode
-};
+const App = ({ Component, pageProps: { session, ...pageProps } }) => (
+    <SessionProvider session={session}>
+          <Head>
+              <title>Архпотолки - натяжные потолки любой сложности!</title>
+          </Head>
+        <Component {...pageProps} />
+    </SessionProvider>
+);
 
-type AppPropsWithLayout = AppProps & {
-    Component: NextPageWithLayout,
-};
-
-export default function App({ Component, pageProps: { session, ...pageProps } }: AppPropsWithLayout) {
-    const getLayout = Component.getLayout ?? (page => page);
-
-    return (
-        <SessionProvider session={session}>
-            {getLayout(<Component {...pageProps} />)}
-        </SessionProvider>
-    );
-};
+export default App;
