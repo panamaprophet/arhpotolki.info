@@ -1,7 +1,7 @@
-import React from "react";
-import mockImages from "./mocks/mockImages";
-import Image from "./Image";
-import styles from "./styles.module.css";
+import React from 'react';
+import mockImages from './mocks/mockImages';
+import Image from './Image';
+import styles from './styles.module.css';
 
 function FullGallery() {
   return (

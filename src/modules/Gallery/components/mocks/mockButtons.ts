@@ -1,33 +1,33 @@
 const mockButtons = [
   {
-    category: "Простые",
+    category: 'Простые',
   },
   {
-    category: "Многоуровневые",
+    category: 'Многоуровневые',
   },
   {
-    category: "Комбинированные",
+    category: 'Комбинированные',
   },
   {
-    category: "Тканевые",
+    category: 'Тканевые',
   },
   {
-    category: "Теневой еврокраб",
+    category: 'Теневой еврокраб',
   },
   {
-    category: "Фотопечать",
+    category: 'Фотопечать',
   },
   {
-    category: "«Парящие потолки»",
+    category: '«Парящие потолки»',
   },
   {
-    category: "Шумоизоляция",
+    category: 'Шумоизоляция',
   },
   {
-    category: "С подсветкой",
+    category: 'С подсветкой',
   },
   {
-    category: "Цветные",
+    category: 'Цветные',
   },
 ];
 

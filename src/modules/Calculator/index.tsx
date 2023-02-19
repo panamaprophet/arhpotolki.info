@@ -1,8 +1,8 @@
-import React from "react";
-import styles from "./styles.module.css";
-import Title from "../../components/Title";
-import Preview from "./components/Preview";
-import Controls from "./components/Controls";
+import React from 'react';
+import styles from './styles.module.css';
+import Title from '../../components/Title';
+import Preview from './components/Preview';
+import Controls from './components/Controls';
 
 function Calculator() {
   return (
