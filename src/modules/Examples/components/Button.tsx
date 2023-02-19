@@ -1,15 +1,20 @@
 import React from "react";
 import styles from "./styles.module.css";
 
-function Button({ onClick, text, isActive }) {
+function Button(props) {
+  const { onClick, isActive, button } = props;
+
+  const handleClick = () => onClick(button);
+
   return (
     <li
-      onClick={onClick}
+      onClick={handleClick}
+      value={button.category}
       className={`${styles.filter__item} ${
         isActive && styles.filter__item__active
       }`}
     >
-      {text}
+      {button.category}
     </li>
   );
 }
