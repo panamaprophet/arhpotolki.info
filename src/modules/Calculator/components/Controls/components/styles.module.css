@@ -1,13 +1,33 @@
 .control__item {
-  display: flex;
-  flex-flow: row nowrap;
-  margin-top: 4px;
-  height: 40px;
+    display: flex;
+    flex-flow: row nowrap;
+    margin-top: 4px;
+    height: 40px;
 }
 
 .control__item__title {
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  margin-right: 8px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+}
+
+.settings__buttons {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.settings__button {
+    padding: 8px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.settings__button__active {
+    background: #f7a136;
 }
