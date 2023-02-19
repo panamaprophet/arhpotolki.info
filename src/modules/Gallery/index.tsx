@@ -1,60 +1,15 @@
 import React, { useState } from "react";
 import Title from "../../components/Title";
-import mockButtons from "./mockButtons";
-import Button from "./components/Button";
-import Image from "./components/Image";
 import styles from "./styles.module.css";
-import mockImages from "./mockImages";
-
-type Button = {
-  category: string;
-};
+import FullGallery from "./components/FullGallery";
+import GalleryWithFilters from "./components/GalleryWithFilters";
 
 type FilterType = "all" | "category";
 
 function Gallery() {
-  const [currentButton, setCurrentButton] = useState(mockButtons[0]);
   const [filterType, setFilterType] = useState("all");
 
-  const filteredGallery = mockImages.filter(
-    (img) => img.category === currentButton.category
-  );
-
   const handleFilter = (filter: FilterType) => setFilterType(filter);
-
-  const handleClick = (button: Button) => setCurrentButton(button);
-
-  const FullGallery = () => (
-    <ul className={styles.gallery}>
-      {mockImages.map((img) => (
-        <li key={img.path} className={styles.gallery__item}>
-          <Image key={img.path} path={img.path} />
-        </li>
-      ))}
-    </ul>
-  );
-
-  const GalleryWithFilters = () => (
-    <>
-      <ul className={styles.filter}>
-        {mockButtons.map((button: Button) => (
-          <Button
-            key={button.category}
-            button={button}
-            onClick={handleClick}
-            isActive={button === currentButton}
-          />
-        ))}
-      </ul>
-      <ul className={styles.gallery}>
-        {filteredGallery.map((img) => (
-          <li key={img.path} className={styles.gallery__item}>
-            <Image path={img.path} />
-          </li>
-        ))}
-      </ul>
-    </>
-  );
 
   return (
     <section id="examples" className={`${styles.examples} layout`}>
@@ -75,8 +30,7 @@ function Gallery() {
         </span>
         )
       </Title>
-      {filterType === "all" && <FullGallery />}
-      {filterType === "category" && <GalleryWithFilters />}
+      {filterType === "all" ? <FullGallery /> : <GalleryWithFilters />}
     </section>
   );
 }
