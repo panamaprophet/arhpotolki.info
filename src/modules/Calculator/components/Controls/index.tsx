@@ -1,85 +1,85 @@
-import React from "react";
-import ControlItem from "./components/ControlItem";
-import styles from "./styles.module.css";
+import React, { useState } from 'react';
+import BudgetControls from './components/BudgetControls';
+import ColorsControls from './components/ColorsControls';
+import ControlItem from './components/ControlItem';
+import MaterialControls from './components/MaterialControls';
+import styles from './styles.module.css';
 
-function Controls() {
-  return (
-    <div>
-      <ControlItem title="Цвет">
-        <div className={styles.settings__buttons}>
-          <div
-            className={styles.settings__button}
-            style={{ background: "rgb(255, 255, 255)" }}
-          >
-            Потолок
-          </div>{" "}
-          <div
-            className={styles.settings__button}
-            style={{ background: "rgb(165, 200, 219)" }}
-          >
-            Стены
-          </div>{" "}
-          <div
-            className={styles.settings__button}
-            style={{ background: "rgb(98, 108, 110)" }}
-          >
-            Пол
-          </div>
+export const budgets = {
+    standart: 'Эконом (КНР)',
+    premium: 'Премиум (Германия)',
+};
+
+function Controls({ colors, material, onColorChange, onMaterialChange }) {
+    const [budget, setBudget] = useState(budgets.standart);
+    const [square, setSquare] = useState(0);
+    const [lights, setLights] = useState(0);
+
+    const handleBudgetChange = (e) => setBudget(e.target.id);
+    const handlePriceChange = (e) => setSquare(e.target.value);
+    const handleLightsChange = (e) => setLights(e.target.value);
+
+    return (
+        <div>
+            <ColorsControls colors={colors} onColorChange={onColorChange} />
+            <MaterialControls
+                material={material}
+                onMaterialChange={onMaterialChange}
+            />
+            <BudgetControls
+                budget={budget}
+                handleBudgetChange={handleBudgetChange}
+            />
+            <ControlItem title="Площадь, м²">
+                <input
+                    type="number"
+                    value={square}
+                    className={styles.input__field}
+                    onChange={handlePriceChange}
+                />
+            </ControlItem>
+            <ControlItem title="Количество светильников">
+                <input
+                    type="number"
+                    value={lights}
+                    className={styles.input__field}
+                    onChange={handleLightsChange}
+                />
+            </ControlItem>
+            <ControlItem title="Цена">
+                <input
+                    type="text"
+                    placeholder="Цена в рублях"
+                    readOnly
+                    className={styles.input__field}
+                />
+            </ControlItem>
+            <ControlItem title="Скидка">
+                <input
+                    type="text"
+                    placeholder="Цена в рублях"
+                    readOnly
+                    className={styles.input__field}
+                />
+            </ControlItem>
+            <ControlItem title="Цена со скидкой">
+                <input
+                    type="text"
+                    placeholder="Цена в рублях"
+                    readOnly
+                    className={styles.input__field}
+                />
+            </ControlItem>
+            <p className={styles.settings__notice}>
+                Итоговая цена является достаточно точной, но все-таки
+                приблизительной.
+            </p>
+            <p className={styles.settings__notice}>
+                При оплате 50% стоимости заказа доступна рассрочка на три месяца
+                с ежемесячным платежом 0.00 ₽
+            </p>
         </div>
-      </ControlItem>
-      <ControlItem title="Материал">
-        <div className={styles.settings__buttons}>
-          <div className={styles.settings__button}>Глянец</div>{" "}
-          <div className={styles.settings__button}>Матовый</div>{" "}
-          <div className={styles.settings__button}>Сатин</div>
-          <div className={styles.settings__button}>Облака</div>
-        </div>
-      </ControlItem>
-      <ControlItem title="Класс">
-        <div className={styles.settings__buttons}>
-          <div className={styles.settings__button}>Эконом (КНР)</div>{" "}
-          <div className={styles.settings__button}>Премиум (Германия)</div>{" "}
-        </div>
-      </ControlItem>
-      <ControlItem title="Площадь, м²">
-        <input type="number" className={styles.input__field} />
-      </ControlItem>
-      <ControlItem title="Количество светильников">
-        <input type="number" className={styles.input__field} />
-      </ControlItem>
-      <ControlItem title="Цена">
-        <input
-          type="text"
-          placeholder="Цена в рублях"
-          readOnly
-          className={styles.input__field}
-        />
-      </ControlItem>
-      <ControlItem title="Скидка">
-        <input
-          type="text"
-          placeholder="Цена в рублях"
-          readOnly
-          className={styles.input__field}
-        />
-      </ControlItem>
-      <ControlItem title="Цена со скидкой">
-        <input
-          type="text"
-          placeholder="Цена в рублях"
-          readOnly
-          className={styles.input__field}
-        />
-      </ControlItem>
-      <p className={styles.settings__notice}>
-        Итоговая цена является достаточно точной, но все-таки приблизительной.
-      </p>
-      <p className={styles.settings__notice}>
-        При оплате 50% стоимости заказа доступна рассрочка на три месяца с
-        ежемесячным платежом 0.00 ₽
-      </p>
-    </div>
-  );
+    );
 }
 
 export default Controls;
