@@ -1,0 +1,13 @@
+.control__item {
+  display: flex;
+  flex-flow: row nowrap;
+  margin-top: 4px;
+  height: 40px;
+}
+
+.control__item__title {
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}
