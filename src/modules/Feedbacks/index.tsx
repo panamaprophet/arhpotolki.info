@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import styles from "./styles.module.css";
 import Title from "../../components/Title";
-import list from "./persons";
+import mock from "./mock";
 import Person from "./components/Person";
 
 function Feedbacks() {
-  const [persons, setPersons] = useState(list);
+  const [persons, setPersons] = useState(mock);
   const [currentPersonIndex, setCurrentPersonIndex] = useState(0);
 
   const handleNextPerson = () => {

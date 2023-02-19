@@ -1,4 +1,4 @@
-const list = [
+const mock = [
   {
     img: "/uploads/7fa7fa1663c998c22cf219a025982c76.jpeg",
     name: "Павел",
@@ -15,4 +15,4 @@ const list = [
   },
 ];
 
-export default list;
+export default mock;

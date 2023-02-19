@@ -1,4 +1,4 @@
-const certs = [
+const mock = [
   {
     path: "/cert/1.jpg",
   },
@@ -19,4 +19,4 @@ const certs = [
   },
 ];
 
-export default certs;
+export default mock;

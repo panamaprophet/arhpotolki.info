@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Title from "../../components/Title";
-import buttons from "./buttons";
+import mockButtons from "./mockButtons";
 import Button from "./components/Button";
 import Image from "./components/Image";
 import styles from "./styles.module.css";
-import gallery from "./gallery";
+import mockImages from "./mockImages";
 
 type Button = {
   category: string;
@@ -13,10 +13,10 @@ type Button = {
 type FilterType = "all" | "category";
 
 function Examples() {
-  const [currentButton, setCurrentButton] = useState(buttons[0]);
+  const [currentButton, setCurrentButton] = useState(mockButtons[0]);
   const [filterType, setFilterType] = useState("all");
 
-  const filteredGallery = gallery.filter(
+  const filteredGallery = mockImages.filter(
     (img) => img.category === currentButton.category
   );
 
@@ -26,7 +26,7 @@ function Examples() {
 
   const FullGallery = () => (
     <ul className={styles.gallery}>
-      {gallery.map((img) => (
+      {mockImages.map((img) => (
         <li key={img.path} className={styles.gallery__item}>
           <Image key={img.path} path={img.path} />
         </li>
@@ -37,7 +37,7 @@ function Examples() {
   const GalleryWithFilters = () => (
     <>
       <ul className={styles.filter}>
-        {buttons.map((button: Button) => (
+        {mockButtons.map((button: Button) => (
           <Button
             key={button.category}
             button={button}
