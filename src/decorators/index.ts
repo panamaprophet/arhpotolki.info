@@ -4,11 +4,11 @@ import { authOptions } from '../pages/api/auth/[...nextauth]';
 
 
 export const decorateWithAuthentification =
-    (handler: any, { allowedMethods = [] }: { allowedMethods?: string[] } = {}) =>
+    (handler: any, { bypass = [] }: { bypass?: string[] } = {}) =>
         async (request, response) => {
             const session = await getServerSession(request, response, authOptions);
 
-            if (!session && !allowedMethods.includes(request.method)) {
+            if (!session && !bypass.includes(request.method)) {
                 return response.status(401);
             }
 
