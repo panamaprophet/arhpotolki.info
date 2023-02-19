@@ -1,7 +1,7 @@
-import React from 'react';
-import { materials } from '../../..';
-import ControlItem from './ControlItem';
-import styles from './styles.module.css';
+import React from "react";
+import { materials } from "../../..";
+import ControlItem from "./ControlItem";
+import styles from "./styles.module.css";
 
 function MaterialControls({ material, onMaterialChange }) {
     const handleMaterialChange = (e) => onMaterialChange(e.target.id);
@@ -14,7 +14,7 @@ function MaterialControls({ material, onMaterialChange }) {
                         material === materials.gloss &&
                         styles.settings__button__active
                     }`}
-                    id="Глянец"
+                    id={materials.gloss}
                     onClick={handleMaterialChange}
                 >
                     Глянец
@@ -24,7 +24,7 @@ function MaterialControls({ material, onMaterialChange }) {
                         material === materials.mate &&
                         styles.settings__button__active
                     }`}
-                    id="Матовый"
+                    id={materials.mate}
                     onClick={handleMaterialChange}
                 >
                     Матовый
@@ -34,7 +34,7 @@ function MaterialControls({ material, onMaterialChange }) {
                         material === materials.satine &&
                         styles.settings__button__active
                     }`}
-                    id="Сатин"
+                    id={materials.satine}
                     onClick={handleMaterialChange}
                 >
                     Сатин
@@ -44,7 +44,7 @@ function MaterialControls({ material, onMaterialChange }) {
                         material === materials.clouds &&
                         styles.settings__button__active
                     }`}
-                    id="Облака"
+                    id={materials.clouds}
                     onClick={handleMaterialChange}
                 >
                     Облака
