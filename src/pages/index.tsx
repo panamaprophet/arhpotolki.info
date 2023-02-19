@@ -2,7 +2,7 @@ import About from "../modules/About";
 import Calculator from "../modules/Calculator";
 import Certificates from "../modules/Certificates";
 import Description from "../modules/Description";
-import Examples from "../modules/Examples";
+import Gallery from "../modules/Gallery";
 import Header from "../modules/Header";
 import HowItWorks from "../modules/HowItWorks";
 import Meta from "../modules/Meta";
@@ -18,7 +18,7 @@ const App = () => {
       <Header />
       <Description />
       <About />
-      <Examples />
+      <Gallery />
       <Tagline />
       <Calculator />
       <FeedbackForm />

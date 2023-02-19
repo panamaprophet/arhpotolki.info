@@ -12,7 +12,7 @@ type Button = {
 
 type FilterType = "all" | "category";
 
-function Examples() {
+function Gallery() {
   const [currentButton, setCurrentButton] = useState(mockButtons[0]);
   const [filterType, setFilterType] = useState("all");
 
@@ -81,4 +81,4 @@ function Examples() {
   );
 }
 
-export default Examples;
+export default Gallery;
