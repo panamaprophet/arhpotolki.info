@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./styles.module.css";
 import Title from "../../components/Title";
 import mock from "./mock";
-import Person from "./components/Person";
+import FeedbackItem from "./components/FeedbackItem";
 
 function Feedbacks() {
   const [persons, setPersons] = useState(mock);
@@ -32,7 +32,7 @@ function Feedbacks() {
             «
           </div>
           <div className={styles.responses__list}>
-            <Person person={persons[currentPersonIndex]} />
+            <FeedbackItem person={persons[currentPersonIndex]} />
           </div>
           <div className={styles.responses__next} onClick={handleNextPerson}>
             »
