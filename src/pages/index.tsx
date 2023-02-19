@@ -5,7 +5,6 @@ import Description from "../modules/Description";
 import Gallery from "../modules/Gallery";
 import Header from "../modules/Header";
 import HowItWorks from "../modules/HowItWorks";
-import Meta from "../modules/Meta";
 import Separator from "../modules/Separator";
 import FeedbackForm from "../modules/FeedbackForm";
 import Feedbacks from "../modules/Feedbacks";
@@ -14,7 +13,6 @@ import Footer from "../modules/Footer";
 const App = () => {
   return (
     <>
-      <Meta />
       <Header />
       <Description />
       <About />
