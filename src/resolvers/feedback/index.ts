@@ -1,43 +1,42 @@
+import { DeleteItemCommand, PutItemCommand, QueryCommand } from '@aws-sdk/client-dynamodb';
+import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
 import { randomUUID } from 'crypto';
-import { client as s3 } from '../../services/s3';
 import { client as db } from '../../services/db';
 
 
+const FEEDBACK_TABLE = String(process.env.FEEDBACK_TABLE)
+
+
 export const saveFeedback = async (data: any) => {
-    const id = randomUUID();
-    const { text, author } = data;
-    const picture = data.picture ? await s3.upload(data.picture) : null;
+    const { id = randomUUID(), text, author, picture } = data;
 
-    const result = await db.save({
-        id,
-        text,
-        author,
-        picture,
-        date: Date.now(),
-    });
-
-    return result;
-};
-
-export const getFeedbacks = () => {
-    const result = await db.get();
+    const result = await db.send(new PutItemCommand({
+        TableName: FEEDBACK_TABLE,
+        Item: marshall({
+            id,
+            text,
+            author,
+            picture,
+            date: Date.now(),
+        }),
+    }));
 
     return result;
 };
 
-export const updateFeedback = (data: any) => {
-    const { id } = data;
-    const previousData = await db.get(id);
-    const updatedData = { ...previousData, ...data };
+export const getFeedbacks = async () => {
+    const result = await db.send(new QueryCommand({
+        TableName: FEEDBACK_TABLE,
+    }))
 
-    const result = await db.save(updatedData);
-
-    return result;
+    return result.Count > 0 ? result.Items.map(item => unmarshall(item)) : null;
 };
 
-export const removeFeedback = (data: any) => {
-    const { id } = data;
-    const result = await db.delete(id);
+export const removeFeedback = async (id: string) => {
+    const result = await db.send(new DeleteItemCommand({
+        TableName: FEEDBACK_TABLE,
+        Key: marshall({ id }),
+    }));
 
-    return result;
+    return result.$metadata.httpStatusCode === 200;
 };

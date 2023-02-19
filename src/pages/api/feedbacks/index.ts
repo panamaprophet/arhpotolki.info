@@ -1,15 +1,14 @@
 import { decorateWithAuthentification } from '../../../decorators';
-import { getFeedbacks, removeFeedback, saveFeedback, updateFeedback } from '../../../resolvers/feedback';
+import { getFeedbacks, removeFeedback, saveFeedback } from '../../../resolvers/feedback';
 
 
-const handler = async (request, request) => {
+const handler = async (request, response) => {
     switch (request.method) {
         case 'POST':
+        case 'PUT':
             return saveFeedback(request.body);
         case 'GET':
             return getFeedbacks();
-        case 'PUT':
-            return updateFeedback(request.body);
         case 'DELETE':
             return removeFeedback(request.body.id);
     }

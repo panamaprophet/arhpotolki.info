@@ -1,5 +1,5 @@
-import { S3Client/* , BatchWriteItemCommand, BatchGetItemCommand */ } from '@aws-sdk/client-s3';
-// import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
+import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
 
 export const client = new S3Client({
@@ -9,3 +9,8 @@ export const client = new S3Client({
     },
     region: String(process.env.REGION),
 });
+
+export const getUploadUrl = (bucket: string, key: string) => getSignedUrl(client, new PutObjectCommand({
+    Bucket: bucket,
+    Key: key,
+}));
