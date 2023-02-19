@@ -28,6 +28,10 @@
     cursor: pointer;
 }
 
+.settings__button > * {
+    cursor: inherit;
+}
+
 .settings__button__active {
     background: #f7a136;
 }
