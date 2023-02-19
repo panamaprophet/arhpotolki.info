@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import styles from "./styles.module.css";
-import Image from "next/image";
-import Burger from "../../../components/Burger";
-import Menu from "../../../components/Menu";
+import React, { useState } from 'react';
+import styles from './styles.module.css';
+import Image from 'next/image';
+import Burger from '../../../components/Burger';
+import Menu from '../../../components/Menu';
 
 function Info() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
