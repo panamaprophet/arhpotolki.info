@@ -1,16 +1,14 @@
 import { decorateWithAuthentification } from '../../../decorators';
-import { getImages, removeImage, saveImage } from '../../../resolvers/images';
+import { getPictures, savePicture } from '../../../resolvers/pictures';
 
 
-const handler = (request, response) => {
-    switch (request.method) {
-        case 'POST':
-        case 'PUT':
-            return saveImage(request.body);
-        case 'GET':
-            return getImages();
-        case 'DELETE':
-            return removeImage(request.body.id);
+const handler = ({ method, body }) => {
+    if (method === 'POST') {
+        return savePicture(body);
+    }
+
+    if (method === 'GET') {
+        return getPictures();
     }
 };
 

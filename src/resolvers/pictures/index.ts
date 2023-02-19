@@ -7,7 +7,7 @@ import { client as db } from '../../services/db';
 const PICTURES_TABLE = String(process.env.PICTURES_TABLE);
 
 
-export const saveImage = async ({ id = randomUUID(), url, tags = [] }) => {
+export const savePicture = async ({ id = randomUUID(), url, tags = [] }) => {
     const result = await db.send(new PutItemCommand({
         TableName: PICTURES_TABLE,
         Item: marshall({ id, url, tags }),
@@ -16,7 +16,7 @@ export const saveImage = async ({ id = randomUUID(), url, tags = [] }) => {
     return result.$metadata.httpStatusCode === 200 ? id : null;
 };
 
-export const removeImage = async (id: string) => {
+export const removePicture = async (id: string) => {
     const result = await db.send(new DeleteItemCommand({
         TableName: PICTURES_TABLE,
         Key: marshall({ id }),
@@ -25,7 +25,7 @@ export const removeImage = async (id: string) => {
     return result.$metadata.httpStatusCode === 200;
 };
 
-export const getImages = async () => {
+export const getPictures = async () => {
     const result = await db.send(new QueryCommand({
         TableName: PICTURES_TABLE,
     }))
