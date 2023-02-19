@@ -26,3 +26,9 @@
   display: inline-block;
   transition: transform 250ms ease-in-out;
 }
+
+.filter__type {
+  color: #f7a136;
+  text-decoration: underline;
+  cursor: pointer;
+}
