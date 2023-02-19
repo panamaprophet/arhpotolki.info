@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./styles.module.css";
 
-function Person({ person }) {
+function FeedbackItem({ person }) {
   return (
     <div className="response">
       <div
@@ -17,4 +17,4 @@ function Person({ person }) {
   );
 }
 
-export default Person;
+export default FeedbackItem;
