@@ -21,6 +21,7 @@
   "devDependencies": {
     "@aws-sdk/client-dynamodb": "^3.272.0",
     "@aws-sdk/client-s3": "^3.272.0",
+    "@aws-sdk/s3-request-presigner": "^3.272.0",
     "@aws-sdk/util-dynamodb": "^3.272.0",
     "@types/node": "^18.13.0",
     "@types/react": "18.0.28",

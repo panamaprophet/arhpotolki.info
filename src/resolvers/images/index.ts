@@ -1,23 +1,34 @@
-import { client as s3 } from '../../services/s3';
+import { DeleteItemCommand, PutItemCommand, QueryCommand } from '@aws-sdk/client-dynamodb';
+import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
+import { randomUUID } from 'crypto';
 import { client as db } from '../../services/db';
 
 
-export const uploadImage = () => {
-    // upload to s3
-    // optimize
-    // save to db
-    // return uuid of image
+const PICTURES_TABLE = String(process.env.PICTURES_TABLE);
+
+
+export const saveImage = async ({ id = randomUUID(), url, tags = [] }) => {
+    const result = await db.send(new PutItemCommand({
+        TableName: PICTURES_TABLE,
+        Item: marshall({ id, url, tags }),
+    }));
+
+    return result.$metadata.httpStatusCode === 200 ? id : null;
 };
 
-export const updateImage = (data: any) => {
-    // update image json in db
+export const removeImage = async (id: string) => {
+    const result = await db.send(new DeleteItemCommand({
+        TableName: PICTURES_TABLE,
+        Key: marshall({ id }),
+    }));
+
+    return result.$metadata.httpStatusCode === 200;
 };
 
-export const removeImage = (id: string) => {
-    // remove from db, remove from s3
-};
+export const getImages = async () => {
+    const result = await db.send(new QueryCommand({
+        TableName: PICTURES_TABLE,
+    }))
 
-export const getImages = () => {
-    // return all images in following format:
-    // { id, path, tag (category?) }
+    return result.Count > 0 ? result.Items.map(item => unmarshall(item)) : null;
 };
