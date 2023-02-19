@@ -4,7 +4,6 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        <title>Архпотолки - натяжные потолки любой сложности!</title>
         <link rel="icon" href="/favicon.ico" key="favicon" />
         <meta
           property="og:description"
