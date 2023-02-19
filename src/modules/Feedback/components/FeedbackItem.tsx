@@ -7,7 +7,7 @@ function FeedbackItem({ person }) {
       <div
         className={styles.response__photo}
         style={{
-          backgroundImage: `url(${person.img});`,
+          backgroundImage: `url(${person.img})`,
         }}
       />
       <div className={styles.response__name}>{person.name}</div>
