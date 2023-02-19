@@ -7,7 +7,7 @@ import Header from "../modules/Header";
 import HowItWorks from "../modules/HowItWorks";
 import Meta from "../modules/Meta";
 import Tagline from "../modules/Tagline";
-import Application from "../modules/Application";
+import FeedbackForm from "../modules/FeedbackForm";
 import Feedbacks from "../modules/Feedbacks";
 import Footer from "../modules/Footer";
 
@@ -21,7 +21,7 @@ const App = () => {
       <Examples />
       <Tagline />
       <Calculator />
-      <Application />
+      <FeedbackForm />
       <HowItWorks />
       <Certificates />
       <Feedbacks />
