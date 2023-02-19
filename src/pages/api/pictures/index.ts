@@ -17,4 +17,4 @@ const handler = async ({ method, body }, response) => {
 };
 
 
-export default decorateWithAuthentification(handler, { allowedMethods: ['GET'] });
+export default decorateWithAuthentification(handler, { bypass: ['GET'] });
