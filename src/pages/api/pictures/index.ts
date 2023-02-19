@@ -2,14 +2,18 @@ import { decorateWithAuthentification } from '../../../decorators';
 import { getPictures, savePicture } from '../../../resolvers/pictures';
 
 
-const handler = ({ method, body }) => {
+const handler = async ({ method, body }, response) => {
+    let result = null;
+
     if (method === 'POST') {
-        return savePicture(body);
+        result = await savePicture(JSON.parse(body));
     }
 
     if (method === 'GET') {
-        return getPictures();
+        result = await getPictures();
     }
+
+    return response.status(200).json(result);
 };
 
 
