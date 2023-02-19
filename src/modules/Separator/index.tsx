@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./styles.module.css";
 
-function Tagline() {
+function Separator() {
   return (
     <section className={styles.slogan}>
       <div className="layout">
@@ -13,4 +13,4 @@ function Tagline() {
   );
 }
 
-export default Tagline;
+export default Separator;
