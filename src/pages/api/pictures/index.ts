@@ -1,27 +1,19 @@
-import { getServerSession } from 'next-auth/next';
-// @ts-ignore
-import { authOptions } from '../auth/[...nextauth]';
+import { decorateWithAuthentification } from '../../../decorators';
+import { getImages, removeImage, updateImage, uploadImage } from '../../../resolvers/images';
 
-const handler = async (request, response) => {
-    const session = await getServerSession(request, response, authOptions);
 
-    if (!session) {
-        return response.status(401);
+const handler = (request, request) => {
+    switch (request.method) {
+        case 'POST':
+            return uploadImage(request.body);
+        case 'GET':
+            return getImages();
+        case 'PUT':
+            return updateImage(request.body);
+        case 'DELETE':
+            return removeImage(request.body.id);
     }
-
-    if (request.method === 'POST') {
-        // add picture
-    }
-
-    if (request.method === 'PUT') {
-        // update picture
-    }
-
-    if (request.method === 'DELETE') {
-        // remove picture
-    }
-
-    return null;
 };
 
-export default handler;
+
+export default decorateWithAuthentification(handler, { allowedMethods: ['GET'] });
