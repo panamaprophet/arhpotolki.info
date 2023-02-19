@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./styles.module.css";
-import BlockTitle from "../../components/BlockTitle";
+import Title from "../../components/Title";
 import list from "./persons";
 import Person from "./components/Person";
 
@@ -26,7 +26,7 @@ function Feedbacks() {
   return (
     <section id="feedbacks">
       <div className="layout">
-        <BlockTitle>Отзывы:</BlockTitle>
+        <Title>Отзывы:</Title>
         <div className={styles.responses}>
           <div className={styles.responses__prev} onClick={handlePrevPerson}>
             «

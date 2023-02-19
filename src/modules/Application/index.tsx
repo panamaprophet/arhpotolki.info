@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "./styles.module.css";
-import BlockTitle from "../../components/BlockTitle";
+import Title from "../../components/Title";
 
 function Application() {
   return (
     <section id="application" className={styles.application}>
       <div className="layout">
-        <BlockTitle>Оставить заявку:</BlockTitle>
+        <Title>Оставить заявку:</Title>
         <form
           action="/gate/"
           method="POST"

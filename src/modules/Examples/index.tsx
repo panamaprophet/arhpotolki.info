@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import BlockTitle from "../../components/BlockTitle";
+import Title from "../../components/Title";
 import buttons from "./buttons";
 import Button from "./components/Button";
 import Image from "./components/Image";
@@ -58,7 +58,7 @@ function Examples() {
 
   return (
     <section id="examples" className={`${styles.examples} layout`}>
-      <BlockTitle>
+      <Title>
         Наши работы (
         <span
           className={styles.filter__type}
@@ -74,7 +74,7 @@ function Examples() {
           по категориям
         </span>
         )
-      </BlockTitle>
+      </Title>
       {filterType === "all" && <FullGallery />}
       {filterType === "category" && <GalleryWithFilters />}
     </section>
