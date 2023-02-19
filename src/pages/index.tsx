@@ -7,7 +7,7 @@ import Header from "../modules/Header";
 import HowItWorks from "../modules/HowItWorks";
 import Separator from "../modules/Separator";
 import FeedbackForm from "../modules/FeedbackForm";
-import Feedbacks from "../modules/Feedbacks";
+import Feedback from "../modules/Feedback";
 import Footer from "../modules/Footer";
 
 const App = () => {
@@ -22,7 +22,7 @@ const App = () => {
       <FeedbackForm />
       <HowItWorks />
       <Certificates />
-      <Feedbacks />
+      <Feedback />
       <Footer />
     </>
   );
