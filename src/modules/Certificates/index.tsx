@@ -9,7 +9,7 @@ function Certificates() {
       <BlockTitle>Сертификаты соответствия:</BlockTitle>
       <ul className={styles.certificates__list}>
         {certs.map((cert) => (
-          <li className={styles.certificates__list__item}>
+          <li key={cert.path} className={styles.certificates__list__item}>
             <img src={cert.path} />
           </li>
         ))}
