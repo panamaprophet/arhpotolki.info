@@ -1,0 +1,20 @@
+.block {
+  max-width: 940px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.slogan {
+  background: #f7a136;
+  background-size: auto;
+  background-size: cover;
+  color: #232323;
+  padding: 48px 0;
+  margin-top: 48px;
+  text-align: center;
+  font-size: 1.4em;
+}
+
+.tagline__text {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}

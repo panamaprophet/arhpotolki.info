@@ -1,0 +1,59 @@
+.responses {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.responses__next,
+.responses__prev {
+  flex-shrink: 0;
+  background: #f7a136;
+  width: 42px;
+  height: 42px;
+  text-align: center;
+  line-height: 42px;
+  color: #fff;
+  font-size: 1.4em;
+  cursor: pointer;
+}
+
+.responses__prev {
+  margin-left: 8px;
+}
+
+.responses__next {
+  margin-right: 8px;
+}
+
+.responses__list {
+  flex-grow: 1;
+  padding: 8px;
+  margin: 0 8px;
+}
+
+.leave__response {
+  text-align: center;
+  padding: 8px;
+  margin: 8px;
+}
+
+.leave__response__title,
+.leave__response__submit {
+  padding: 8px;
+  display: inline-block;
+  margin: 32px auto;
+  width: 140px;
+  text-align: center;
+  background: #f7a136;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  font-size: 1em;
+  font-family: "PT Sans";
+}
+
+.block {
+  max-width: 940px;
+  margin: 0 auto;
+  width: 100%;
+}

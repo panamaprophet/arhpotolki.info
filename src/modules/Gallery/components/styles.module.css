@@ -1,0 +1,36 @@
+.filter__item {
+  display: inline-block;
+  background: #cccccc;
+  margin: 0 2px 4px;
+  padding: 8px;
+  cursor: pointer;
+  user-select: none;
+  transition: 200ms ease-in;
+}
+
+.filter__item__active {
+  background: #f7a136;
+}
+
+.filter {
+  display: block;
+  list-style: none;
+  text-align: center;
+}
+
+.gallery {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+
+.gallery__item {
+  margin: 0 2px 4px;
+  flex-shrink: 1;
+  max-width: 23%;
+  width: 23%;
+  list-style: none;
+  display: inline-block;
+  transition: transform 250ms ease-in-out;
+}
