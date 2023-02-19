@@ -2,18 +2,18 @@ import { decorateWithAuthentification } from '../../../decorators';
 import { removeFeedback, saveFeedback } from '../../../resolvers/feedback';
 
 
-const handler = async ({ method, body, query }) => {
-    const { id } = query;
+const handler = async ({ method, body, query: { id } }, response) => {
+    let result = null;
 
     if (method === 'PUT') {
-        return saveFeedback({ id, ...body });
+        result = await saveFeedback({ id, ...body });
     }
 
     if (method === 'DELETE') {
-        return removeFeedback(id);
+        result = await removeFeedback(id);
     }
 
-    return null;
+    return response.status(200).json(result);
 };
 
 

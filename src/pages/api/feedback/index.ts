@@ -1,16 +1,18 @@
 import { getFeedbacks, saveFeedback } from '../../../resolvers/feedback';
 
 
-const handler = async ({ method, body }) => {
+const handler = async ({ method, body }, response) => {
+    let result = null;
+
     if (method === 'POST') {
-        return saveFeedback(body);
+        result = await saveFeedback(JSON.parse(body));
     }
 
     if (method === 'GET') {
-        return getFeedbacks();
+        result = await getFeedbacks();
     }
 
-    return null;
+    return response.status(200).json(result);
 };
 
 

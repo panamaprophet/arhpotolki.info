@@ -2,18 +2,18 @@ import { decorateWithAuthentification } from '../../../decorators';
 import { removePicture, savePicture } from '../../../resolvers/pictures';
 
 
-const handler = async ({ method, body, query }) => {
-    const { id } = query;
+const handler = async ({ method, body, query: { id } }, response) => {
+    let result = null;
 
     if (method === 'PUT') {
-        return savePicture({ id, ...body });
+        result = await savePicture({ id, ...body });
     }
 
     if (method === 'DELETE') {
-        return removePicture(id);
+        result = await removePicture(id);
     }
 
-    return null;
+    return response.status(200).json(result);
 };
 
 
