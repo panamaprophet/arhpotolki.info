@@ -1,37 +1,55 @@
-import { useSession, signIn, signOut } from 'next-auth/react';
+import { useSession, signIn, signOut, getSession } from 'next-auth/react';
+import { getFeedbacks } from '../resolvers/feedback';
+import { getPictures } from '../resolvers/pictures';
+import { getSettings } from '../resolvers/settings';
 
 
 const PicturesManager = ({ items }) => (<div>pictures manager</div>);
 
 const FeedbackManager = ({ items }) => (<div>feedback manager</div>);
 
+const SettingsManager = ({ items }) => (<div>settings manager</div>);
 
-const AdminPage = () => {
-    const { data: session, status } = useSession();
+
+const AdminPage = ({ settings, pictures, feedback }) => {
+    const { status } = useSession();
     const isAuthenticated = status === 'authenticated';
 
     if (!isAuthenticated) {
         return (
-            <button onClick={() => signIn()}>sign in</button>
+            <>
+                <button onClick={() => signIn()}>sign in</button>
+            </>
         );
     }
 
     return (
         <>
             <div className="header">
-                admin.
+                <span>admin</span>
                 <button onClick={() => signOut()}>sign out</button>
             </div>
-            <PicturesManager items={[]} />
-            <FeedbackManager items={[]} />
+
+            <PicturesManager items={pictures} />
+            <FeedbackManager items={feedback} />
+            <SettingsManager items={settings} />
         </>
     );
 };
 
-AdminPage.getLayout = page => (
-    <div>
-        {page}
-    </div>
-);
+AdminPage.getInitialProps = async (ctx) => {
+    const session = await getSession({ req: ctx.req });
+
+    if (!session) {
+        return null;
+    }
+
+    return {
+        settings: await getSettings(),
+        pictures: await getPictures(),
+        feedback: await getFeedbacks(),
+    };
+};
+
 
 export default AdminPage;
