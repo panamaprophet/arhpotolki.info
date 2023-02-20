@@ -35,6 +35,7 @@ export const removePicture = async (id: string) => {
 export const getPictures = async () => {
     const result = await db.send(new ScanCommand({
         TableName: PICTURES_TABLE,
+        Limit: 100,
     }));
 
     const items =
