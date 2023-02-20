@@ -1,6 +1,7 @@
 import { PutItemCommand, DeleteItemCommand, ScanCommand } from '@aws-sdk/client-dynamodb';
 import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
 import { client as db } from '../../services/db';
+import { Setting } from '../../types';
 
 
 const SETTINGS_TABLE = String(process.env.SETTINGS_TABLE);
@@ -12,7 +13,7 @@ export const setSetting = async ({ key, value }) => {
         Item: marshall({ key, value }),
     }));
 
-    return { 
+    return {
         success: (result.$metadata.httpStatusCode === 200),
     };
 };
@@ -33,7 +34,10 @@ export const getSettings = async () => {
         TableName: SETTINGS_TABLE,
     }));
 
-    const items = result.Count > 0 ? result.Items.map(item => unmarshall(item)) : null;
+    const items =
+        result.Count > 0
+            ? result.Items.map(item => unmarshall(item) as Setting)
+            : [];
 
-    return { items };
+    return items;
 };

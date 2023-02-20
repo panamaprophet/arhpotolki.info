@@ -2,6 +2,7 @@ import { DeleteItemCommand, PutItemCommand, ScanCommand } from '@aws-sdk/client-
 import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
 import { randomUUID } from 'crypto';
 import { client as db } from '../../services/db';
+import { Feedback } from '../../types';
 
 
 const FEEDBACK_TABLE = String(process.env.FEEDBACK_TABLE)
@@ -21,7 +22,7 @@ export const saveFeedback = async (data: any) => {
         }),
     }));
 
-    return { 
+    return {
         success: (result.$metadata.httpStatusCode === 200),
     };
 };
@@ -31,9 +32,12 @@ export const getFeedbacks = async () => {
         TableName: FEEDBACK_TABLE,
     }));
 
-    const items = result.Count > 0 ? result.Items.map(item => unmarshall(item)) : null;
+    const items =
+        result.Count > 0
+            ? result.Items.map(item => unmarshall(item) as Feedback)
+            : [];
 
-    return { items };
+    return items;
 };
 
 export const removeFeedback = async (id: string) => {
@@ -42,7 +46,7 @@ export const removeFeedback = async (id: string) => {
         Key: marshall({ id }),
     }));
 
-    return { 
+    return {
         success: (result.$metadata.httpStatusCode === 200),
     };
 };
