@@ -6,16 +6,9 @@ export const ACTION_SETTINGS_REMOVE = 'actions/settings/remove';
 export const reducer = (state, { type, payload: { key, value } }) => {
     switch (type) {
         case ACTION_SETTINGS_REMOVE:
-            return Object.fromEntries(
-                Object
-                    .entries(state)
-                    .filter(item => item[0] !== key)
-            );
+            return state.filter(item => item.key !== key);
         case ACTION_SETTINGS_CHANGE:
-            return {
-                ...state,
-                [key]: value,
-            };
+            return state.map(item => item.key === key ? { key, value } : item);
         default:
             return state;
     };
