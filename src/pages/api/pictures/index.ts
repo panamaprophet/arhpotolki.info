@@ -1,8 +1,10 @@
+import { NextApiRequest, NextApiResponse } from 'next';
 import { decorateWithAuthentification } from '../../../decorators';
 import { getPictures, savePicture } from '../../../resolvers/pictures';
+import { Picture } from '../../../types';
 
 
-const handler = async ({ method, body }, response) => {
+const handler = async ({ method, body }: NextApiRequest, response: NextApiResponse<{ success: boolean } | Picture[]>) => {
     let result = null;
 
     if (method === 'POST') {

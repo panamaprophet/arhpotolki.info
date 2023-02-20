@@ -13,7 +13,9 @@ export const savePicture = async ({ id = randomUUID(), url, tags = [] }) => {
         Item: marshall({ id, url, tags }),
     }));
 
-    return result.$metadata.httpStatusCode === 200 ? id : null;
+    return {
+        success: (result.$metadata.httpStatusCode === 200),
+    };
 };
 
 export const removePicture = async (id: string) => {
@@ -22,7 +24,9 @@ export const removePicture = async (id: string) => {
         Key: marshall({ id }),
     }));
 
-    return result.$metadata.httpStatusCode === 200;
+    return {
+        success: (result.$metadata.httpStatusCode === 200),
+    };
 };
 
 export const getPictures = async () => {
@@ -30,5 +34,7 @@ export const getPictures = async () => {
         TableName: PICTURES_TABLE,
     }));
 
-    return result.Count > 0 ? result.Items.map(item => unmarshall(item)) : null;
+    const items = result.Count > 0 ? result.Items.map(item => unmarshall(item)) : null;
+
+    return { items };
 };

@@ -21,7 +21,9 @@ export const saveFeedback = async (data: any) => {
         }),
     }));
 
-    return result;
+    return { 
+        success: (result.$metadata.httpStatusCode === 200),
+    };
 };
 
 export const getFeedbacks = async () => {
@@ -29,7 +31,9 @@ export const getFeedbacks = async () => {
         TableName: FEEDBACK_TABLE,
     }));
 
-    return result.Count > 0 ? result.Items.map(item => unmarshall(item)) : null;
+    const items = result.Count > 0 ? result.Items.map(item => unmarshall(item)) : null;
+
+    return { items };
 };
 
 export const removeFeedback = async (id: string) => {
@@ -38,5 +42,7 @@ export const removeFeedback = async (id: string) => {
         Key: marshall({ id }),
     }));
 
-    return result.$metadata.httpStatusCode === 200;
+    return { 
+        success: (result.$metadata.httpStatusCode === 200),
+    };
 };

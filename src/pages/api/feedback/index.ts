@@ -1,7 +1,8 @@
+import { NextApiRequest, NextApiResponse } from 'next';
 import { getFeedbacks, saveFeedback } from '../../../resolvers/feedback';
 
 
-const handler = async ({ method, body }, response) => {
+const handler = async ({ method, body }: NextApiRequest, response: NextApiResponse<{ success: true } | null>) => {
     let result = null;
 
     if (method === 'POST') {

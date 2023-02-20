@@ -12,7 +12,9 @@ export const setSetting = async ({ key, value }) => {
         Item: marshall({ key, value }),
     }));
 
-    return result.$metadata.httpStatusCode === 200 ? key : null;
+    return { 
+        success: (result.$metadata.httpStatusCode === 200),
+    };
 };
 
 export const removeSetting = async (key: string) => {
@@ -21,7 +23,9 @@ export const removeSetting = async (key: string) => {
         Key: marshall({ key }),
     }));
 
-    return result.$metadata.httpStatusCode === 200;
+    return {
+        success: (result.$metadata.httpStatusCode === 200),
+    };
 };
 
 export const getSettings = async () => {
@@ -29,5 +33,7 @@ export const getSettings = async () => {
         TableName: SETTINGS_TABLE,
     }));
 
-    return result.Count > 0 ? result.Items.map(item => unmarshall(item)) : null;
+    const items = result.Count > 0 ? result.Items.map(item => unmarshall(item)) : null;
+
+    return { items };
 };
