@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import styles from "./styles.module.css";
-import Title from "../../components/Title";
-import mock from "./mock";
-import FeedbackItem from "./components/FeedbackItem";
+import React, { useState } from 'react';
+import styles from './styles.module.css';
+import Title from '../../components/Title';
+import mock from './mock';
+import FeedbackItem from './components/FeedbackItem';
 
 function Feedbacks() {
   const [persons, setPersons] = useState(mock);

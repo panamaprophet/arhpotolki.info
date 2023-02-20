@@ -1,6 +1,6 @@
-import React from "react";
-import ControlItem from "./components/ControlItem";
-import styles from "./styles.module.css";
+import React from 'react';
+import ControlItem from './components/ControlItem';
+import styles from './styles.module.css';
 
 function Controls() {
   return (
@@ -12,13 +12,13 @@ function Controls() {
             style={{ background: "rgb(255, 255, 255)" }}
           >
             Потолок
-          </div>{" "}
+          </div>{' '}
           <div
             className={styles.settings__button}
             style={{ background: "rgb(165, 200, 219)" }}
           >
             Стены
-          </div>{" "}
+          </div>{' '}
           <div
             className={styles.settings__button}
             style={{ background: "rgb(98, 108, 110)" }}
@@ -29,16 +29,16 @@ function Controls() {
       </ControlItem>
       <ControlItem title="Материал">
         <div className={styles.settings__buttons}>
-          <div className={styles.settings__button}>Глянец</div>{" "}
-          <div className={styles.settings__button}>Матовый</div>{" "}
+          <div className={styles.settings__button}>Глянец</div>{' '}
+          <div className={styles.settings__button}>Матовый</div>{' '}
           <div className={styles.settings__button}>Сатин</div>
           <div className={styles.settings__button}>Облака</div>
         </div>
       </ControlItem>
       <ControlItem title="Класс">
         <div className={styles.settings__buttons}>
-          <div className={styles.settings__button}>Эконом (КНР)</div>{" "}
-          <div className={styles.settings__button}>Премиум (Германия)</div>{" "}
+          <div className={styles.settings__button}>Эконом (КНР)</div>{' '}
+          <div className={styles.settings__button}>Премиум (Германия)</div>{' '}
         </div>
       </ControlItem>
       <ControlItem title="Площадь, м²">

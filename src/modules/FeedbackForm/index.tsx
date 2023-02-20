@@ -1,6 +1,6 @@
-import React from "react";
-import styles from "./styles.module.css";
-import Title from "../../components/Title";
+import React from 'react';
+import styles from './styles.module.css';
+import Title from '../../components/Title';
 
 function FeedbackForm() {
   return (

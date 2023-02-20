@@ -1,23 +1,24 @@
-import { Html, Head, Main, NextScript } from "next/document";
+import { Html, Head, Main, NextScript } from 'next/document';
+import React from 'react';
 
 export default function Document() {
-  return (
-    <Html>
-      <Head>
-        <link rel="icon" href="/favicon.ico" key="favicon" />
-        <meta
-          property="og:description"
-          content="Установка натяжных потолков любой сложности в Архангельске и области"
-        />
-        <link
-          rel="stylesheet"
-          href="//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700|PT+Sans:400,700&amp;subset=cyrillic"
-        />
-      </Head>
-      <body>
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  );
+    return (
+        <Html>
+            <Head>
+                <link rel="icon" href="/favicon.ico" key="favicon" />
+                <meta
+                    property="og:description"
+                    content="Установка натяжных потолков любой сложности в Архангельске и области"
+                />
+                <link
+                    rel="stylesheet"
+                    href="//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700|PT+Sans:400,700&amp;subset=cyrillic"
+                />
+            </Head>
+            <body>
+                <Main />
+                <NextScript />
+            </body>
+        </Html>
+    );
 }
