@@ -34,6 +34,7 @@ export const removeSetting = async (key: string) => {
 export const getSettings = async () => {
     const result = await db.send(new ScanCommand({
         TableName: SETTINGS_TABLE,
+        Limit: 100,
     }));
 
     const items =

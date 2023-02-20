@@ -31,6 +31,7 @@ export const saveFeedback = async (data: any) => {
 export const getFeedbacks = async () => {
     const result = await db.send(new ScanCommand({
         TableName: FEEDBACK_TABLE,
+        Limit: 100,
     }));
 
     const items =
