@@ -24,6 +24,6 @@
 
 <br>
 
-* GET       /api/settings
-* GET       /api/settings/[key]   
-* PUT       /api/settings/[key]
+* GET     /api/settings       - returns all settings
+* GET     /api/settings/[key] - get setting by key
+* PUT     /api/settings/[key] - set setting by key
