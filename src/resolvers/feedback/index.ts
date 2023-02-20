@@ -1,4 +1,4 @@
-import { DeleteItemCommand, PutItemCommand, QueryCommand } from '@aws-sdk/client-dynamodb';
+import { DeleteItemCommand, PutItemCommand, ScanCommand } from '@aws-sdk/client-dynamodb';
 import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
 import { randomUUID } from 'crypto';
 import { client as db } from '../../services/db';
@@ -25,9 +25,9 @@ export const saveFeedback = async (data: any) => {
 };
 
 export const getFeedbacks = async () => {
-    const result = await db.send(new QueryCommand({
+    const result = await db.send(new ScanCommand({
         TableName: FEEDBACK_TABLE,
-    }))
+    }));
 
     return result.Count > 0 ? result.Items.map(item => unmarshall(item)) : null;
 };

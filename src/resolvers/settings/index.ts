@@ -1,4 +1,4 @@
-import { PutItemCommand, DeleteItemCommand, QueryCommand } from '@aws-sdk/client-dynamodb';
+import { PutItemCommand, DeleteItemCommand, ScanCommand } from '@aws-sdk/client-dynamodb';
 import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
 import { client as db } from '../../services/db';
 
@@ -25,9 +25,9 @@ export const removeSetting = async (key: string) => {
 };
 
 export const getSettings = async () => {
-    const result = await db.send(new QueryCommand({
+    const result = await db.send(new ScanCommand({
         TableName: SETTINGS_TABLE,
-    }))
+    }));
 
     return result.Count > 0 ? result.Items.map(item => unmarshall(item)) : null;
 };
