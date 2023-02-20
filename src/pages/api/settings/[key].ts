@@ -1,8 +1,9 @@
+import { NextApiRequest, NextApiResponse } from 'next';
 import { decorateWithAuthentification } from '../../../decorators';
 import { removeSetting, setSetting } from '../../../resolvers/settings';
 
 
-const handler = async ({ method, body, query: { key } }, response) => {
+const handler = async ({ method, body, query: { key } }: NextApiRequest, response: NextApiResponse<{ success: boolean } | null>) => {
     let result = null;
 
     if (method === 'PUT') {
@@ -12,7 +13,7 @@ const handler = async ({ method, body, query: { key } }, response) => {
     }
 
     if (method === 'DELETE') {
-        result = await removeSetting(key);
+        result = await removeSetting(key as string);
     }
 
     return response.status(200).json(result);
