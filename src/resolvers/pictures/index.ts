@@ -2,6 +2,7 @@ import { DeleteItemCommand, PutItemCommand, ScanCommand } from '@aws-sdk/client-
 import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
 import { randomUUID } from 'crypto';
 import { client as db } from '../../services/db';
+import { Picture } from '../../types';
 
 
 const PICTURES_TABLE = String(process.env.PICTURES_TABLE);
@@ -34,7 +35,10 @@ export const getPictures = async () => {
         TableName: PICTURES_TABLE,
     }));
 
-    const items = result.Count > 0 ? result.Items.map(item => unmarshall(item)) : null;
+    const items =
+        result.Count > 0
+            ? result.Items.map(item => unmarshall(item) as Picture)
+            : [];
 
-    return { items };
+    return items;
 };
