@@ -1,8 +1,8 @@
-import React from "react";
-import styles from "./styles.module.css";
-import mock from "./mock";
-import Card from "./components/Card";
-import Title from "../../components/Title";
+import React from 'react';
+import styles from './styles.module.css';
+import mock from './mock';
+import Card from './components/Card';
+import Title from '../../components/Title';
 
 function About() {
   return (
