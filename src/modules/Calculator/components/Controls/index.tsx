@@ -9,19 +9,19 @@ function Controls() {
         <div className={styles.settings__buttons}>
           <div
             className={styles.settings__button}
-            style={{ background: 'rgb(255, 255, 255);' }}
+            style={{ background: "rgb(255, 255, 255)" }}
           >
             Потолок
           </div>{' '}
           <div
             className={styles.settings__button}
-            style={{ background: 'rgb(165, 200, 219);' }}
+            style={{ background: "rgb(165, 200, 219)" }}
           >
             Стены
           </div>{' '}
           <div
             className={styles.settings__button}
-            style={{ background: 'rgb(98, 108, 110);' }}
+            style={{ background: "rgb(98, 108, 110)" }}
           >
             Пол
           </div>
