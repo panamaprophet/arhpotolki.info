@@ -6,7 +6,9 @@ const handler = async ({ method, body, query: { key } }, response) => {
     let result = null;
 
     if (method === 'PUT') {
-        result = await setSetting({ key, ...body });
+        const { value } = JSON.parse(body);
+
+        result = await setSetting({ key, value });
     }
 
     if (method === 'DELETE') {
