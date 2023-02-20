@@ -16,6 +16,7 @@ export const savePicture = async ({ id = randomUUID(), url, tags = [] }) => {
 
     return {
         success: (result.$metadata.httpStatusCode === 200),
+        item: { id, url, tags },
     };
 };
 
@@ -27,6 +28,7 @@ export const removePicture = async (id: string) => {
 
     return {
         success: (result.$metadata.httpStatusCode === 200),
+        item: { id },
     };
 };
 

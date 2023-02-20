@@ -5,4 +5,4 @@ export { ACTION_SETTINGS_CHANGE, ACTION_SETTINGS_REMOVE } from './reducer/settin
 export { ACTION_FEEDBACK_CHANGE, ACTION_FEEDBACK_REMOVE } from './reducer/feedback';
 export { ACTION_PICTURES_CHANGE, ACTION_PICTURES_REMOVE } from './reducer/pictures';
 
-export const useAdminState = (initialState = {}) => useReducer(reducer, initialState);
+export const useAdmin = (initialState = {}) => useReducer(reducer, initialState);

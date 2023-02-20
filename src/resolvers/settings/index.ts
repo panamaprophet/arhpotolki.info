@@ -15,6 +15,7 @@ export const setSetting = async ({ key, value }) => {
 
     return {
         success: (result.$metadata.httpStatusCode === 200),
+        item: { key, value },
     };
 };
 
@@ -26,6 +27,7 @@ export const removeSetting = async (key: string) => {
 
     return {
         success: (result.$metadata.httpStatusCode === 200),
+        item: { key },
     };
 };
 
