@@ -1,7 +1,6 @@
 import Title from '../../components/Title';
 import Calculator from '../../components/Calculator';
-import { budgets, initialColors, materials } from '../../constants';
-import styles from './styles.module.css';
+import { budgets, materials } from '../../constants';
 
 function Calc() {
     return (
