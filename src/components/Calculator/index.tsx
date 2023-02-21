@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { budgets, initialColors } from '../../constants';
 import ColorPicker from '../ColorPicker';
 import InputNumber from '../InputNumber';
 import InputRange from '../InputRange';
 import { Col, Layout, Row } from '../Layout';
 import Preview from '../Preview';
+import { costBySquare, GERMANY, initialPrices, KNR, materialGap } from './mock';
 import styles from './styles.module.css';
 
 const Subtitle = ({ children }) => (
@@ -12,14 +13,45 @@ const Subtitle = ({ children }) => (
 );
 
 function Calculator({ onCalc, materials, types }) {
-    const [square, setSquare] = useState(0);
+    const [area, setArea] = useState(0);
     const [lights, setLights] = useState(0);
     const [colors, setColors] = useState(initialColors);
     const [type, setType] = useState(types[0]);
     const [material, setMaterial] = useState(materials[0]);
 
-    const price = square * lights;
+    const price = () => {
+        let price = 0;
+
+        if (area > 23) {
+            type === types[0]
+                ? (price = (area - 23) * costBySquare + materialGap.KNR)
+                : (price = (area - 23) * costBySquare + materialGap.GERMANY);
+        }
+
+        if (area <= 23) {
+            type === types[0]
+                ? (price = KNR[area - 1])
+                : (price = GERMANY[area - 1]);
+        }
+
+        const additionalPriceByColor =
+            colors.roof === '#ffffff' ? 0 : initialPrices.color * area;
+        const additionalPriceByLight =
+            lights > 1 ? lights * initialPrices.light : 0;
+        const totalPrice =
+            material === materials[3]
+                ? price * 1.5
+                : price + additionalPriceByColor;
+
+        return totalPrice + additionalPriceByLight;
+    };
+
     const discount = 0;
+    const currentPrice = price();
+
+    useEffect(() => {
+        onCalc(currentPrice);
+    });
 
     return (
         <Layout>
@@ -78,7 +110,7 @@ function Calculator({ onCalc, materials, types }) {
                 </Row>
                 <Row>
                     <Subtitle>Площадь, м²:</Subtitle>
-                    <InputNumber value={square} onChange={setSquare} />
+                    <InputNumber value={area} onChange={setArea} />
                 </Row>
                 <Row>
                     <Subtitle>Количество светильников:</Subtitle>
@@ -87,7 +119,7 @@ function Calculator({ onCalc, materials, types }) {
                 <Row>
                     <Subtitle>Цена:</Subtitle>
                     <InputNumber
-                        value={price}
+                        value={currentPrice}
                         onChange={() => {}}
                         readonly={true}
                     />
@@ -103,7 +135,7 @@ function Calculator({ onCalc, materials, types }) {
                 <Row>
                     <Subtitle>Цена со скидкой:</Subtitle>
                     <InputNumber
-                        value={price - discount}
+                        value={currentPrice - discount}
                         onChange={() => {}}
                         readonly={true}
                     />
