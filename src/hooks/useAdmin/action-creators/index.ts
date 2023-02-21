@@ -5,6 +5,7 @@ import {
     ACTION_PICTURES_REMOVE,
     ACTION_FEEDBACK_REMOVE,
     ACTION_SETTINGS_REMOVE,
+    ACTION_PICTURES_ADD,
 } from '../';
 
 
@@ -74,5 +75,19 @@ export const createRemoveSettingsAction = dispatch => async (payload) => {
     dispatch({
         type: ACTION_SETTINGS_REMOVE,
         payload,
+    });
+};
+
+export const createAddPictureAction = dispatch => async ({ url, tags }) => {
+    const { id } = await fetch(`/api/pictures`, {
+        method: 'POST',
+        body: JSON.stringify({ url, tags }),
+    })
+        .then(response => response.json())
+        .then(response => response.item);
+
+    dispatch({
+        type: ACTION_PICTURES_ADD,
+        payload: { id, url, tags },
     });
 };
