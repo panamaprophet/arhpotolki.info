@@ -7,7 +7,7 @@ const handler = async ({ method, body, query: { id } }: NextApiRequest, response
     let result = null;
 
     if (method === 'PUT') {
-        result = await saveFeedback({ id, ...body });
+        result = await saveFeedback({ id, ...JSON.parse(body) });
     }
 
     if (method === 'DELETE') {
