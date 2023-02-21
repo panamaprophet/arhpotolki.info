@@ -1,10 +1,16 @@
 import React from 'react';
 import styles from './styles.module.css';
 
-function InputNumber({ value, onChange, readonly = false, ...props }) {
+function InputNumber({
+    value,
+    type = '',
+    onChange,
+    readonly = false,
+    ...props
+}) {
     return (
         <input
-            type="number"
+            type={type}
             value={String(value)}
             readOnly={Boolean(readonly)}
             className={styles.input__field}
