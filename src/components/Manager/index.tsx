@@ -1,39 +1,33 @@
-const mapTargetValue = callback => event => callback(event.target.value);
+import { InputDate } from './elements/InputDate';
+import { InputList } from './elements/InputList';
+import { InputText } from './elements/InputText';
 
-const onEnter = callback => event => (event.which === 13 ? callback(event) : null);
+import { mapItemsToComponentProps } from './helpers';
 
 
-// @todo: map items to components and render some specific stuff such as picture, date or list of items
-
-const isArray = ([key]) => { key === 'tags' };
-const isDate = ([key]) => { key === 'date' };
-const isImage = ([key]) => { key === 'url' };
-
-const TypeToComponentMap = {
-    'array': 'InputList',
-    'date': 'InputDate',
-    'image': 'InputImage',
+const KeyToComponentMap = {
+    'tags': InputList,
+    'date': InputDate,
+    'default': InputText,
 };
 
+
+const Input = (props) => {
+    const Component = KeyToComponentMap[props.name] || KeyToComponentMap['default'];
+
+    return <Component {...props} />;
+};
+
+
 export const Manager = ({ items, onChange, onRemove }) => {
-    const Items = items.map((item, index) => (
-        <div key={item.id || item.key || index}>
-            {Object
-                .entries(item)
-                .filter(item => item[0] !== 'id')
-                .map(prop => (
-                    <div key={prop[0]}>
-                        {prop[0]}:
-                        <input
-                            type="text"
-                            defaultValue={String(prop[1])}
-                            onKeyDown={onEnter(mapTargetValue(value => onChange({ ...item, [prop[0]]: value })))}
-                        />
-                    </div>
-                ))}
-            {onRemove && <button type="button" onClick={() => onRemove(item.id || item.key || index)}>X</button>}
+    const data = mapItemsToComponentProps(items, onChange);
+
+    const Items = data.map((entity, index) => (
+        <div key={index}>
+            {entity.map((props) => <Input key={props.name} {...props} />)}
+            <button type="button" onClick={() => onRemove(items[index].id)}>X</button>
         </div>
     ));
 
-    return <div>{Items}</div>;
+    return <div className="manager">{Items}</div>;
 };

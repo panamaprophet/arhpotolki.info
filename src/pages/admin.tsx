@@ -1,7 +1,12 @@
+import { useState } from 'react';
 import { useSession, signIn, signOut, getSession } from 'next-auth/react';
+import Image from 'next/image';
 
 import Title from '../components/Title';
 import { Manager } from '../components/Manager';
+import { InputFile } from '../components/InputFile';
+import { InputList } from '../components/Manager/elements/InputList';
+
 import { useAdmin } from '../hooks/useAdmin';
 
 import { getFeedbacks } from '../resolvers/feedback';
@@ -17,7 +22,24 @@ import {
     createRemovePictureAction,
     createRemoveFeedbackAction,
     createRemoveSettingsAction,
+    createAddPictureAction,
 } from '../hooks/useAdmin/action-creators';
+
+
+const Picture = ({ id = null, url = '', tags = [], onCreate, onUpdate, onRemove }) => {
+    const [picture, setPicture] = useState({ id, url, tags });
+
+    return (
+        <div>
+            {!url && <InputFile onUpload={url => setPicture({ ...picture, url })} />}
+            {url && <Image src={url} alt={id} width="100" height="100" />}
+            <InputList onChange={tags => setPicture({ ...picture, tags })} value={picture.tags} />
+            {!picture.id && <button onClick={() => onCreate(picture)}>Добавить</button>}
+            {picture.id && <button onClick={() => onUpdate(picture)}>Сохранить</button>}
+            {picture.id && <button onClick={() => onRemove(picture)}>Удалить</button>}
+        </div>
+    );
+};
 
 
 type Props = {
@@ -38,6 +60,7 @@ const AdminPage = (props: Props) => {
     const onPictureRemove = createRemovePictureAction(dispatch);
     const onFeedbackRemove = createRemoveFeedbackAction(dispatch);
     const onSettingRemove = createRemoveSettingsAction(dispatch);
+    const onPictureCreate = createAddPictureAction(dispatch);
 
     return (
         <>
@@ -48,13 +71,42 @@ const AdminPage = (props: Props) => {
 
             {isAuthenticated && <>
                 <Title>Картинки</Title>
-                <Manager items={state.pictures} onChange={onPictureUpdate} onRemove={onPictureRemove} />
+                {/* <Manager items={state.pictures} onChange={onPictureUpdate} onRemove={onPictureRemove} /> */}
+
+                {state.pictures.map((picture) => (
+                    <Picture
+                        key={picture.id}
+                        {...picture}
+                        onCreate={onPictureCreate}
+                        onUpdate={onPictureUpdate}
+                        onRemove={onPictureRemove}
+                    />
+                ))}
+
+                <hr />
+
+                <div>
+                    Добавить картинку:
+                    <Picture
+                        onCreate={onPictureCreate}
+                        onUpdate={onPictureUpdate}
+                        onRemove={onPictureRemove}
+                    />
+                </div>
 
                 <Title>Отзывы</Title>
-                <Manager items={state.feedback} onChange={onFeedbackUpdate} onRemove={onFeedbackRemove} />
+                <Manager
+                    items={state.feedback}
+                    onChange={onFeedbackUpdate}
+                    onRemove={onFeedbackRemove}
+                />
 
                 <Title>Настройки</Title>
-                <Manager items={state.settings} onChange={onSettingsUpdate} onRemove={onSettingRemove} />
+                <Manager
+                    items={state.settings}
+                    onChange={onSettingsUpdate}
+                    onRemove={onSettingRemove}
+                />
             </>}
         </>
     );
