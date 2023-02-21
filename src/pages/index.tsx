@@ -1,6 +1,6 @@
 import React from 'react';
 import About from '../modules/About';
-import Calculator from '../modules/Calculator';
+import Calc from '../modules/Calc';
 import Certificates from '../modules/Certificates';
 import Description from '../modules/Description';
 import Gallery from '../modules/Gallery';
@@ -19,7 +19,7 @@ const App = () => {
             <About />
             <Gallery />
             <Separator />
-            <Calculator />
+            <Calc />
             <FeedbackForm />
             <HowItWorks />
             <Certificates />
