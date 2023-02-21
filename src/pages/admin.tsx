@@ -1,32 +1,23 @@
 import { useSession, signIn, signOut, getSession } from 'next-auth/react';
 
-import { Manager } from '../components/Manager';
 import Title from '../components/Title';
-
-import {
-    ACTION_FEEDBACK_CHANGE,
-    ACTION_FEEDBACK_REMOVE,
-    ACTION_PICTURES_CHANGE,
-    ACTION_PICTURES_REMOVE,
-    ACTION_SETTINGS_CHANGE,
-    ACTION_SETTINGS_REMOVE,
-    useAdmin,
-} from '../hooks/useAdmin';
-
-import {
-    updatePicture,
-    updateFeedback,
-    updateSetting,
-    removePicture,
-    removeFeedback,
-    removeSetting,
-} from '../actions';
+import { Manager } from '../components/Manager';
+import { useAdmin } from '../hooks/useAdmin';
 
 import { getFeedbacks } from '../resolvers/feedback';
 import { getPictures } from '../resolvers/pictures';
 import { getSettings } from '../resolvers/settings';
 
 import { Feedback, Picture, Setting } from '../types';
+
+import {
+    createUpdatePictureAction,
+    createUpdateFeedbackAction,
+    createSettingsUpdateAction,
+    createRemovePictureAction,
+    createRemoveFeedbackAction,
+    createRemoveSettingsAction,
+} from '../hooks/useAdmin/action-creators';
 
 
 type Props = {
@@ -41,37 +32,12 @@ const AdminPage = (props: Props) => {
     const isAuthenticated = status === 'authenticated';
     const [state, dispatch] = useAdmin({ ...props });
 
-
-    const onPictureUpdate = async (payload) => dispatch({
-        type: ACTION_PICTURES_CHANGE,
-        payload: await updatePicture(payload),
-    });
-
-    const onFeedbackUpdate = async (payload) => dispatch({
-        type: ACTION_FEEDBACK_CHANGE,
-        payload: await updateFeedback(payload),
-    });
-
-    const onSettingsUpdate = async (payload) => dispatch({
-        type: ACTION_SETTINGS_CHANGE,
-        payload: await updateSetting(payload),
-    });
-
-    const onPictureRemove = async (id: string) => dispatch({
-        type: ACTION_PICTURES_REMOVE,
-        payload: await removePicture({ id }),
-    });
-
-    const onFeedbackRemove = async (id: string) => dispatch({
-        type: ACTION_FEEDBACK_REMOVE,
-        payload: await removeFeedback({ id }),
-    });
-
-    const onSettingRemove = async (key: string) => dispatch({
-        type: ACTION_SETTINGS_REMOVE,
-        payload: await removeSetting({ key }),
-    });
-
+    const onPictureUpdate = createUpdatePictureAction(dispatch);
+    const onFeedbackUpdate = createUpdateFeedbackAction(dispatch);
+    const onSettingsUpdate = createSettingsUpdateAction(dispatch);
+    const onPictureRemove = createRemovePictureAction(dispatch);
+    const onFeedbackRemove = createRemoveFeedbackAction(dispatch);
+    const onSettingRemove = createRemoveSettingsAction(dispatch);
 
     return (
         <>
