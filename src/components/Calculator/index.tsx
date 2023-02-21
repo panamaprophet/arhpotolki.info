@@ -47,7 +47,8 @@ function Calculator({ onCalc, materials, types }) {
     };
 
     const discount = 0;
-    const currentPrice = price();
+    const currentPrice = price() || 0;
+    const installment = price() / 3;
 
     useEffect(() => {
         onCalc(currentPrice);
@@ -110,16 +111,24 @@ function Calculator({ onCalc, materials, types }) {
                 </Row>
                 <Row>
                     <Subtitle>Площадь, м²:</Subtitle>
-                    <InputNumber value={area} onChange={setArea} />
+                    <InputNumber
+                        value={area}
+                        type="number"
+                        onChange={setArea}
+                    />
                 </Row>
                 <Row>
                     <Subtitle>Количество светильников:</Subtitle>
-                    <InputNumber value={lights} onChange={setLights} />
+                    <InputNumber
+                        value={lights}
+                        type="number"
+                        onChange={setLights}
+                    />
                 </Row>
                 <Row>
                     <Subtitle>Цена:</Subtitle>
                     <InputNumber
-                        value={currentPrice}
+                        value={`${currentPrice}₽`}
                         onChange={() => {}}
                         readonly={true}
                     />
@@ -127,7 +136,7 @@ function Calculator({ onCalc, materials, types }) {
                 <Row>
                     <Subtitle>Скидка:</Subtitle>
                     <InputNumber
-                        value={discount}
+                        value={`${discount}%`}
                         onChange={() => {}}
                         readonly={true}
                     />
@@ -135,7 +144,7 @@ function Calculator({ onCalc, materials, types }) {
                 <Row>
                     <Subtitle>Цена со скидкой:</Subtitle>
                     <InputNumber
-                        value={currentPrice - discount}
+                        value={`${currentPrice - discount}₽`}
                         onChange={() => {}}
                         readonly={true}
                     />
@@ -146,7 +155,7 @@ function Calculator({ onCalc, materials, types }) {
                 </p>
                 <p className={styles.settings__notice}>
                     При оплате 50% стоимости заказа доступна рассрочка на три
-                    месяца с ежемесячным платежом 0.00 ₽
+                    месяца с ежемесячным платежом {installment.toFixed(2)} ₽
                 </p>
             </Col>
         </Layout>
