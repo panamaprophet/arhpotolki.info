@@ -28,6 +28,7 @@ function Calculator({ onCalc, materials, types }) {
                     <Preview colors={colors} material={material} />
                 </Row>
                 <Row>
+                    <Subtitle>Цвет:</Subtitle>
                     <div className={styles.settings__buttons}>
                         <ColorPicker
                             color={'roof'}
@@ -66,7 +67,7 @@ function Calculator({ onCalc, materials, types }) {
                     </div>
                 </Row>
                 <Row>
-                    <Subtitle>Класс:</Subtitle>:
+                    <Subtitle>Класс:</Subtitle>
                     <div className={styles.settings__buttons}>
                         <InputRange
                             options={budgets}
@@ -84,7 +85,7 @@ function Calculator({ onCalc, materials, types }) {
                     <InputNumber value={lights} onChange={setLights} />
                 </Row>
                 <Row>
-                    <Subtitle>Цена</Subtitle>:
+                    <Subtitle>Цена:</Subtitle>
                     <InputNumber
                         value={price}
                         onChange={() => {}}
@@ -92,7 +93,7 @@ function Calculator({ onCalc, materials, types }) {
                     />
                 </Row>
                 <Row>
-                    <Subtitle>Скидка</Subtitle>:
+                    <Subtitle>Скидка:</Subtitle>
                     <InputNumber
                         value={discount}
                         onChange={() => {}}
