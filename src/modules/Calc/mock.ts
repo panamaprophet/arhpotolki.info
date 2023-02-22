@@ -1,15 +1,3 @@
-export const initialPrices = {
-    square: 700,
-    light: 350,
-};
-
-export const colorPrice = 200;
-
-export const materialGap = {
-    GERMANY: 23000,
-    KNR: 12000,
-};
-
 export const prices = {
     'Эконом (КНР)': [
         2500, 2500, 2500, 2500, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000,
@@ -22,4 +10,5 @@ export const prices = {
     ],
 };
 
+export const colorPrice = 200;
 export const costBySquare = 700;
