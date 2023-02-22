@@ -1,66 +1,63 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { budgets, initialColors } from '../../constants';
 import ColorPicker from '../ColorPicker';
-import InputNumber from '../InputNumber';
-import InputRange from '../InputRange';
-import { Col, Layout, Row } from '../Layout';
+import { InputNumber, InputRange, InputText } from '../Input';
+import { Column, Layout, Row } from '../Layout';
 import Preview from '../Preview';
-import { initialPrices, prices, colorPrice } from './mock';
+import { costBySquare, initialPrices } from '../../modules/Calc/mock';
 import styles from './styles.module.css';
 
 const Subtitle = ({ children }) => (
     <span className={styles.control__item__title}>{children}</span>
 );
 
-function Calculator({ onCalc, materials, types }) {
+function Calculator({ prices, lightPrice, colorPrice, onCalc, materials }) {
+    const types = Object.keys(prices);
     const [area, setArea] = useState(0);
     const [lights, setLights] = useState(0);
     const [colors, setColors] = useState(initialColors);
     const [type, setType] = useState(types[0]);
     const [material, setMaterial] = useState(materials[0]);
+    const [price, discount] = useMemo(() => {
+        const additionalColorPrice =
+            colors.roof !== '#ffffff' ? colorPrice * area : 0;
+        const additionalLightPrice = lights > 1 ? lights * lightPrice : 0;
 
-    const price = () => {
-        let price = 0;
+        const priceCeil = prices[type].at(-1);
+        const calculatedPriceByArea =
+            (area - prices[type].length) * costBySquare + priceCeil;
 
-        if (area > 23) {
-            type === types[0]
-                ? (price =
-                      (area - 23) * initialPrices.square +
-                      prices['Эконом (КНР)'].at(-1))
-                : (price =
-                      (area - 23) * initialPrices.square +
-                      prices['Премиум (Германия)'].at(-1));
-        }
+        let price = prices[type].at(area - 1) ?? calculatedPriceByArea;
 
-        if (area <= 23) {
-            type === types[0]
-                ? (price = prices['Эконом (КНР)'][area - 1])
-                : (price = prices['Премиум (Германия)'][area - 1]);
-        }
-
-        const additionalPriceByColor =
-            colors.roof === '#ffffff' ? 0 : colorPrice * area;
-        const additionalPriceByLight =
-            lights > 1 ? lights * initialPrices.light : 0;
-        const totalPrice =
+        price =
             material === materials[3]
                 ? price * 1.5
-                : price + additionalPriceByColor;
+                : price + additionalColorPrice;
+        price = price + additionalLightPrice;
 
-        return totalPrice + additionalPriceByLight;
-    };
+        const discount = 0;
 
-    const discount = 0;
-    const currentPrice = price() || 0;
-    const installment = price() / 3;
+        onCalc(price);
 
-    useEffect(() => {
-        onCalc(currentPrice);
-    });
+        return [price, discount];
+    }, [
+        area,
+        colorPrice,
+        colors.roof,
+        lightPrice,
+        lights,
+        material,
+        materials,
+        onCalc,
+        prices,
+        type,
+    ]);
+
+    const installment = price / 3;
 
     return (
         <Layout>
-            <Col>
+            <Column>
                 <Row>
                     <Preview colors={colors} material={material} />
                 </Row>
@@ -68,24 +65,21 @@ function Calculator({ onCalc, materials, types }) {
                     <Subtitle>Цвет:</Subtitle>
                     <div className={styles.settings__buttons}>
                         <ColorPicker
-                            color={'roof'}
-                            colors={colors}
+                            color={colors.roof}
                             onChange={color =>
                                 setColors({ ...colors, roof: color })
                             }
                             label="Потолок"
                         />
                         <ColorPicker
-                            color={'walls'}
-                            colors={colors}
+                            color={colors.walls}
                             onChange={color =>
                                 setColors({ ...colors, walls: color })
                             }
                             label="Стены"
                         />
                         <ColorPicker
-                            color={'floor'}
-                            colors={colors}
+                            color={colors.floor}
                             onChange={color =>
                                 setColors({ ...colors, floor: color })
                             }
@@ -115,43 +109,23 @@ function Calculator({ onCalc, materials, types }) {
                 </Row>
                 <Row>
                     <Subtitle>Площадь, м²:</Subtitle>
-                    <InputNumber
-                        value={area}
-                        type="number"
-                        onChange={setArea}
-                    />
+                    <InputNumber value={area} onChange={setArea} />
                 </Row>
                 <Row>
                     <Subtitle>Количество светильников:</Subtitle>
-                    <InputNumber
-                        value={lights}
-                        type="number"
-                        onChange={setLights}
-                    />
+                    <InputNumber value={lights} onChange={setLights} />
                 </Row>
                 <Row>
                     <Subtitle>Цена:</Subtitle>
-                    <InputNumber
-                        value={`${currentPrice}₽`}
-                        onChange={() => {}}
-                        readonly={true}
-                    />
+                    <InputText value={`${price}₽`} readonly={true} />
                 </Row>
                 <Row>
                     <Subtitle>Скидка:</Subtitle>
-                    <InputNumber
-                        value={`${discount}%`}
-                        onChange={() => {}}
-                        readonly={true}
-                    />
+                    <InputText value={`${discount}%`} readonly={true} />
                 </Row>
                 <Row>
                     <Subtitle>Цена со скидкой:</Subtitle>
-                    <InputNumber
-                        value={`${currentPrice - discount}₽`}
-                        onChange={() => {}}
-                        readonly={true}
-                    />
+                    <InputText value={`${price - discount}₽`} readonly={true} />
                 </Row>
                 <p className={styles.settings__notice}>
                     Итоговая цена является достаточно точной, но все-таки
@@ -161,7 +135,7 @@ function Calculator({ onCalc, materials, types }) {
                     При оплате 50% стоимости заказа доступна рассрочка на три
                     месяца с ежемесячным платежом {installment.toFixed(2)} ₽
                 </p>
-            </Col>
+            </Column>
         </Layout>
     );
 }
