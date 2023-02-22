@@ -1,22 +1,22 @@
 import React from 'react';
 import styles from './styles.module.css';
 
-export function Layout({ children }) {
+export const Layout = ({ children }) => {
     return <div className={styles.layout}>{children}</div>;
-}
+};
 
-export function Row({ children, style = {} }) {
+export const Row = ({ children, style = {} }) => {
     return (
         <div className={styles.row} style={style}>
             {children}
         </div>
     );
-}
+};
 
-export function Col({ children, style = {} }) {
+export const Column = ({ children, style = {} }) => {
     return (
         <div className={styles.col} style={style}>
             {children}
         </div>
     );
-}
+};
