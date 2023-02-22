@@ -1,21 +1,25 @@
-import styles from './styles.module.css';
+import { FocusEventHandler, KeyboardEventHandler, useState } from 'react';
 
-type InputProps = {
-    value: string,
-    placeholder?: string,
-    onChange?: (event) => void,
-};
 
-export const InputText = ({ value, placeholder, onChange, ...props }: InputProps) => {
+export const InputText = ({ name, value, onChange }) => {
+    const [newValue, setValue] = useState(value);
+
+    const onBlur: FocusEventHandler<HTMLInputElement> = () => onChange({ [name]: newValue });
+
+    const onKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
+        if (event.key === 'Enter') {
+            onChange({ [name]: newValue })
+        }
+    };
+
     return (
         <input
             placeholder={placeholder}
             type="text"
-            value={String(value)}
-            readOnly={onChange ? false : true}
-            className={styles.input__field}
-            onChange={event => onChange(event.target.value)}
-            {...props}
+            defaultValue={String(value)}
+            onChange={event => setValue(event.target.value)}
+            onKeyDown={onKeyDown}
+            onBlur={onBlur}
         />
     );
 };
