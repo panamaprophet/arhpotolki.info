@@ -21,8 +21,10 @@ export const FeedbackEditor = ({ onUpdate, onRemove, ...props }: Props) => {
     };
 
     useEffect(() => {
-        onUpdate(state);
-        setSaved(true);
+        if (!isSaved) {
+            onUpdate(state);
+            setSaved(true);
+        }
     }, [isSaved]);
 
     return (
