@@ -1,12 +1,9 @@
 import React from 'react';
 import styles from './styles.module.css';
 
-function ColorPicker({ colors, color, onChange, label }) {
+function ColorPicker({ color, onChange, label }) {
     return (
-        <div
-            className={styles.settings__button}
-            style={{ background: colors[color] }}
-        >
+        <div className={styles.settings__button} style={{ background: color }}>
             <label>
                 {label}
                 <input
