@@ -14,7 +14,6 @@ function ColorPicker({ color, onChange, label }) {
             </label>
         </div>
     );
-    return;
 }
 
 export default ColorPicker;
