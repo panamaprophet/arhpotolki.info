@@ -9,7 +9,7 @@ const FEEDBACK_TABLE = String(process.env.FEEDBACK_TABLE)
 
 
 export const saveFeedback = async (data: any) => {
-    const { id = randomUUID(), text, author, picture } = data;
+    const { id = randomUUID(), text, author, picture, date = Date.now() } = data;
 
     const result = await db.send(new PutItemCommand({
         TableName: FEEDBACK_TABLE,
@@ -18,7 +18,7 @@ export const saveFeedback = async (data: any) => {
             text,
             author,
             picture,
-            date: Date.now(),
+            date,
         }),
     }));
 

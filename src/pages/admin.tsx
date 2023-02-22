@@ -1,8 +1,7 @@
 import { useSession, signIn, signOut, getSession } from 'next-auth/react';
 
 import Title from '../components/Title';
-import { PictureEditor } from '../components/PictureEditor';
-import { FeedbackEditor } from '../components/FeedbackEditor';
+import { PictureEditor, FeedbackEditor } from '../components/Editor';
 
 import { useAdmin } from '../hooks/useAdmin';
 
@@ -18,7 +17,6 @@ import {
     createSettingsUpdateAction,
     createRemovePictureAction,
     createRemoveFeedbackAction,
-    // createRemoveSettingsAction,
     createAddPictureAction,
 } from '../hooks/useAdmin/action-creators';
 import { InputText } from '../components/Input';
@@ -41,7 +39,6 @@ const AdminPage = (props: Props) => {
     const onSettingsUpdate = createSettingsUpdateAction(dispatch);
     const onPictureRemove = createRemovePictureAction(dispatch);
     const onFeedbackRemove = createRemoveFeedbackAction(dispatch);
-    // const onSettingRemove = createRemoveSettingsAction(dispatch);
     const onPictureCreate = createAddPictureAction(dispatch);
 
     return (

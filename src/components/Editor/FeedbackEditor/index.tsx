@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { useEffect, useState } from 'react';
-import { Feedback } from '../../types';
-import { InputDate, InputText } from '../Input';
+import { Feedback } from '../../../types';
+import { InputDate, InputText } from '../../Input';
 
 
 interface Props extends Feedback {
     onUpdate: (item: Feedback) => void,
-    onRemove: (item: Feedback) => void,
+    onRemove: (item: Pick<Feedback, 'id'>) => void,
 };
 
 
