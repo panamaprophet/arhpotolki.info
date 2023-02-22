@@ -24,7 +24,7 @@ export const saveFeedback = async (data: any) => {
 
     return {
         success: (result.$metadata.httpStatusCode === 200),
-        item: { id, text, author, picture },
+        item: { id, text, author, picture, date },
     };
 };
 

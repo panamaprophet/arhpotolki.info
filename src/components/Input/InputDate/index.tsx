@@ -7,7 +7,7 @@ export const InputDate = ({ value, onChange }: { value: number, onChange: (value
 
     const _onChange: ChangeEventHandler<HTMLInputElement> = (event) => {
         const newDate = new Date(event.target.value);
-        const timestamp = newDate.getTime() / 1000;
+        const timestamp = newDate.getTime();
 
         onChange(timestamp);
     };
