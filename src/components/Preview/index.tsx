@@ -3,17 +3,14 @@ import { materials } from '../../constants';
 import styles from './styles.module.css';
 
 function Preview({ colors, material }) {
-    const getOpacity = () => {
-        if (material === materials.at(1)) {
-            return 0;
-        }
-
-        if (material === materials.at(2)) {
-            return 0.4;
-        }
-
-        return 1;
+    const MaterialToOpacityMap = {
+        Глянец: 1,
+        Матовый: 0,
+        Сатин: 0.4,
+        Облака: -1,
     };
+
+    const getOpacity = material => MaterialToOpacityMap[material] || 1;
 
     return (
         <>
@@ -28,7 +25,7 @@ function Preview({ colors, material }) {
                         className={
                             styles.visualizer__view__preview__image__head
                         }
-                        style={{ opacity: getOpacity() }}
+                        style={{ opacity: getOpacity(material) }}
                     />
                     {material === materials.at(-1) && (
                         <img
