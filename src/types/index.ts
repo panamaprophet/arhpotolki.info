@@ -9,7 +9,7 @@ export interface Feedback {
     author: string,
     text: string,
     picture?: string,
-    date: Date,
+    date: number,
 };
 
 export interface Setting {
