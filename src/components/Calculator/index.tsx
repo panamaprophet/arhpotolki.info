@@ -5,7 +5,7 @@ import InputNumber from '../InputNumber';
 import InputRange from '../InputRange';
 import { Col, Layout, Row } from '../Layout';
 import Preview from '../Preview';
-import { costBySquare, GERMANY, initialPrices, KNR, materialGap } from './mock';
+import { initialPrices, prices, colorPrice } from './mock';
 import styles from './styles.module.css';
 
 const Subtitle = ({ children }) => (
@@ -24,18 +24,22 @@ function Calculator({ onCalc, materials, types }) {
 
         if (area > 23) {
             type === types[0]
-                ? (price = (area - 23) * costBySquare + materialGap.KNR)
-                : (price = (area - 23) * costBySquare + materialGap.GERMANY);
+                ? (price =
+                      (area - 23) * initialPrices.square +
+                      prices['Эконом (КНР)'].at(-1))
+                : (price =
+                      (area - 23) * initialPrices.square +
+                      prices['Премиум (Германия)'].at(-1));
         }
 
         if (area <= 23) {
             type === types[0]
-                ? (price = KNR[area - 1])
-                : (price = GERMANY[area - 1]);
+                ? (price = prices['Эконом (КНР)'][area - 1])
+                : (price = prices['Премиум (Германия)'][area - 1]);
         }
 
         const additionalPriceByColor =
-            colors.roof === '#ffffff' ? 0 : initialPrices.color * area;
+            colors.roof === '#ffffff' ? 0 : colorPrice * area;
         const additionalPriceByLight =
             lights > 1 ? lights * initialPrices.light : 0;
         const totalPrice =
