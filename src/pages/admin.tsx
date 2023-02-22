@@ -1,11 +1,8 @@
-import { useState } from 'react';
 import { useSession, signIn, signOut, getSession } from 'next-auth/react';
-import Image from 'next/image';
 
 import Title from '../components/Title';
-import { Manager } from '../components/Manager';
-import { InputFile } from '../components/InputFile';
-import { InputList } from '../components/Manager/elements/InputList';
+import { PictureEditor } from '../components/PictureEditor';
+import { FeedbackEditor } from '../components/FeedbackEditor';
 
 import { useAdmin } from '../hooks/useAdmin';
 
@@ -21,25 +18,10 @@ import {
     createSettingsUpdateAction,
     createRemovePictureAction,
     createRemoveFeedbackAction,
-    createRemoveSettingsAction,
+    // createRemoveSettingsAction,
     createAddPictureAction,
 } from '../hooks/useAdmin/action-creators';
-
-
-const Picture = ({ id = null, url = '', tags = [], onCreate, onUpdate, onRemove }) => {
-    const [picture, setPicture] = useState({ id, url, tags });
-
-    return (
-        <div>
-            {!url && <InputFile onUpload={url => setPicture({ ...picture, url })} />}
-            {url && <Image src={url} alt={id} width="100" height="100" />}
-            <InputList onChange={tags => setPicture({ ...picture, tags })} value={picture.tags} />
-            {!picture.id && <button onClick={() => onCreate(picture)}>Добавить</button>}
-            {picture.id && <button onClick={() => onUpdate(picture)}>Сохранить</button>}
-            {picture.id && <button onClick={() => onRemove(picture)}>Удалить</button>}
-        </div>
-    );
-};
+import { InputText } from '../components/Input';
 
 
 type Props = {
@@ -59,22 +41,23 @@ const AdminPage = (props: Props) => {
     const onSettingsUpdate = createSettingsUpdateAction(dispatch);
     const onPictureRemove = createRemovePictureAction(dispatch);
     const onFeedbackRemove = createRemoveFeedbackAction(dispatch);
-    const onSettingRemove = createRemoveSettingsAction(dispatch);
+    // const onSettingRemove = createRemoveSettingsAction(dispatch);
     const onPictureCreate = createAddPictureAction(dispatch);
 
     return (
         <>
             <div className="header">
-                {!isAuthenticated && <button onClick={() => signIn()}>sign in</button>}
-                {isAuthenticated && <button onClick={() => signOut()}>sign out</button>}
+                {!isAuthenticated
+                    ? <button onClick={() => signIn()}>sign in</button>
+                    : <button onClick={() => signOut()}>sign out</button>
+                }
             </div>
 
             {isAuthenticated && <>
                 <Title>Картинки</Title>
-                {/* <Manager items={state.pictures} onChange={onPictureUpdate} onRemove={onPictureRemove} /> */}
 
                 {state.pictures.map((picture) => (
-                    <Picture
+                    <PictureEditor
                         key={picture.id}
                         {...picture}
                         onCreate={onPictureCreate}
@@ -87,7 +70,7 @@ const AdminPage = (props: Props) => {
 
                 <div>
                     Добавить картинку:
-                    <Picture
+                    <PictureEditor
                         onCreate={onPictureCreate}
                         onUpdate={onPictureUpdate}
                         onRemove={onPictureRemove}
@@ -95,18 +78,27 @@ const AdminPage = (props: Props) => {
                 </div>
 
                 <Title>Отзывы</Title>
-                <Manager
-                    items={state.feedback}
-                    onChange={onFeedbackUpdate}
-                    onRemove={onFeedbackRemove}
-                />
+
+                {state.feedback.map((feedback) => (
+                    <FeedbackEditor
+                        key={feedback.id}
+                        {...feedback}
+                        onUpdate={onFeedbackUpdate}
+                        onRemove={onFeedbackRemove}
+                    />
+                ))}
 
                 <Title>Настройки</Title>
-                <Manager
-                    items={state.settings}
-                    onChange={onSettingsUpdate}
-                    onRemove={onSettingRemove}
-                />
+
+                {state.settings.map((setting) => (
+                    <div key={setting.key}>
+                        {setting.key}:
+                        <InputText
+                            value={setting.value}
+                            onChange={value => onSettingsUpdate({ ...setting, value })}
+                        />
+                    </div>
+                ))}
             </>}
         </>
     );
