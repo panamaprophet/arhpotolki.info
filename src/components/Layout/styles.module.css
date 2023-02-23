@@ -1,0 +1,18 @@
+.layout {
+    display: flex;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-grow: nowrap;
+    gap: 0.5rem;
+}
+
+.col {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    flex-grow: nowrap;
+    gap: var(--layout-gap);
+}
