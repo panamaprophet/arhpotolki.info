@@ -1,0 +1,45 @@
+.next,
+.prev {
+    flex-shrink: 0;
+    background: #f7a136;
+    width: 42px;
+    height: 42px;
+    text-align: center;
+    line-height: 42px;
+    color: #fff;
+    font-size: 1.4em;
+    cursor: pointer;
+    user-select: none;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    padding: 8px;
+    margin: 0 8px;
+}
+
+.viewport {
+    overflow: hidden;
+    width: 100%;
+}
+
+.list {
+    display: flex;
+    white-space: nowrap;
+    transition: all 150ms ease;
+}
+
+.list > * {
+    white-space: normal;
+    flex-shrink: 0;
+}
+
+.root {
+    display: flex;
+    position: relative;
+    width: 100%;
+}
