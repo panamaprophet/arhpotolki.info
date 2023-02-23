@@ -4,7 +4,7 @@ import ColorPicker from '../ColorPicker';
 import { InputNumber, InputRange, InputText } from '../Input';
 import { Column, Layout, Row } from '../Layout';
 import Preview from '../Preview';
-import { costBySquare, initialPrices } from '../../modules/Calc/mock';
+import { costBySquare } from '../../modules/Calc/mock';
 import styles from './styles.module.css';
 
 const Subtitle = ({ children }) => (
