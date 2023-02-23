@@ -4,20 +4,14 @@ import styles from './styles.module.css';
 type InputProps = {
     value: string;
     onChange?: (event) => void;
-    readonly: boolean;
 };
 
-export const InputText = ({
-    value,
-    onChange,
-    readonly = false,
-    ...props
-}: InputProps) => {
+export const InputText = ({ value, onChange, ...props }: InputProps) => {
     return (
         <input
             type="text"
             value={String(value)}
-            readOnly={Boolean(readonly)}
+            readOnly={onChange ? false : true}
             className={styles.input__field}
             onChange={event => onChange(event.target.value)}
             {...props}

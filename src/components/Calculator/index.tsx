@@ -6,6 +6,8 @@ import Preview from '../Preview';
 import { costBySquare } from '../../modules/Calc/mock';
 import styles from './styles.module.css';
 
+/* eslint-disable react-hooks/exhaustive-deps */
+
 const Subtitle = ({ children }) => (
     <span className={styles.control__item__title}>{children}</span>
 );
@@ -54,18 +56,7 @@ function Calculator({ prices, lightPrice, colorPrice, onCalc, materials }) {
         onCalc(price);
 
         return [price, discount];
-    }, [
-        area,
-        colorPrice,
-        colors.roof,
-        lightPrice,
-        lights,
-        material,
-        materials,
-        onCalc,
-        prices,
-        type,
-    ]);
+    }, [area, lights, material, type]);
 
     const installment = price / 3;
 
@@ -135,15 +126,15 @@ function Calculator({ prices, lightPrice, colorPrice, onCalc, materials }) {
                 </Row>
                 <Row>
                     <Subtitle>Цена:</Subtitle>
-                    <InputText value={`${price}₽`} readonly={true} />
+                    <InputText value={`${price}₽`} />
                 </Row>
                 <Row>
                     <Subtitle>Скидка:</Subtitle>
-                    <InputText value={`${discount}%`} readonly={true} />
+                    <InputText value={`${discount}%`} />
                 </Row>
                 <Row>
                     <Subtitle>Цена со скидкой:</Subtitle>
-                    <InputText value={`${price - discount}₽`} readonly={true} />
+                    <InputText value={`${price - discount}₽`} />
                 </Row>
                 <p className={styles.settings__notice}>
                     Итоговая цена является достаточно точной, но все-таки
