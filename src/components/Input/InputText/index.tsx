@@ -7,7 +7,7 @@ type InputProps = {
     readonly: boolean;
 };
 
-const InputText = ({
+export const InputText = ({
     value,
     onChange,
     readonly = false,
@@ -24,5 +24,3 @@ const InputText = ({
         />
     );
 };
-
-export default InputText;
