@@ -3,16 +3,14 @@ import Head from 'next/head';
 
 import '../styles/global.css';
 
-export default function App({
-    Component,
-    pageProps: { session, ...pageProps },
-}) {
-    return (
-        <SessionProvider session={session}>
-            <Head>
-                <title>Архпотолки - натяжные потолки любой сложности!</title>
-            </Head>
-            <Component {...pageProps} />
-        </SessionProvider>
-    );
-}
+
+const App = ({ Component, pageProps: { session, ...pageProps } }) => (
+    <SessionProvider session={session}>
+          <Head>
+              <title>Архпотолки - натяжные потолки любой сложности!</title>
+          </Head>
+        <Component {...pageProps} />
+    </SessionProvider>
+);
+
+export default App;
