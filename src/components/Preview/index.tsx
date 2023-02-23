@@ -1,17 +1,7 @@
 import React from 'react';
-import { materials } from '../../constants';
 import styles from './styles.module.css';
 
-function Preview({ colors, material }) {
-    const MaterialToOpacityMap = {
-        Глянец: 1,
-        Матовый: 0,
-        Сатин: 0.4,
-        Облака: -1,
-    };
-
-    const getOpacity = material => MaterialToOpacityMap[material] || 1;
-
+function Preview({ colors, material, opacity }) {
     return (
         <>
             <div className={styles.visualizer__view__preview}>
@@ -25,9 +15,9 @@ function Preview({ colors, material }) {
                         className={
                             styles.visualizer__view__preview__image__head
                         }
-                        style={{ opacity: getOpacity(material) }}
+                        style={{ opacity: opacity }}
                     />
-                    {material === materials.at(-1) && (
+                    {material === -1 && (
                         <img
                             src="/visualizer/sky-bg.png"
                             className={
