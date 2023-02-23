@@ -1,4 +1,3 @@
-import React from 'react';
 import mockImages from './mocks/mockImages';
 import Image from './Image';
 import styles from './styles.module.css';

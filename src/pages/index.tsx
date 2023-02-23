@@ -1,4 +1,3 @@
-import React from 'react';
 import About from '../modules/About';
 import Calc from '../modules/Calc';
 import Certificates from '../modules/Certificates';
