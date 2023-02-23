@@ -1,0 +1,21 @@
+.root {
+  padding: 16px 16px 36px;
+}
+
+.submitButton {
+  border: none;
+  outline: none;
+  background: #a6c719;
+  padding: 16px;
+  margin: 16px 0 32px;
+  color: #333;
+  font-size: 1em;
+  width: 100%;
+  cursor: pointer;
+  transition: all 250ms ease-in-out;
+}
+
+.disclaimer {
+  text-align: center;
+  color: #333;
+}
