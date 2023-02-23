@@ -1,17 +1,19 @@
+import { useReducer } from 'react';
 import { useSession, signIn, signOut, getSession } from 'next-auth/react';
 
-import Title from '../components/Title';
-import { PictureEditor, FeedbackEditor } from '../components/Editor';
-import { InputTextLazy } from '../components/Input';
+import Title from '../../components/Title';
+import { InputTextLazy } from '../../components/Input';
+import {
+    PictureEditor,
+    FeedbackEditor,
+    PriceEditor,
+} from '../../components/Editor';
 
-import { useAdmin } from '../hooks/useAdmin';
+import { getFeedbacks } from '../../resolvers/feedback';
+import { getPictures } from '../../resolvers/pictures';
+import { getSettings } from '../../resolvers/settings';
 
-import { getFeedbacks } from '../resolvers/feedback';
-import { getPictures } from '../resolvers/pictures';
-import { getSettings } from '../resolvers/settings';
-
-import { Feedback, Picture, Setting } from '../types';
-
+import { reducer } from './store';
 import {
     createUpdatePictureAction,
     createUpdateFeedbackAction,
@@ -19,8 +21,9 @@ import {
     createRemovePictureAction,
     createRemoveFeedbackAction,
     createAddPictureAction,
-} from '../hooks/useAdmin/action-creators';
-import { PriceEditor } from '../components/Editor/PriceEditor';
+} from './store/action-creators';
+
+import { Feedback, Picture, Setting } from '../../types';
 
 
 type Props = {
@@ -33,7 +36,7 @@ type Props = {
 const AdminPage = (props: Props) => {
     const { status } = useSession();
     const isAuthenticated = status === 'authenticated';
-    const [state, dispatch] = useAdmin({ ...props });
+    const [state, dispatch] = useReducer(reducer, { ...props });
 
     const onPictureUpdate = createUpdatePictureAction(dispatch);
     const onFeedbackUpdate = createUpdateFeedbackAction(dispatch);
