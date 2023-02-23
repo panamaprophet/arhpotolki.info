@@ -1,4 +1,3 @@
-import React from 'react';
 import { cx } from './helpers';
 import styles from './styles.module.css';
 

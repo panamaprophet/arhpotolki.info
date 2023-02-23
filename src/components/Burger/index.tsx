@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './Burger.module.css';
 
 function Burger({ onClick }) {
