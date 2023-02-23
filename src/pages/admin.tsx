@@ -2,7 +2,7 @@ import { useSession, signIn, signOut, getSession } from 'next-auth/react';
 
 import Title from '../components/Title';
 import { PictureEditor, FeedbackEditor } from '../components/Editor';
-import { InputText } from '../components/Input';
+import { InputTextLazy } from '../components/Input';
 
 import { useAdmin } from '../hooks/useAdmin';
 
@@ -95,7 +95,7 @@ const AdminPage = (props: Props) => {
                         {setting.key === 'discount' && <strong>Setting is not supported yet.</strong>}
                         {setting.key === 'prices' && <PriceEditor prices={setting.value} onChange={value => onSettingsUpdate({ ...setting, value })} />}
 
-                        {typeof setting.value !== 'object' && <InputText
+                        {typeof setting.value !== 'object' && <InputTextLazy
                             value={setting.value}
                             onChange={value => onSettingsUpdate({ ...setting, value })}
                         />}

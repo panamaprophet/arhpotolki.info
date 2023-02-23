@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import { useReducer, useState } from 'react';
-import { InputText } from '../../Input';
+import { useReducer } from 'react';
+import { InputTextLazy } from '../../Input';
 import {
     ACTION_INSERT_ROW,
     ACTION_REMOVE_ROW,
@@ -18,7 +18,7 @@ export const PriceEditor = ({ prices: initialValue, onChange }) => {
     const groups = Object.keys(prices);
     const indexes = prices[groups[0]].map((_, index) => index);
 
-    const Groups = groups.map((group) => <InputText
+    const Groups = groups.map((group) => <InputTextLazy
         key={group}
         value={group}
         onChange={value => dispatch({ type: ACTION_RENAME_GROUP, payload: { from: group, to: value } })}
@@ -26,13 +26,13 @@ export const PriceEditor = ({ prices: initialValue, onChange }) => {
 
     const Rows = indexes.map((key, index) => (
         <div className="row" key={key}>
-            <InputText
+            <InputTextLazy
                 value={key}
                 onChange={value => dispatch({ type: ACTION_SET_INDEX, payload: { from: key, to: value } })}
             />
 
             {groups.map((group) => (
-                <InputText
+                <InputTextLazy
                     key={`${group}_${key}`}
                     value={prices[group][key]}
                     onChange={value => dispatch({ type: ACTION_SET_PRICE, payload: { group, key, value } })}
