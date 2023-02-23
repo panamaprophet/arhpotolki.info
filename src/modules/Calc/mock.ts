@@ -9,6 +9,7 @@ export const prices = {
         22000, 23000,
     ],
 };
-
+export const materials = ['Глянец', 'Матовый', 'Сатин', 'Облака'];
+export const lightPrice = 350;
 export const colorPrice = 200;
 export const costBySquare = 700;
