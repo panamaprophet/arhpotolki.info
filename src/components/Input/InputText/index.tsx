@@ -1,7 +1,14 @@
 import { FocusEventHandler, KeyboardEventHandler, useState } from 'react';
+import styles from './styles.module.css';
 
 
-export const InputText = ({ value, onChange }) => {
+type Props = {
+    value: string;
+    onChange?: (event) => void;
+};
+
+
+export const InputTextLazy = ({ value, onChange }: Props) => {
     const [newValue, setValue] = useState(value);
 
     const onBlur: FocusEventHandler<HTMLInputElement> = () => onChange(newValue);
@@ -20,6 +27,18 @@ export const InputText = ({ value, onChange }) => {
             onChange={event => setValue(event.target.value)}
             onKeyDown={onKeyDown}
             onBlur={onBlur}
+        />
+    );
+};
+
+export const InputText = ({ value, onChange }: Props) => {
+    return (
+        <input
+            type="text"
+            value={String(value)}
+            readOnly={onChange ? false : true}
+            className={styles.input__field}
+            onChange={event => onChange(event.target.value)}
         />
     );
 };

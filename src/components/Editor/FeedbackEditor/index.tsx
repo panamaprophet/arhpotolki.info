@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Feedback } from '../../../types';
-import { InputDate, InputText } from '../../Input';
+import { InputDate, InputTextLazy } from '../../Input';
 
 
 interface Props extends Feedback {
@@ -29,8 +29,8 @@ export const FeedbackEditor = ({ onUpdate, onRemove, ...props }: Props) => {
 
     return (
         <div>
-            <InputText value={state.author} onChange={author => onChange({ author })} />
-            <InputText value={state.text} onChange={text => onChange({ text })} />
+            <InputTextLazy value={state.author} onChange={author => onChange({ author })} />
+            <InputTextLazy value={state.text} onChange={text => onChange({ text })} />
             <InputDate value={state.date} onChange={date => onChange({ date })} />
 
             <button onClick={() => onRemove(state)}>Х</button>
