@@ -7,7 +7,12 @@ type InputProps = {
     readonly?: boolean;
 };
 
-const InputNumber = ({ value, onChange, readonly, ...props }: InputProps) => {
+export const InputNumber = ({
+    value,
+    onChange,
+    readonly,
+    ...props
+}: InputProps) => {
     return (
         <input
             type="number"
@@ -19,5 +24,3 @@ const InputNumber = ({ value, onChange, readonly, ...props }: InputProps) => {
         />
     );
 };
-
-export default InputNumber;

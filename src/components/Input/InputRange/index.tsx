@@ -2,7 +2,7 @@ import React from 'react';
 import { cx } from './helpers';
 import styles from './styles.module.css';
 
-const InputRange = ({ options, currentItem, onClick }) => {
+export const InputRange = ({ options, currentItem, onClick }) => {
     return (
         <div className={styles.settings__buttons}>
             {options.map(item => (
@@ -20,5 +20,3 @@ const InputRange = ({ options, currentItem, onClick }) => {
         </div>
     );
 };
-
-export default InputRange;
