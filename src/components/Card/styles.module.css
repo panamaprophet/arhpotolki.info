@@ -1,0 +1,13 @@
+.root {
+    text-align: center;
+    margin: 8px;
+
+    width: 120px;
+    min-height: 120px;
+    margin: 8px;
+    padding: 4px;
+}
+
+.root > *:not(:first-child) {
+    margin-top: 16px;
+}
