@@ -2,6 +2,7 @@ import { useSession, signIn, signOut, getSession } from 'next-auth/react';
 
 import Title from '../components/Title';
 import { PictureEditor, FeedbackEditor } from '../components/Editor';
+import { InputText } from '../components/Input';
 
 import { useAdmin } from '../hooks/useAdmin';
 
@@ -19,7 +20,7 @@ import {
     createRemoveFeedbackAction,
     createAddPictureAction,
 } from '../hooks/useAdmin/action-creators';
-import { InputText } from '../components/Input';
+import { PriceEditor } from '../components/Editor/PriceEditor';
 
 
 type Props = {
@@ -90,10 +91,14 @@ const AdminPage = (props: Props) => {
                 {state.settings.map((setting) => (
                     <div key={setting.key}>
                         {setting.key}:
-                        <InputText
+
+                        {setting.key === 'discount' && <strong>Setting is not supported yet.</strong>}
+                        {setting.key === 'prices' && <PriceEditor prices={setting.value} onChange={value => onSettingsUpdate({ ...setting, value })} />}
+
+                        {typeof setting.value !== 'object' && <InputText
                             value={setting.value}
                             onChange={value => onSettingsUpdate({ ...setting, value })}
-                        />
+                        />}
                     </div>
                 ))}
             </>}
