@@ -1,5 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { budgets, initialColors } from '../../constants';
+import React, { useMemo, useState } from 'react';
 import ColorPicker from '../ColorPicker';
 import { InputNumber, InputRange, InputText } from '../Input';
 import { Column, Layout, Row } from '../Layout';
@@ -10,6 +9,21 @@ import styles from './styles.module.css';
 const Subtitle = ({ children }) => (
     <span className={styles.control__item__title}>{children}</span>
 );
+
+export const initialColors = {
+    roof: '#ffffff',
+    walls: '#a5c8db',
+    floor: '#626c6e',
+};
+
+const MaterialToOpacityMap = {
+    Глянец: 1,
+    Матовый: 0,
+    Сатин: 0.4,
+    Облака: -1,
+};
+
+const getOpacity = material => MaterialToOpacityMap[material] || 1;
 
 function Calculator({ prices, lightPrice, colorPrice, onCalc, materials }) {
     const types = Object.keys(prices);
@@ -59,7 +73,11 @@ function Calculator({ prices, lightPrice, colorPrice, onCalc, materials }) {
         <Layout>
             <Column>
                 <Row>
-                    <Preview colors={colors} material={material} />
+                    <Preview
+                        colors={colors}
+                        material={material}
+                        opacity={getOpacity(material)}
+                    />
                 </Row>
                 <Row>
                     <Subtitle>Цвет:</Subtitle>
@@ -101,7 +119,7 @@ function Calculator({ prices, lightPrice, colorPrice, onCalc, materials }) {
                     <Subtitle>Класс:</Subtitle>
                     <div className={styles.settings__buttons}>
                         <InputRange
-                            options={budgets}
+                            options={types}
                             currentItem={type}
                             onClick={setType}
                         />
