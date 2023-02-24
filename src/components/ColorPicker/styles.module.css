@@ -1,23 +1,11 @@
-.settings__buttons {
+.root {
     display: flex;
-    flex-flow: row nowrap;
-    gap: 0.5rem;
     align-items: center;
-    justify-content: space-between;
-}
-
-.settings__button {
-    padding: 8px;
     height: 35px;
-    display: flex;
-    align-items: center;
+    padding: 8px;
     cursor: pointer;
 }
 
-.settings__button > * {
+.root > * {
     cursor: inherit;
-}
-
-.settings__button__active {
-    background: #f7a136;
 }
