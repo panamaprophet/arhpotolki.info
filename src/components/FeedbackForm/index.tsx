@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { InputFile, InputText } from "../Input";
+import { useState } from 'react';
+import { InputFile, InputText } from '../Input';
 import styles from './index.module.css';
 
 export const FeedbackForm = ({ onSubmit }) => {
