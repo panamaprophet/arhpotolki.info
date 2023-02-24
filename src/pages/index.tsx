@@ -1,16 +1,16 @@
-import Calc from '../../modules/Calc';
-import Description from '../../modules/Description';
-import Gallery from '../../modules/Gallery';
-import Header from '../../modules/Header';
-import Separator from '../../modules/Separator';
-import Feedback from '../../modules/Feedback';
-import Footer from '../../modules/Footer';
-import Title from '../../components/Title';
-import { OrderForm } from '../../components/OrderForm';
-import { List } from '../../components/List';
+import Calc from '../modules/Calc';
+import Description from '../modules/Description';
+import Gallery from '../modules/Gallery';
+import Header from '../modules/Header';
+import Separator from '../modules/Separator';
+import Feedback from '../modules/Feedback';
+import Footer from '../modules/Footer';
+import Title from '../components/Title';
+import { OrderForm } from '../components/OrderForm';
+import { List } from '../components/List';
 import Image from 'next/image';
-import { Card } from '../../components/Card';
-import { certificates, steps, features } from './mock';
+import { Card } from '../components/Card';
+import { certificates, steps, features } from './index.mock';
 
 
 const App = () => {
