@@ -1,8 +1,8 @@
 .root {
-    padding: 8px;
-    height: 35px;
     display: flex;
     align-items: center;
+    height: 35px;
+    padding: 8px;
     cursor: pointer;
 }
 
