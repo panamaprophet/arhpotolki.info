@@ -1,0 +1,19 @@
+.root {
+    padding: 16px 16px 36px;
+}
+
+.submitButton {
+    font-family: 'PT Sans';
+    font-size: 1em;
+
+    width: 100%;
+    padding: 16px;
+
+    cursor: pointer;
+    transition: all 250ms ease-in-out;
+
+    color: #333;
+    border: none;
+    outline: none;
+    background: #a6c719;
+}

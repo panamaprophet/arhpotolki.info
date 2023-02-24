@@ -9,6 +9,7 @@ import { Card } from '../components/Card';
 import { Calculator } from '../components/Calculator';
 import { Text } from '../components/Text';
 import { Carousel } from '../components/Carousel';
+import { FeedbackForm } from '../components/FeedbackForm';
 import { FeedbackItem } from '../components/FeedbackItem/FeedbackItem';
 import { Separator } from '../components/Separator';
 
@@ -29,6 +30,7 @@ const App = () => {
     // @todo: use actions here to put the order
     const onOrderSubmit = (...args) => console.log('form subbmitted:', args);
     const onPriceChange = (...args) => console.log('price changed:', args);
+    const onFeedbackSubmit = (...args) => console.log('form submitted:', args);
 
     return (
         <>
@@ -104,7 +106,11 @@ const App = () => {
                     ))}
                 </Carousel>
                 <button>Оставить отзыв</button>
+                
             </section>
+
+            <FeedbackForm onSubmit={onFeedbackSubmit} />
+
             <Footer />
         </>
     );

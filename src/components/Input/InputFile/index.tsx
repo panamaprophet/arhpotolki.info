@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { ChangeEventHandler, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import styles from './index.module.css';
 
 
 const uploadFile = async (file) => {
@@ -22,11 +23,17 @@ export const InputFile = ({ onUpload }) => {
         }
     }, [file]);
 
-    const onChange: ChangeEventHandler<HTMLInputElement> = event => setFile(event.target.files[0]);
-
     return (
-        <form>
-            <input type="file" onChange={onChange} />
-        </form>
+        <label className={styles.root}>
+            <input
+                className={styles.input}
+                type="file"
+                onChange={event => setFile(event.target.files[0])}
+            />
+            <div className={styles.meta}>
+                <div>Прикрепить файл</div>
+                <div className={styles.text}>Перетащите его сюда или нажмите для выбора</div>
+            </div>
+        </label>
     );
 };
