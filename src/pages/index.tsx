@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-import Calc from '../modules/Calc';
-=======
-import Description from '../modules/Description';
->>>>>>> 505078d (cleanup calculator and colorpicker)
 import Gallery from '../modules/Gallery';
 import Header from '../modules/Header';
 import Separator from '../modules/Separator';
@@ -13,6 +8,10 @@ import { List } from '../components/List';
 import Image from 'next/image';
 import { Card } from '../components/Card';
 import { Calculator } from '../components/Calculator';
+import { Text } from '../components/Text';
+import { Carousel } from '../components/Carousel';
+import { FeedbackItem } from '../components/FeedbackItem/FeedbackItem';
+
 import {
     certificates,
     steps,
@@ -24,9 +23,6 @@ import {
     prices,
     materials,
 } from './index.mock';
-import { Text } from '../components/Text';
-import { Carousel } from '../components/Carousel';
-import { FeedbackItem } from '../components/FeedbackItem/FeedbackItem';
 
 const App = () => {
     // @todo: use actions here to put the order
