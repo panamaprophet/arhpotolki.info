@@ -79,7 +79,7 @@ const App = () => {
 
             <section id="howto" className="layout">
                 <Title>Как это работает?</Title>
-                <List nowrap={true}>
+                <List>
                     {steps.map(item => (
                         <Card key={item.url}>
                             <Image src={item.url} alt="" width={64} height={64} style={{ background: '#f7a136', borderRadius: '50%' }} />
@@ -93,7 +93,9 @@ const App = () => {
                 <Title>Сертификаты соответствия:</Title>
                 <List>
                     {certificates.map(url => (
-                        <Image src={url} alt="" key={url} width="123" height="177" />
+                        <Card key={url}>
+                            <Image src={url} alt="" width="123" height="177" />
+                        </Card>
                     ))}
                 </List>
             </section>
@@ -106,7 +108,7 @@ const App = () => {
                     ))}
                 </Carousel>
                 <button>Оставить отзыв</button>
-                
+
             </section>
 
             <FeedbackForm onSubmit={onFeedbackSubmit} />
