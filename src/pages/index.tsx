@@ -1,4 +1,3 @@
-import Calc from '../modules/Calc';
 import Gallery from '../modules/Gallery';
 import Header from '../modules/Header';
 import Separator from '../modules/Separator';
@@ -8,15 +7,27 @@ import { OrderForm } from '../components/OrderForm';
 import { List } from '../components/List';
 import Image from 'next/image';
 import { Card } from '../components/Card';
-
-import { certificates, steps, features, feedbacks } from './index.mock';
+import { Calculator } from '../components/Calculator';
 import { Text } from '../components/Text';
 import { Carousel } from '../components/Carousel';
 import { FeedbackItem } from '../components/FeedbackItem/FeedbackItem';
 
+import {
+    certificates,
+    steps,
+    features,
+    feedbacks,
+    costBySquare,
+    colorPrice,
+    lightPrice,
+    prices,
+    materials,
+} from './index.mock';
+
 const App = () => {
     // @todo: use actions here to put the order
     const onOrderSubmit = (...args) => console.log('form subbmitted:', args);
+    const onPriceChange = (...args) => console.log('price changed:', args);
 
     return (
         <>
@@ -44,7 +55,18 @@ const App = () => {
 
             <Gallery />
             <Separator />
-            <Calc />
+
+            <section id="calculator">
+                <Title>Рассчитать стоимость:</Title>
+                <Calculator
+                    onCalc={onPriceChange}
+                    materials={materials}
+                    prices={prices}
+                    lightPrice={lightPrice}
+                    colorPrice={colorPrice}
+                    defaultMeterPrice={costBySquare}
+                />
+            </section>
 
             <section id="application" style={{ background: '#f7a136' }}>
                 <Title condenced={true}>Оставить заявку:</Title>
