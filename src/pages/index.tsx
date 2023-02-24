@@ -1,6 +1,5 @@
 import Gallery from '../modules/Gallery';
 import Header from '../modules/Header';
-import Separator from '../modules/Separator';
 import Footer from '../modules/Footer';
 import Title from '../components/Title';
 import { OrderForm } from '../components/OrderForm';
@@ -11,6 +10,7 @@ import { Calculator } from '../components/Calculator';
 import { Text } from '../components/Text';
 import { Carousel } from '../components/Carousel';
 import { FeedbackItem } from '../components/FeedbackItem/FeedbackItem';
+import { Separator } from '../components/Separator';
 
 import {
     certificates,
@@ -23,6 +23,7 @@ import {
     prices,
     materials,
 } from './index.mock';
+
 
 const App = () => {
     // @todo: use actions here to put the order
@@ -54,7 +55,8 @@ const App = () => {
             </section>
 
             <Gallery />
-            <Separator />
+
+            <Separator text="Изготовление - от одного дня, монтаж - от двух часов." />
 
             <section id="calculator">
                 <Title>Рассчитать стоимость:</Title>
