@@ -1,12 +1,17 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { Children, ReactNode, useMemo, useRef, useState } from 'react';
 import styles from './styles.module.css';
 
-const Carousel = ({ items, children }) => {
+interface Props {
+    children: ReactNode;
+}
+
+const Carousel = ({ children }: Props) => {
     const ref = useRef<HTMLDivElement>(null);
+    const lastIndex = Children.count(children) - 1;
     const [currentIndex, setIndex] = useState(0);
     const offset = useMemo(() => {
         if (!ref.current) {
-            return [0];
+            return 0;
         }
 
         const containerWidth = ref.current.getBoundingClientRect().width;
@@ -15,18 +20,18 @@ const Carousel = ({ items, children }) => {
     }, [ref, currentIndex]);
 
     const onForward = () => {
-        if (items.length - 1 === currentIndex) {
+        if (lastIndex === currentIndex) {
             setIndex(0);
         } else {
-            setIndex(prev => prev + 1);
+            setIndex(currentIndex + 1);
         }
     };
 
     const onBackward = () => {
         if (currentIndex === 0) {
-            setIndex(items.length - 1);
+            setIndex(lastIndex);
         } else {
-            setIndex(prev => prev - 1);
+            setIndex(currentIndex - 1);
         }
     };
 
