@@ -1,19 +1,20 @@
+import { Feedback } from '../../../types';
 import styles from './styles.module.css';
 
-function FeedbackItem({ person }) {
+const FeedbackItem = ({ picture, author, date, text }: Feedback) => {
     return (
-        <div className={styles.response}>
+        <div className={styles.root}>
             <div
-                className={styles.response__photo}
+                className={styles.picture}
                 style={{
-                    backgroundImage: `url(${person.img})`,
+                    backgroundImage: `url(${picture})`,
                 }}
             />
-            <div className={styles.response__name}>{person.name}</div>
-            <div className={styles.response__date}>{person.date}</div>
-            <div className={styles.response__message}>{person.description}</div>
+            <div className={styles.author}>{author}</div>
+            <div className={styles.date}>{date}</div>
+            <div className={styles.text}>{text}</div>
         </div>
     );
-}
+};
 
 export default FeedbackItem;

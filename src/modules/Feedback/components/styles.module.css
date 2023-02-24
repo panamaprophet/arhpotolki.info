@@ -1,8 +1,8 @@
-.response {
+.root {
     width: 100%;
 }
 
-.response__photo {
+.picture {
     max-width: 204px;
     width: 100%;
     height: 204px;
@@ -20,14 +20,14 @@
     background-repeat: no-repeat;
 }
 
-.response__name {
+.author {
     text-transform: capitalize;
 }
-.response__date {
+.date {
     font-size: 0.8em;
     color: #ccc;
 }
-.response__message {
+.text {
     margin-top: 16px;
     height: 140px;
     overflow: hidden;
