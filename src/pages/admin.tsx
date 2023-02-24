@@ -1,19 +1,19 @@
 import { useReducer } from 'react';
 import { useSession, signIn, signOut, getSession } from 'next-auth/react';
 
-import Title from '../../components/Title';
-import { InputTextLazy } from '../../components/Input';
+import Title from '../components/Title';
+import { InputTextLazy } from '../components/Input';
 import {
     PictureEditor,
     FeedbackEditor,
     PriceEditor,
-} from '../../components/Editor';
+} from '../components/Editor';
 
-import { getFeedbacks } from '../../resolvers/feedback';
-import { getPictures } from '../../resolvers/pictures';
-import { getSettings } from '../../resolvers/settings';
+import { getFeedbacks } from '../resolvers/feedback';
+import { getPictures } from '../resolvers/pictures';
+import { getSettings } from '../resolvers/settings';
 
-import { reducer } from './store';
+import { reducer } from '../store/admin';
 import {
     createUpdatePictureAction,
     createUpdateFeedbackAction,
@@ -21,9 +21,9 @@ import {
     createRemovePictureAction,
     createRemoveFeedbackAction,
     createAddPictureAction,
-} from './store/action-creators';
+} from '../store/admin/action-creators';
 
-import { Feedback, Picture, Setting } from '../../types';
+import { Feedback, Picture, Setting } from '../types';
 
 
 type Props = {
