@@ -25,7 +25,9 @@ export const OrderForm = (props: Props) => {
       <InputText placeholder="Имя" value={name} onChange={setName} />
       <InputText placeholder="Телефон" value={phone} onChange={setPhone} />
 
-      <Button type="classic" className={styles.submitButton} onClick={onSubmit}>Отправить</Button>
+      <Button type="classic" wide={true} size="large" className={styles.submitButton} onClick={onSubmit}>
+        Отправить
+      </Button>
 
       <p className={styles.disclaimer}>
         Мы гарантируем конфиденциальность данных оставленных на сайте.

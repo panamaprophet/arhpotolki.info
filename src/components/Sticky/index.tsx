@@ -9,7 +9,7 @@ interface Props {
 };
 
 
-export const StickyMessage = ({ children, position = 'bottom', align = 'center' }: Props) => (
+export const Sticky = ({ children, position = 'bottom', align = 'center' }: Props) => (
     <div className={[
         styles.root,
         styles[`position_${position}`],

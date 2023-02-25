@@ -3,9 +3,9 @@
     display: flex;
     width: 100%;
     left: 0;
+    padding: 18px 36px;
     color: #2484c6;
     align-items: center;
-    padding: 18px 36px;
     font-family: 'PT Sans Narrow';
     font-size: 1.55em;
 }

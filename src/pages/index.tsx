@@ -14,7 +14,7 @@ import { FeedbackItem } from '../components/FeedbackItem/FeedbackItem';
 import { Separator } from '../components/Separator';
 import { Column } from '../components/Layout';
 import { Logo } from '../components/Logo';
-import { StickyMessage } from '../components/StickyMessage';
+import { Sticky } from '../components/Sticky';
 import { Row } from '../components/Layout';
 import { ArrowDown, Burger } from '../components/Icon';
 import { Button } from '../components/Button';
@@ -46,7 +46,7 @@ const App = () => {
             <Header>
                 <Logo />
 
-                <StickyMessage position="top" align="space-between">
+                <Sticky position="top" align="space-between">
                     <Image src="/icons/eco.png" width="80" height="96" alt="" />
                     <Row>
                         <span style={{ color: '#a6c719' }}>{contacts.phone}</span>
@@ -54,14 +54,14 @@ const App = () => {
                             <Burger />
                         </Button>
                     </Row>
-                </StickyMessage>
+                </Sticky>
 
-                <StickyMessage position="bottom">
+                <Sticky position="bottom">
                     <Row>
                         {headerNotification}
                         <ArrowDown />
                     </Row>
-                </StickyMessage>
+                </Sticky>
             </Header>
 
             <section id="description">
@@ -135,7 +135,11 @@ const App = () => {
                         <FeedbackItem key={item.id} {...item} />
                     ))}
                 </Carousel>
-                <button>Оставить отзыв</button>
+                <Row>
+                    <Button type="classic" wide={true} size="medium" color="orange" onClick={() => console.log('open modal with feedbackform')}>
+                        Оставить отзыв
+                    </Button>
+                </Row>
 
             </section>
 
