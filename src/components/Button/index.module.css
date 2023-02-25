@@ -1,6 +1,4 @@
 .root {
-    padding: 4px;
-
     appearance: none;
     background: none;
     border: none;
@@ -15,9 +13,31 @@
     transition: all 250ms ease-in-out;
 }
 
-.type_classic {
+.type_wide {
     width: 100%;
+}
+
+.type_classic {
     padding: 16px;
+}
+
+.color_green {
     background: #a6c719;
-    margin: 16px 0 32px; /* @todo: get rid of it */
+}
+
+.color_orange {
+    background: #f7a136;
+    color: #fff;
+}
+
+.size_large {
+    padding: 16px;
+}
+
+.size_medium {
+    padding: 8px;
+}
+
+.size_small {
+    padding: 4px;
 }
