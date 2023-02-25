@@ -7,6 +7,7 @@
     flex-direction: row;
     flex-grow: nowrap;
     gap: 0.5rem;
+    align-items: center;
 }
 
 .col {
@@ -14,5 +15,5 @@
     width: 100%;
     flex-direction: column;
     flex-grow: nowrap;
-    gap: var(--layout-gap);
+    gap: 0.5rem;
 }

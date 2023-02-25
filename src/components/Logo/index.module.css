@@ -1,0 +1,9 @@
+.root {
+    width: 400px;
+    max-width: 90%;
+    height: auto;
+    shape-rendering: geometricPrecision;
+    text-rendering: geometricPrecision;
+    fill-rule: evenodd;
+    clip-rule: evenodd;
+}

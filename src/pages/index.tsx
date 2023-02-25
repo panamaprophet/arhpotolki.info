@@ -1,9 +1,10 @@
+import Image from 'next/image';
 import Gallery from '../modules/Gallery';
-import Header from '../modules/Header';
-import Title from '../components/Title';
+import { Title } from '../components/Title';
+import { Footer } from '../components/Footer';
+import { Header } from '../components/Header';
 import { OrderForm } from '../components/OrderForm';
 import { List } from '../components/List';
-import Image from 'next/image';
 import { Card } from '../components/Card';
 import { Calculator } from '../components/Calculator';
 import { Text } from '../components/Text';
@@ -11,8 +12,12 @@ import { Carousel } from '../components/Carousel';
 import { FeedbackForm } from '../components/FeedbackForm';
 import { FeedbackItem } from '../components/FeedbackItem/FeedbackItem';
 import { Separator } from '../components/Separator';
-import { Footer } from '../components/Footer';
 import { Column } from '../components/Layout';
+import { Logo } from '../components/Logo';
+import { StickyMessage } from '../components/StickyMessage';
+import { Row } from '../components/Layout';
+import { ArrowDown, Burger } from '../components/Icon';
+import { Button } from '../components/Button';
 
 import {
     certificates,
@@ -24,7 +29,10 @@ import {
     lightPrice,
     prices,
     materials,
+    headerNotification,
+    contacts,
 } from './index.mock';
+
 
 
 const App = () => {
@@ -35,7 +43,26 @@ const App = () => {
 
     return (
         <>
-            <Header />
+            <Header>
+                <Logo />
+
+                <StickyMessage position="top" align="space-between">
+                    <Image src="/icons/eco.png" width="80" height="96" alt="" />
+                    <Row>
+                        <span style={{ color: '#a6c719' }}>{contacts.phone}</span>
+                        <Button onClick={() => console.log('open menu')}>
+                            <Burger />
+                        </Button>
+                    </Row>
+                </StickyMessage>
+
+                <StickyMessage position="bottom">
+                    <Row>
+                        {headerNotification}
+                        <ArrowDown />
+                    </Row>
+                </StickyMessage>
+            </Header>
 
             <section id="description">
                 <Text>
