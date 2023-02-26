@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { InputFile, InputList } from '../../Input';
 import Image from 'next/image';
 import { Picture } from '../../../types';
+import { Column } from '../../Layout';
 
 
 interface Props extends Partial<Picture> {
@@ -36,10 +37,10 @@ export const PictureEditor = (props: Props) => {
     }, [isSaved]);
 
     return (
-        <div>
+        <Column>
             {!state.url
                 ? <InputFile onUpload={url => onChange({ url })} />
-                : <Image src={state.url} alt={id || url} width="100" height="100" />
+                : <Image src={state.url} alt={id || url} width="120" height="120" />
             }
 
             <InputList onChange={tags => onChange({ tags })} value={state.tags} />
@@ -48,6 +49,6 @@ export const PictureEditor = (props: Props) => {
                 ? <button onClick={_onCreate}>+</button>
                 : <button onClick={() => onRemove(state)}>Х</button>
             }
-        </div>
+        </Column>
     );
 };

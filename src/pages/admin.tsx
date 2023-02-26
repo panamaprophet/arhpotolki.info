@@ -24,6 +24,8 @@ import {
 } from '../store/admin/action-creators';
 
 import { Feedback, Picture, Setting } from '../types';
+import { Card } from '../components/Card';
+import { List } from '../components/List';
 
 
 type Props = {
@@ -57,26 +59,29 @@ const AdminPage = (props: Props) => {
             {isAuthenticated && <>
                 <Title>Картинки</Title>
 
-                {state.pictures.map((picture) => (
-                    <PictureEditor
-                        key={picture.id}
-                        {...picture}
-                        onCreate={onPictureCreate}
-                        onUpdate={onPictureUpdate}
-                        onRemove={onPictureRemove}
-                    />
-                ))}
+                <List>
+                    {state.pictures.map((picture) => (
+                        <Card key={picture.id}>
+                            <PictureEditor
+                                {...picture}
+                                onCreate={onPictureCreate}
+                                onUpdate={onPictureUpdate}
+                                onRemove={onPictureRemove}
+                            />
+                        </Card>
+                    ))}
+                    <Card>
+                        <PictureEditor
+                            onCreate={onPictureCreate}
+                            onUpdate={onPictureUpdate}
+                            onRemove={onPictureRemove}
+                        />
+                    </Card>
+                </List>
 
                 <hr />
 
-                <div>
-                    Добавить картинку:
-                    <PictureEditor
-                        onCreate={onPictureCreate}
-                        onUpdate={onPictureUpdate}
-                        onRemove={onPictureRemove}
-                    />
-                </div>
+
 
                 <Title>Отзывы</Title>
 
