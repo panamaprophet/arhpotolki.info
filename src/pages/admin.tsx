@@ -24,9 +24,8 @@ import {
 } from '../store/admin/action-creators';
 
 import { Feedback, Picture, Setting } from '../types';
-import { Card } from '../components/Card';
 import { List } from '../components/List';
-import { Column, Row } from '../components/Layout';
+import { Row } from '../components/Layout';
 
 
 type Props = {
@@ -63,27 +62,27 @@ const AdminPage = (props: Props) => {
 
                     <Row>
                         Уведомление в шапке:
-                        <InputTextLazy value={state.settings.headerNotification} onChange={value => onSettingsUpdate({ key: 'headerNotification', value })} />
+                        <InputTextLazy value={state.settings.headerNotification} onChange={value => onSettingsUpdate('headerNotification', value)} />
                     </Row>
 
                     <Row>
                         Материалы:
-                        <InputList value={state.settings.materials} onChange={value => onSettingsUpdate({ key: 'materials', value })} />
+                        <InputList value={state.settings.materials} onChange={value => onSettingsUpdate('materials', value)} />
                     </Row>
 
                     <Row>
                         Цена за дополнительный метр:
-                        <InputTextLazy value={state.settings.defaultMeterPrice} onChange={value => onSettingsUpdate({ key: 'defaultMeterPrice', value })} />
+                        <InputTextLazy value={state.settings.defaultMeterPrice} onChange={value => onSettingsUpdate('defaultMeterPrice', value)} />
                     </Row>
 
                     <Row>
                         Цена за свветильник:
-                        <InputTextLazy value={state.settings.lightPrice} onChange={value => onSettingsUpdate({ key: 'lightPrice', value })} />
+                        <InputTextLazy value={state.settings.lightPrice} onChange={value => onSettingsUpdate('lightPrice', value)} />
                     </Row>
 
                     <Row>
                         Цена за цвет:
-                        <InputTextLazy value={state.settings.colorPrice} onChange={value => onSettingsUpdate({ key: 'colorPrice', value })} />
+                        <InputTextLazy value={state.settings.colorPrice} onChange={value => onSettingsUpdate('colorPrice', value)} />
                     </Row>
 
                     <br />
@@ -92,7 +91,7 @@ const AdminPage = (props: Props) => {
                         Цены:
                         <PriceEditor
                             prices={state.settings.prices}
-                            onChange={value => onSettingsUpdate({ key: 'prices', value })}
+                            onChange={value => onSettingsUpdate('prices', value)}
                         />
                     </Row>
                 </section>
@@ -102,9 +101,7 @@ const AdminPage = (props: Props) => {
 
                     <List>
                         {state.pictures.map((picture) => (
-                            <Card key={picture.id}>
-                                <PictureEditor {...picture} onCreate={onPictureCreate} onUpdate={onPictureUpdate} onRemove={onPictureRemove} />
-                            </Card>
+                            <PictureEditor key={picture.id} {...picture} onCreate={onPictureCreate} onUpdate={onPictureUpdate} onRemove={onPictureRemove} />
                         ))}
                     </List>
 

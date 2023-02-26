@@ -1,4 +1,4 @@
-const omit = <T extends { [k: string]: any }>(keys: string[], obj: T) => Object.fromEntries(Object.entries(obj).filter(([key]) => !keys.includes(key)));
+import { omit } from '../../../helpers';
 
 
 const setGroupName = (prices, from, to) => ({

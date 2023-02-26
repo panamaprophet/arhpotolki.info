@@ -33,15 +33,15 @@ export const createUpdateFeedbackAction = dispatch => async (payload) => {
     });
 };
 
-export const createSettingsUpdateAction = dispatch => async (payload) => {
-    await fetch(`/api/settings/${payload.key}`, {
+export const createSettingsUpdateAction = dispatch => async (key, value) => {
+    await fetch(`/api/settings/${key}`, {
         method: 'PUT',
-        body: JSON.stringify({ value: payload.value }),
+        body: JSON.stringify({ value: value }),
     });
 
     dispatch({
         type: ACTION_SETTINGS_CHANGE,
-        payload,
+        payload: { key, value },
     });
 };
 
