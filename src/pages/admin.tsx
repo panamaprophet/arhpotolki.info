@@ -2,7 +2,7 @@ import { useReducer } from 'react';
 import { useSession, signIn, signOut, getSession } from 'next-auth/react';
 
 import { Title } from '../components/Text';
-import { InputTextLazy } from '../components/Input';
+import { InputTextLazy, InputList } from '../components/Input';
 import {
     PictureEditor,
     FeedbackEditor,
@@ -95,6 +95,7 @@ const AdminPage = (props: Props) => {
                     <div key={setting.key}>
                         {setting.key}:
 
+                        {setting.key === 'materials' && <InputList value={setting.value} onChange={value => onSettingsUpdate({ ...setting, value })} />}
                         {setting.key === 'discount' && <strong>Setting is not supported yet.</strong>}
                         {setting.key === 'prices' && <PriceEditor prices={setting.value} onChange={value => onSettingsUpdate({ ...setting, value })} />}
 
