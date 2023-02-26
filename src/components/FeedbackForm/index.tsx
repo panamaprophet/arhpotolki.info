@@ -17,7 +17,7 @@ export const FeedbackForm = ({ onSubmit }) => {
 
             <InputFile onUpload={setPicture} />
 
-            <Button type="classic" wide={true} size="large" onClick={() => onSubmit({ name, city, text, picture })}>
+            <Button theme="green" className={styles.submitButton} onClick={() => onSubmit({ name, city, text, picture })}>
                 Отправить
             </Button>
         </form>

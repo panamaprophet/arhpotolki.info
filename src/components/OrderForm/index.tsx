@@ -25,7 +25,7 @@ export const OrderForm = (props: Props) => {
       <InputText placeholder="Имя" value={name} onChange={setName} />
       <InputText placeholder="Телефон" value={phone} onChange={setPhone} />
 
-      <Button type="classic" wide={true} size="large" className={styles.submitButton} onClick={onSubmit}>
+      <Button theme="green" className={styles.submitButton} onClick={onSubmit}>
         Отправить
       </Button>
 
