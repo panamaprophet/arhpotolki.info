@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Title } from '../../components/Title';
+import { Title } from '../../components/Text';
 import styles from './styles.module.css';
 import FullGallery from './components/FullGallery';
 import GalleryWithFilters from './components/GalleryWithFilters';
