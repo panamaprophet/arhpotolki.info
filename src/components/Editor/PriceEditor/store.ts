@@ -3,13 +3,14 @@ const omit = <T extends { [k: string]: any }>(keys: string[], obj: T) => Object.
 
 const setGroupName = (prices, from, to) => ({
     ...omit([from], prices),
-    [to]: prices[from],
+    [to]: { ...prices[from] },
 });
 
 const setPrice = (prices, group, index, value) => {
-    const values = prices[group];
-
-    values[index] = Number(value);
+    const values = {
+        ...prices[group],
+        [index]: Number(value),
+    };
 
     return {
         ...prices,
@@ -19,7 +20,7 @@ const setPrice = (prices, group, index, value) => {
 
 const setIndex = (prices, from, to) => ({
     ...Object.keys(prices).reduce((acc, group) => {
-        const values = prices[group];
+        const values = { ...prices[group] };
         const price = values[from];
 
         delete values[from];
@@ -32,19 +33,15 @@ const setIndex = (prices, from, to) => ({
 
 const removeRow = (prices, index) => ({
     ...Object.keys(prices).reduce((acc, group) => {
-        const values = prices[group];
-
-        delete values[index];
+        const values = omit([index], prices[group]);
 
         return { ...acc, [group]: values };
     }, {})
 });
 
-const insertRow = (prices, index) => ({
+const insertRow = (prices, key) => ({
     ...Object.keys(prices).reduce((acc, group) => {
-        const values = prices[group];
-
-        values.push(0);
+        const values = { ...prices[group], [key]: 0 };
 
         return { ...acc, [group]: values };
     }, {})
