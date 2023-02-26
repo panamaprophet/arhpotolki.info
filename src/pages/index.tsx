@@ -136,7 +136,7 @@ const App = () => {
                     ))}
                 </Carousel>
                 <Row>
-                    <Button type="classic" wide={true} size="medium" color="orange" onClick={() => console.log('open modal with feedbackform')}>
+                    <Button theme="orange" onClick={() => console.log('open modal with feedbackform')}>
                         Оставить отзыв
                     </Button>
                 </Row>

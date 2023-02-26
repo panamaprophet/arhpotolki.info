@@ -1,7 +1,6 @@
 .root {
     font-size: 1em;
-    margin: 2rem 0;
-    padding: 16px;
+    padding-bottom: 16px;
     color: #333;
     background: transparent;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
@@ -18,7 +17,7 @@
     width: 100%;
     padding: 48px 0;
     
-    font-family: "PT Sans Narrow";
+    font-family: 'PT Sans Narrow';
     font-weight: bold;
     
 }
