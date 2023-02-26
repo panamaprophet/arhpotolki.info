@@ -24,11 +24,16 @@ export const InputText = ({ value, placeholder, onChange }: Props) => {
 
 export const InputTextLazy = ({ value: initialValue, placeholder, onChange }: Props) => {
     const [value, setValue] = useState(initialValue);
+    const isChanged = value !== initialValue;
 
-    const onBlur: FocusEventHandler<HTMLInputElement> = () => onChange(value);
+    const onBlur: FocusEventHandler<HTMLInputElement> = () => {
+        if (isChanged) {
+            onChange(value);
+        }
+    };
 
     const onKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
-        if (event.key === 'Enter') {
+        if (isChanged && event.key === 'Enter') {
             onChange(value);
         }
     };
