@@ -1,6 +1,5 @@
 import Gallery from '../modules/Gallery';
 import Header from '../modules/Header';
-import Footer from '../modules/Footer';
 import Title from '../components/Title';
 import { OrderForm } from '../components/OrderForm';
 import { List } from '../components/List';
@@ -12,6 +11,8 @@ import { Carousel } from '../components/Carousel';
 import { FeedbackForm } from '../components/FeedbackForm';
 import { FeedbackItem } from '../components/FeedbackItem/FeedbackItem';
 import { Separator } from '../components/Separator';
+import { Footer } from '../components/Footer';
+import { Column } from '../components/Layout';
 
 import {
     certificates,
@@ -113,7 +114,33 @@ const App = () => {
 
             <FeedbackForm onSubmit={onFeedbackSubmit} />
 
-            <Footer />
+            <Footer>
+                <Column style={{ alignItems: 'center', textAlign: 'center' }}>
+                    <Text>
+                        АрхПотолки
+                        <br />
+                        город Архангельск, ул. Беломорской флотилии 2-3-33
+                        <br />
+                        +7 8182 47-67-24
+                    </Text>
+
+                    <Text>
+                        <a target="_blank" href="http://vk.com/arhpotolki" rel="noreferrer">
+                            vk.com/arhpotolki
+                        </a>
+                        <br />
+                        <a target="_blank" href="mailto:hello@arhpotolki.info" rel="noreferrer">
+                            hello@arhpotolki.info
+                        </a>
+                    </Text>
+
+                    {/* insert the vk widget */}
+
+                    <Text>
+                        Copyright © АрхПотолки, 2014 - 2023 | <a href="/terms.html">Зашита персональной информации</a>
+                    </Text>
+                </Column>
+            </Footer>
         </>
     );
 };
