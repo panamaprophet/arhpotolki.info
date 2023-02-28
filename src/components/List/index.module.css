@@ -8,3 +8,11 @@
 .root_nowrap {
     flex-wrap: nowrap;
 }
+
+.align_evenly {
+    justify-content: space-evenly;
+}
+
+.align_start {
+    justify-content: flex-start;
+}

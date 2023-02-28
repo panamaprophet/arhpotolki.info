@@ -37,7 +37,6 @@ import {
 } from './index.mock';
 
 
-
 const App = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     // @todo: use actions here to put the order

@@ -26,6 +26,7 @@ import {
 import { Feedback, Picture, Setting } from '../types';
 import { List } from '../components/List';
 import { Row } from '../components/Layout';
+import { Card } from '../components/Card';
 
 
 type Props = {
@@ -84,24 +85,24 @@ const AdminPage = (props: Props) => {
                         Цена за цвет:
                         <InputTextLazy value={state.settings.colorPrice} onChange={value => onSettingsUpdate('colorPrice', value)} />
                     </Row>
+                </section>
 
-                    <br />
-
-                    <Row>
-                        Цены:
-                        <PriceEditor
-                            prices={state.settings.prices}
-                            onChange={value => onSettingsUpdate('prices', value)}
-                        />
-                    </Row>
+                <section id="prices">
+                    <Title condenced={true}>Цены</Title>
+                    <PriceEditor
+                        prices={state.settings.prices}
+                        onChange={value => onSettingsUpdate('prices', value)}
+                    />
                 </section>
 
                 <section id="pictures">
                     <Title condenced={true}>Картинки</Title>
 
-                    <List>
+                    <List align="flex-start">
                         {state.pictures.map((picture) => (
-                            <PictureEditor key={picture.id} {...picture} onCreate={onPictureCreate} onUpdate={onPictureUpdate} onRemove={onPictureRemove} />
+                            <Card key={picture.id} >
+                                <PictureEditor {...picture} onCreate={onPictureCreate} onUpdate={onPictureUpdate} onRemove={onPictureRemove} />
+                            </Card>
                         ))}
                     </List>
 
