@@ -1,6 +1,9 @@
 .root {
+    display: flex;
+    flex-flow: column;
     padding: 16px 16px 36px;
     background: #fff;
+    gap: 8px;
 }
 
 .submitButton {
