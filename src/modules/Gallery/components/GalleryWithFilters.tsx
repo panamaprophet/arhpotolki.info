@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import mockButtons from './mocks/mockButtons';
 import mockImages from './mocks/mockImages';
 import Button from './Button';
-import Image from './Image';
-import styles from './styles.module.css';
+import Image from 'next/image';
+import { Modal } from '../../../components/Modal';
+import { Carousel } from '../../../components/Carousel';
+import { List } from '../../../components/List';
 
 function GalleryWithFilters() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentButton, setCurrentButton] = useState(mockButtons[0]);
     const filteredGallery = mockImages.filter(
         (img) => img.category === currentButton.category
@@ -15,7 +18,7 @@ function GalleryWithFilters() {
 
     return (
         <>
-            <ul className={styles.filter}>
+            <List>
                 {mockButtons.map((button) => (
                     <Button
                         key={button.category}
@@ -24,14 +27,19 @@ function GalleryWithFilters() {
                         isActive={button === currentButton}
                     />
                 ))}
-            </ul>
-            <ul className={styles.gallery}>
-                {filteredGallery.map((img) => (
-                    <li key={img.path} className={styles.gallery__item}>
-                        <Image path={img.path} />
-                    </li>
+            </List>
+            <List>
+                {filteredGallery.map(img => (
+                    <Image key={img.path} onClick={() => setIsModalOpen(true)} src={img.path} width={207} height={145} alt={img.path} />
                 ))}
-            </ul>
+            </List>
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                <Carousel>
+                    {filteredGallery.map(img => (
+                        <Image key={img.path} src={img.path} width={568} height={400} alt={img.path} />
+                    ))}
+                </Carousel>
+            </Modal>
         </>
     );
 }
