@@ -31,7 +31,7 @@ const getOpacity = (material: string) => MaterialToOpacityMap[material] || 1;
 
 interface Props {
     prices: {
-        [type: string]: number[]
+        [type: string]: { [k: number]: number },
     },
     materials: string[],
     lightPrice: number,
