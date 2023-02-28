@@ -28,11 +28,13 @@
 
 .list {
     display: flex;
+    flex-flow: row nowrap;
     white-space: nowrap;
     transition: all 150ms ease;
 }
 
 .list > * {
+    flex-grow: 1;
     white-space: normal;
     flex-shrink: 0;
 }

@@ -1,4 +1,4 @@
-import { cx } from './helpers';
+import { cx } from '../../../helpers';
 import styles from './styles.module.css';
 
 export const InputRange = ({ options, currentItem, onClick }) => {
