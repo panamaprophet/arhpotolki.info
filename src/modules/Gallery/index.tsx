@@ -1,34 +1,45 @@
-import React, { useState } from 'react';
-import { Title } from '../../components/Text';
+import Image from 'next/image';
+import { useState } from 'react';
+import { Carousel } from '../../components/Carousel';
+import { List } from '../../components/List';
+import { Modal } from '../../components/Modal';
+import Button from './components/Button';
 import styles from './styles.module.css';
-import FullGallery from './components/FullGallery';
-import GalleryWithFilters from './components/GalleryWithFilters';
 
-function Gallery() {
-    const [filterType, setFilterType] = useState('all');
+function Gallery({ categories, images }) {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [currentButton, setCurrentButton] = useState(categories[0]);
 
-    const handleFilter = (filter) => setFilterType(filter);
+    const filteredGallery = currentButton === categories[0] ? images : images.filter(
+        (img) => img.category === currentButton.category
+    );
+
+    const handleClick = (button) => setCurrentButton(button);
 
     return (
         <section id="examples" className={`${styles.examples} layout`}>
-            <Title>
-                Наши работы (
-                <span
-                    className={styles.filter__type}
-                    onClick={() => handleFilter('all')}
-                >
-                    все
-                </span>{' '}
-                или{' '}
-                <span
-                    className={styles.filter__type}
-                    onClick={() => handleFilter('category')}
-                >
-                    по категориям
-                </span>
-                )
-            </Title>
-            {filterType === 'all' ? <FullGallery /> : <GalleryWithFilters />}
+            <List>
+                {categories.map((button) => (
+                    <Button
+                        key={button.category}
+                        button={button}
+                        onClick={handleClick}
+                        isActive={button === currentButton}
+                    />
+                ))}
+            </List>
+            <List>
+                {filteredGallery.map(img => (
+                    <Image key={img.path} onClick={() => setIsModalOpen(true)} src={img.path} width={207} height={145} alt={img.path} />
+                ))}
+            </List>
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                <Carousel>
+                    {filteredGallery.map(img => (
+                        <Image key={img.path} src={img.path} width={568} height={400} alt={img.path} />
+                    ))}
+                </Carousel>
+            </Modal>
         </section>
     );
 }
