@@ -12,7 +12,6 @@
 * PUT     /api/pictures/[id]  - update picture by id
 * DELETE  /api/pictures/[id]  - remove picture by id
 * POST    /api/pictures       - add new picture
-* GET     /api/pictures       - returns all pictures
 
 <br>
 
