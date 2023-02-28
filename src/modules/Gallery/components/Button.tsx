@@ -6,7 +6,7 @@ function Button(props) {
   const handleClick = () => onClick(button);
 
   return (
-    <li
+    <button
       onClick={handleClick}
       value={button.category}
       className={`${styles.filter__item} ${
@@ -14,7 +14,7 @@ function Button(props) {
       }`}
     >
       {button.category}
-    </li>
+    </button>
   );
 }
 
