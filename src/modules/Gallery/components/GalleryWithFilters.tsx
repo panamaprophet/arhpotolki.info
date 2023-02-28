@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
-import mockButtons from './mocks/mockButtons';
-import mockImages from './mocks/mockImages';
+import { useState } from 'react';
 import Button from './Button';
 import Image from 'next/image';
 import { Modal } from '../../../components/Modal';
 import { Carousel } from '../../../components/Carousel';
 import { List } from '../../../components/List';
 
-function GalleryWithFilters() {
+function GalleryWithFilters({ categories, images }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [currentButton, setCurrentButton] = useState(mockButtons[0]);
-    const filteredGallery = mockImages.filter(
+    const [currentButton, setCurrentButton] = useState(categories[0]);
+
+    const filteredGallery = currentButton === categories[0] ? images : images.filter(
         (img) => img.category === currentButton.category
     );
 
@@ -19,7 +18,7 @@ function GalleryWithFilters() {
     return (
         <>
             <List>
-                {mockButtons.map((button) => (
+                {categories.map((button) => (
                     <Button
                         key={button.category}
                         button={button}
