@@ -3,7 +3,7 @@ import styles from './index.module.css';
 
 
 interface Props {
-    theme?: 'none' | 'green' | 'orange',
+    theme?: 'none' | 'green' | 'orange' | 'grey',
     className?: string,
     children: ReactNode,
     onClick: MouseEventHandler<HTMLButtonElement>,

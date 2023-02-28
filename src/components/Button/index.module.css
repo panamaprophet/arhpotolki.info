@@ -25,3 +25,8 @@
     background: none;
     color: #333;
 }
+
+.theme_grey {
+    background: #cccccc;
+    padding: 8px;
+}
