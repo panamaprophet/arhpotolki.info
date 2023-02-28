@@ -1,12 +1,11 @@
 import Image from 'next/image';
 import Gallery from '../modules/Gallery';
-import Header from '../modules/Header';
 import { Footer } from '../components/Footer';
 import { OrderForm } from '../components/OrderForm';
 import { List } from '../components/List';
 import { Card } from '../components/Card';
 import { Calculator } from '../components/Calculator';
-import { Text, Title } from '../components/Text';
+import { Subtitle, Text, Title } from '../components/Text';
 import { Carousel } from '../components/Carousel';
 import { FeedbackForm } from '../components/FeedbackForm';
 import { FeedbackItem } from '../components/FeedbackItem/FeedbackItem';
@@ -29,10 +28,17 @@ import {
     contacts,
     menuLinks,
 } from './index.mock';
+import { ArrowDown, Burger } from '../components/Icon';
+import { Modal } from '../components/Modal';
+import Menu from '../components/Menu';
+import { Logo } from '../components/Logo';
+import { useState } from 'react';
+import { Header } from '../components/Header';
 
 
 
 const App = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
     // @todo: use actions here to put the order
     const onOrderSubmit = (...args) => console.log('form subbmitted:', args);
     const onPriceChange = (...args) => console.log('price changed:', args);
@@ -40,7 +46,33 @@ const App = () => {
 
     return (
         <>
-            <Header contacts={contacts} headerNotification={headerNotification} links={menuLinks} />
+            <Header>
+                <Row style={{ width: '100%', justifyContent: 'space-between' }}>
+                    <Image src="/icons/eco.png" width="80" height="96" alt="" />
+                    <Row>
+                        <Subtitle color="#a6c719">
+                            {contacts.phone}
+                        </Subtitle>
+                        <Button onClick={() => setIsModalOpen(true)}>
+                            <Burger />
+                        </Button>
+                        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                            <Menu links={menuLinks} onClick={() => setIsModalOpen(false)} />
+                        </Modal>
+                    </Row>
+                </Row>
+
+                <Logo />
+
+                <Row >
+                    <Subtitle color="#2484c6">
+                        {headerNotification}
+                    </Subtitle>
+                    <a href="#description">
+                        <ArrowDown />
+                    </a>
+                </Row>
+            </Header>
 
             <section id="description">
                 <Text>Компания «АрхПотолки» на про­тя­же­нии шес­ти лет ус­пеш­но за­ни­ма­ет­ся про­да­жей и ус­та­нов­кой на­тяж­ных по­тол­ков, на тер­ри­то­рии всей Ар­хан­гель­ской об­ла­сти.</Text>
