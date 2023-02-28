@@ -1,7 +1,7 @@
 import { useReducer } from 'react';
 import { useSession, signIn, signOut, getSession } from 'next-auth/react';
 
-import Title from '../components/Title';
+import { Title } from '../components/Text';
 import { InputTextLazy } from '../components/Input';
 import {
     PictureEditor,

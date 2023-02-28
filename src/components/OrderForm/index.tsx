@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Button } from '../Button';
 import { InputText } from '../Input';
 import styles from './styles.module.css';
 
@@ -24,7 +25,9 @@ export const OrderForm = (props: Props) => {
       <InputText placeholder="Имя" value={name} onChange={setName} />
       <InputText placeholder="Телефон" value={phone} onChange={setPhone} />
 
-      <button className={styles.submitButton} onClick={onSubmit}>Отправить</button>
+      <Button theme="green" className={styles.submitButton} onClick={onSubmit}>
+        Отправить
+      </Button>
 
       <p className={styles.disclaimer}>
         Мы гарантируем конфиденциальность данных оставленных на сайте.
