@@ -236,3 +236,26 @@ export const gallery = [
     { path: '/gallery/35.png', category: ['Простые'] },
     { path: '/gallery/36.png', category: ['Простые'] },
 ];
+
+export const menuLinks = [
+    {
+      title: 'Преимущества',
+      id: '#advantages'
+    },
+    {
+      title: 'Наши работы',
+      id: '#examples'
+    },
+    {
+      title: 'Расчёт стоимости',
+      id: '#calculator'
+    },
+    {
+      title: 'Оставить заявку',
+      id: '#application'
+    },
+    {
+      title: 'Контакты',
+      id: '#footer'
+    },
+  ]
