@@ -30,7 +30,7 @@ import {
 } from './index.mock';
 import { ArrowDown, Burger } from '../components/Icon';
 import { Modal } from '../components/Modal';
-import Menu from '../components/Menu';
+import { Menu } from '../components/Menu';
 import { Logo } from '../components/Logo';
 import { useState } from 'react';
 import { Header } from '../components/Header';

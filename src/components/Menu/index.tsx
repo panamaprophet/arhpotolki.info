@@ -1,6 +1,6 @@
 import styles from './styles.module.css';
 
-function Menu({ links, onClick }) {
+export const Menu = ({ links, onClick }) => {
   return (
     <div className={styles.navigation} onClick={onClick}>
       <ul className={styles.menu}>
@@ -15,5 +15,3 @@ function Menu({ links, onClick }) {
     </div>
   );
 }
-
-export default Menu;
