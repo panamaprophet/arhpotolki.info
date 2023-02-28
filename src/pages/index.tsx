@@ -1,5 +1,5 @@
+import { useState } from 'react';
 import Image from 'next/image';
-import Gallery from '../modules/Gallery';
 import { Footer } from '../components/Footer';
 import { OrderForm } from '../components/OrderForm';
 import { List } from '../components/List';
@@ -26,13 +26,14 @@ import {
     materials,
     headerNotification,
     contacts,
+    categoryButtons,
+    gallery,
     menuLinks,
 } from './index.mock';
 import { ArrowDown, Burger } from '../components/Icon';
 import { Modal } from '../components/Modal';
 import { Menu } from '../components/Menu';
 import { Logo } from '../components/Logo';
-import { useState } from 'react';
 import { Header } from '../components/Header';
 
 
@@ -43,6 +44,15 @@ const App = () => {
     const onOrderSubmit = (...args) => console.log('form subbmitted:', args);
     const onPriceChange = (...args) => console.log('price changed:', args);
     const onFeedbackSubmit = (...args) => console.log('form submitted:', args);
+
+    const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false);
+    const [currentButton, setCurrentButton] = useState(categoryButtons[0]);
+
+    const filteredGallery = currentButton === categoryButtons[0] ? gallery : gallery.filter(
+        (img) => img.category.includes(currentButton.category)
+    );
+
+    const handleClick = (button) => setCurrentButton(button);
 
     return (
         <>
@@ -92,7 +102,29 @@ const App = () => {
                 </List>
             </section>
 
-            <Gallery />
+            <section id="examples" className="layout">
+                <List>
+                    {categoryButtons.map((button) => (
+                        <Button
+                            key={button.category}
+                            onClick={() => handleClick(button)}
+                            theme={currentButton === button ? "orange" : "grey"}
+                        >{button.category}</Button>
+                    ))}
+                </List>
+                <List>
+                    {filteredGallery.map(img => (
+                        <Image key={img.path} onClick={() => setIsGalleryModalOpen(true)} src={img.path} width={207} height={145} alt={img.path} />
+                    ))}
+                </List>
+                <Modal isOpen={isGalleryModalOpen} onClose={() => setIsGalleryModalOpen(false)}>
+                    <Carousel>
+                        {filteredGallery.map(img => (
+                            <Image key={img.path} src={img.path} width={568} height={400} alt={img.path} />
+                        ))}
+                    </Carousel>
+                </Modal>
+            </section>
 
             <Separator text="Изготовление - от одного дня, монтаж - от двух часов." />
 
