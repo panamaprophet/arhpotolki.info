@@ -1,0 +1,27 @@
+.root {
+    padding: 4px;
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'PT Sans';
+    font-size: 1em;
+    transition: all 250ms ease-in-out;
+}
+
+.theme_orange {
+    padding: 8px 16px;
+    background: #f7a136;
+    color: #fff;
+    margin: 0 auto;
+}
+
+.theme_green {
+    padding: 16px;
+    background: #a6c719;
+    color: #333;
+}
+
+.theme_none {
+    background: none;
+    color: #333;
+}

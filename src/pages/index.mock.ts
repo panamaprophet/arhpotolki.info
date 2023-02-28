@@ -149,3 +149,15 @@ export const lightPrice = 350;
 export const colorPrice = 200;
 
 export const costBySquare = 700;
+
+export const headerNotification = 'Скидки 20% до конца февраля! Звоните.';
+
+export const contacts = {
+    phone: '+7 8182 47-67-24',
+    address: 'город Архангельск, ул. Беломорской флотилии 2-3-33',
+    companyName: 'АрхПотолки',
+    links: [
+        'vk.com/arhpotolki',
+        'hello@arhpotolki.info',
+    ],
+};

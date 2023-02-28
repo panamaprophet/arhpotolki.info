@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Button } from '../Button';
 import { InputFile, InputText } from '../Input';
 import styles from './index.module.css';
 
@@ -16,7 +17,9 @@ export const FeedbackForm = ({ onSubmit }) => {
 
             <InputFile onUpload={setPicture} />
 
-            <button className={styles.submitButton} type="button" onClick={() => onSubmit({ name, city, text, picture })}>Отправить</button>
+            <Button theme="green" className={styles.submitButton} onClick={() => onSubmit({ name, city, text, picture })}>
+                Отправить
+            </Button>
         </form>
     );
 };
