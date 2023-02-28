@@ -1,20 +1,17 @@
 import Image from 'next/image';
 import Gallery from '../modules/Gallery';
 import { Footer } from '../components/Footer';
-import { Header } from '../components/Header';
 import { OrderForm } from '../components/OrderForm';
 import { List } from '../components/List';
 import { Card } from '../components/Card';
 import { Calculator } from '../components/Calculator';
-import { Text, Title, Subtitle } from '../components/Text';
+import { Subtitle, Text, Title } from '../components/Text';
 import { Carousel } from '../components/Carousel';
 import { FeedbackForm } from '../components/FeedbackForm';
 import { FeedbackItem } from '../components/FeedbackItem/FeedbackItem';
 import { Separator } from '../components/Separator';
 import { Column } from '../components/Layout';
-import { Logo } from '../components/Logo';
 import { Row } from '../components/Layout';
-import { ArrowDown, Burger } from '../components/Icon';
 import { Button } from '../components/Button';
 
 import {
@@ -29,11 +26,19 @@ import {
     materials,
     headerNotification,
     contacts,
+    menuLinks,
 } from './index.mock';
+import { ArrowDown, Burger } from '../components/Icon';
+import { Modal } from '../components/Modal';
+import { Menu } from '../components/Menu';
+import { Logo } from '../components/Logo';
+import { useState } from 'react';
+import { Header } from '../components/Header';
 
 
 
 const App = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
     // @todo: use actions here to put the order
     const onOrderSubmit = (...args) => console.log('form subbmitted:', args);
     const onPriceChange = (...args) => console.log('price changed:', args);
@@ -48,9 +53,12 @@ const App = () => {
                         <Subtitle color="#a6c719">
                             {contacts.phone}
                         </Subtitle>
-                        <Button onClick={() => console.log('open menu')}>
+                        <Button onClick={() => setIsModalOpen(true)}>
                             <Burger />
                         </Button>
+                        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                            <Menu links={menuLinks} onClick={() => setIsModalOpen(false)} />
+                        </Modal>
                     </Row>
                 </Row>
 
