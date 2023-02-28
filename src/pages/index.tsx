@@ -29,6 +29,8 @@ import {
     materials,
     headerNotification,
     contacts,
+    categoryButtons,
+    gallery,
 } from './index.mock';
 
 
@@ -84,7 +86,7 @@ const App = () => {
                 </List>
             </section>
 
-            <Gallery />
+            <Gallery categories={categoryButtons} images={gallery} />
 
             <Separator text="Изготовление - от одного дня, монтаж - от двух часов." />
 
