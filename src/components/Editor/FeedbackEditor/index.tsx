@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Feedback } from '../../../types';
 import { InputDate, InputTextLazy } from '../../Input';
+import { Column } from '../../Layout';
 
 
 interface Props extends Feedback {
@@ -28,12 +29,14 @@ export const FeedbackEditor = ({ onUpdate, onRemove, ...props }: Props) => {
     }, [isSaved]);
 
     return (
-        <div>
-            <InputTextLazy value={state.author} onChange={author => onChange({ author })} />
-            <InputTextLazy value={state.text} onChange={text => onChange({ text })} />
+        <Column>
+            <InputTextLazy placeholder="имя" value={state.author} onChange={author => onChange({ author })} />
+            <br/>
+            <InputTextLazy placeholder="текст" value={state.text} onChange={text => onChange({ text })} />
+            <br/>
             <InputDate value={state.date} onChange={date => onChange({ date })} />
 
             <button onClick={() => onRemove(state)}>Х</button>
-        </div>
+        </Column>
     );
 };

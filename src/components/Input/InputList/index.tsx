@@ -1,7 +1,15 @@
 import { FocusEventHandler, KeyboardEventHandler, useState } from 'react';
+import styles from './index.module.css';
 
 
-export const InputList = ({ value: initialValue, onChange }) => {
+interface Props {
+    value: string[],
+    placeholder?: string,
+    onChange: (value: string[]) => void,
+}
+
+
+export const InputList = ({ value: initialValue, placeholder = '', onChange }: Props) => {
     const [value, setValue] = useState(initialValue);
 
     const onBlur: FocusEventHandler<HTMLInputElement> = () => {
@@ -18,9 +26,11 @@ export const InputList = ({ value: initialValue, onChange }) => {
 
     return (
         <input
+            className={styles.root}
+            placeholder={placeholder}
             type="text"
-            defaultValue={value.join(' ')}
-            onChange={event => setValue(event.target.value.split(' '))}
+            defaultValue={value.join(', ')}
+            onChange={event => setValue(event.target.value.split(',').map(v => v.trim()))}
             onKeyDown={onKeyDown}
             onBlur={onBlur}
         />

@@ -16,7 +16,7 @@ export const InputText = ({ value, placeholder, onChange }: Props) => {
             type="text"
             value={String(value)}
             readOnly={onChange ? false : true}
-            className={styles.input__field}
+            className={styles.root}
             onChange={event => onChange(event.target.value)}
         />
     );
@@ -45,6 +45,7 @@ export const InputTextLazy = ({ value: initialValue, placeholder, onChange }: Pr
             defaultValue={String(value)}
             onChange={event => setValue(event.target.value)}
             onKeyDown={onKeyDown}
+            className={styles.root}
             onBlur={onBlur}
         />
     );

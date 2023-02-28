@@ -43,11 +43,11 @@ export const PictureEditor = (props: Props) => {
                 : <Image src={state.url} alt={id || url} width="120" height="120" />
             }
 
-            <InputList onChange={tags => onChange({ tags })} value={state.tags} />
+            <InputList placeholder="категории (через пробел)" onChange={tags => onChange({ tags })} value={state.tags} />
 
             {!state.id
                 ? <button onClick={_onCreate}>+</button>
-                : <button onClick={() => onRemove(state)}>Х</button>
+                : <button style={{ position: 'absolute', top: 8, right: 2 }} onClick={() => onRemove(state)}>Х</button>
             }
         </Column>
     );

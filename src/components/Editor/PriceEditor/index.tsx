@@ -26,7 +26,7 @@ export const PriceEditor = ({ prices: initialValue, onChange }) => {
     />);
 
     const Rows = indexes.map((key, index) => (
-        <Row key={key}>
+        <Row key={key} style={{ display: 'grid', gridTemplateColumns: '25% 25% 25% 25%' }}>
             <InputTextLazy
                 value={key}
                 onChange={value => dispatch({ type: ACTION_SET_INDEX, payload: { from: key, to: value } })}
@@ -40,18 +40,22 @@ export const PriceEditor = ({ prices: initialValue, onChange }) => {
                 />
             ))}
 
-            {(!indexes[index + 1] || (Number(indexes[index + 1]) - Number(key)) > 1) && (
-                <button type="button" onClick={() => dispatch({ type: ACTION_INSERT_ROW, payload: { key: Number(key) + 1 } })}>+</button>
-            )}
+            <Row>
+                {(!indexes[index + 1] || (Number(indexes[index + 1]) - Number(key)) > 1) && (
+                    <button type="button" onClick={() => dispatch({ type: ACTION_INSERT_ROW, payload: { key: Number(key) + 1 } })}>+</button>
+                )}
 
-            <button type="button" onClick={() => dispatch({ type: ACTION_REMOVE_ROW, payload: { key } })}>X</button>
+                <button type="button" onClick={() => dispatch({ type: ACTION_REMOVE_ROW, payload: { key } })}>X</button>
+            </Row>
         </Row>
     ));
 
     return (
         <Column>
-            <Row>
+            <Row style={{ display: 'grid', gridTemplateColumns: '25% 25% 25% 25%' }}>
+                <div>группы:</div>
                 {Groups}
+                <div></div>
             </Row>
             <Column>
                 {Rows}
