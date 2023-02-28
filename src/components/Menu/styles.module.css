@@ -1,6 +1,5 @@
 .navigation {
   transition: all 250ms ease-in-out;
-  overflow-x: hidden;
 }
 
 .closeButton {
@@ -18,11 +17,6 @@
 }
 
 .menu {
-  margin: 0;
-  padding: 0;
-  top: 0;
-  left: 0;
-  position: absolute;
   height: 100vh;
   width: 100vw;
   display: flex;
