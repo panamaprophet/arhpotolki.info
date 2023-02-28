@@ -161,3 +161,31 @@ export const contacts = {
         'hello@arhpotolki.info',
     ],
 };
+
+export const menuLinks = [
+    {
+      id: '123',
+      title: 'Преимущества',
+      link: '#advantages'
+    },
+    {
+      id: '123',
+      title: 'Наши работы',
+      link: '#examples'
+    },
+    {
+      id: '123',
+      title: 'Расчёт стоимости',
+      link: '#calculator'
+    },
+    {
+      id: '123',
+      title: 'Оставить заявку',
+      link: '#application'
+    },
+    {
+      id: '123',
+      title: 'Контакты',
+      link: '#footer'
+    },
+  ]

@@ -1,20 +1,18 @@
 import Image from 'next/image';
 import Gallery from '../modules/Gallery';
+import Header from '../modules/Header';
 import { Footer } from '../components/Footer';
-import { Header } from '../components/Header';
 import { OrderForm } from '../components/OrderForm';
 import { List } from '../components/List';
 import { Card } from '../components/Card';
 import { Calculator } from '../components/Calculator';
-import { Text, Title, Subtitle } from '../components/Text';
+import { Text, Title } from '../components/Text';
 import { Carousel } from '../components/Carousel';
 import { FeedbackForm } from '../components/FeedbackForm';
 import { FeedbackItem } from '../components/FeedbackItem/FeedbackItem';
 import { Separator } from '../components/Separator';
 import { Column } from '../components/Layout';
-import { Logo } from '../components/Logo';
 import { Row } from '../components/Layout';
-import { ArrowDown, Burger } from '../components/Icon';
 import { Button } from '../components/Button';
 
 import {
@@ -29,6 +27,7 @@ import {
     materials,
     headerNotification,
     contacts,
+    menuLinks,
 } from './index.mock';
 
 
@@ -41,30 +40,7 @@ const App = () => {
 
     return (
         <>
-            <Header>
-                <Row style={{ width: '100%', justifyContent: 'space-between' }}>
-                    <Image src="/icons/eco.png" width="80" height="96" alt="" />
-                    <Row>
-                        <Subtitle color="#a6c719">
-                            {contacts.phone}
-                        </Subtitle>
-                        <Button onClick={() => console.log('open menu')}>
-                            <Burger />
-                        </Button>
-                    </Row>
-                </Row>
-
-                <Logo />
-
-                <Row >
-                    <Subtitle color="#2484c6">
-                        {headerNotification}
-                    </Subtitle>
-                    <a href="#description">
-                        <ArrowDown />
-                    </a>
-                </Row>
-            </Header>
+            <Header contacts={contacts} headerNotification={headerNotification} links={menuLinks} />
 
             <section id="description">
                 <Text>Компания «АрхПотолки» на про­тя­же­нии шес­ти лет ус­пеш­но за­ни­ма­ет­ся про­да­жей и ус­та­нов­кой на­тяж­ных по­тол­ков, на тер­ри­то­рии всей Ар­хан­гель­ской об­ла­сти.</Text>
