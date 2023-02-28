@@ -1,0 +1,6 @@
+.root {
+    display: flex;
+    width: 100%;
+    padding: 16px;
+    border-top: 2px solid #f7a136;
+}
