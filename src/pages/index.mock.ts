@@ -164,28 +164,23 @@ export const contacts = {
 
 export const menuLinks = [
     {
-      id: '123',
       title: 'Преимущества',
-      link: '#advantages'
+      id: '#advantages'
     },
     {
-      id: '123',
       title: 'Наши работы',
-      link: '#examples'
+      id: '#examples'
     },
     {
-      id: '123',
       title: 'Расчёт стоимости',
-      link: '#calculator'
+      id: '#calculator'
     },
     {
-      id: '123',
       title: 'Оставить заявку',
-      link: '#application'
+      id: '#application'
     },
     {
-      id: '123',
       title: 'Контакты',
-      link: '#footer'
+      id: '#footer'
     },
   ]
