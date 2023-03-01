@@ -162,100 +162,64 @@ export const contacts = {
     ],
 };
 
-export const categoryButtons = [
-    {
-      category: 'Все',
-    },
-    {
-      category: 'Простые',
-    },
-    {
-      category: 'Многоуровневые',
-    },
-    {
-      category: 'Комбинированные',
-    },
-    {
-      category: 'Тканевые',
-    },
-    {
-      category: 'Теневой еврокраб',
-    },
-    {
-      category: 'Фотопечать',
-    },
-    {
-      category: '«Парящие потолки»',
-    },
-    {
-      category: 'Шумоизоляция',
-    },
-    {
-      category: 'С подсветкой',
-    },
-    {
-      category: 'Цветные',
-    },
-];
-
 export const gallery = [
-    { path: '/gallery/1.png', category: ['Простые'] },
-    { path: '/gallery/2.png', category: ['Простые'] },
-    { path: '/gallery/3.png', category: ['Многоуровневые'] },
-    { path: '/gallery/4.png', category: ['Многоуровневые'] },
-    { path: '/gallery/5.png', category: ['Комбинированные'] },
-    { path: '/gallery/6.png', category: ['Комбинированные'] },
-    { path: '/gallery/7.png', category: ['Тканевые'] },
-    { path: '/gallery/8.png', category: ['Тканевые'] },
-    { path: '/gallery/9.png', category: ['Теневой еврокраб'] },
-    { path: '/gallery/10.png', category: ['Теневой еврокраб'] },
-    { path: '/gallery/11.png', category: ['Фотопечать'] },
-    { path: '/gallery/12.png', category: ['Фотопечать'] },
-    { path: '/gallery/13.png', category: ['«Парящие потолки»'] },
-    { path: '/gallery/14.png', category: ['«Парящие потолки»'] },
-    { path: '/gallery/15.png', category: ['Шумоизоляция'] },
-    { path: '/gallery/16.png', category: ['Шумоизоляция'] },
-    { path: '/gallery/17.png', category: ['С подсветкой'] },
-    { path: '/gallery/18.png', category: ['С подсветкой'] },
-    { path: '/gallery/19.png', category: ['Цветные'] },
-    { path: '/gallery/20.png', category: ['Цветные'] },
-    { path: '/gallery/21.png', category: ['Простые'] },
-    { path: '/gallery/22.png', category: ['Простые'] },
-    { path: '/gallery/23.png', category: ['Простые'] },
-    { path: '/gallery/24.png', category: ['Простые'] },
-    { path: '/gallery/25.png', category: ['Простые'] },
-    { path: '/gallery/26.png', category: ['Простые'] },
-    { path: '/gallery/27.png', category: ['Простые'] },
-    { path: '/gallery/28.png', category: ['Простые'] },
-    { path: '/gallery/29.png', category: ['Простые'] },
-    { path: '/gallery/30.png', category: ['Простые'] },
-    { path: '/gallery/31.png', category: ['Простые'] },
-    { path: '/gallery/32.png', category: ['Простые'] },
-    { path: '/gallery/33.png', category: ['Простые'] },
-    { path: '/gallery/34.png', category: ['Простые'] },
-    { path: '/gallery/35.png', category: ['Простые'] },
-    { path: '/gallery/36.png', category: ['Простые'] },
+    { id: '', url: '/gallery/1.png', tags: ['Простые'] },
+    { id: '', url: '/gallery/2.png', tags: ['Простые'] },
+    { id: '', url: '/gallery/3.png', tags: ['Многоуровневые'] },
+    { id: '', url: '/gallery/4.png', tags: ['Многоуровневые'] },
+    { id: '', url: '/gallery/5.png', tags: ['Комбинированные'] },
+    { id: '', url: '/gallery/6.png', tags: ['Комбинированные'] },
+    { id: '', url: '/gallery/7.png', tags: ['Тканевые'] },
+    { id: '', url: '/gallery/8.png', tags: ['Тканевые'] },
+    { id: '', url: '/gallery/9.png', tags: ['Теневой еврокраб'] },
+    { id: '', url: '/gallery/10.png', tags: ['Теневой еврокраб'] },
+    { id: '', url: '/gallery/11.png', tags: ['Фотопечать'] },
+    { id: '', url: '/gallery/12.png', tags: ['Фотопечать'] },
+    { id: '', url: '/gallery/13.png', tags: ['«Парящие потолки»'] },
+    { id: '', url: '/gallery/14.png', tags: ['«Парящие потолки»'] },
+    { id: '', url: '/gallery/15.png', tags: ['Шумоизоляция'] },
+    { id: '', url: '/gallery/16.png', tags: ['Шумоизоляция'] },
+    { id: '', url: '/gallery/17.png', tags: ['С подсветкой'] },
+    { id: '', url: '/gallery/18.png', tags: ['С подсветкой'] },
+    { id: '', url: '/gallery/19.png', tags: ['Цветные'] },
+    { id: '', url: '/gallery/20.png', tags: ['Цветные'] },
+    { id: '', url: '/gallery/21.png', tags: ['Простые'] },
+    { id: '', url: '/gallery/22.png', tags: ['Простые'] },
+    { id: '', url: '/gallery/23.png', tags: ['Простые'] },
+    { id: '', url: '/gallery/24.png', tags: ['Простые'] },
+    { id: '', url: '/gallery/25.png', tags: ['Простые'] },
+    { id: '', url: '/gallery/26.png', tags: ['Простые'] },
+    { id: '', url: '/gallery/27.png', tags: ['Простые'] },
+    { id: '', url: '/gallery/28.png', tags: ['Простые'] },
+    { id: '', url: '/gallery/29.png', tags: ['Простые'] },
+    { id: '', url: '/gallery/30.png', tags: ['Простые'] },
+    { id: '', url: '/gallery/31.png', tags: ['Простые'] },
+    { id: '', url: '/gallery/32.png', tags: ['Простые'] },
+    { id: '', url: '/gallery/33.png', tags: ['Простые'] },
+    { id: '', url: '/gallery/34.png', tags: ['Простые'] },
+    { id: '', url: '/gallery/35.png', tags: ['Простые'] },
+    { id: '', url: '/gallery/36.png', tags: ['Простые'] },
 ];
 
 export const menuLinks = [
     {
-      title: 'Преимущества',
-      id: '#advantages'
+        title: 'Преимущества',
+        id: 'advantages'
     },
     {
-      title: 'Наши работы',
-      id: '#examples'
+        title: 'Наши работы',
+        id: 'examples'
     },
     {
-      title: 'Расчёт стоимости',
-      id: '#calculator'
+        title: 'Расчёт стоимости',
+        id: 'calculator'
     },
     {
-      title: 'Оставить заявку',
-      id: '#application'
+        title: 'Оставить заявку',
+        id: 'application'
     },
     {
-      title: 'Контакты',
-      id: '#footer'
+        title: 'Контакты',
+        id: 'footer'
     },
-  ]
+]

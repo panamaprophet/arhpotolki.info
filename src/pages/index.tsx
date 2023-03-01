@@ -13,6 +13,12 @@ import { Separator } from '../components/Separator';
 import { Column } from '../components/Layout';
 import { Row } from '../components/Layout';
 import { Button } from '../components/Button';
+import { ArrowDown, Burger } from '../components/Icon';
+import { Modal } from '../components/Modal';
+import { Menu } from '../components/Menu';
+import { Logo } from '../components/Logo';
+import { Header } from '../components/Header';
+import { Gallery } from '../components/Gallery';
 
 import {
     certificates,
@@ -26,15 +32,9 @@ import {
     materials,
     headerNotification,
     contacts,
-    categoryButtons,
     gallery,
     menuLinks,
 } from './index.mock';
-import { ArrowDown, Burger } from '../components/Icon';
-import { Modal } from '../components/Modal';
-import { Menu } from '../components/Menu';
-import { Logo } from '../components/Logo';
-import { Header } from '../components/Header';
 
 
 
@@ -45,14 +45,9 @@ const App = () => {
     const onPriceChange = (...args) => console.log('price changed:', args);
     const onFeedbackSubmit = (...args) => console.log('form submitted:', args);
 
-    const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false);
-    const [currentButton, setCurrentButton] = useState(categoryButtons[0]);
-
-    const filteredGallery = currentButton === categoryButtons[0] ? gallery : gallery.filter(
-        (img) => img.category.includes(currentButton.category)
-    );
-
-    const handleClick = (button) => setCurrentButton(button);
+    const [isFeedbackFormVisible, setFeedbackFormVisible] = useState(false);
+    const showFeedbackForm = () => setFeedbackFormVisible(true);
+    const hideFeedbackForm = () => setFeedbackFormVisible(false);
 
     return (
         <>
@@ -103,27 +98,8 @@ const App = () => {
             </section>
 
             <section id="examples" className="layout">
-                <List>
-                    {categoryButtons.map((button) => (
-                        <Button
-                            key={button.category}
-                            onClick={() => handleClick(button)}
-                            theme={currentButton === button ? "orange" : "grey"}
-                        >{button.category}</Button>
-                    ))}
-                </List>
-                <List>
-                    {filteredGallery.map(img => (
-                        <Image key={img.path} onClick={() => setIsGalleryModalOpen(true)} src={img.path} width={207} height={145} alt={img.path} />
-                    ))}
-                </List>
-                <Modal isOpen={isGalleryModalOpen} onClose={() => setIsGalleryModalOpen(false)}>
-                    <Carousel>
-                        {filteredGallery.map(img => (
-                            <Image key={img.path} src={img.path} width={568} height={400} alt={img.path} />
-                        ))}
-                    </Carousel>
-                </Modal>
+                <Title>Наши работы</Title>
+                <Gallery items={gallery} />
             </section>
 
             <Separator text="Изготовление - от одного дня, монтаж - от двух часов." />
@@ -176,14 +152,15 @@ const App = () => {
                     ))}
                 </Carousel>
                 <Row>
-                    <Button theme="orange" onClick={() => console.log('open modal with feedbackform')}>
+                    <Button theme="orange" onClick={showFeedbackForm}>
                         Оставить отзыв
                     </Button>
+                    <Modal isOpen={isFeedbackFormVisible} onClose={hideFeedbackForm}>
+                        <FeedbackForm onSubmit={onFeedbackSubmit} />
+                    </Modal>
                 </Row>
 
             </section>
-
-            <FeedbackForm onSubmit={onFeedbackSubmit} />
 
             <Footer>
                 <Column style={{ alignItems: 'center', textAlign: 'center' }}>
