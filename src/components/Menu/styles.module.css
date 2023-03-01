@@ -1,58 +1,26 @@
-.navigation {
-  transition: all 250ms ease-in-out;
-}
-
-.closeButton {
-  margin: 0;
-  padding: 0;
-  top: 3rem;
-  right: 2rem;
-  position: absolute;
-  font-size: 2rem;
-  width: 20px;
-  height: 20px;
-  color: white;
-  cursor: pointer;
-  z-index: 200;
-}
-
-.menu {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-
-  gap: 1px;
-  overflow: hidden;
-
-  z-index: 100;
-}
-
-.item:hover {
-  background: #a6c719;
-}
-
-.item {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1em;
-  text-decoration: none;
-  transition: all 250ms;
-  color: inherit;
-  background: #f7a136;
+.root {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
 }
 
 .link {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2em;
-  background-color: inherit;
-  text-decoration: none;
-  color: #fff;
+    transition: all 250ms;
+    background: #f7a136;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    text-decoration: none;
+    color: #fff;
+    flex-grow: 1;
+}
+
+.link:hover {
+    background: #a6c719;
+}
+
+.link:not(:last-child) {
+    border-bottom: 1px solid #fff;
 }
