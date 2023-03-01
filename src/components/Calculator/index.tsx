@@ -81,7 +81,7 @@ export const Calculator = ({ prices, lightPrice, colorPrice, defaultMeterPrice, 
         <Layout>
             <Column>
                 <Preview colors={colors} material={material} opacity={getOpacity(material)} />
-                <Row>
+                <Row style={{ height: 40 }}>
                     <Subtitle>Цвет:</Subtitle>
 
                     <ColorPicker
@@ -100,27 +100,27 @@ export const Calculator = ({ prices, lightPrice, colorPrice, defaultMeterPrice, 
                         onChange={color => setColors({ ...colors, floor: color })}
                     />
                 </Row>
-                <Row>
+                <Row style={{ height: 40 }}>
                     <Subtitle>Материал:</Subtitle>
                     <InputRange options={materials} currentItem={material} onClick={setMaterial} />
                 </Row>
-                <Row>
+                <Row style={{ height: 40 }}>
                     <Subtitle>Класс:</Subtitle>
                     <InputRange options={types} currentItem={type} onClick={setType} />
                 </Row>
-                <Row>
+                <Row style={{ height: 40 }}>
                     <Subtitle>Площадь, м²:</Subtitle>
                     <InputNumber value={area} onChange={setArea} />
                 </Row>
-                <Row>
+                <Row style={{ height: 40 }}>
                     <Subtitle>Количество светильников:</Subtitle>
                     <InputNumber value={lights} onChange={setLights} />
                 </Row>
-                <Row>
+                <Row style={{ height: 40 }}>
                     <Subtitle>Цена:</Subtitle>
                     <InputText value={`${price}₽`} />
                 </Row>
-                <Row>
+                <Row style={{ height: 40 }}>
                     <Subtitle>Скидка:</Subtitle>
                     <InputText value={`${discount}%`} />
                 </Row>
