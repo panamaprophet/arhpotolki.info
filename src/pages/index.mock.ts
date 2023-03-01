@@ -198,8 +198,8 @@ export const contacts = {
     address: 'город Архангельск, ул. Беломорской флотилии 2-3-33',
     companyName: 'АрхПотолки',
     links: [
-        'vk.com/arhpotolki',
-        'hello@arhpotolki.info',
+        '//vk.com/arhpotolki',
+        'mailto:hello@arhpotolki.info',
     ],
 };
 

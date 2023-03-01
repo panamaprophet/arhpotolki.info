@@ -37,6 +37,11 @@ import {
 } from './index.mock';
 
 
+const getFullYear = () => (new Date()).getFullYear();
+
+const formatLink = (link: string) => link.replaceAll(/^(mailto:|\/\/|http:\/\/|https:\/\/)/gi, '');
+
+
 const App = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     // @todo: use actions here to put the order
@@ -174,9 +179,7 @@ const App = () => {
                     <Text>
                         {contacts.links.map((link) => (
                             <Fragment key={link}>
-                                <a target="_blank" href={link} rel="noreferrer">
-                                    {link}
-                                </a>
+                                <a target="_blank" href={link} rel="noreferrer">{formatLink(link)}</a>
                                 <br />
                             </Fragment>
                         ))}
@@ -185,12 +188,13 @@ const App = () => {
                     {/* insert the vk widget */}
 
                     <Text>
-                        Copyright © {contacts.companyName}, 2014 - {(new Date()).getFullYear()} | <a href="/terms.html">Зашита персональной информации</a>
+                        Copyright © {contacts.companyName}, 2014 - {getFullYear()} | <a href="/terms.html">Зашита персональной информации</a>
                     </Text>
                 </Column>
-            </Footer>
+            </Footer >
         </>
     );
 };
+
 
 export default App;
