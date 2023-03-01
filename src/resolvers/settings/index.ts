@@ -42,5 +42,8 @@ export const getSettings = async () => {
             ? result.Items.map(item => unmarshall(item) as Setting)
             : [];
 
-    return items;
+    return items.reduce((result, item) => ({
+        ...result,
+        [item.key]: item.value,
+    }), {});
 };

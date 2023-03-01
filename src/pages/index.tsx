@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import Image from 'next/image';
 import { Footer } from '../components/Footer';
 import { OrderForm } from '../components/OrderForm';
@@ -36,6 +36,10 @@ import {
     menuLinks,
 } from './index.mock';
 
+
+const getFullYear = () => (new Date()).getFullYear();
+
+const formatLink = (link: string) => link.replaceAll(/^(mailto:|\/\/|http:\/\/|https:\/\/)/gi, '');
 
 
 const App = () => {
@@ -87,7 +91,7 @@ const App = () => {
 
             <section id="advantages" style={{ background: '#f7a136' }}>
                 <Title>Только у нас:</Title>
-                <List>
+                <List align="center">
                     {features.map(item => (
                         <Card key={item.url}>
                             <Image src={item.url} alt="" width={64} height={64} />
@@ -123,7 +127,7 @@ const App = () => {
 
             <section id="howto" className="layout">
                 <Title>Как это работает?</Title>
-                <List>
+                <List align="center">
                     {steps.map(item => (
                         <Card key={item.url}>
                             <Image src={item.url} alt="" width={64} height={64} style={{ background: '#f7a136', borderRadius: '50%' }} />
@@ -135,7 +139,7 @@ const App = () => {
 
             <section id="certificates" className="layout">
                 <Title>Сертификаты соответствия:</Title>
-                <List>
+                <List align="center">
                     {certificates.map(url => (
                         <Card key={url}>
                             <Image src={url} alt="" width="123" height="177" />
@@ -165,32 +169,32 @@ const App = () => {
             <Footer>
                 <Column style={{ alignItems: 'center', textAlign: 'center' }}>
                     <Text>
-                        АрхПотолки
+                        {contacts.companyName}
                         <br />
-                        город Архангельск, ул. Беломорской флотилии 2-3-33
+                        {contacts.address}
                         <br />
-                        +7 8182 47-67-24
+                        {contacts.phone}
                     </Text>
 
                     <Text>
-                        <a target="_blank" href="http://vk.com/arhpotolki" rel="noreferrer">
-                            vk.com/arhpotolki
-                        </a>
-                        <br />
-                        <a target="_blank" href="mailto:hello@arhpotolki.info" rel="noreferrer">
-                            hello@arhpotolki.info
-                        </a>
+                        {contacts.links.map((link) => (
+                            <Fragment key={link}>
+                                <a target="_blank" href={link} rel="noreferrer">{formatLink(link)}</a>
+                                <br />
+                            </Fragment>
+                        ))}
                     </Text>
 
                     {/* insert the vk widget */}
 
                     <Text>
-                        Copyright © АрхПотолки, 2014 - 2023 | <a href="/terms.html">Зашита персональной информации</a>
+                        Copyright © {contacts.companyName}, 2014 - {getFullYear()} | <a href="/terms.html">Зашита персональной информации</a>
                     </Text>
                 </Column>
-            </Footer>
+            </Footer >
         </>
     );
 };
+
 
 export default App;

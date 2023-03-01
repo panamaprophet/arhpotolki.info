@@ -16,7 +16,7 @@ export const InputText = ({ value, placeholder, onChange }: Props) => {
             type="text"
             value={String(value)}
             readOnly={onChange ? false : true}
-            className={styles.input__field}
+            className={styles.root}
             onChange={event => onChange(event.target.value)}
         />
     );
@@ -24,11 +24,16 @@ export const InputText = ({ value, placeholder, onChange }: Props) => {
 
 export const InputTextLazy = ({ value: initialValue, placeholder, onChange }: Props) => {
     const [value, setValue] = useState(initialValue);
+    const isChanged = value !== initialValue;
 
-    const onBlur: FocusEventHandler<HTMLInputElement> = () => onChange(value);
+    const onBlur: FocusEventHandler<HTMLInputElement> = () => {
+        if (isChanged) {
+            onChange(value);
+        }
+    };
 
     const onKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
-        if (event.key === 'Enter') {
+        if (isChanged && event.key === 'Enter') {
             onChange(value);
         }
     };
@@ -40,6 +45,7 @@ export const InputTextLazy = ({ value: initialValue, placeholder, onChange }: Pr
             defaultValue={String(value)}
             onChange={event => setValue(event.target.value)}
             onKeyDown={onKeyDown}
+            className={styles.root}
             onBlur={onBlur}
         />
     );

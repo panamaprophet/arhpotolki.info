@@ -1,19 +1,20 @@
 import styles from './styles.module.css';
 
-type InputProps = {
-    value: number;
-    onChange?: (event) => void;
+
+interface Props {
+    value: number,
+    onChange?: (value: number) => void,
 };
 
-export const InputNumber = ({ value, onChange, ...props }: InputProps) => {
+
+export const InputNumber = ({ value, onChange }: Props) => {
     return (
         <input
             type="number"
             value={String(value)}
             readOnly={onChange ? false : true}
             className={styles.root}
-            onChange={event => onChange(event.target.value)}
-            {...props}
+            onChange={event => onChange(Number(event.target.value))}
         />
     );
 };

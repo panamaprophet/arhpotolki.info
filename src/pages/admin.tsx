@@ -2,7 +2,7 @@ import { useReducer } from 'react';
 import { useSession, signIn, signOut, getSession } from 'next-auth/react';
 
 import { Title } from '../components/Text';
-import { InputTextLazy } from '../components/Input';
+import { InputTextLazy, InputList } from '../components/Input';
 import {
     PictureEditor,
     FeedbackEditor,
@@ -24,6 +24,9 @@ import {
 } from '../store/admin/action-creators';
 
 import { Feedback, Picture, Setting } from '../types';
+import { List } from '../components/List';
+import { Row } from '../components/Layout';
+import { Card } from '../components/Card';
 
 
 type Props = {
@@ -55,59 +58,69 @@ const AdminPage = (props: Props) => {
             </div>
 
             {isAuthenticated && <>
-                <Title>Картинки</Title>
+                <section id="settings">
+                    <Title condenced={true}>Настройки</Title>
 
-                {state.pictures.map((picture) => (
-                    <PictureEditor
-                        key={picture.id}
-                        {...picture}
-                        onCreate={onPictureCreate}
-                        onUpdate={onPictureUpdate}
-                        onRemove={onPictureRemove}
+                    <Row>
+                        Уведомление в шапке:
+                        <InputTextLazy value={state.settings.headerNotification} onChange={value => onSettingsUpdate('headerNotification', value)} />
+                    </Row>
+
+                    <Row>
+                        Материалы:
+                        <InputList value={state.settings.materials} onChange={value => onSettingsUpdate('materials', value)} />
+                    </Row>
+
+                    <Row>
+                        Цена за дополнительный метр:
+                        <InputTextLazy value={state.settings.defaultMeterPrice} onChange={value => onSettingsUpdate('defaultMeterPrice', value)} />
+                    </Row>
+
+                    <Row>
+                        Цена за свветильник:
+                        <InputTextLazy value={state.settings.lightPrice} onChange={value => onSettingsUpdate('lightPrice', value)} />
+                    </Row>
+
+                    <Row>
+                        Цена за цвет:
+                        <InputTextLazy value={state.settings.colorPrice} onChange={value => onSettingsUpdate('colorPrice', value)} />
+                    </Row>
+                </section>
+
+                <section id="prices">
+                    <Title condenced={true}>Цены</Title>
+                    <PriceEditor
+                        prices={state.settings.prices}
+                        onChange={value => onSettingsUpdate('prices', value)}
                     />
-                ))}
+                </section>
 
-                <hr />
+                <section id="pictures">
+                    <Title condenced={true}>Картинки</Title>
 
-                <div>
-                    Добавить картинку:
-                    <PictureEditor
-                        onCreate={onPictureCreate}
-                        onUpdate={onPictureUpdate}
-                        onRemove={onPictureRemove}
-                    />
-                </div>
+                    <List align="flex-start">
+                        {state.pictures.map((picture) => (
+                            <Card key={picture.id} >
+                                <PictureEditor {...picture} onCreate={onPictureCreate} onUpdate={onPictureUpdate} onRemove={onPictureRemove} />
+                            </Card>
+                        ))}
+                    </List>
 
-                <Title>Отзывы</Title>
+                    <PictureEditor onCreate={onPictureCreate} onUpdate={onPictureUpdate} onRemove={onPictureRemove} />
+                </section>
 
-                {state.feedback.map((feedback) => (
-                    <FeedbackEditor
-                        key={feedback.id}
-                        {...feedback}
-                        onUpdate={onFeedbackUpdate}
-                        onRemove={onFeedbackRemove}
-                    />
-                ))}
+                <section id="feedback">
+                    <Title condenced={true}>Отзывы</Title>
 
-                <Title>Настройки</Title>
-
-                {state.settings.map((setting) => (
-                    <div key={setting.key}>
-                        {setting.key}:
-
-                        {setting.key === 'discount' && <strong>Setting is not supported yet.</strong>}
-                        {setting.key === 'prices' && <PriceEditor prices={setting.value} onChange={value => onSettingsUpdate({ ...setting, value })} />}
-
-                        {typeof setting.value !== 'object' && <InputTextLazy
-                            value={setting.value}
-                            onChange={value => onSettingsUpdate({ ...setting, value })}
-                        />}
-                    </div>
-                ))}
+                    {state.feedback.map((feedback) => (
+                        <FeedbackEditor key={feedback.id} {...feedback} onUpdate={onFeedbackUpdate} onRemove={onFeedbackRemove} />
+                    ))}
+                </section>
             </>}
         </>
     );
 };
+
 
 AdminPage.getInitialProps = async (ctx) => {
     const session = await getSession({ req: ctx.req });
