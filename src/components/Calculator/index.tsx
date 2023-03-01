@@ -31,7 +31,7 @@ const getOpacity = (material: string) => MaterialToOpacityMap[material] || 1;
 
 interface Props {
     prices: {
-        [type: string]: number[]
+        [type: string]: { [k: number]: number },
     },
     materials: string[],
     lightPrice: number,
@@ -58,17 +58,21 @@ export const Calculator = ({ prices, lightPrice, colorPrice, defaultMeterPrice, 
         const additionalColorPrice = colors.roof !== '#ffffff' ? colorPrice * area : 0;
         const additionalLightPrice = lights > 1 ? lights * lightPrice : 0;
 
-        const priceCeil = prices[type].at(-1);
-        const calculatedPriceByArea = (area - prices[type].length) * defaultMeterPrice + priceCeil;
+        const [max] = Object.keys(prices[type]).map(Number).sort((a, b) => b - a);
 
-        let price = prices[type].at(area - 1) ?? calculatedPriceByArea;
+        let price = 0;
+        let discount = 0;
+
+        if (area > max) {
+            price = prices[type][max] + defaultMeterPrice * (area - max);
+        } else {
+            price = prices[type][area];
+        }
 
         price =
             material === materials[3]
                 ? (price * 1.5 + additionalLightPrice)
                 : (price + additionalColorPrice + additionalLightPrice);
-
-        const discount = 0;
 
         onCalc(price);
 

@@ -2,6 +2,7 @@
 
 import { useReducer } from 'react';
 import { InputTextLazy } from '../../Input';
+import { Column, Row } from '../../Layout';
 import {
     ACTION_INSERT_ROW,
     ACTION_REMOVE_ROW,
@@ -16,7 +17,7 @@ export const PriceEditor = ({ prices: initialValue, onChange }) => {
     const [prices, dispatch] = useReducer(reducer, initialValue);
 
     const groups = Object.keys(prices);
-    const indexes = prices[groups[0]].map((_, index) => index);
+    const indexes = Object.keys(prices[groups[0]]);
 
     const Groups = groups.map((group) => <InputTextLazy
         key={group}
@@ -25,7 +26,7 @@ export const PriceEditor = ({ prices: initialValue, onChange }) => {
     />);
 
     const Rows = indexes.map((key, index) => (
-        <div className="row" key={key}>
+        <Row key={key} style={{ display: 'grid', gridTemplateColumns: '25% 25% 25% 25%' }}>
             <InputTextLazy
                 value={key}
                 onChange={value => dispatch({ type: ACTION_SET_INDEX, payload: { from: key, to: value } })}
@@ -39,16 +40,29 @@ export const PriceEditor = ({ prices: initialValue, onChange }) => {
                 />
             ))}
 
-            <button type="button" onClick={() => dispatch({ type: ACTION_REMOVE_ROW, payload: { key } })}>X</button>
-        </div>
+            <Row>
+                {(!indexes[index + 1] || (Number(indexes[index + 1]) - Number(key)) > 1) && (
+                    <button type="button" onClick={() => dispatch({ type: ACTION_INSERT_ROW, payload: { key: Number(key) + 1 } })}>+</button>
+                )}
+
+                <button type="button" onClick={() => dispatch({ type: ACTION_REMOVE_ROW, payload: { key } })}>X</button>
+            </Row>
+        </Row>
     ));
 
     return (
-        <div className="priceEditor">
-            <div>{Groups}</div>
-            <div>{Rows}</div>
-            <button type="button" onClick={() => dispatch({ type: ACTION_INSERT_ROW, payload: {} })}>+</button>
-            <button type="button" onClick={() => onChange(prices)}>Сохранить</button>
-        </div>
+        <Column>
+            <Row style={{ display: 'grid', gridTemplateColumns: '25% 25% 25% 25%' }}>
+                <div>группы:</div>
+                {Groups}
+                <div></div>
+            </Row>
+            <Column>
+                {Rows}
+            </Column>
+            <Column>
+                <button type="button" onClick={() => onChange(prices)}>Сохранить</button>
+            </Column>
+        </Column>
     );
 };

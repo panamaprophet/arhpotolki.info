@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { decorateWithAuthentification } from '../../../decorators';
-import { getPictures, savePicture } from '../../../resolvers/pictures';
+import { savePicture } from '../../../resolvers/pictures';
 import { Picture } from '../../../types';
 
 
@@ -11,12 +11,8 @@ const handler = async ({ method, body }: NextApiRequest, response: NextApiRespon
         result = await savePicture(JSON.parse(body));
     }
 
-    if (method === 'GET') {
-        result = await getPictures();
-    }
-
     return response.status(200).json(result);
 };
 
 
-export default decorateWithAuthentification(handler, { bypass: ['GET'] });
+export default decorateWithAuthentification(handler);

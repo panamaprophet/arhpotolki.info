@@ -3,9 +3,9 @@ module.exports = {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: 's3.eu-west-1.amazonaws.com',
+                hostname: `s3.${process.env.AMAZON_REGION}.amazonaws.com`,
                 port: '',
-                pathname: '/arhpotolki.info/**',
+                pathname: `/${process.env.BUCKET_NAME}/**`,
             },
         ],
     },
