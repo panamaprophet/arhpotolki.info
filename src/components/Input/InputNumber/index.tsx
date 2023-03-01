@@ -11,7 +11,7 @@ export const InputNumber = ({ value, onChange, ...props }: InputProps) => {
             type="number"
             value={String(value)}
             readOnly={onChange ? false : true}
-            className={styles.input__field}
+            className={styles.root}
             onChange={event => onChange(event.target.value)}
             {...props}
         />

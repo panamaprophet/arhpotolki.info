@@ -1,22 +1,13 @@
-.input__field {
-    flex-grow: 1;
-}
-
-.input__field {
+.root {
     border: none;
-    border-bottom-color: currentcolor;
-    border-bottom-style: none;
-    border-bottom-width: medium;
     border-bottom: 1px solid #ccc;
     padding: 8px;
     margin: 8px 0;
     outline: none;
-    flex-shrink: 1;
     transition: all 100ms ease-in-out;
     background: none;
     outline: none;
     width: 100%;
     font-size: 1em;
     color: #333;
-    transition: background 250ms ease-in-out;
 }
