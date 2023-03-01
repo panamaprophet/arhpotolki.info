@@ -27,7 +27,7 @@ export const Gallery = ({ items }: Props) => {
 
     return (
         <>
-            <List>
+            <List align="center">
                 <Button onClick={() => setFilter(null)} theme={filter === null ? "orange" : "grey"}>
                     Все
                 </Button>
