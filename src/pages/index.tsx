@@ -190,7 +190,7 @@ const App = () => {
                     {/* insert the vk widget */}
 
                     <Text>
-                        Copyright © {contacts.companyName}, 2014 - {getFullYear()} | <Link href="/terms">Защита персональной информации</Link>
+                        Copyright © {contacts.companyName}, 2014 - {getFullYear()} | <Link href="/privacy">Защита персональной информации</Link>
                     </Text>
                 </Column>
             </Footer >
