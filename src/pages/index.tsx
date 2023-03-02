@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import { Footer } from '../components/Footer';
 import { OrderForm } from '../components/OrderForm';
