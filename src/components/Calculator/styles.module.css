@@ -4,6 +4,10 @@
     color: #ccc;
 }
 
+.disclaimer:last-child {
+    margin-bottom: 48px;
+}
+
 .subtitle {
     font-weight: bold;
     display: flex;
