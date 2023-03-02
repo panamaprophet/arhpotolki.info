@@ -1,0 +1,32 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    margin: 16px 0;
+    gap: 16px;
+}
+
+.root > * {
+    color: #000000;
+    line-height: 22px;
+}
+
+.title {
+    font-size: 32px;
+    margin: 16px 8px;
+}
+
+.orderList {
+    margin: 0 48px;
+}
+
+.listItem {
+    margin-bottom: 16px;
+}
+
+.listItem > p {
+    margin-bottom: 16px;
+}
+
+.topicList {
+    margin-left: 40px;
+}
