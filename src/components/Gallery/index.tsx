@@ -39,7 +39,7 @@ export const Gallery = ({ items }: Props) => {
                 )}
             </List>
 
-            <List>
+            <List align='center'>
                 {filteredItems.map(item => (
                     <Image
                         key={item.url}
