@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import { Footer } from '../components/Footer';
 import { OrderForm } from '../components/OrderForm';
@@ -21,6 +21,7 @@ import { Header } from '../components/Header';
 import { Gallery } from '../components/Gallery';
 import { Section } from '../components/Section';
 import { Map } from '../components/Map';
+import { Link } from '../components/Link';
 
 import {
     certificates,
@@ -78,9 +79,9 @@ const App = () => {
                     <Subtitle color="#2484c6">
                         {headerNotification}
                     </Subtitle>
-                    <a href="#description">
+                    <Link href="#description">
                         <ArrowDown />
-                    </a>
+                    </Link>
                 </Row>
             </Header>
 
@@ -179,17 +180,17 @@ const App = () => {
 
                     <Text>
                         {contacts.links.map((link) => (
-                            <Fragment key={link}>
-                                <a target="_blank" href={link} rel="noreferrer">{formatLink(link)}</a>
-                                <br />
-                            </Fragment>
+                            <div key={link}>
+                                <Link href={link} target="_blank">{formatLink(link)}</Link>
+                            </div>
+                            
                         ))}
                     </Text>
 
                     {/* insert the vk widget */}
 
                     <Text>
-                        Copyright © {contacts.companyName}, 2014 - {getFullYear()} | <a href="/terms.html">Защита персональной информации</a>
+                        Copyright © {contacts.companyName}, 2014 - {getFullYear()} | <Link href="/terms">Защита персональной информации</Link>
                     </Text>
                 </Column>
             </Footer >
