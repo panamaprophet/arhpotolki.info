@@ -2,15 +2,17 @@ import styles from './styles.module.css';
 
 
 interface Props {
-    value: number,
+    value: string | number,
+    min?: number,
     onChange?: (value: number) => void,
 };
 
 
-export const InputNumber = ({ value, onChange }: Props) => {
+export const InputNumber = ({ value, min = 0, onChange }: Props) => {
     return (
         <input
             type="number"
+            min={min}
             value={String(value)}
             readOnly={onChange ? false : true}
             className={styles.root}

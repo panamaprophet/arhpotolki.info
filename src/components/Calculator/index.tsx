@@ -114,15 +114,15 @@ export const Calculator = ({ prices, lightPrice, colorPrice, defaultMeterPrice, 
                 </Row>
                 <Row style={{ height: 40 }}>
                     <Subtitle>Площадь, м²:</Subtitle>
-                    <InputNumber value={area} onChange={setArea} />
+                    <InputNumber value={area || ''} onChange={setArea} />
                 </Row>
                 <Row style={{ height: 40 }}>
                     <Subtitle>Количество светильников:</Subtitle>
-                    <InputNumber value={lights} onChange={setLights} />
+                    <InputNumber value={lights || ''} onChange={setLights} />
                 </Row>
                 <Row style={{ height: 40 }}>
                     <Subtitle>Цена:</Subtitle>
-                    <InputText value={`${price}₽`} />
+                    <InputText value={`${price || 0}₽`} />
                 </Row>
                 <Row style={{ height: 40 }}>
                     <Subtitle>Скидка:</Subtitle>
@@ -130,13 +130,13 @@ export const Calculator = ({ prices, lightPrice, colorPrice, defaultMeterPrice, 
                 </Row>
                 <Row>
                     <Subtitle>Цена со скидкой:</Subtitle>
-                    <InputText value={`${price - discount}₽`} />
+                    <InputText value={`${(price - discount || 0)}₽`} />
                 </Row>
                 <p className={styles.disclaimer}>
                     Итоговая цена является достаточно точной, но все-таки приблизительной.
                 </p>
                 <p className={styles.disclaimer}>
-                    При оплате 50% стоимости заказа доступна рассрочка на три месяца с ежемесячным платежом {installment.toFixed(2)} ₽
+                    При оплате 50% стоимости заказа доступна рассрочка на три месяца с ежемесячным платежом {installment ? installment.toFixed(2) : 0} ₽
                 </p>
             </Column>
         </Layout>

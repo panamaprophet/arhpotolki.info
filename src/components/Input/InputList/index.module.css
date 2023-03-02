@@ -4,7 +4,9 @@
     padding: 8px;
     outline: none;
     transition: all 100ms ease-in-out;
+    flex-grow: 1;
+
+    font-family: 'PT Sans', sans-serif;
     font-size: 1em;
     color: #333;
-    flex-grow: 1;
 }
