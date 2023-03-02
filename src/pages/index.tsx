@@ -180,10 +180,10 @@ const App = () => {
 
                     <Text>
                         {contacts.links.map((link) => (
-                            <Fragment key={link}>
+                            <div key={link}>
                                 <Link href={link} target="_blank">{formatLink(link)}</Link>
-                                <br />
-                            </Fragment>
+                            </div>
+                            
                         ))}
                     </Text>
 
