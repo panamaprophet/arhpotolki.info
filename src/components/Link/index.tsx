@@ -1,6 +1,6 @@
-export const Link = ({ children, href, classes = [], target = "_self" }) => (
+export const Link = ({ children, href, className = '', target = '_self' }) => (
     <a 
-        className={[...classes].join(' ')}
+        className={className}
         target={target}
         href={href}
         rel="noreferrer"
