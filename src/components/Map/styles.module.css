@@ -1,5 +1,6 @@
 .root {
     height: 300px;
     border: none;
+    border-bottom: 2px solid #f7a136;
     /* margin-bottom: 16px; */
 }
