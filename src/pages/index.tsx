@@ -20,6 +20,7 @@ import { Logo } from '../components/Logo';
 import { Header } from '../components/Header';
 import { Gallery } from '../components/Gallery';
 import { Section } from '../components/Section';
+import { Map } from '../components/Map';
 
 import {
     certificates,
@@ -166,9 +167,10 @@ const App = () => {
             </Section>
 
             <Footer>
-                <Column style={{ alignItems: 'center', textAlign: 'center' }}>
+                <Column style={{ alignItems: 'center', textAlign: 'center', gap: 16 }}>
+                    <Map />
                     <Text>
-                        {contacts.companyName}
+                        <strong>{contacts.companyName}</strong>
                         <br />
                         {contacts.address}
                         <br />
@@ -187,7 +189,7 @@ const App = () => {
                     {/* insert the vk widget */}
 
                     <Text>
-                        Copyright © {contacts.companyName}, 2014 - {getFullYear()} | <a href="/terms.html">Зашита персональной информации</a>
+                        Copyright © {contacts.companyName}, 2014 - {getFullYear()} | <a href="/terms.html">Защита персональной информации</a>
                     </Text>
                 </Column>
             </Footer >
