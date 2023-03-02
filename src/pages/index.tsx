@@ -19,6 +19,7 @@ import { Menu } from '../components/Menu';
 import { Logo } from '../components/Logo';
 import { Header } from '../components/Header';
 import { Gallery } from '../components/Gallery';
+import { Section } from '../components/Section';
 
 import {
     certificates,
@@ -35,7 +36,6 @@ import {
     gallery,
     menuLinks,
 } from './index.mock';
-
 
 const getFullYear = () => (new Date()).getFullYear();
 
@@ -83,13 +83,13 @@ const App = () => {
                 </Row>
             </Header>
 
-            <section id="description">
+            <Section id="description">
                 <Text>Компания «АрхПотолки» на про­тя­же­нии шес­ти лет ус­пеш­но за­ни­ма­ет­ся про­да­жей и ус­та­нов­кой на­тяж­ных по­тол­ков, на тер­ри­то­рии всей Ар­хан­гель­ской об­ла­сти.</Text>
                 <Text>Сво­им глав­ным дос­ти­же­ни­ем мы счи­та­ем ин­ди­ви­ду­аль­ный под­ход к каж­до­му кли­ен­ту и пер­во­класс­ное ка­чес­тво про­из­во­ди­мой на­ми ра­бо­ты.</Text>
                 <Text>Од­но из глав­ных пре­и­му­ществ на­шей ком­па­нии, яв­ля­ет­ся сер­вис­ное об­слу­жи­ва­ние. Ведь на про­тя­же­нии всей га­ра­нтии мы за­бо­тим­ся о каж­дом ус­та­нов­лен­ном на­ми по­тол­ке, будь то бюд­жет­ный или экс­клю­зив­ный по­то­лок.</Text>
-            </section>
+            </Section>
 
-            <section id="advantages" style={{ background: '#f7a136' }}>
+            <Section id="advantages" style={{ background: '#f7a136' }}>
                 <Title>Только у нас:</Title>
                 <List align="center">
                     {features.map(item => (
@@ -99,16 +99,16 @@ const App = () => {
                         </Card>
                     ))}
                 </List>
-            </section>
+            </Section>
 
-            <section id="examples" className="layout">
+            <Section id="examples">
                 <Title>Наши работы</Title>
                 <Gallery items={gallery} />
-            </section>
+            </Section>
 
             <Separator text="Изготовление - от одного дня, монтаж - от двух часов." />
 
-            <section id="calculator">
+            <Section id="calculator">
                 <Title>Рассчитать стоимость:</Title>
                 <Calculator
                     onCalc={onPriceChange}
@@ -118,14 +118,14 @@ const App = () => {
                     colorPrice={colorPrice}
                     defaultMeterPrice={costBySquare}
                 />
-            </section>
+            </Section>
 
-            <section id="application" style={{ background: '#f7a136' }}>
+            <Section id="application" style={{ background: '#f7a136' }}>
                 <Title condenced={true}>Оставить заявку:</Title>
                 <OrderForm onSubmit={onOrderSubmit} />
-            </section>
+            </Section>
 
-            <section id="howto" className="layout">
+            <Section id="howto">
                 <Title>Как это работает?</Title>
                 <List align="center">
                     {steps.map(item => (
@@ -135,9 +135,9 @@ const App = () => {
                         </Card>
                     ))}
                 </List>
-            </section>
+            </Section>
 
-            <section id="certificates" className="layout">
+            <Section id="certificates">
                 <Title>Сертификаты соответствия:</Title>
                 <List align="center">
                     {certificates.map(url => (
@@ -146,9 +146,9 @@ const App = () => {
                         </Card>
                     ))}
                 </List>
-            </section>
+            </Section>
 
-            <section id="feedbacks">
+            <Section id="feedbacks">
                 <Title>Отзывы:</Title>
                 <Carousel>
                     {feedbacks.map(item => (
@@ -163,8 +163,7 @@ const App = () => {
                         <FeedbackForm onSubmit={onFeedbackSubmit} />
                     </Modal>
                 </Row>
-
-            </section>
+            </Section>
 
             <Footer>
                 <Column style={{ alignItems: 'center', textAlign: 'center' }}>
