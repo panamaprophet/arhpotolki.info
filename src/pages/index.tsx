@@ -21,6 +21,7 @@ import { Header } from '../components/Header';
 import { Gallery } from '../components/Gallery';
 import { Section } from '../components/Section';
 import { Map } from '../components/Map';
+import { Link } from '../components/Link';
 
 import {
     certificates,
@@ -180,7 +181,7 @@ const App = () => {
                     <Text>
                         {contacts.links.map((link) => (
                             <Fragment key={link}>
-                                <a target="_blank" href={link} rel="noreferrer">{formatLink(link)}</a>
+                                <Link href={link} target="_blank">{formatLink(link)}</Link>
                                 <br />
                             </Fragment>
                         ))}
@@ -189,7 +190,7 @@ const App = () => {
                     {/* insert the vk widget */}
 
                     <Text>
-                        Copyright © {contacts.companyName}, 2014 - {getFullYear()} | <a href="/terms.html">Защита персональной информации</a>
+                        Copyright © {contacts.companyName}, 2014 - {getFullYear()} | <a href="/terms">Защита персональной информации</a>
                     </Text>
                 </Column>
             </Footer >
