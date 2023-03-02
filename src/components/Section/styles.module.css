@@ -2,10 +2,6 @@
     width: 100%;
 }
 
-.root:not(:last-child) {
-    margin-bottom: 16px;
-}
-
 .wrapper {
     display: flex;
     flex-flow: column;
