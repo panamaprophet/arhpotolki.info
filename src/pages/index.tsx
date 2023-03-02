@@ -79,9 +79,9 @@ const App = () => {
                     <Subtitle color="#2484c6">
                         {headerNotification}
                     </Subtitle>
-                    <a href="#description">
+                    <Link href="#description">
                         <ArrowDown />
-                    </a>
+                    </Link>
                 </Row>
             </Header>
 
@@ -190,7 +190,7 @@ const App = () => {
                     {/* insert the vk widget */}
 
                     <Text>
-                        Copyright © {contacts.companyName}, 2014 - {getFullYear()} | <a href="/terms">Защита персональной информации</a>
+                        Copyright © {contacts.companyName}, 2014 - {getFullYear()} | <Link href="/terms">Защита персональной информации</Link>
                     </Text>
                 </Column>
             </Footer >
