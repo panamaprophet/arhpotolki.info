@@ -1,7 +1,7 @@
-import { Column } from '../../components/Layout';
-import { List } from '../../components/List';
-import { Section } from '../../components/Section';
-import { Text, Title } from '../../components/Text';
+import { Column } from '../components/Layout';
+import { List } from '../components/List';
+import { Section } from '../components/Section';
+import { Text, Title } from '../components/Text';
 
 const Privacy = () => (
 	<Section id="privacy">
