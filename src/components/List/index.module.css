@@ -1,12 +1,23 @@
 .root {
-    list-style: none;
-    display: flex;
-    flex-flow: row wrap;
     gap: 8px;
 }
 
 .root_nowrap {
     flex-wrap: nowrap;
+}
+
+.type_default {
+    list-style: none;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.type_bullet {
+    list-style-type: disc;
+}
+
+.type_numeric {
+    list-style-type: decimal;
 }
 
 .align_evenly {
