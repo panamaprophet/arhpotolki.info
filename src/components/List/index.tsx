@@ -2,46 +2,22 @@ import { Children, ReactNode } from 'react';
 import { cx } from '../../helpers';
 import styles from './index.module.css';
 
-type list = 'default' | 'numeric' | 'bullet' | 'circle';
-
 interface Props {
     children: ReactNode,
-    nowrap?: boolean,
+    type?: 'default' | 'numeric' | 'bullet',
     align?: string,
-    margin?: string | number,
-    flexFlow?: string,
-    listType?: list,
 }
 
-
-export const List = ({
-    children, 
-    align = 'evenly', 
-    margin = 'auto',
-    nowrap = false, 
-    flexFlow = 'row',
-    listType='default', 
-}: Props) => (
-    <ul 
-        className={
-            cx(
-                styles.root, 
-                nowrap && styles.root_nowrap,
-                styles[`flexFlow_${flexFlow}`],
-                styles[`align_${align}`],
-            )}
-        style={{ margin: margin }}
+export const List = ({ children, align = 'evenly', type = 'default' }: Props) => (
+    <ul
+        className={cx(
+            styles.root,
+            styles[`align_${align}`],
+            styles[`type_${type}`],
+        )}
     >
         {Children.map(children, (child, index) => (
-            <li 
-                key={index} 
-                className={
-                    cx(
-                        styles[`listType_${listType}`]
-                    )}
-            >
-                {child}
-            </li>
+            <li key={index}>{child}</li>
         ))}
     </ul>
 );
