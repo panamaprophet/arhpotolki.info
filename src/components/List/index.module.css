@@ -5,8 +5,32 @@
     gap: 8px;
 }
 
+.flexFlow_row {
+    flex-flow: row wrap;
+}
+
+.flexFlow_column {
+    flex-flow: column wrap;
+}
+
 .root_nowrap {
     flex-wrap: nowrap;
+}
+
+.listType_default {
+    list-style-type: none;
+}
+
+.listType_circle {
+    list-style-type: circle;
+}
+
+.listType_bullet {
+    list-style-type: disc;
+}
+
+.listType_numeric {
+    list-style-type: decimal;
 }
 
 .align_evenly {
