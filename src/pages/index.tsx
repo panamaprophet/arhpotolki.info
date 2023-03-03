@@ -47,15 +47,43 @@ const formatLink = (link: string) => link.replaceAll(/^(mailto:|\/\/|http:\/\/|h
 
 
 const App = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    // @todo: use actions here to put the order
-    const onOrderSubmit = (...args) => console.log('form subbmitted:', args);
-    const onPriceChange = (...args) => console.log('price changed:', args);
-    const onFeedbackSubmit = (...args) => console.log('form submitted:', args);
-
     const [isFeedbackFormVisible, setFeedbackFormVisible] = useState(false);
     const showFeedbackForm = () => setFeedbackFormVisible(true);
     const hideFeedbackForm = () => setFeedbackFormVisible(false);
+
+    const [isMenuOpen, setMenuOpen] = useState(false);
+    const openMenu = () => setMenuOpen(true);
+    const closeMenu = () => setMenuOpen(false);
+
+    const [order, setOrder] = useState({});
+
+    const onPriceChange = (price) => setOrder({ ...order, price });
+
+    const onOrderSubmit = (clientData) => {
+        const orderData = {
+            ...order,
+            ...clientData,
+        };
+
+        setOrder(orderData);
+
+        fetch('/api/order', {
+            method: 'POST',
+            body: JSON.stringify(orderData),
+        });
+    };
+
+    const onFeedbackSubmit = (feedback) => {
+        hideFeedbackForm();
+
+        fetch('/api/feedback', {
+            method: 'POST',
+            body: JSON.stringify(feedback),
+        });
+
+        // @todo: show confirmation
+    };
+
 
     return (
         <>
@@ -66,11 +94,11 @@ const App = () => {
                         <Subtitle color="#a6c719">
                             {contacts.phone}
                         </Subtitle>
-                        <Button onClick={() => setIsModalOpen(true)}>
+                        <Button onClick={openMenu}>
                             <Burger />
                         </Button>
-                        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-                            <Menu links={menuLinks} onClick={() => setIsModalOpen(false)} />
+                        <Modal isOpen={isMenuOpen} onClose={closeMenu}>
+                            <Menu links={menuLinks} onClick={closeMenu} />
                         </Modal>
                     </Row>
                 </Row>
