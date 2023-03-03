@@ -3,11 +3,23 @@ import { Button } from '../Button';
 import { InputFile, InputText } from '../Input';
 import styles from './index.module.css';
 
-export const FeedbackForm = ({ onSubmit }) => {
+
+interface Props {
+    onSubmit: (data: { name: string, city: string, text: string, picture: string }) => void,
+}
+
+
+export const FeedbackForm = ({ onSubmit }: Props) => {
     const [name, setName] = useState('');
     const [city, setCity] = useState('');
     const [text, setText] = useState('');
     const [picture, setPicture] = useState('');
+
+    let isDisabled = false;
+
+    if (!name.length || !city.length || !text.length) {
+        isDisabled = true;
+    }
 
     return (
         <form className={styles.root}>
@@ -17,7 +29,7 @@ export const FeedbackForm = ({ onSubmit }) => {
 
             <InputFile onUpload={setPicture} />
 
-            <Button theme="green" className={styles.submitButton} onClick={() => onSubmit({ name, city, text, picture })}>
+            <Button disabled={isDisabled} theme="green" className={styles.submitButton} onClick={() => onSubmit({ name, city, text, picture })}>
                 Отправить
             </Button>
         </form>
