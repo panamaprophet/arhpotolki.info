@@ -23,6 +23,7 @@ import { Section } from '../components/Section';
 import { Map } from '../components/Map';
 import { Link } from '../components/Link';
 import { VKWidget } from '../components/VKWidget';
+import { LeadbackWidget } from '../components/LeadbackWidget';
 
 import {
     certificates,
@@ -58,6 +59,7 @@ const App = () => {
 
     return (
         <>
+            <LeadbackWidget />
             <Header>
                 <Row style={{ width: '100%', justifyContent: 'space-between' }}>
                     <Image src="/icons/eco.png" width="80" height="96" alt="" />
