@@ -23,6 +23,7 @@ import { Section } from '../components/Section';
 import { Map } from '../components/Map';
 import { Link } from '../components/Link';
 import { VKWidget } from '../components/VKWidget';
+import { LeadbackWidget } from '../components/LeadbackWidget';
 
 import {
     certificates,
@@ -187,6 +188,7 @@ const App = () => {
                         ))}
                     </Text>
 
+                    <LeadbackWidget />
                     <VKWidget />
 
                     <Text>
