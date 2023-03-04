@@ -22,6 +22,7 @@ import { Gallery } from '../components/Gallery';
 import { Section } from '../components/Section';
 import { Map } from '../components/Map';
 import { Link } from '../components/Link';
+import { VKWidget } from '../components/VKWidget';
 
 import {
     certificates,
@@ -183,11 +184,10 @@ const App = () => {
                             <div key={link}>
                                 <Link href={link} target="_blank">{formatLink(link)}</Link>
                             </div>
-                            
                         ))}
                     </Text>
 
-                    {/* insert the vk widget */}
+                    <VKWidget />
 
                     <Text>
                         Copyright © {contacts.companyName}, 2014 - {getFullYear()} | <Link href="/privacy">Защита персональной информации</Link>
