@@ -9,5 +9,5 @@ export const LeadbackWidget = () => {
     
     globalThis._emv['campaign'] = 'leadback_campaign_id';
     
-    return <Script src={url} />;
+    return <Script src={url} defer />;
 }
