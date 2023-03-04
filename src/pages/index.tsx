@@ -59,7 +59,6 @@ const App = () => {
 
     return (
         <>
-            <LeadbackWidget />
             <Header>
                 <Row style={{ width: '100%', justifyContent: 'space-between' }}>
                     <Image src="/icons/eco.png" width="80" height="96" alt="" />
@@ -189,6 +188,7 @@ const App = () => {
                         ))}
                     </Text>
 
+                    <LeadbackWidget />
                     <VKWidget />
 
                     <Text>
