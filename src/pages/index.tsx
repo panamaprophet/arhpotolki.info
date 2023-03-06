@@ -24,6 +24,7 @@ import { Map } from '../components/Map';
 import { Link } from '../components/Link';
 import { VKWidget } from '../components/VKWidget';
 import { LeadbackWidget } from '../components/LeadbackWidget';
+import { Notification } from '../components/Notification';
 
 import {
     certificates,
@@ -84,6 +85,7 @@ const App = () => {
         // @todo: show confirmation via Notification component
     };
 
+    const [notification, setNotification] = useState(false);
 
     return (
         <>
@@ -196,6 +198,8 @@ const App = () => {
                     </Modal>
                 </Row>
             </Section>
+
+            {notification && <Notification text="Some notification about something" onClose={() => setNotification(false)} />}
 
             <Footer>
                 <Column style={{ alignItems: 'center', textAlign: 'center', gap: 16 }}>
