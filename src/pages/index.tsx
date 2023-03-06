@@ -57,7 +57,7 @@ const App = () => {
 
     const [order, setOrder] = useState({});
 
-    const onPriceChange = (price) => setOrder({ ...order, price });
+    const onPriceChange = (calculations) => setOrder({ ...order, ...calculations });
 
     const onOrderSubmit = (clientData) => {
         const orderData = {
@@ -81,7 +81,7 @@ const App = () => {
             body: JSON.stringify(feedback),
         });
 
-        // @todo: show confirmation
+        // @todo: show confirmation via Notification component
     };
 
 
