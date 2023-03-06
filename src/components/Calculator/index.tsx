@@ -43,7 +43,7 @@ interface Props {
     lightPrice: number,
     colorPrice: number,
     defaultMeterPrice: number,
-    onCalc: (price: number) => void,
+    onCalc: (payload: typeof initialState & { price: number }) => void,
 };
 
 
@@ -88,7 +88,7 @@ export const Calculator = ({ prices, lightPrice, colorPrice, defaultMeterPrice, 
 
     if (isChanged) {
         setChanged(false);
-        onCalc(price);
+        onCalc({ ...state, price });
     }
 
     const discount = 0;

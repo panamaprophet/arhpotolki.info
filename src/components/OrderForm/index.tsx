@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 
 
 interface Props {
-  onSubmit: (name: string, phone: string) => void,
+  onSubmit: (data: { name: string, phone: string }) => void,
 };
 
 
@@ -14,10 +14,20 @@ export const OrderForm = (props: Props) => {
   const [phone, setPhone] = useState('');
 
   const onSubmit = () => {
-    props.onSubmit(name, phone);
+    props.onSubmit({ name, phone });
 
     setName('');
     setPhone('');
+  }
+
+  let isDisabled = false;
+
+  if (!name.length) {
+    isDisabled = true;
+  }
+
+  if (!phone.replace(/\D/g, '').length) {
+    isDisabled = true;
   }
 
   return (
@@ -25,7 +35,7 @@ export const OrderForm = (props: Props) => {
       <InputText placeholder="Имя" value={name} onChange={setName} />
       <InputText placeholder="Телефон" value={phone} onChange={setPhone} />
 
-      <Button theme="green" className={styles.submitButton} onClick={onSubmit}>
+      <Button disabled={isDisabled} theme="green" className={styles.submitButton} onClick={onSubmit}>
         Отправить
       </Button>
 
