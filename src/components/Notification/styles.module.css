@@ -1,0 +1,29 @@
+.root {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+}
+
+.notification {
+    padding: 8px 16px;
+    gap: 4px;
+
+    border-radius: 4px;
+}
+
+.theme_success {
+    background-color: rgba(166, 199, 25, 0.9);
+}
+
+.theme_error {
+    background-color: rgba(199, 25, 79, 0.9);
+}
+
+.text,
+.closeButton {
+    color: #FFFFFF;
+}
+
+.closeButton {
+    cursor: pointer;
+}
