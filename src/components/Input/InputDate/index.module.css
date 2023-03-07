@@ -1,0 +1,13 @@
+.root {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    padding: 8px;
+    outline: none;
+    transition: all 100ms ease-in-out;
+    flex-grow: 1;
+    background: none;
+
+    font-family: 'PT Sans', sans-serif;
+    font-size: 1em;
+    color: #333;
+}
