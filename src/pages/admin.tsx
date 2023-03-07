@@ -27,6 +27,8 @@ import { Feedback, Picture, Setting } from '../types';
 import { List } from '../components/List';
 import { Row } from '../components/Layout';
 import { Card } from '../components/Card';
+import { Section } from '../components/Section';
+import { Carousel } from '../components/Carousel';
 
 
 type Props = {
@@ -58,47 +60,47 @@ const AdminPage = (props: Props) => {
             </div>
 
             {isAuthenticated && <>
-                <section id="settings">
+                <Section id="settings">
                     <Title condenced={true}>Настройки</Title>
 
                     <Row>
-                        Уведомление в шапке:
+                        <strong>Уведомление в шапке:</strong>
                         <InputTextLazy value={state.settings.headerNotification} onChange={value => onSettingsUpdate('headerNotification', value)} />
                     </Row>
 
                     <Row>
-                        Материалы:
+                        <strong>Материалы:</strong>
                         <InputList value={state.settings.materials} onChange={value => onSettingsUpdate('materials', value)} />
                     </Row>
 
                     <Row>
-                        Цена за дополнительный метр:
+                        <strong>Цена за дополнительный метр:</strong>
                         <InputTextLazy value={state.settings.defaultMeterPrice} onChange={value => onSettingsUpdate('defaultMeterPrice', value)} />
                     </Row>
 
                     <Row>
-                        Цена за свветильник:
+                        <strong>Цена за свветильник:</strong>
                         <InputTextLazy value={state.settings.lightPrice} onChange={value => onSettingsUpdate('lightPrice', value)} />
                     </Row>
 
                     <Row>
-                        Цена за цвет:
+                        <strong>Цена за цвет:</strong>
                         <InputTextLazy value={state.settings.colorPrice} onChange={value => onSettingsUpdate('colorPrice', value)} />
                     </Row>
-                </section>
+                </Section>
 
-                <section id="prices">
+                <Section id="prices">
                     <Title condenced={true}>Цены</Title>
                     <PriceEditor
                         prices={state.settings.prices}
                         onChange={value => onSettingsUpdate('prices', value)}
                     />
-                </section>
+                </Section>
 
-                <section id="pictures">
+                <Section id="pictures">
                     <Title condenced={true}>Картинки</Title>
 
-                    <List align="flex-start">
+                    <List align="flex-start" wrap={false}>
                         {state.pictures.map((picture) => (
                             <Card key={picture.id} >
                                 <PictureEditor {...picture} onCreate={onPictureCreate} onUpdate={onPictureUpdate} onRemove={onPictureRemove} />
@@ -107,15 +109,17 @@ const AdminPage = (props: Props) => {
                     </List>
 
                     <PictureEditor onCreate={onPictureCreate} onUpdate={onPictureUpdate} onRemove={onPictureRemove} />
-                </section>
+                </Section>
 
-                <section id="feedback">
+                <Section id="feedback">
                     <Title condenced={true}>Отзывы</Title>
 
-                    {state.feedback.map((feedback) => (
-                        <FeedbackEditor key={feedback.id} {...feedback} onUpdate={onFeedbackUpdate} onRemove={onFeedbackRemove} />
-                    ))}
-                </section>
+                    <Carousel>
+                        {state.feedback.map((feedback) => (
+                            <FeedbackEditor key={feedback.id} {...feedback} onUpdate={onFeedbackUpdate} onRemove={onFeedbackRemove} />
+                        ))}
+                    </Carousel>
+                </Section>
             </>}
         </>
     );

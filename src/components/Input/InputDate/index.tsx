@@ -1,4 +1,5 @@
 import { ChangeEventHandler } from 'react';
+import styles from './index.module.css';
 
 
 export const InputDate = ({ value, onChange }: { value: number, onChange: (value: number) => void }) => {
@@ -12,5 +13,5 @@ export const InputDate = ({ value, onChange }: { value: number, onChange: (value
         onChange(timestamp);
     };
 
-    return (<input type="date" defaultValue={initialValue} onChange={_onChange} />);
+    return (<input type="date" className={styles.root} defaultValue={initialValue} onChange={_onChange} />);
 };

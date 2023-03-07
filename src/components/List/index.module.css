@@ -2,14 +2,20 @@
     gap: 8px;
 }
 
-.root_nowrap {
-    flex-wrap: nowrap;
-}
-
 .type_default {
     list-style: none;
     display: flex;
-    flex-flow: row wrap;
+    flex-direction: row;
+}
+
+.wrap_true {
+    flex-wrap: wrap;
+    overflow: scroll;
+}
+
+.wrap_false {
+    flex-wrap: nowrap;
+    overflow: scroll;
 }
 
 .type_bullet {
