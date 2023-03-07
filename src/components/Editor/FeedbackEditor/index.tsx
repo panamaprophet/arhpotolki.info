@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import { Feedback } from '../../../types';
+import { Button } from '../../Button';
 import { InputDate, InputTextLazy } from '../../Input';
-import { Column } from '../../Layout';
+import { Row } from '../../Layout';
+import { Section } from '../../Section';
 
 
 interface Props extends Feedback {
@@ -29,14 +31,21 @@ export const FeedbackEditor = ({ onUpdate, onRemove, ...props }: Props) => {
     }, [isSaved]);
 
     return (
-        <Column>
-            <InputTextLazy placeholder="имя" value={state.author} onChange={author => onChange({ author })} />
-            <br/>
-            <InputTextLazy placeholder="текст" value={state.text} onChange={text => onChange({ text })} />
-            <br/>
-            <InputDate value={state.date} onChange={date => onChange({ date })} />
+        <Section>
+            <Row>
+                <strong>Имя:</strong>
+                <InputTextLazy value={state.author} onChange={author => onChange({ author })} />
+            </Row>
+            <Row>
+                <strong>Текст:</strong>
+                <InputTextLazy value={state.text} onChange={text => onChange({ text })} />
+            </Row>
+            <Row>
+                <strong>Дата:</strong>
+                <InputDate value={state.date} onChange={date => onChange({ date })} />
+            </Row>
 
-            <button onClick={() => onRemove(state)}>Х</button>
-        </Column>
+            <Button theme="green" onClick={() => onRemove(state)}>Удалить</Button>
+        </Section>
     );
 };
