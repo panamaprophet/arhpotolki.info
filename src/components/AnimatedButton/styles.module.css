@@ -1,0 +1,53 @@
+.start,
+.loading,
+.finish {
+    border-radius: 10px;
+    height: 50px;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    position: relative;
+    overflow: hidden;
+    
+}
+
+.loading,
+.loading:before,
+.loading:after {
+	background-color: #fff;
+    transition: background 1s linear;
+}
+
+.start,
+.finish {
+	background-color: #a6c719;
+    transition: background-color 1s linear;
+}
+
+.loading > * {
+	z-index: 1;
+    transition: background-color 1s linear;
+}
+
+.loading:before{
+    content: "";
+    width: 650px;
+    height: 650px;
+    background: conic-gradient(#a6c719, #fff);
+    position: absolute;
+    animation: spin 2s linear infinite;
+}
+
+.loading:after{
+    content: "";
+    border-radius: 7px;
+    position: absolute;
+	background: #fff;
+    inset: 4px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
