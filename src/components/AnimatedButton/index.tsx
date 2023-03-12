@@ -1,18 +1,20 @@
 import { cx } from "../../helpers";
-import { Text } from "../Text";
 import styles from './styles.module.css';
 
 interface Props {
-  state: 'start' | 'loading' | 'finish';
-  text: string;
+  state: 'Отправить' | 'Отправляется' | 'Отправлено';
 }
 
 export const AnimatedButton = ({ state }: Props) => {
+    const style = {
+        'Отправить': "start",
+        'Отправляется': "loading",
+        'Отправлено': "finish"
+    }
+
     return (
-        <div className={cx(styles.root, styles[state])}>
-            <div>{state === 'start' && 'Отправить'}</div>
-            <div>{state === 'loading' && 'Отправляется...'}</div>
-            <div>{state === 'finish' && 'Отправлено'}</div>
+        <div className={cx(styles.root, styles[style[state]])}>
+            <div>{state}{state === 'Отправляется' && <span className={styles.dots} />}</div>
         </div>
     )
 }
