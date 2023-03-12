@@ -31,8 +31,8 @@
 
 .loading:before{
     content: "";
-    width: 650px;
-    height: 650px;
+    width: 100%;
+    height: 900px;
     background: conic-gradient(#a6c719, #fff);
     position: absolute;
     animation: spin 2s linear infinite;
@@ -49,5 +49,25 @@
 @keyframes spin {
     to {
         transform: rotate(360deg);
+    }
+}
+
+
+.dots::after {
+    content: "";
+    animation: dots 2s linear infinite;
+}
+
+@keyframes dots {
+    25% {
+        content: '.';
+    }
+
+    50% {
+        content: '..';
+    }
+
+    75% {
+        content: '...';
     }
 }
