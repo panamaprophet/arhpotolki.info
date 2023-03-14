@@ -1,29 +1,51 @@
 import { useEffect, useState } from "react";
 import { Button } from "../Button";
 
-export const ButtonWithStatus = ({ callback, status }) => {
-    const [text, setText] = useState(status[0])
-    const errorMessage = 'Error occured';
+interface Props {
+    callback: () => Promise<void> | void,
+    status: String[],
+    disabled: boolean,
+}
+
+export const ButtonWithStatus = ({ callback, status, disabled: isLoad }: Props) => {
+    const [idle, loading, finished, error] = status;
+    const [text, setText] = useState(idle);
+    const [isFinished, setIsFinished] = useState(false);
+    const [disabled, setDisabled] = useState(false);
 
     useEffect(() => {
-        let timer;
-
-        if (text === status[2] || text === errorMessage) {
-            timer = setTimeout(() => setText(status[0]), 2000);
+        const handleStates = () => {
+            setText(idle);
+            setIsFinished(false);
         }
 
-        return () => clearTimeout(timer);
-    }, [text, status])
+        if (isFinished) {
+            const id = setTimeout(handleStates, 2000);
+
+            return () => clearTimeout(id);
+        }
+    }, [isFinished]);
 
     const handleClick = async () => {
-        setText(status[1]);
+        setText(loading);
+        setDisabled(true)
 
-        callback()
-            .then(() => setText(status[2]))
-            .catch(() => setText(errorMessage));
+        try {
+            const result = await callback();
+            
+            setText(finished)
+        } catch (e) {
+            setText(error);
+        } finally {
+            setTimeout(() => {
+                setDisabled(false)
+            }, 2000);
+            setIsFinished(true);
+        }
     }
 
-    const allGreen = text === status[0] || text === status[2];
-
-    return <Button onClick={handleClick} theme={allGreen ? 'green' : 'grey'}>{text}</Button>;
+    return (
+        <Button onClick={handleClick} theme="green" disabled={disabled || isLoad}>
+            {text}
+        </Button>);
 };
