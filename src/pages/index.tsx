@@ -24,6 +24,7 @@ import { Map } from '../components/Map';
 import { Link } from '../components/Link';
 import { VKWidget } from '../components/VKWidget';
 import { LeadbackWidget } from '../components/LeadbackWidget';
+import { ButtonWithStatus } from '../components/ButtonWithStatus';
 
 import {
     certificates,
@@ -188,9 +189,11 @@ const App = () => {
                     ))}
                 </Carousel>
                 <Row>
-                    <Button theme="orange" onClick={showFeedbackForm}>
-                        Оставить отзыв
-                    </Button>
+                    <ButtonWithStatus
+                        theme="orange"
+                        onClick={showFeedbackForm}
+                        status={['Отправить', 'Отправляется', 'Отправлено', 'Ошибка']}
+                    />
                     <Modal isOpen={isFeedbackFormVisible} onClose={hideFeedbackForm}>
                         <FeedbackForm onSubmit={onFeedbackSubmit} />
                     </Modal>
