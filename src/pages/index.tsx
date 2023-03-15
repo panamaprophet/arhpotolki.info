@@ -24,7 +24,6 @@ import { Map } from '../components/Map';
 import { Link } from '../components/Link';
 import { VKWidget } from '../components/VKWidget';
 import { LeadbackWidget } from '../components/LeadbackWidget';
-import { ButtonWithStatus } from '../components/ButtonWithStatus';
 
 import {
     certificates,
@@ -40,7 +39,7 @@ import {
     contacts,
     gallery,
     menuLinks,
-} from './index.mock';
+} from '../mocks/index.mock';
 
 const getFullYear = () => (new Date()).getFullYear();
 
@@ -189,11 +188,9 @@ const App = () => {
                     ))}
                 </Carousel>
                 <Row>
-                    <ButtonWithStatus
-                        theme="orange"
-                        onClick={showFeedbackForm}
-                        status={['Отправить', 'Отправляется', 'Отправлено', 'Ошибка']}
-                    />
+                    <Button theme="orange" onClick={showFeedbackForm}>
+                        Оставить отзыв
+                    </Button>
                     <Modal isOpen={isFeedbackFormVisible} onClose={hideFeedbackForm}>
                         <FeedbackForm onSubmit={onFeedbackSubmit} />
                     </Modal>

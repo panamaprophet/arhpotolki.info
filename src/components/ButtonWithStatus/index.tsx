@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { ComponentProps, useEffect, useState } from "react";
 import { Button } from "../Button";
 

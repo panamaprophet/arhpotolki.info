@@ -1,5 +1,4 @@
 import { getServerSession } from 'next-auth/next';
-// @ts-ignore
 import { authOptions } from '../pages/api/auth/[...nextauth]';
 
 
