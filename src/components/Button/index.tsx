@@ -6,8 +6,8 @@ interface Props {
     theme?: 'none' | 'green' | 'orange' | 'grey',
     className?: string,
     disabled?: boolean,
-    children: ReactNode,
-    onClick: MouseEventHandler<HTMLButtonElement>,
+    children?: ReactNode,
+    onClick: () => (Promise<void> | void) | MouseEventHandler<HTMLButtonElement>,
 };
 
 
