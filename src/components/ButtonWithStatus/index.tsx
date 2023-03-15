@@ -1,14 +1,12 @@
-import { useEffect, useState } from "react";
+import { ComponentProps, useEffect, useState } from "react";
 import { Button } from "../Button";
 
-interface Props {
-    callback: () => Promise<void> | void,
-    status: String[],
-    disabled: boolean,
+interface Props extends ComponentProps<typeof Button> {
+    status: string[],
 }
 
-export const ButtonWithStatus = ({ callback, status, disabled: isLoad }: Props) => {
-    const [idle, loading, finished, error] = status;
+export const ButtonWithStatus = (props: Props) => {
+    const [idle, loading, finished, error] = props.status;
     const [text, setText] = useState(idle);
     const [isFinished, setIsFinished] = useState(false);
     const [disabled, setDisabled] = useState(false);
@@ -17,35 +15,32 @@ export const ButtonWithStatus = ({ callback, status, disabled: isLoad }: Props) 
         const handleStates = () => {
             setText(idle);
             setIsFinished(false);
+            setDisabled(false);
         }
 
         if (isFinished) {
-            const id = setTimeout(handleStates, 2000);
-
-            return () => clearTimeout(id);
+            setTimeout(handleStates, 2000);
         }
     }, [isFinished]);
 
     const handleClick = async () => {
-        setText(loading);
-        setDisabled(true)
-
         try {
-            const result = await callback();
+            setText(loading);
+            setDisabled(true);
+
+            await props.onClick();
             
-            setText(finished)
+            setText(finished);
         } catch (e) {
             setText(error);
         } finally {
-            setTimeout(() => {
-                setDisabled(false)
-            }, 2000);
             setIsFinished(true);
         }
     }
 
     return (
-        <Button onClick={handleClick} theme="green" disabled={disabled || isLoad}>
+        <Button onClick={handleClick} theme="green" disabled={disabled || props.disabled}>
             {text}
-        </Button>);
+        </Button>
+    );
 };
