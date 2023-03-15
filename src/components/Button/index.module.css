@@ -14,15 +14,19 @@
     color: #ddd;
 }
 
-.theme_orange {
+.theme_orange,
+.theme_green,
+.theme_grey {
     padding: 8px 16px;
+}
+
+.theme_orange {
     background: #f7a136;
     color: #fff;
     margin: 0 auto;
 }
 
 .theme_green {
-    padding: 16px;
     background: #a6c719;
     color: #333;
 }
@@ -34,5 +38,4 @@
 
 .theme_grey {
     background: #cccccc;
-    padding: 8px 16px;
 }

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Button } from '../Button';
+import { ButtonWithStatus } from '../ButtonWithStatus';
 import { InputText } from '../Input';
 import styles from './styles.module.css';
 
@@ -35,9 +36,13 @@ export const OrderForm = (props: Props) => {
       <InputText placeholder="Имя" value={name} onChange={setName} />
       <InputText placeholder="Телефон" value={phone} onChange={setPhone} />
 
-      <Button disabled={isDisabled} theme="green" className={styles.submitButton} onClick={onSubmit}>
-        Отправить
-      </Button>
+      <ButtonWithStatus
+          disabled={isDisabled} 
+          theme="green" 
+          className={styles.submitButton} 
+          onClick={onSubmit} 
+          status={['Отправить', 'Отправляется', 'Отправлено', 'Ошибка']} 
+      />
 
       <p className={styles.disclaimer}>
         Мы гарантируем конфиденциальность данных оставленных на сайте.
