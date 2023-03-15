@@ -61,7 +61,7 @@ const AdminPage = (props: Props) => {
 
             {isAuthenticated && <>
                 <Section id="settings">
-                    <Title condenced={true}>Настройки</Title>
+                    <Title>Настройки</Title>
 
                     <Row>
                         <strong>Уведомление в шапке:</strong>
@@ -90,7 +90,7 @@ const AdminPage = (props: Props) => {
                 </Section>
 
                 <Section id="prices">
-                    <Title condenced={true}>Цены</Title>
+                    <Title>Цены</Title>
                     <PriceEditor
                         prices={state.settings.prices}
                         onChange={value => onSettingsUpdate('prices', value)}
@@ -98,7 +98,7 @@ const AdminPage = (props: Props) => {
                 </Section>
 
                 <Section id="pictures">
-                    <Title condenced={true}>Картинки</Title>
+                    <Title>Картинки</Title>
 
                     <List align="flex-start" wrap={false}>
                         {state.pictures.map((picture) => (
@@ -112,7 +112,7 @@ const AdminPage = (props: Props) => {
                 </Section>
 
                 <Section id="feedback">
-                    <Title condenced={true}>Отзывы</Title>
+                    <Title>Отзывы</Title>
 
                     <Carousel>
                         {state.feedback.map((feedback) => (
