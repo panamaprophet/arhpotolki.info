@@ -126,17 +126,25 @@ const AdminPage = (props: Props) => {
 };
 
 
-AdminPage.getInitialProps = async (ctx) => {
+export const getServerSideProps = async (ctx) => {
     const session = await getSession({ req: ctx.req });
+    const destination = ctx.req.url;
 
     if (!session) {
-        return {};
+        return {
+            redirect: {
+                destination: `/api/auth/signin?callbackUrl=${destination}`,
+                permanent: false,
+            },
+        };
     }
 
     return {
-        settings: await getSettings(),
-        pictures: await getPictures(),
-        feedback: await getFeedbacks(),
+        props: {
+            settings: await getSettings(),
+            pictures: await getPictures(),
+            feedback: await getFeedbacks(),
+        },
     };
 };
 
