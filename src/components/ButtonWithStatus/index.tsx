@@ -39,7 +39,7 @@ export const ButtonWithStatus = (props: Props) => {
     }
 
     return (
-        <Button onClick={handleClick} theme="green" disabled={disabled || props.disabled}>
+        <Button onClick={handleClick} className={props.className} theme={props.theme} disabled={disabled || props.disabled}>
             {text}
         </Button>
     );
