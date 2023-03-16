@@ -29,6 +29,7 @@ import { Row } from '../components/Layout';
 import { Card } from '../components/Card';
 import { Section } from '../components/Section';
 import { Carousel } from '../components/Carousel';
+import { Button } from '../components/Button';
 
 
 type Props = {
@@ -53,10 +54,7 @@ const AdminPage = (props: Props) => {
     return (
         <>
             <div className="header">
-                {!isAuthenticated
-                    ? <button onClick={() => signIn()}>sign in</button>
-                    : <button onClick={() => signOut()}>sign out</button>
-                }
+                    <Button theme="orange" onClick={() => signOut()}>Выйти</Button>
             </div>
 
             {isAuthenticated && <>
