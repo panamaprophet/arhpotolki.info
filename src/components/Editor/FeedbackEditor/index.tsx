@@ -45,7 +45,7 @@ export const FeedbackEditor = ({ onUpdate, onRemove, ...props }: Props) => {
                 <InputDate value={state.date} onChange={date => onChange({ date })} />
             </Row>
 
-            <Button theme="green" onClick={() => onRemove(state)}>Удалить</Button>
+            <Button theme="orange" onClick={() => onRemove(state)}>Удалить</Button>
         </Section>
     );
 };
