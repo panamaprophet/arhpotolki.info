@@ -2,24 +2,28 @@ import { Children, ReactNode, useCallback, useEffect, useMemo, useRef, useState 
 import styles from './styles.module.css';
 
 interface Props {
-    children: ReactNode;
+    children: ReactNode,
+    viewportWidth?: number,
 }
 
-export const Carousel = ({ children }: Props) => {
+export const Carousel = ({ children, viewportWidth: initialViewportWidth }: Props) => {
     const childrenCount = Children.count(children);
     const lastIndex = childrenCount - 1;
     const [currentIndex, setIndex] = useState(0);
-    const [elementRect, setElementRect] = useState(null);
+    const [viewportWidth, setViewportWidth] = useState(initialViewportWidth);
 
-    const handleRect = useCallback((node) => {
-        setElementRect(node?.getBoundingClientRect());
-    }, []);
+    const handleViewportWidth = useCallback((node) => {
+        if (node && !initialViewportWidth) {
+            const { width } = node.getBoundingClientRect();
 
-    const offset = elementRect ? (elementRect.width / childrenCount) * currentIndex : 0;
-    const viewport = elementRect ? elementRect.width / childrenCount : 'auto';
+            return setViewportWidth(width);
+        }
+    }, [initialViewportWidth]);
 
     const onForward = () => setIndex(lastIndex === currentIndex ? 0 : currentIndex + 1);
     const onBackward = () => setIndex(currentIndex === 0 ? lastIndex : currentIndex - 1);
+
+    const offset = viewportWidth * currentIndex;
 
     return (
         <div className={styles.root}>
@@ -27,8 +31,8 @@ export const Carousel = ({ children }: Props) => {
                 <div className={styles.prev} onClick={onBackward}>
                     «
                 </div>
-                <div className={styles.viewport} style={{ width: viewport }}>
-                    <div className={styles.list} ref={handleRect} style={{ transform: `translateX(-${offset}px)` }}>
+                <div className={styles.viewport} ref={handleViewportWidth} style={{ width: viewportWidth }}>
+                    <div className={styles.list} style={{ transform: `translateX(-${offset}px)` }}>
                         {children}
                     </div>
                 </div>
