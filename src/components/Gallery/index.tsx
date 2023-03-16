@@ -11,6 +11,8 @@ interface Props {
     items: Picture[],
 }
 
+const IMAGE_WIDTH = 568;
+const IMAGE_HEIGHT = 400;
 
 export const Gallery = ({ items }: Props) => {
     const [isModalOpen, setModalOpen] = useState(false);
@@ -53,13 +55,13 @@ export const Gallery = ({ items }: Props) => {
             </List>
 
             <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
-                <Carousel>
+                <Carousel viewportWidth={IMAGE_WIDTH}>
                     {filteredItems.map(item => (
                         <Image
                             key={item.url}
                             src={item.url}
-                            width={568}
-                            height={400}
+                            width={IMAGE_WIDTH}
+                            height={IMAGE_HEIGHT}
                             alt=""
                         />
                     ))}
