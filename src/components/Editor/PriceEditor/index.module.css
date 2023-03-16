@@ -1,0 +1,20 @@
+.root {
+    width: 100%;
+}
+
+.columnLast {
+    text-align: right;
+}
+
+.root button + button {
+    margin-left: 3px;
+}
+
+.root input {
+    width: 100%;
+}
+
+.submitButton {
+    width: 100%;
+    margin-top: 32px;
+}
