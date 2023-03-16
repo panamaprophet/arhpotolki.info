@@ -1,10 +1,18 @@
+import { CSSProperties, ReactNode } from 'react';
 import styles from './styles.module.css';
 
-export const Section = ({ id, children, style = {} }) => (
-    <section id={id} className={styles.root} style={style}>
-      <div className={styles.wrapper}>
-        {children}
-      </div>
-    </section>
-)
 
+interface Props {
+    id?: string,
+    style?: CSSProperties,
+    children: ReactNode,
+};
+
+
+export const Section = ({ id, children, style }: Props) => (
+    <section id={id} className={styles.root} style={style}>
+        <div className={styles.wrapper}>
+            {children}
+        </div>
+    </section>
+);

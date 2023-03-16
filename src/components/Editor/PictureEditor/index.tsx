@@ -5,6 +5,8 @@ import { InputFile, InputList } from '../../Input';
 import Image from 'next/image';
 import { Picture } from '../../../types';
 import { Column } from '../../Layout';
+import { Button } from '../../Button';
+import styles from './index.module.css';
 
 
 interface Props extends Partial<Picture> {
@@ -46,8 +48,8 @@ export const PictureEditor = (props: Props) => {
             <InputList placeholder="категории (через пробел)" onChange={tags => onChange({ tags })} value={state.tags} />
 
             {!state.id
-                ? <button onClick={_onCreate}>+</button>
-                : <button style={{ position: 'absolute', top: 8, right: 2 }} onClick={() => onRemove(state)}>Х</button>
+                ? <Button theme="green" onClick={_onCreate}>+</Button>
+                : <Button theme="orange" className={styles.buttonRemove} onClick={() => onRemove(state)}>Х</Button>
             }
         </Column>
     );
