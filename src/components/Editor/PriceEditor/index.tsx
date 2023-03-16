@@ -3,7 +3,6 @@
 import { useReducer } from 'react';
 import { Button } from '../../Button';
 import { InputTextLazy } from '../../Input';
-import { Column, Row } from '../../Layout';
 import {
     ACTION_INSERT_ROW,
     ACTION_REMOVE_ROW,
@@ -13,6 +12,8 @@ import {
     reducer,
 } from './store';
 
+import styles from './index.module.css';
+
 
 export const PriceEditor = ({ prices: initialValue, onChange }) => {
     const [prices, dispatch] = useReducer(reducer, initialValue);
@@ -20,50 +21,58 @@ export const PriceEditor = ({ prices: initialValue, onChange }) => {
     const groups = Object.keys(prices);
     const indexes = Object.keys(prices[groups[0]]);
 
-    const Groups = groups.map((group) => <InputTextLazy
-        key={group}
-        value={group}
-        onChange={value => dispatch({ type: ACTION_RENAME_GROUP, payload: { from: group, to: value } })}
-    />);
+    const Groups = groups.map((group) => (
+        <th key={group}>
+            <InputTextLazy
+                value={group}
+                onChange={value => dispatch({ type: ACTION_RENAME_GROUP, payload: { from: group, to: value } })}
+            />
+        </th>
+    ));
 
     const Rows = indexes.map((key, index) => (
-        <Row key={key} style={{ display: 'grid', gridTemplateColumns: '25% 25% 25% 25%' }}>
-            <InputTextLazy
-                value={key}
-                onChange={value => dispatch({ type: ACTION_SET_INDEX, payload: { from: key, to: value } })}
-            />
+        <tr key={key}>
+            <td>
+                <InputTextLazy
+                    value={key}
+                    onChange={value => dispatch({ type: ACTION_SET_INDEX, payload: { from: key, to: value } })}
+                />
+            </td>
 
             {groups.map((group) => (
-                <InputTextLazy
-                    key={`${group}_${key}`}
-                    value={prices[group][key]}
-                    onChange={value => dispatch({ type: ACTION_SET_PRICE, payload: { group, key, value } })}
-                />
+                <td key={`${group}_${key}`}>
+                    <InputTextLazy
+                        value={prices[group][key]}
+                        onChange={value => dispatch({ type: ACTION_SET_PRICE, payload: { group, key, value } })}
+                    />
+                </td>
             ))}
 
-            <Row>
+            <td className={styles.columnLast}>
                 {(!indexes[index + 1] || (Number(indexes[index + 1]) - Number(key)) > 1) && (
-                    <button type="button" onClick={() => dispatch({ type: ACTION_INSERT_ROW, payload: { key: Number(key) + 1 } })}>+</button>
+                    <Button theme="green" onClick={() => dispatch({ type: ACTION_INSERT_ROW, payload: { key: Number(key) + 1 } })}>+</Button>
                 )}
 
-                <button type="button" onClick={() => dispatch({ type: ACTION_REMOVE_ROW, payload: { key } })}>X</button>
-            </Row>
-        </Row>
+                <Button theme="orange" onClick={() => dispatch({ type: ACTION_REMOVE_ROW, payload: { key } })}>x</Button>
+            </td>
+        </tr>
     ));
 
     return (
-        <Column>
-            <Row style={{ display: 'grid', gridTemplateColumns: '25% 25% 25% 25%' }}>
-                <div>группы:</div>
+        <table className={styles.root}>
+            <tr>
+                <th></th>
                 {Groups}
-                <div></div>
-            </Row>
-            <Column>
-                {Rows}
-            </Column>
-            <Column>
-                <Button theme="green" onClick={() => onChange(prices)}>Сохранить</Button>
-            </Column>
-        </Column>
+                <th></th>
+            </tr>
+
+            {Rows}
+
+            <tr>
+                <td colSpan={4}>
+                    <Button theme="green" className={styles.submitButton} onClick={() => onChange(prices)}>Сохранить</Button>
+                </td>
+            </tr>
+        </table>
     );
 };
