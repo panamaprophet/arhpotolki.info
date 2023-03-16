@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { useReducer } from 'react';
+import { Button } from '../../Button';
 import { InputTextLazy } from '../../Input';
 import { Column, Row } from '../../Layout';
 import {
@@ -61,7 +62,7 @@ export const PriceEditor = ({ prices: initialValue, onChange }) => {
                 {Rows}
             </Column>
             <Column>
-                <button type="button" onClick={() => onChange(prices)}>Сохранить</button>
+                <Button theme="green" onClick={() => onChange(prices)}>Сохранить</Button>
             </Column>
         </Column>
     );
