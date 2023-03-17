@@ -1,15 +1,25 @@
 .next,
 .prev {
+    display: flex;
+    justify-content: center;
     flex-shrink: 0;
-    background: #f7a136;
+    background-color: transparent;
+    border: 2px solid #f7a136;
     width: 42px;
     height: 42px;
-    text-align: center;
-    line-height: 42px;
-    color: #fff;
+    line-height: 34px;
+    color: #f7a136;
     font-size: 1.4em;
     cursor: pointer;
     user-select: none;
+    border-radius: 50%;
+    transition: all 250ms;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: #f7a136;
+    color: #fff;
 }
 
 .container {
@@ -23,6 +33,7 @@
 
 .viewport {
     overflow: hidden;
+    border-radius: 6px;
     width: 100%;
 }
 
