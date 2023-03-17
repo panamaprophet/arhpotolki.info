@@ -30,6 +30,7 @@ import { Card } from '../components/Card';
 import { Section } from '../components/Section';
 import { Carousel } from '../components/Carousel';
 import { Button } from '../components/Button';
+import { AwsFileUploader } from '../components/AwsFileUploader';
 
 
 type Props = {
@@ -142,7 +143,7 @@ const AdminPage = (props: Props) => {
                     </List>
 
                     <Column>
-                        <InputFile multiple onUpload={setUrls} />
+                        <AwsFileUploader multiple onUpload={setUrls} />
                         <InputList placeholder="категории" onChange={setTags} value={tags} />
 
                         <Button theme="green" onClick={saveNewPictures}>

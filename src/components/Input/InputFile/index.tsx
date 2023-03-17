@@ -3,37 +3,18 @@ import { useEffect, useState } from 'react';
 import styles from './index.module.css';
 
 
-const uploadFile = async (file) => {
-    const name = encodeURIComponent(file.name);
-    const response = await fetch(`/api/upload/${name}`);
-    const { url } = await response.json();
-
-    await fetch(url, { method: 'PUT', body: file });
-
-    return url.split('?')[0];
+interface Props {
+    multiple?: boolean,
+    onUpload: (urls: string[]) => any,
+    uploaderFunction: (file: File) => Promise<string>,
 };
 
 
-// interface Props {
-//     multiple?: boolean,
-//     onUpload: (url: string[]) => void,
-// };
-
-
-interface PropsForSingle {
-    multiple: false,
-    onUpload: (url: string) => void,
-}
-
-interface PropsForMultiple {
-    multiple: true,
-    onUpload: (urls: string[]) => void,
-}
-
-type Props = PropsForSingle | PropsForMultiple;
-
-
-export const InputFile = ({ multiple = false, onUpload }: Props) => {
+export const InputFile = ({
+    multiple = false,
+    uploaderFunction,
+    onUpload,
+}: Props) => {
     const [files, setFiles] = useState(null);
 
     useEffect(() => {
@@ -42,24 +23,22 @@ export const InputFile = ({ multiple = false, onUpload }: Props) => {
         }
 
         (async () => {
-            const urls = [];
+            const urls: string[] = [];
 
             for (const file of files) {
-                const url = await uploadFile(file);
-
-                urls.push(url);
+                urls.push(await uploaderFunction(file));
             }
 
-            onUpload(multiple ? urls : urls[0]);
+            onUpload(urls);
         })();
     }, [files]);
 
     return (
         <label className={styles.root}>
             <input
+                type="file"
                 multiple={multiple}
                 className={styles.input}
-                type="file"
                 onChange={event => setFiles(event.target.files)}
             />
             <div className={styles.meta}>
