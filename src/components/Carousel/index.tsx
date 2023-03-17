@@ -4,12 +4,13 @@ import styles from './styles.module.css';
 interface Props {
     children: ReactNode,
     viewportWidth?: number,
+    startOn?: number;
 }
 
-export const Carousel = ({ children, viewportWidth: initialViewportWidth }: Props) => {
+export const Carousel = ({ children, viewportWidth: initialViewportWidth, startOn = 0 }: Props) => {
     const childrenCount = Children.count(children);
     const lastIndex = childrenCount - 1;
-    const [currentIndex, setIndex] = useState(0);
+    const [currentIndex, setIndex] = useState(startOn);
     const [viewportWidth, setViewportWidth] = useState(initialViewportWidth);
 
     const handleViewportWidth = useCallback((node) => {
