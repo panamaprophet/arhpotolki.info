@@ -4,13 +4,13 @@ import styles from './styles.module.css';
 interface Props {
     children: ReactNode,
     viewportWidth?: number,
-    startOn?: number;
+    startIndex?: number;
 }
 
-export const Carousel = ({ children, viewportWidth: initialViewportWidth, startOn = 0 }: Props) => {
+export const Carousel = ({ children, viewportWidth: initialViewportWidth, startIndex = 0 }: Props) => {
     const childrenCount = Children.count(children);
     const lastIndex = childrenCount - 1;
-    const [currentIndex, setIndex] = useState(startOn);
+    const [currentIndex, setIndex] = useState(startIndex);
     const [viewportWidth, setViewportWidth] = useState(initialViewportWidth);
 
     const handleViewportWidth = useCallback((node) => {
@@ -25,6 +25,22 @@ export const Carousel = ({ children, viewportWidth: initialViewportWidth, startO
     const onBackward = () => setIndex(currentIndex === 0 ? lastIndex : currentIndex - 1);
 
     const offset = viewportWidth * currentIndex;
+
+    const handleKeyboardClick = useCallback((event: KeyboardEvent) => {
+        if (event.code === 'ArrowLeft') {
+            setIndex(currentIndex === 0 ? lastIndex : currentIndex - 1);
+        }
+
+        if (event.code === 'ArrowRight') {
+            setIndex(lastIndex === currentIndex ? 0 : currentIndex + 1);
+        }
+    }, [currentIndex])
+
+    useEffect(() => {
+        document.addEventListener('keydown', handleKeyboardClick);
+
+        return () => document.removeEventListener('keydown', handleKeyboardClick);
+    })
 
     return (
         <div className={styles.root}>
