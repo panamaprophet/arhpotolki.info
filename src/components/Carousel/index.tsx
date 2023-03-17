@@ -40,7 +40,7 @@ export const Carousel = ({ children, viewportWidth: initialViewportWidth, startI
         document.addEventListener('keydown', handleKeyboardClick);
 
         return () => document.removeEventListener('keydown', handleKeyboardClick);
-    })
+    }, [handleKeyboardClick])
 
     return (
         <div className={styles.root}>
