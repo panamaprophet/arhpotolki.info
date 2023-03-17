@@ -1,8 +1,8 @@
-import { useReducer } from 'react';
+import { useReducer, useState } from 'react';
 import { useSession, signIn, signOut, getSession } from 'next-auth/react';
 
 import { Title } from '../components/Text';
-import { InputTextLazy, InputList } from '../components/Input';
+import { InputTextLazy, InputList, InputFile } from '../components/Input';
 import {
     PictureEditor,
     FeedbackEditor,
@@ -25,7 +25,7 @@ import {
 
 import { Feedback, Picture, Setting } from '../types';
 import { List } from '../components/List';
-import { Row } from '../components/Layout';
+import { Column, Row } from '../components/Layout';
 import { Card } from '../components/Card';
 import { Section } from '../components/Section';
 import { Carousel } from '../components/Carousel';
@@ -44,6 +44,9 @@ const AdminPage = (props: Props) => {
     const isAuthenticated = status === 'authenticated';
     const [state, dispatch] = useReducer(reducer, { ...props });
 
+    const [urls, setUrls] = useState([]);
+    const [tags, setTags] = useState([]);
+
     const onPictureUpdate = createUpdatePictureAction(dispatch);
     const onFeedbackUpdate = createUpdateFeedbackAction(dispatch);
     const onSettingsUpdate = createSettingsUpdateAction(dispatch);
@@ -51,10 +54,22 @@ const AdminPage = (props: Props) => {
     const onFeedbackRemove = createRemoveFeedbackAction(dispatch);
     const onPictureCreate = createAddPictureAction(dispatch);
 
+    const saveNewPictures = async () => {
+        const promises = urls.map(url => onPictureCreate({
+            url,
+            tags,
+        }));
+
+        await Promise.all(promises);
+
+        setTags([]);
+        setUrls([]);
+    };
+
     return (
         <>
             <div className="header">
-                    <Button theme="orange" onClick={() => signOut()}>Выйти</Button>
+                <Button theme="orange" onClick={() => signOut()}>Выйти</Button>
             </div>
 
             {isAuthenticated && <>
@@ -121,12 +136,19 @@ const AdminPage = (props: Props) => {
                     <List align="flex-start" wrap={false}>
                         {state.pictures.map((picture) => (
                             <Card key={picture.id} >
-                                <PictureEditor {...picture} onCreate={onPictureCreate} onUpdate={onPictureUpdate} onRemove={onPictureRemove} />
+                                <PictureEditor {...picture} onUpdate={onPictureUpdate} onRemove={onPictureRemove} />
                             </Card>
                         ))}
                     </List>
 
-                    <PictureEditor onCreate={onPictureCreate} onUpdate={onPictureUpdate} onRemove={onPictureRemove} />
+                    <Column>
+                        <InputFile multiple onUpload={setUrls} />
+                        <InputList placeholder="категории" onChange={setTags} value={tags} />
+
+                        <Button theme="green" onClick={saveNewPictures}>
+                            Добавить
+                        </Button>
+                    </Column>
                 </Section>
 
                 <Section id="feedback">
