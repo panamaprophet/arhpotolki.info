@@ -4,6 +4,7 @@
     height: 35px;
     padding: 8px;
     cursor: pointer;
+    border-radius: 6px;
 }
 
 .root > * {
