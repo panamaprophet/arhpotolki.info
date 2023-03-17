@@ -18,7 +18,7 @@ const IMAGE_HEIGHT = 400;
 export const Gallery = ({ items }: Props) => {
     const [isModalOpen, setModalOpen] = useState(false);
     const [filter, setFilter] = useState(null);
-    const [startOn, setStartOn] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     const filteredItems = filter === null
         ? items
@@ -29,9 +29,9 @@ export const Gallery = ({ items }: Props) => {
         .flat()
         .filter((item, index, items) => items.indexOf(item) === index);
 
-    const handleModalOpen = (index) => {
+    const openModal = (index) => {
         setModalOpen(true)
-        setStartOn(index)
+        setCurrentIndex(index)
     }
 
     return (
@@ -57,13 +57,13 @@ export const Gallery = ({ items }: Props) => {
                         width={207}
                         height={145}
                         alt=""
-                        onClick={() => handleModalOpen(index)}
+                        onClick={() => openModal(index)}
                     />
                 ))}
             </List>
 
             <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
-                <Carousel viewportWidth={IMAGE_WIDTH} startOn={startOn}>
+                <Carousel viewportWidth={IMAGE_WIDTH} startIndex={currentIndex}>
                     {filteredItems.map(item => (
                         <Image
                             className={styles.onLoad}
