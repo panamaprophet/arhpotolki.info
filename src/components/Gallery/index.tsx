@@ -5,6 +5,7 @@ import { Button } from '../Button';
 import { Carousel } from '../Carousel';
 import { List } from '../List';
 import { Modal } from '../Modal';
+import styles from './styles.module.css';
 
 
 interface Props {
@@ -17,6 +18,7 @@ const IMAGE_HEIGHT = 400;
 export const Gallery = ({ items }: Props) => {
     const [isModalOpen, setModalOpen] = useState(false);
     const [filter, setFilter] = useState(null);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     const filteredItems = filter === null
         ? items
@@ -26,6 +28,11 @@ export const Gallery = ({ items }: Props) => {
         .map(item => item.tags)
         .flat()
         .filter((item, index, items) => items.indexOf(item) === index);
+
+    const openModal = (index) => {
+        setModalOpen(true)
+        setCurrentIndex(index)
+    }
 
     return (
         <>
@@ -42,22 +49,24 @@ export const Gallery = ({ items }: Props) => {
             </List>
 
             <List align='center'>
-                {filteredItems.map(item => (
+                {filteredItems.map((item, index) => (
                     <Image
+                        className={styles.onLoad}
                         key={item.url}
                         src={item.url}
                         width={207}
                         height={145}
                         alt=""
-                        onClick={() => setModalOpen(true)}
+                        onClick={() => openModal(index)}
                     />
                 ))}
             </List>
 
             <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
-                <Carousel viewportWidth={IMAGE_WIDTH}>
+                <Carousel viewportWidth={IMAGE_WIDTH} startIndex={currentIndex}>
                     {filteredItems.map(item => (
                         <Image
+                            className={styles.onLoad}
                             key={item.url}
                             src={item.url}
                             width={IMAGE_WIDTH}
