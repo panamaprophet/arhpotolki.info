@@ -28,11 +28,11 @@ export const Carousel = ({ children, viewportWidth: initialViewportWidth, startI
 
     const handleKeyboardClick = useCallback((event: KeyboardEvent) => {
         if (event.code === 'ArrowLeft') {
-            setIndex(currentIndex === 0 ? lastIndex : currentIndex - 1);
+            onBackward();
         }
 
         if (event.code === 'ArrowRight') {
-            setIndex(lastIndex === currentIndex ? 0 : currentIndex + 1);
+            onForward();
         }
     }, [currentIndex])
 
