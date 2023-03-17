@@ -5,6 +5,7 @@ import { Button } from '../Button';
 import { Carousel } from '../Carousel';
 import { List } from '../List';
 import { Modal } from '../Modal';
+import styles from './styles.module.css';
 
 
 interface Props {
@@ -44,6 +45,7 @@ export const Gallery = ({ items }: Props) => {
             <List align='center'>
                 {filteredItems.map(item => (
                     <Image
+                        className={styles.onLoad}
                         key={item.url}
                         src={item.url}
                         width={207}
@@ -58,6 +60,7 @@ export const Gallery = ({ items }: Props) => {
                 <Carousel viewportWidth={IMAGE_WIDTH}>
                     {filteredItems.map(item => (
                         <Image
+                            className={styles.onLoad}
                             key={item.url}
                             src={item.url}
                             width={IMAGE_WIDTH}
