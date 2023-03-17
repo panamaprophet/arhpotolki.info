@@ -60,19 +60,22 @@ export const PriceEditor = ({ prices: initialValue, onChange }) => {
 
     return (
         <table className={styles.root}>
-            <tr>
-                <th></th>
-                {Groups}
-                <th></th>
-            </tr>
+            <thead>
+                <tr>
+                    <th></th>
+                    {Groups}
+                    <th></th>
+                </tr>
+            </thead>
 
-            {Rows}
-
-            <tr>
-                <td colSpan={4}>
-                    <Button theme="green" className={styles.submitButton} onClick={() => onChange(prices)}>Сохранить</Button>
-                </td>
-            </tr>
+            <tbody>
+                {Rows}
+                <tr>
+                    <td colSpan={4}>
+                        <Button theme="green" className={styles.submitButton} onClick={() => onChange(prices)}>Сохранить</Button>
+                    </td>
+                </tr>
+            </tbody>
         </table>
     );
 };
