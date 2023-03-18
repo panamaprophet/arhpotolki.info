@@ -204,7 +204,7 @@ const App = (props: Props) => {
                     </Modal>
                 </Row>
             </Section>
-                        
+
             <Footer>
                 <Column style={{ alignItems: 'center', textAlign: 'center', gap: 16 }}>
                     <Map />
