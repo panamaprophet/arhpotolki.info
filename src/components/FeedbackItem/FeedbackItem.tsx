@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 export const FeedbackItem = ({ picture, author, date, text }: Omit<Feedback, 'id'>) => (
     <div className={styles.root}>
         <div className={styles.picture}>
-            <Image
+            {picture && <Image
                 style={{ 
                     objectFit: 'contain', 
                     borderRadius: '6px' 
@@ -13,7 +13,7 @@ export const FeedbackItem = ({ picture, author, date, text }: Omit<Feedback, 'id
                 src={picture}
                 alt="author" 
                 fill
-            />
+            />}
         </div>
         <div className={styles.author}>{author}</div>
         <div className={styles.date}>{date}</div>
