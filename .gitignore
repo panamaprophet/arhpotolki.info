@@ -4,3 +4,4 @@ vendor/
 .next/
 .yarn/
 .env
+cdk.out/
