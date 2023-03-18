@@ -25,28 +25,36 @@ import { Link } from '../components/Link';
 import { VKWidget } from '../components/VKWidget';
 import { LeadbackWidget } from '../components/LeadbackWidget';
 
-import {
-    certificates,
-    steps,
-    features,
-    feedbacks,
-    costBySquare,
-    colorPrice,
-    lightPrice,
-    prices,
-    materials,
-    headerNotification,
-    contacts,
-    gallery,
-    menuLinks,
-} from '../mocks/index.mock';
+import { certificates, steps, features, contacts, menuLinks } from '../mocks/index.mock';
+import { getSettings } from '../resolvers/settings';
+import { getFeedbacks } from '../resolvers/feedback';
+import { getPictures } from '../resolvers/pictures';
+import { Feedback, Picture } from '../types';
 
 const getFullYear = () => (new Date()).getFullYear();
 
 const formatLink = (link: string) => link.replaceAll(/^(mailto:|\/\/|http:\/\/|https:\/\/)/gi, '');
 
+interface Props {
+    feedbacks: Feedback[],
+    gallery: Picture[],
+    settings: any,
+}
 
-const App = () => {
+const App = (props: Props) => {
+    const {
+        feedbacks,
+        settings: {
+            costBySquare,
+            colorPrice,
+            lightPrice,
+            prices,
+            materials,
+            headerNotification,
+        },
+        gallery
+    } = props;
+
     const [isFeedbackFormVisible, setFeedbackFormVisible] = useState(false);
     const showFeedbackForm = () => setFeedbackFormVisible(true);
     const hideFeedbackForm = () => setFeedbackFormVisible(false);
@@ -230,3 +238,13 @@ const App = () => {
 
 
 export default App;
+
+export async function getServerSideProps() {
+    return {
+        props: {
+            feedbacks: await getFeedbacks(),
+            settings: await getSettings(),
+            gallery: await getPictures(),
+        }
+    }
+}
