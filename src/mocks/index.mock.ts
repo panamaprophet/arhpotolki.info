@@ -78,16 +78,6 @@ export const features = [
     },
 ];
 
-export const contacts = {
-    phone: '+7 8182 47-67-24',
-    address: 'город Архангельск, ул. Беломорской флотилии 2-3-33',
-    companyName: 'АрхПотолки',
-    links: [
-        '//vk.com/arhpotolki',
-        'mailto:hello@arhpotolki.info',
-    ],
-};
-
 export const menuLinks = [
     {
         title: 'Преимущества',
