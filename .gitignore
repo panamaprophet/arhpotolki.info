@@ -5,3 +5,4 @@ vendor/
 .yarn/
 .env
 cdk.out/
+cdk-outputs.json

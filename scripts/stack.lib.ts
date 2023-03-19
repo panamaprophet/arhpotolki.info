@@ -1,4 +1,4 @@
-import { Stack, StackProps } from 'aws-cdk-lib';
+import { Stack, StackProps, CfnOutput } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { Bucket, HttpMethods } from 'aws-cdk-lib/aws-s3';
 import { Table, AttributeType } from 'aws-cdk-lib/aws-dynamodb';
@@ -57,25 +57,30 @@ export class ArhpotolkiInfoStack extends Stack {
             })
         );
 
-        new Table(this, FEEDBACK_TABLE, {
+        const feedbackTable = new Table(this, FEEDBACK_TABLE, {
             partitionKey: {
                 name: 'id',
                 type: AttributeType.STRING,
             },
         });
 
-        new Table(this, PICTURES_TABLE, {
+        const picturesTable = new Table(this, PICTURES_TABLE, {
             partitionKey: {
                 name: 'id',
                 type: AttributeType.STRING,
             },
         });
 
-        new Table(this, SETTINGS_TABLE, {
+        const settingsTable = new Table(this, SETTINGS_TABLE, {
             partitionKey: {
                 name: 'key',
                 type: AttributeType.STRING,
             },
         });
+
+        new CfnOutput(this, 'bucket', { value: bucket.bucketName });
+        new CfnOutput(this, 'feedbackTable', { value: feedbackTable.tableName });
+        new CfnOutput(this, 'picturesTable', { value: picturesTable.tableName });
+        new CfnOutput(this, 'settingsTable', { value: settingsTable.tableName });
     }
 }
