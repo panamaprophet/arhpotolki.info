@@ -4,3 +4,5 @@ vendor/
 .next/
 .yarn/
 .env
+cdk.out/
+cdk-outputs.json
