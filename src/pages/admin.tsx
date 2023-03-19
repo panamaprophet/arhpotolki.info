@@ -87,6 +87,26 @@ const AdminPage = (props: Props) => {
                     </Row>
                 </Section>
 
+                <Section id="contacts">
+                    <Title>Контакты</Title>
+                    <Row>
+                        <strong>Телефон:</strong>
+                        <InputTextLazy value={state.settings.phone} onChange={value => onSettingsUpdate('phone', value)} />
+                    </Row>
+                    <Row>
+                        <strong>Адрес:</strong>
+                        <InputTextLazy value={state.settings.address} onChange={value => onSettingsUpdate('address', value)} />
+                    </Row>
+                    <Row>
+                        <strong>Название компании:</strong>
+                        <InputTextLazy value={state.settings.companyName} onChange={value => onSettingsUpdate('companyName', value)} />
+                    </Row>
+                    <Row>
+                        <strong>Ссылки:</strong>
+                        <InputList value={state.settings.links || []} onChange={value => onSettingsUpdate('links', value)} />
+                    </Row>
+                </Section>
+
                 <Section id="prices">
                     <Title>Цены</Title>
                     <PriceEditor

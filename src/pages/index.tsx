@@ -25,7 +25,7 @@ import { Link } from '../components/Link';
 import { VKWidget } from '../components/VKWidget';
 import { LeadbackWidget } from '../components/LeadbackWidget';
 
-import { certificates, steps, features, contacts, menuLinks } from '../mocks/index.mock';
+import { certificates, steps, features, menuLinks } from '../mocks/index.mock';
 import { getSettings } from '../resolvers/settings';
 import { getFeedbacks } from '../resolvers/feedback';
 import { getPictures } from '../resolvers/pictures';
@@ -44,14 +44,7 @@ interface Props {
 const App = (props: Props) => {
     const {
         feedbacks,
-        settings: {
-            costBySquare,
-            colorPrice,
-            lightPrice,
-            prices,
-            materials,
-            headerNotification,
-        },
+        settings,
         gallery
     } = props;
 
@@ -100,7 +93,7 @@ const App = (props: Props) => {
                     <Image src="/icons/eco.png" width="80" height="96" alt="" />
                     <Row>
                         <Subtitle color="#a6c719">
-                            {contacts.phone}
+                            {settings.phone}
                         </Subtitle>
                         <Button onClick={openMenu}>
                             <Burger />
@@ -115,7 +108,7 @@ const App = (props: Props) => {
 
                 <Row >
                     <Subtitle color="#2484c6">
-                        {headerNotification}
+                        {settings.headerNotification}
                     </Subtitle>
                     <Link href="#description">
                         <ArrowDown />
@@ -150,16 +143,16 @@ const App = (props: Props) => {
 
             <Separator text="Изготовление - от одного дня, монтаж - от двух часов." />
 
-            {prices && materials && (
+            {settings.prices && settings.materials && (
                 <Section id="calculator">
                     <Title>Рассчитать стоимость:</Title>
                     <Calculator
                         onCalc={onPriceChange}
-                        materials={materials}
-                        prices={prices}
-                        lightPrice={lightPrice}
-                        colorPrice={colorPrice}
-                        defaultMeterPrice={costBySquare}
+                        materials={settings.materials}
+                        prices={settings.prices}
+                        lightPrice={settings.lightPrice}
+                        colorPrice={settings.colorPrice}
+                        defaultMeterPrice={settings.costBySquare}
                     />
                 </Section>
             )}
@@ -213,26 +206,26 @@ const App = (props: Props) => {
                 <Column style={{ alignItems: 'center', textAlign: 'center', gap: 16 }}>
                     <Map />
                     <Text>
-                        <strong>{contacts.companyName}</strong>
+                        <strong>{settings.companyName}</strong>
                         <br />
-                        {contacts.address}
+                        {settings.address}
                         <br />
-                        {contacts.phone}
+                        {settings.phone}
                     </Text>
 
-                    <Text>
-                        {contacts.links.map((link) => (
+                    {settings.links && <Text>
+                        {settings.links.map((link) => (
                             <div key={link}>
                                 <Link href={link} target="_blank">{formatLink(link)}</Link>
                             </div>
                         ))}
-                    </Text>
+                    </Text>}
 
                     <LeadbackWidget />
                     <VKWidget />
 
                     <Text>
-                        Copyright © {contacts.companyName}, 2014 - {getFullYear()} | <Link href="/privacy">Защита персональной информации</Link>
+                        Copyright © {settings.companyName}, 2014 - {getFullYear()} | <Link href="/privacy">Защита персональной информации</Link>
                     </Text>
                 </Column>
             </Footer >
