@@ -68,7 +68,7 @@ const AdminPage = (props: Props) => {
 
                     <Row>
                         <strong>Материалы:</strong>
-                        <InputList value={state.settings.materials} onChange={value => onSettingsUpdate('materials', value)} />
+                        <InputList value={state.settings.materials || []} onChange={value => onSettingsUpdate('materials', value)} />
                     </Row>
 
                     <Row>

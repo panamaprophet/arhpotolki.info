@@ -141,24 +141,28 @@ const App = (props: Props) => {
                 </List>
             </Section>
 
-            <Section id="examples">
-                <Title>Наши работы</Title>
-                <Gallery items={gallery} />
-            </Section>
+            {gallery.length && (
+                <Section id="examples">
+                    <Title>Наши работы</Title>
+                    <Gallery items={gallery} />
+                </Section>
+            )}
 
             <Separator text="Изготовление - от одного дня, монтаж - от двух часов." />
 
-            <Section id="calculator">
-                <Title>Рассчитать стоимость:</Title>
-                <Calculator
-                    onCalc={onPriceChange}
-                    materials={materials}
-                    prices={prices}
-                    lightPrice={lightPrice}
-                    colorPrice={colorPrice}
-                    defaultMeterPrice={costBySquare}
-                />
-            </Section>
+            {prices && materials && (
+                <Section id="calculator">
+                    <Title>Рассчитать стоимость:</Title>
+                    <Calculator
+                        onCalc={onPriceChange}
+                        materials={materials}
+                        prices={prices}
+                        lightPrice={lightPrice}
+                        colorPrice={colorPrice}
+                        defaultMeterPrice={costBySquare}
+                    />
+                </Section>
+            )}
 
             <Section id="application" style={{ background: '#f7a136' }}>
                 <Title condenced={true}>Оставить заявку:</Title>
