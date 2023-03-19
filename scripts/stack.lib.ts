@@ -1,4 +1,4 @@
-import { Stack, StackProps, CfnOutput } from 'aws-cdk-lib';
+import { Stack, StackProps, CfnOutput, RemovalPolicy } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { Bucket, HttpMethods } from 'aws-cdk-lib/aws-s3';
 import { Table, AttributeType } from 'aws-cdk-lib/aws-dynamodb';
@@ -38,6 +38,7 @@ export class ArhpotolkiInfoStack extends Stack {
                 },
             ],
             publicReadAccess: true,
+            removalPolicy: RemovalPolicy.DESTROY,
         });
 
         bucket.addToResourcePolicy(
@@ -62,6 +63,7 @@ export class ArhpotolkiInfoStack extends Stack {
                 name: 'id',
                 type: AttributeType.STRING,
             },
+            removalPolicy: RemovalPolicy.DESTROY,
         });
 
         const picturesTable = new Table(this, PICTURES_TABLE, {
@@ -69,6 +71,7 @@ export class ArhpotolkiInfoStack extends Stack {
                 name: 'id',
                 type: AttributeType.STRING,
             },
+            removalPolicy: RemovalPolicy.DESTROY,
         });
 
         const settingsTable = new Table(this, SETTINGS_TABLE, {
@@ -76,6 +79,7 @@ export class ArhpotolkiInfoStack extends Stack {
                 name: 'key',
                 type: AttributeType.STRING,
             },
+            removalPolicy: RemovalPolicy.DESTROY,
         });
 
         new CfnOutput(this, 'bucket', { value: bucket.bucketName });
