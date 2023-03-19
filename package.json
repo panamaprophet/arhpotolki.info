@@ -11,7 +11,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "bootstrap": "cdk bootstrap",
+    "deploy": "cdk deploy --outputs-file ./cdk-outputs.json",
+    "destroy": "cdk destroy"
   },
   "dependencies": {
     "next": "^13.1.6",
