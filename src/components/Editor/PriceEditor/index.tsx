@@ -15,7 +15,14 @@ import {
 import styles from './index.module.css';
 
 
-export const PriceEditor = ({ prices: initialValue, onChange }) => {
+const INITIAL_VALUE = {
+    'default group': {
+        0: 0,
+    },
+};
+
+
+export const PriceEditor = ({ prices: initialValue = { ...INITIAL_VALUE }, onChange }) => {
     const [prices, dispatch] = useReducer(reducer, initialValue);
 
     const groups = Object.keys(prices);
