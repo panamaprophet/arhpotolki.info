@@ -13,6 +13,7 @@ interface Props {
     costBySquare: number;
 }
 
+
 export const Order = ({ prices, materials, lightPrice, colorPrice, costBySquare }: Props) => {
     const [calculation, setCalculation] = useState({});
 
@@ -23,8 +24,6 @@ export const Order = ({ prices, materials, lightPrice, colorPrice, costBySquare 
             ...calculation,
             ...clientData,
         };
-
-        setCalculation(orderData);
 
         return fetch('/api/order', {
             method: 'POST',
