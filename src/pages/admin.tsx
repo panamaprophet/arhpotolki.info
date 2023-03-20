@@ -41,10 +41,7 @@ type Props = {
 
 
 const AdminPage = (props: Props) => {
-    const { status } = useSession();
-    const isAuthenticated = status === 'authenticated';
     const [state, dispatch] = useReducer(reducer, { ...props });
-
     const [urls, setUrls] = useState([]);
     const [tags, setTags] = useState([]);
 
@@ -56,10 +53,7 @@ const AdminPage = (props: Props) => {
     const onPictureCreate = createAddPictureAction(dispatch);
 
     const saveNewPictures = async () => {
-        const promises = urls.map(url => onPictureCreate({
-            url,
-            tags,
-        }));
+        const promises = urls.map(url => onPictureCreate({ url, tags }));
 
         await Promise.all(promises);
 
@@ -69,99 +63,94 @@ const AdminPage = (props: Props) => {
 
     return (
         <>
-            <div className="header">
-                <Button theme="orange" onClick={() => signOut()}>Выйти</Button>
-            </div>
+            <Section>
+                <Row style={{ justifyContent: 'flex-end' }}>
+                    <Button theme="green" onClick={() => signOut()}>Выйти</Button>
+                </Row>
+            </Section>
 
-            {isAuthenticated && <>
-                <Section id="settings">
-                    <Title>Настройки</Title>
+            <Section id="settings">
+                <Title>Настройки</Title>
 
-                    <Row>
-                        <strong>Уведомление в шапке:</strong>
-                        <InputTextLazy value={state.settings.headerNotification} onChange={value => onSettingsUpdate('headerNotification', value)} />
-                    </Row>
+                <Row>
+                    <strong>Уведомление в шапке:</strong>
+                    <InputTextLazy value={state.settings.headerNotification} onChange={value => onSettingsUpdate('headerNotification', value)} />
+                </Row>
 
-                    <Row>
-                        <strong>Материалы:</strong>
-                        <InputList value={state.settings.materials || []} onChange={value => onSettingsUpdate('materials', value)} />
-                    </Row>
+                <Row>
+                    <strong>Материалы:</strong>
+                    <InputList value={state.settings.materials || []} onChange={value => onSettingsUpdate('materials', value)} />
+                </Row>
 
-                    <Row>
-                        <strong>Цена за дополнительный метр:</strong>
-                        <InputTextLazy value={state.settings.defaultMeterPrice} onChange={value => onSettingsUpdate('defaultMeterPrice', value)} />
-                    </Row>
+                <Row>
+                    <strong>Цена за дополнительный метр:</strong>
+                    <InputTextLazy value={state.settings.defaultMeterPrice} onChange={value => onSettingsUpdate('defaultMeterPrice', value)} />
+                </Row>
 
-                    <Row>
-                        <strong>Цена за свветильник:</strong>
-                        <InputTextLazy value={state.settings.lightPrice} onChange={value => onSettingsUpdate('lightPrice', value)} />
-                    </Row>
+                <Row>
+                    <strong>Цена за свветильник:</strong>
+                    <InputTextLazy value={state.settings.lightPrice} onChange={value => onSettingsUpdate('lightPrice', value)} />
+                </Row>
 
-                    <Row>
-                        <strong>Цена за цвет:</strong>
-                        <InputTextLazy value={state.settings.colorPrice} onChange={value => onSettingsUpdate('colorPrice', value)} />
-                    </Row>
-                </Section>
+                <Row>
+                    <strong>Цена за цвет:</strong>
+                    <InputTextLazy value={state.settings.colorPrice} onChange={value => onSettingsUpdate('colorPrice', value)} />
+                </Row>
+            </Section>
 
-                <Section id="contacts">
-                    <Title>Контакты</Title>
-                    <Row>
-                        <strong>Телефон:</strong>
-                        <InputTextLazy value={state.settings.phone} onChange={value => onSettingsUpdate('phone', value)} />
-                    </Row>
-                    <Row>
-                        <strong>Адрес:</strong>
-                        <InputTextLazy value={state.settings.address} onChange={value => onSettingsUpdate('address', value)} />
-                    </Row>
-                    <Row>
-                        <strong>Название компании:</strong>
-                        <InputTextLazy value={state.settings.companyName} onChange={value => onSettingsUpdate('companyName', value)} />
-                    </Row>
-                    <Row>
-                        <strong>Ссылки:</strong>
-                        <InputList value={state.settings.links || []} onChange={value => onSettingsUpdate('links', value)} />
-                    </Row>
-                </Section>
+            <Section id="contacts">
+                <Title>Контакты</Title>
+                <Row>
+                    <strong>Телефон:</strong>
+                    <InputTextLazy value={state.settings.phone} onChange={value => onSettingsUpdate('phone', value)} />
+                </Row>
+                <Row>
+                    <strong>Адрес:</strong>
+                    <InputTextLazy value={state.settings.address} onChange={value => onSettingsUpdate('address', value)} />
+                </Row>
+                <Row>
+                    <strong>Название компании:</strong>
+                    <InputTextLazy value={state.settings.companyName} onChange={value => onSettingsUpdate('companyName', value)} />
+                </Row>
+                <Row>
+                    <strong>Ссылки:</strong>
+                    <InputList value={state.settings.links || []} onChange={value => onSettingsUpdate('links', value)} />
+                </Row>
+            </Section>
 
-                <Section id="prices">
-                    <Title>Цены</Title>
-                    <PriceEditor
-                        prices={state.settings.prices}
-                        onChange={value => onSettingsUpdate('prices', value)}
-                    />
-                </Section>
+            <Section id="prices">
+                <Title>Цены</Title>
+                <PriceEditor prices={state.settings.prices} onChange={value => onSettingsUpdate('prices', value)} />
+            </Section>
 
-                <Section id="pictures">
-                    <Title>Картинки</Title>
+            <Section id="pictures">
+                <Title>Картинки</Title>
 
-                    <List align="flex-start" wrap={false}>
-                        {state.pictures.map((picture) => (
-                            <Card key={picture.id} >
-                                <PictureEditor {...picture} onUpdate={onPictureUpdate} onRemove={onPictureRemove} />
-                            </Card>
-                        ))}
-                    </List>
+                <List align="flex-start" wrap={false}>
+                    {state.pictures.map((picture) => (
+                        <Card key={picture.id} >
+                            <PictureEditor {...picture} onUpdate={onPictureUpdate} onRemove={onPictureRemove} />
+                        </Card>
+                    ))}
+                </List>
 
-                    <Column>
-                        <AwsFileUploader multiple onUpload={setUrls} />
-                        <InputList placeholder="категории" onChange={setTags} value={tags} />
+                <Column>
+                    <AwsFileUploader multiple onUpload={setUrls} />
+                    <InputList placeholder="категории" onChange={setTags} value={tags} />
 
-                        <Button theme="green" onClick={saveNewPictures}>
-                            Добавить
-                        </Button>
-                    </Column>
-                </Section>
+                    <Button theme="green" onClick={saveNewPictures}>Добавить</Button>
+                </Column>
+            </Section>
 
-                <Section id="feedback">
-                    <Title>Отзывы</Title>
+            <Section id="feedback">
+                <Title>Отзывы</Title>
 
-                    <Carousel>
-                        {state.feedback.map((feedback) => (
-                            <FeedbackEditor key={feedback.id} {...feedback} onUpdate={onFeedbackUpdate} onRemove={onFeedbackRemove} />
-                        ))}
-                    </Carousel>
-                </Section>
-            </>}
+                <Carousel>
+                    {state.feedback.map((feedback) => (
+                        <FeedbackEditor key={feedback.id} {...feedback} onUpdate={onFeedbackUpdate} onRemove={onFeedbackRemove} />
+                    ))}
+                </Carousel>
+            </Section>
         </>
     );
 };
