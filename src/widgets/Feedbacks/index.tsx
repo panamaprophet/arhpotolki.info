@@ -17,13 +17,10 @@ export const FeedbacksWidget = ({ feedbacks }) => {
     const onFeedbackSubmit = (feedback) => {
         hideFeedbackForm();
 
-        fetch('/api/feedback', {
+        return fetch('/api/feedback', {
             method: 'POST',
             body: JSON.stringify(feedback),
         });
-
-        // @deprecated suggestion
-        // @todo: show confirmation via Notification component
     };
 
     return (
