@@ -7,14 +7,20 @@ import { Row } from '../../components/Layout';
 import { Modal } from '../../components/Modal';
 import { Section } from '../../components/Section';
 import { Title } from '../../components/Text';
+import { Feedback } from '../../types';
 
 
-export const FeedbacksWidget = ({ feedbacks }) => {
+interface Props {
+    feedbacks: Feedback[];
+}
+
+
+export const FeedbacksWidget = ({ feedbacks }: Props) => {
     const [isFeedbackFormVisible, setFeedbackFormVisible] = useState(false);
     const showFeedbackForm = () => setFeedbackFormVisible(true);
     const hideFeedbackForm = () => setFeedbackFormVisible(false);
 
-    const onFeedbackSubmit = (feedback) => {
+    const onFeedbackSubmit = (feedback: { name: string, city: string, text: string, picture: string }) => {
         hideFeedbackForm();
 
         return fetch('/api/feedback', {

@@ -11,8 +11,15 @@ const getFullYear = () => (new Date()).getFullYear();
 
 const formatLink = (link: string) => link.replaceAll(/^(mailto:|\/\/|http:\/\/|https:\/\/)/gi, '');
 
+interface Props {
+    companyName: string;
+    address: string;
+    phone: string;
+    links: string[];
+}
 
-export const FooterWidget = ({ companyName, address, phone, links }) => {
+
+export const FooterWidget = ({ companyName, address, phone, links }: Props) => {
     return (
         <Footer>
             <Column style={{ alignItems: 'center', textAlign: 'center', gap: 16 }}>
