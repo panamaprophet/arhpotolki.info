@@ -12,7 +12,13 @@ import { Subtitle } from '../../components/Text';
 import { menuLinks } from './data';
 
 
-export const HeaderWidget = ({ phone, headerNotification }) => {
+interface Props {
+    phone: string;
+    headerNotification: string;
+}
+
+
+export const HeaderWidget = ({ phone, headerNotification }: Props) => {
     const [isMenuOpen, setMenuOpen] = useState(false);
     const openMenu = () => setMenuOpen(true);
     const closeMenu = () => setMenuOpen(false);
