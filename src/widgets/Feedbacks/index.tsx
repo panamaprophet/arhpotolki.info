@@ -1,12 +1,13 @@
-import { useState } from "react";
-import { Button } from "../../components/Button";
-import { Carousel } from "../../components/Carousel";
-import { FeedbackForm } from "../../components/FeedbackForm";
-import { FeedbackItem } from "../../components/FeedbackItem/FeedbackItem";
-import { Row } from "../../components/Layout";
-import { Modal } from "../../components/Modal";
-import { Section } from "../../components/Section";
-import { Title } from "../../components/Text";
+import { useState } from 'react';
+import { Button } from '../../components/Button';
+import { Carousel } from '../../components/Carousel';
+import { FeedbackForm } from '../../components/FeedbackForm';
+import { FeedbackItem } from '../../components/FeedbackItem/FeedbackItem';
+import { Row } from '../../components/Layout';
+import { Modal } from '../../components/Modal';
+import { Section } from '../../components/Section';
+import { Title } from '../../components/Text';
+
 
 export const FeedbacksWidget = ({ feedbacks }) => {
     const [isFeedbackFormVisible, setFeedbackFormVisible] = useState(false);
