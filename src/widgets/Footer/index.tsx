@@ -1,13 +1,16 @@
-import { Footer } from "../../components/Footer";
-import { Column } from "../../components/Layout";
-import { LeadbackWidget } from "../../components/LeadbackWidget";
-import { Link } from "../../components/Link";
-import { Map } from "../../components/Map";
-import { Text } from "../../components/Text";
-import { VKWidget } from "../../components/VKWidget";
+import { Footer } from '../../components/Footer';
+import { Column } from '../../components/Layout';
+import { LeadbackWidget } from '../../components/LeadbackWidget';
+import { Link } from '../../components/Link';
+import { Map } from '../../components/Map';
+import { Text } from '../../components/Text';
+import { VKWidget } from '../../components/VKWidget';
+
 
 const getFullYear = () => (new Date()).getFullYear();
+
 const formatLink = (link: string) => link.replaceAll(/^(mailto:|\/\/|http:\/\/|https:\/\/)/gi, '');
+
 
 export const FooterWidget = ({ companyName, address, phone, links }) => {
     return (
