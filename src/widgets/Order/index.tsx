@@ -5,7 +5,15 @@ import { Section } from '../../components/Section';
 import { Title } from '../../components/Text';
 
 
-export const Order = ({ prices, materials, lightPrice, colorPrice, costBySquare }) => {
+interface Props {
+    prices: { [type: string]: { [k: number]: number; }; };
+    materials: string[];
+    lightPrice: number;
+    colorPrice: number;
+    costBySquare: number;
+}
+
+export const Order = ({ prices, materials, lightPrice, colorPrice, costBySquare }: Props) => {
     const [calculation, setCalculation] = useState({});
 
     const onPriceChange = calculations => setCalculation({ ...calculation, ...calculations });
