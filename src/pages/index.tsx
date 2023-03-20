@@ -1,22 +1,20 @@
-import { useState } from 'react';
-import { Title } from '../components/Text';
+import { Gallery } from '../widgets/Gallery';
 import { Separator } from '../components/Separator';
-import { Gallery } from '../components/Gallery';
-import { Section } from '../components/Section';
 
 import { getSettings } from '../resolvers/settings';
-import { getFeedbacks } from '../resolvers/feedback';
 import { getPictures } from '../resolvers/pictures';
+import { getFeedbacks } from '../resolvers/feedback';
+
 import { Feedback, Picture } from '../types';
-import { Description } from '../widgets/Description';
+
+import { Order } from '../widgets/Order';
 import { Steps } from '../widgets/StepsList';
-import { Certificates } from '../widgets/Certificates';
-import { Advantages } from '../widgets/Advantages';
 import { HeaderWidget } from '../widgets/Header';
 import { FooterWidget } from '../widgets/Footer';
+import { Advantages } from '../widgets/Advantages';
+import { Description } from '../widgets/Description';
+import { Certificates } from '../widgets/Certificates';
 import { FeedbacksWidget } from '../widgets/Feedbacks';
-import { Calculator } from '../widgets/Calculator';
-import { Application } from '../widgets/Application';
 
 interface Props {
     feedbacks: Feedback[];
@@ -27,8 +25,6 @@ interface Props {
 const App = (props: Props) => {
     const { feedbacks, settings, gallery } = props;
 
-    const [order, setOrder] = useState({});
-
     return (
         <>
             <HeaderWidget {...settings} />
@@ -37,18 +33,11 @@ const App = (props: Props) => {
 
             <Advantages />
 
-            {gallery.length && (
-                <Section id="examples">
-                    <Title>Наши работы</Title>
-                    <Gallery items={gallery} />
-                </Section>
-            )}
+            <Gallery gallery={gallery} />
 
             <Separator text="Изготовление - от одного дня, монтаж - от двух часов." />
 
-            <Calculator setOrder={setOrder} order={order} {...settings} />
-
-            <Application order={order} setOrder={setOrder} />
+            <Order {...settings} />
 
             <Steps />
 
@@ -61,7 +50,9 @@ const App = (props: Props) => {
     );
 };
 
+
 export default App;
+
 
 export const getServerSideProps = async () => ({
     props: {
