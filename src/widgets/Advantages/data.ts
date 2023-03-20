@@ -1,32 +1,3 @@
-export const certificates = ['/cert/1.jpg', '/cert/2.jpg', '/cert/3.jpg', '/cert/4.jpg', '/cert/5.jpg', '/cert/6.jpg'];
-
-export const steps = [
-    {
-        url: '/icons/scheme/6.png',
-        text: 'Вы звоните или оставляете заявку',
-    },
-    {
-        url: '/icons/scheme/1.png',
-        text: 'Мы делаем замер потолка и расчет стоимости',
-    },
-    {
-        url: '/icons/scheme/4.png',
-        text: 'Подписываем все документы',
-    },
-    {
-        url: '/icons/scheme/3.png',
-        text: 'Внесение аванса - 50% от общей суммы',
-    },
-    {
-        url: '/icons/scheme/2.png',
-        text: 'Установка потолка',
-    },
-    {
-        url: '/icons/scheme/5.png',
-        text: 'Довольный клиент, оплата оставшихся 50%',
-    },
-];
-
 export const features = [
     {
         url: '/icons/advantages/1.png',
@@ -77,26 +48,3 @@ export const features = [
         text: 'Работаем с кор­по­ра­тив­ны­ми клиентами',
     },
 ];
-
-export const menuLinks = [
-    {
-        title: 'Преимущества',
-        id: 'advantages'
-    },
-    {
-        title: 'Наши работы',
-        id: 'examples'
-    },
-    {
-        title: 'Расчёт стоимости',
-        id: 'calculator'
-    },
-    {
-        title: 'Оставить заявку',
-        id: 'application'
-    },
-    {
-        title: 'Контакты',
-        id: 'footer'
-    },
-]
