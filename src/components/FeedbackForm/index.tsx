@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button } from '../Button';
+import { ButtonWithStatus } from '../ButtonWithStatus';
 import { InputFile, InputText } from '../Input';
 import styles from './index.module.css';
 
@@ -29,9 +29,13 @@ export const FeedbackForm = ({ onSubmit }: Props) => {
 
             <InputFile onUpload={setPicture} />
 
-            <Button disabled={isDisabled} theme="green" className={styles.submitButton} onClick={() => onSubmit({ name, city, text, picture })}>
-                Отправить
-            </Button>
+            <ButtonWithStatus 
+                theme="green"
+                disabled={isDisabled}
+                className={styles.submitButton}
+                onClick={() => onSubmit({ name, city, text, picture })}
+                status={['Отправить','Отправляется','Отправлено','Ошибка']}
+            />
         </form>
     );
 };
