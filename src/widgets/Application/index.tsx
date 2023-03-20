@@ -1,6 +1,7 @@
-import { OrderForm } from "../../components/OrderForm";
-import { Section } from "../../components/Section";
-import { Title } from "../../components/Text";
+import { OrderForm } from '../../components/OrderForm';
+import { Section } from '../../components/Section';
+import { Title } from '../../components/Text';
+
 
 export const Application = ({ order, setOrder }) => {
     const onOrderSubmit = (clientData) => {
