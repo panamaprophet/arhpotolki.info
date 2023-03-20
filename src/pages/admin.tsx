@@ -1,8 +1,15 @@
 import { useReducer, useState } from 'react';
-import { useSession, signIn, signOut, getSession } from 'next-auth/react';
-
+import Image from 'next/image';
+import { signOut, getSession } from 'next-auth/react';
 import { Title } from '../components/Text';
-import { InputTextLazy, InputList, InputFile } from '../components/Input';
+import { InputTextLazy, InputList } from '../components/Input';
+import { List } from '../components/List';
+import { Column, Row } from '../components/Layout';
+import { Card } from '../components/Card';
+import { Section } from '../components/Section';
+import { Carousel } from '../components/Carousel';
+import { Button } from '../components/Button';
+import { AwsFileUploader } from '../components/AwsFileUploader';
 import {
     PictureEditor,
     FeedbackEditor,
@@ -24,13 +31,6 @@ import {
 } from '../store/admin/action-creators';
 
 import { Feedback, Picture, Setting } from '../types';
-import { List } from '../components/List';
-import { Column, Row } from '../components/Layout';
-import { Card } from '../components/Card';
-import { Section } from '../components/Section';
-import { Carousel } from '../components/Carousel';
-import { Button } from '../components/Button';
-import { AwsFileUploader } from '../components/AwsFileUploader';
 
 
 type Props = {
@@ -135,7 +135,10 @@ const AdminPage = (props: Props) => {
                 </List>
 
                 <Column>
-                    <AwsFileUploader multiple onUpload={setUrls} />
+                    <AwsFileUploader multiple onUpload={newUrls => setUrls([...urls, ...newUrls])} />
+                    <List align="flex-start" wrap={false}>
+                        {urls && urls.map((url) => <Image src={url} key={url} alt="" width="120" height="120" />)}
+                    </List>
                     <InputList placeholder="категории" onChange={setTags} value={tags} />
 
                     <Button theme="green" onClick={saveNewPictures}>Добавить</Button>
