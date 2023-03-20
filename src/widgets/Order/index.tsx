@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Calculator as Calc } from '../../components/Calculator';
-import { Gallery } from '../../components/Gallery';
 import { OrderForm } from '../../components/OrderForm';
 import { Section } from '../../components/Section';
 import { Title } from '../../components/Text';
