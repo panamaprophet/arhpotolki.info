@@ -50,15 +50,14 @@ export const Gallery = ({ items }: Props) => {
 
             <List align='center'>
                 {filteredItems.map((item, index) => (
-                    <Image
-                        className={styles.onLoad}
-                        key={item.url}
-                        src={item.url}
-                        width={207}
-                        height={145}
-                        alt=""
-                        onClick={() => openModal(index)}
-                    />
+                    <div key={item.url} className={styles.image}>
+                        <Image
+                            src={item.url}
+                            alt=""
+                            onClick={() => openModal(index)}
+                            fill
+                            />
+                    </div>
                 ))}
             </List>
 
