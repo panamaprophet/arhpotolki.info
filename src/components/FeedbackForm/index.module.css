@@ -12,7 +12,6 @@
     right: 0;
     display: flex;
     justify-content: center;
-    flex-shrink: 0;
     background-color: transparent;
     border: 2px solid #f7a136;
     width: 32px;
