@@ -17,7 +17,7 @@ interface Props {
 export const Order = ({ prices, materials, lightPrice, colorPrice, costBySquare }: Props) => {
     const [calculation, setCalculation] = useState({});
 
-    const onPriceChange = calculations => setCalculation({ ...calculation, ...calculations });
+    const onPriceChange = calculations => setCalculation({ ...calculations });
 
     const onOrderSubmit = (clientData) => {
         const orderData = {
