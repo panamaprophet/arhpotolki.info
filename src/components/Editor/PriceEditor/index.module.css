@@ -15,13 +15,8 @@
 }
 
 .root th,
-.root td,
-.root tbody td:last-child {
+.root td {
     position: relative;
-}
-
-.columnLast {
-    text-align: right;
 }
 
 .submitButton {
