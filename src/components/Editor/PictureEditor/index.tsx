@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { InputList } from '../../Input';
 import Image from 'next/image';
 import { Picture } from '../../../types';
@@ -26,18 +26,16 @@ export const PictureEditor = (props: Props) => {
         setSaved(false);
     };
 
-    useEffect(() => {
-        if (!isSaved && state.id) {
-            onUpdate(state);
-            setSaved(true);
-        }
-    }, [isSaved]);
+    if (!isSaved && state.id) {
+        onUpdate(state);
+        setSaved(true);
+    }
 
     return (
         <Column>
             <Image src={state.url} alt={id} width={IMAGE_SIZE} height={IMAGE_SIZE} />
             <InputList placeholder="категории" onChange={tags => onChange({ tags })} value={state.tags} />
-            <Button theme="orange" className={styles.buttonRemove} onClick={() => onRemove(state)}>x</Button>
+            <Button theme="orange" size="small" className={styles.buttonRemove} onClick={() => onRemove(state)}>⤫</Button>
         </Column>
     );
 };
