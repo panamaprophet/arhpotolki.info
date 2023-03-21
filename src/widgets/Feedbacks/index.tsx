@@ -39,7 +39,7 @@ export const FeedbacksWidget = ({ feedbacks }: Props) => {
                     Оставить отзыв
                 </Button>
                 <Modal isOpen={isFeedbackFormVisible} onClose={hideFeedbackForm}>
-                    <FeedbackForm onClick={hideFeedbackForm} onSubmit={onFeedbackSubmit} />
+                    <FeedbackForm onClose={hideFeedbackForm} onSubmit={onFeedbackSubmit} />
                 </Modal>
             </Row>
         </Section>
