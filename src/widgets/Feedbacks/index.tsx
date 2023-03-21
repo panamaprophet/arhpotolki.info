@@ -20,14 +20,11 @@ export const FeedbacksWidget = ({ feedbacks }: Props) => {
     const showFeedbackForm = () => setFeedbackFormVisible(true);
     const hideFeedbackForm = () => setFeedbackFormVisible(false);
 
-    const onFeedbackSubmit = (feedback: { name: string, city: string, text: string, picture: string }) => {
-        hideFeedbackForm();
-
-        return fetch('/api/feedback', {
+    const onFeedbackSubmit = (feedback: { name: string, city: string, text: string, picture: string }) => 
+        fetch('/api/feedback', {
             method: 'POST',
             body: JSON.stringify(feedback),
         });
-    };
 
     return (
         <Section id="feedbacks">
@@ -42,7 +39,7 @@ export const FeedbacksWidget = ({ feedbacks }: Props) => {
                     Оставить отзыв
                 </Button>
                 <Modal isOpen={isFeedbackFormVisible} onClose={hideFeedbackForm}>
-                    <FeedbackForm onSubmit={onFeedbackSubmit} />
+                    <FeedbackForm onClick={hideFeedbackForm} onSubmit={onFeedbackSubmit} />
                 </Modal>
             </Row>
         </Section>
