@@ -4,6 +4,7 @@ import styles from './index.module.css';
 
 interface Props {
     theme?: 'none' | 'green' | 'orange' | 'grey',
+    size?: 'auto' | 'small',
     className?: string,
     disabled?: boolean,
     children?: ReactNode,
@@ -13,6 +14,7 @@ interface Props {
 
 export const Button = ({
     theme = 'none',
+    size = 'auto',
     className = '',
     children,
     disabled = false,
@@ -21,7 +23,8 @@ export const Button = ({
     <button type="button" disabled={disabled} onClick={onClick} className={[
         styles.root,
         styles[`theme_${theme}`],
-        className
+        styles[`size_${size}`],
+        className,
     ].join(' ')}>
         {children}
     </button>
