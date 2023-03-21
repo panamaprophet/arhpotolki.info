@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { AwsFileUploader } from '../AwsFileUploader';
 import { ButtonWithStatus } from '../ButtonWithStatus';
-import { InputFile, InputText } from '../Input';
+import { InputText } from '../Input';
 import styles from './index.module.css';
 
 
@@ -15,11 +16,9 @@ export const FeedbackForm = ({ onSubmit }: Props) => {
     const [text, setText] = useState('');
     const [picture, setPicture] = useState('');
 
-    let isDisabled = false;
+    const onUpload = ([url]: string[]) => setPicture(url);
 
-    if (!name.length || !city.length || !text.length) {
-        isDisabled = true;
-    }
+    const isDisabled = !name.length || !city.length || !text.length;
 
     return (
         <form className={styles.root}>
@@ -27,14 +26,14 @@ export const FeedbackForm = ({ onSubmit }: Props) => {
             <InputText placeholder="Ваш город" value={city} onChange={setCity} />
             <InputText placeholder="Отзыв" value={text} onChange={setText} />
 
-            <InputFile onUpload={setPicture} />
+            <AwsFileUploader onUpload={onUpload} />
 
-            <ButtonWithStatus 
+            <ButtonWithStatus
                 theme="green"
                 disabled={isDisabled}
                 className={styles.submitButton}
                 onClick={() => onSubmit({ name, city, text, picture })}
-                status={['Отправить','Отправляется','Отправлено','Ошибка']}
+                status={['Отправить', 'Отправляется', 'Отправлено', 'Ошибка']}
             />
         </form>
     );
