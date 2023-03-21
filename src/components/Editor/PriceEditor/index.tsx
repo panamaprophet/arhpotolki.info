@@ -9,12 +9,19 @@ import {
     createRenameGroupAction,
     createRenameRowAction,
     createSetPriceAction,
+    PriceGroups,
     reducer,
 } from './store';
 import styles from './index.module.css';
 
 
-export const PriceEditor = ({ prices: initialValue = { '': { 0: 0 } }, onChange }) => {
+interface Props {
+    prices: PriceGroups;
+    onChange: (prices: PriceGroups) => void;
+}
+
+
+export const PriceEditor = ({ prices: initialValue = { '': { 0: 0 } }, onChange }: Props) => {
     const [prices, dispatch] = useReducer(reducer, initialValue);
     const [tempGroupName, setTempGroupName] = useState('');
 
