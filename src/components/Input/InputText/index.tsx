@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 type Props = {
     value: string,
     placeholder?: string,
-    onChange?: (event) => void,
+    onChange?: (value: string) => void,
 };
 
 
