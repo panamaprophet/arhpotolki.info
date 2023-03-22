@@ -10,6 +10,7 @@ export interface Feedback {
     text: string,
     picture?: string,
     date: number,
+    city: string,
 };
 
 export interface Setting {

@@ -8,6 +8,7 @@ import { Modal } from '../../components/Modal';
 import { Section } from '../../components/Section';
 import { Title } from '../../components/Text';
 import { Feedback } from '../../types';
+import styles from './styles.module.css';
 
 
 interface Props {
@@ -20,14 +21,11 @@ export const FeedbacksWidget = ({ feedbacks }: Props) => {
     const showFeedbackForm = () => setFeedbackFormVisible(true);
     const hideFeedbackForm = () => setFeedbackFormVisible(false);
 
-    const onFeedbackSubmit = (feedback: { name: string, city: string, text: string, picture: string }) => {
-        hideFeedbackForm();
-
-        return fetch('/api/feedback', {
+    const onFeedbackSubmit = (feedback: Omit<Feedback, 'id'>) => 
+        fetch('/api/feedback', {
             method: 'POST',
             body: JSON.stringify(feedback),
         });
-    };
 
     return (
         <Section id="feedbacks">
@@ -42,6 +40,9 @@ export const FeedbacksWidget = ({ feedbacks }: Props) => {
                     Оставить отзыв
                 </Button>
                 <Modal isOpen={isFeedbackFormVisible} onClose={hideFeedbackForm}>
+                    <div className={styles.closeButton} onClick={hideFeedbackForm}>
+                        x
+                    </div>
                     <FeedbackForm onSubmit={onFeedbackSubmit} />
                 </Modal>
             </Row>
