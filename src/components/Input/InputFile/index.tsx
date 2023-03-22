@@ -3,36 +3,47 @@ import { useEffect, useState } from 'react';
 import styles from './index.module.css';
 
 
-const uploadFile = async (file) => {
-    const name = encodeURIComponent(file.name);
-    const response = await fetch(`/api/upload/${name}`);
-    const { url } = await response.json();
-
-    await fetch(url, { method: 'PUT', body: file });
-
-    return url.split('?')[0];
+interface Props {
+    multiple?: boolean,
+    onUpload: (urls: string[]) => any,
+    uploaderFunction: (file: File) => Promise<string>,
 };
 
 
-export const InputFile = ({ onUpload }) => {
-    const [file, setFile] = useState(null);
+export const InputFile = ({
+    multiple = false,
+    uploaderFunction,
+    onUpload,
+}: Props) => {
+    const [files, setFiles] = useState(null);
 
     useEffect(() => {
-        if (file) {
-            uploadFile(file).then(onUpload);
+        if (!files) {
+            return;
         }
-    }, [file]);
+
+        (async () => {
+            const urls: string[] = [];
+
+            for (const file of files) {
+                urls.push(await uploaderFunction(file));
+            }
+
+            onUpload(urls);
+        })();
+    }, [files]);
 
     return (
         <label className={styles.root}>
             <input
-                className={styles.input}
                 type="file"
-                onChange={event => setFile(event.target.files[0])}
+                multiple={multiple}
+                className={styles.input}
+                onChange={event => setFiles(event.target.files)}
             />
             <div className={styles.meta}>
                 <div>Прикрепить файл</div>
-                <div className={styles.text}>Перетащите его сюда или нажмите для выбора</div>
+                <div className={styles.text}>Перетащите сюда или нажмите для выбора</div>
             </div>
         </label>
     );
