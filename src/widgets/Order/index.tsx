@@ -6,20 +6,21 @@ import { Title } from '../../components/Text';
 
 
 interface Props {
-    prices: { [type: string]: { [k: number]: number; }; };
+    prices: { 
+        [type: string]: { 
+            [k: number]: number 
+        } 
+    };
     materials: string[];
     lightPrice: number;
     colorPrice: number;
     costBySquare: number;
 }
 
-
 export const Order = ({ prices, materials, lightPrice, colorPrice, costBySquare }: Props) => {
     const [calculation, setCalculation] = useState({});
 
-    const onPriceChange = calculations => setCalculation({ ...calculations });
-
-    const onOrderSubmit = (clientData) => {
+    const onOrderSubmit = clientData => {
         const orderData = {
             ...calculation,
             ...clientData,
@@ -40,13 +41,13 @@ export const Order = ({ prices, materials, lightPrice, colorPrice, costBySquare 
             <Section id="calculator">
                 <Title>Рассчитать стоимость:</Title>
                 <Calc
-                    onCalc={onPriceChange}
+                    onCalc={calculations => setCalculation({ ...calculations })}
                     materials={materials}
                     prices={prices}
                     lightPrice={lightPrice}
                     colorPrice={colorPrice}
                     defaultMeterPrice={costBySquare}
-                    />
+                />
             </Section>
 
             <Section id="application" style={{ background: '#f7a136' }}>
