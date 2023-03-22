@@ -18,7 +18,7 @@ export const FeedbackForm = ({ onSubmit }: Props) => {
     const [picture, setPicture] = useState('');
 
     const onUpload = ([url]: string[]) => setPicture(url);
-    
+
     const isDisabled = !author.length || !city.length || !text.length;
 
     return (
