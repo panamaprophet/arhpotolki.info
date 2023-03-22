@@ -1,13 +1,12 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { ComponentProps, useEffect, useState } from "react";
-import { Button } from "../Button";
+import { ComponentProps, useEffect, useState } from 'react';
+import { Button } from '../Button';
 
 interface Props extends ComponentProps<typeof Button> {
     status: string[],
 }
 
 export const ButtonWithStatus = (props: Props) => {
-    const [idle, loading, finished, error] = props.status;
+    const [[idle, loading, finished, error]] = useState(props.status);
     const [text, setText] = useState(idle);
     const [isFinished, setIsFinished] = useState(false);
     const [disabled, setDisabled] = useState(false);
@@ -22,7 +21,7 @@ export const ButtonWithStatus = (props: Props) => {
         if (isFinished) {
             setTimeout(handleStates, 2000);
         }
-    }, [isFinished]);
+    }, [idle, isFinished]);
 
     const handleClick = async () => {
         try {
