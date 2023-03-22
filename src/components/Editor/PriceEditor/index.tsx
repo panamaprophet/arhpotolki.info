@@ -1,85 +1,94 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-
-import { useReducer } from 'react';
+import { useReducer, useState } from 'react';
 import { Button } from '../../Button';
 import { InputTextLazy } from '../../Input';
+
 import {
-    ACTION_INSERT_ROW,
-    ACTION_REMOVE_ROW,
-    ACTION_RENAME_GROUP,
-    ACTION_SET_INDEX,
-    ACTION_SET_PRICE,
+    createAddGroupAction,
+    createAddRowAction,
+    createRemoveGroupAction,
+    createRemoveRowAction,
+    createRenameGroupAction,
+    createRenameRowAction,
+    createSetPriceAction,
+    PriceGroups,
     reducer,
 } from './store';
+
+import { GroupRow } from './elements/GroupRow';
+import { GroupName } from './elements/GroupName';
 
 import styles from './index.module.css';
 
 
-const INITIAL_VALUE = {
-    'default group': {
-        0: 0,
-    },
-};
+interface Props {
+    prices: PriceGroups;
+    onChange: (prices: PriceGroups) => void;
+}
 
 
-export const PriceEditor = ({ prices: initialValue = { ...INITIAL_VALUE }, onChange }) => {
+export const PriceEditor = ({ prices: initialValue = { '': { 0: 0 } }, onChange }: Props) => {
     const [prices, dispatch] = useReducer(reducer, initialValue);
+    const [tempGroupName, setTempGroupName] = useState('');
 
     const groups = Object.keys(prices);
-    const indexes = Object.keys(prices[groups[0]]);
+    const keys = Object.keys(prices[groups[0]]).map(Number);
 
-    const Groups = groups.map((group) => (
-        <th key={group}>
-            <InputTextLazy
-                value={group}
-                onChange={value => dispatch({ type: ACTION_RENAME_GROUP, payload: { from: group, to: value } })}
-            />
-        </th>
-    ));
+    const renameRow = createRenameRowAction(dispatch);
+    const setPrice = createSetPriceAction(dispatch);
+    const removeRow = createRemoveRowAction(dispatch);
+    const addRow = createAddRowAction(dispatch);
+    const addGroup = createAddGroupAction(dispatch);
+    const renameGroup = createRenameGroupAction(dispatch);
+    const removeGroup = createRemoveGroupAction(dispatch);
 
-    const Rows = indexes.map((key, index) => (
-        <tr key={key}>
-            <td>
-                <InputTextLazy
-                    value={key}
-                    onChange={value => dispatch({ type: ACTION_SET_INDEX, payload: { from: key, to: value } })}
-                />
-            </td>
+    const onGroupAdd = (group: string) => {
+        addGroup(group);
+        setTempGroupName('');
+    };
 
-            {groups.map((group) => (
-                <td key={`${group}_${key}`}>
-                    <InputTextLazy
-                        value={prices[group][key]}
-                        onChange={value => dispatch({ type: ACTION_SET_PRICE, payload: { group, key, value } })}
-                    />
-                </td>
-            ))}
-
-            <td className={styles.columnLast}>
-                {(!indexes[index + 1] || (Number(indexes[index + 1]) - Number(key)) > 1) && (
-                    <Button theme="green" onClick={() => dispatch({ type: ACTION_INSERT_ROW, payload: { key: Number(key) + 1 } })}>+</Button>
-                )}
-
-                <Button theme="orange" onClick={() => dispatch({ type: ACTION_REMOVE_ROW, payload: { key } })}>x</Button>
-            </td>
-        </tr>
-    ));
+    const rows = keys.map((key) => [key, ...groups.map(group => prices[group][key])]);
 
     return (
         <table className={styles.root}>
             <thead>
                 <tr>
-                    <th></th>
-                    {Groups}
+                    <th>
+                        <InputTextLazy placeholder="Новая группа" key={tempGroupName} value={tempGroupName} onChange={setTempGroupName} />
+                        <Button size="small" onClick={() => onGroupAdd(tempGroupName)} theme="green" className={styles.inputButton}>
+                            +
+                        </Button>
+                    </th>
+                    {groups.map((group) => (
+                        <GroupName
+                            key={group}
+                            name={group}
+                            onChange={value => renameGroup(group, value)}
+                            onRemove={() => removeGroup(group)}
+                        />
+                    ))}
                     <th></th>
                 </tr>
             </thead>
 
             <tbody>
-                {Rows}
+                {rows.map(([key, ...values], index) => (
+                    <GroupRow
+                        key={key}
+                        groupKey={key}
+                        values={values}
+                        onKeyRename={value => renameRow(key, value)}
+                        onPriceChange={(groupIndex, value) => setPrice(groups[groupIndex], key, value)}
+                        onAddRow={() => addRow(key + 1)}
+                        onRowRemove={() => removeRow(key)}
+                        isLastRow={!rows[index + 1] || rows[index + 1][0] - key > 1}
+                    />
+                ))}
+
                 <tr>
                     <td colSpan={4}>
-                        <Button theme="green" className={styles.submitButton} onClick={() => onChange(prices)}>Сохранить</Button>
+                        <Button theme="green" className={styles.submitButton} onClick={() => onChange(prices)}>
+                            Сохранить
+                        </Button>
                     </td>
                 </tr>
             </tbody>

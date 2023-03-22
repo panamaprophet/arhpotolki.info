@@ -40,3 +40,14 @@
 .theme_grey {
     background: #cccccc;
 }
+
+.size_small {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+}
+
+.size_auto {
+    width: auto;
+    height: auto;
+}

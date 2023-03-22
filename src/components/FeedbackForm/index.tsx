@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Feedback } from '../../types';
+import { AwsFileUploader } from '../AwsFileUploader';
 import { ButtonWithStatus } from '../ButtonWithStatus';
-import { InputFile, InputText } from '../Input';
+import { InputText } from '../Input';
 import styles from './index.module.css';
 
 interface Props {
@@ -14,11 +15,9 @@ export const FeedbackForm = ({ onSubmit }: Props) => {
     const [text, setText] = useState('');
     const [picture, setPicture] = useState('');
 
-    let isDisabled = false;
-
-    if (!author.length || !city.length || !text.length) {
-        isDisabled = true;
-    }
+    const onUpload = ([url]: string[]) => setPicture(url);
+    
+    const isDisabled = !name.length || !city.length || !text.length;
 
     return (
         <form className={styles.root}>
@@ -26,7 +25,7 @@ export const FeedbackForm = ({ onSubmit }: Props) => {
             <InputText placeholder="Ваш город" value={city} onChange={setCity} />
             <InputText placeholder="Отзыв" value={text} onChange={setText} />
 
-            <InputFile onUpload={setPicture} />
+            <AwsFileUploader onUpload={onUpload} />
 
             <ButtonWithStatus
                 theme="green"
