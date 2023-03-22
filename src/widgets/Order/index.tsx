@@ -20,17 +20,14 @@ interface Props {
 export const Order = ({ prices, materials, lightPrice, colorPrice, costBySquare }: Props) => {
     const [calculation, setCalculation] = useState({});
 
-    const onOrderSubmit = clientData => {
-        const orderData = {
-            ...calculation,
-            ...clientData,
-        };
-
-        return fetch('/api/order', {
+    const onOrderSubmit = clientData => 
+        fetch('/api/order', {
             method: 'POST',
-            body: JSON.stringify(orderData),
+            body: JSON.stringify({ 
+                ...calculation, 
+                ...clientData 
+            }),
         });
-    };
 
     if (!prices && !materials) {
         return null;
