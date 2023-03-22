@@ -2,11 +2,7 @@
     width: 100%;
 }
 
-.columnLast {
-    text-align: right;
-}
-
-.root button + button {
+.root button+button {
     margin-left: 3px;
 }
 
@@ -14,7 +10,30 @@
     width: 100%;
 }
 
+.root thead th {
+    padding-bottom: 20px;
+}
+
+.root th,
+.root td {
+    position: relative;
+}
+
 .submitButton {
     width: 100%;
     margin-top: 32px;
+}
+
+.inputButton {
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translate(-25%, 25%);
+}
+
+.addButton {
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translate(-150%, 25%);
 }
