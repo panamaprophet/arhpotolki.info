@@ -38,7 +38,7 @@ export const Order = ({ prices, materials, lightPrice, colorPrice, costBySquare 
             <Section id="calculator">
                 <Title>Рассчитать стоимость:</Title>
                 <Calc
-                    onCalc={calculations => setCalculation({ ...calculations })}
+                    onCalc={setCalculation}
                     materials={materials}
                     prices={prices}
                     lightPrice={lightPrice}
