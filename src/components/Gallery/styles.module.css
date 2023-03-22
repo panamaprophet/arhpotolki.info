@@ -1,5 +1,17 @@
-.onLoad {
-    animation: load 1.5s alternate-reverse infinite;
+.image {
+    position: relative;
+    animation: load 2s alternate-reverse infinite;
+    width: 220px;
+    height: 140px;
+    object-fit: contain;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 700px) {
+    .image {
+        width: 140px;
+        height: 100px;
+    }
 }
 
 @keyframes load {
