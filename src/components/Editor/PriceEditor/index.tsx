@@ -58,12 +58,14 @@ export const PriceEditor = ({ prices: initialValue = { '': { 0: 0 } }, onChange 
                             +
                         </Button>
                     </th>
-                    {groups.map((group) => (<GroupName
-                        key={group}
-                        name={group}
-                        onChange={value => renameGroup(group, value)}
-                        onRemove={() => removeGroup(group)}
-                    />))}
+                    {groups.map((group) => (
+                        <GroupName
+                            key={group}
+                            name={group}
+                            onChange={value => renameGroup(group, value)}
+                            onRemove={() => removeGroup(group)}
+                        />
+                    ))}
                     <th></th>
                 </tr>
             </thead>
