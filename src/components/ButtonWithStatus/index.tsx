@@ -6,7 +6,7 @@ interface Props extends ComponentProps<typeof Button> {
 }
 
 export const ButtonWithStatus = (props: Props) => {
-    const [[idle, loading, finished, error]] = useState(props.status);
+    const [idle, loading, finished, error] = props.status;
     const [text, setText] = useState(idle);
     const [isFinished, setIsFinished] = useState(false);
     const [disabled, setDisabled] = useState(false);

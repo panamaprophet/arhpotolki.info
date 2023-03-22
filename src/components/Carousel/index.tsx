@@ -1,4 +1,4 @@
-import { Children, ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Children, ReactNode, useCallback, useEffect, useState } from 'react';
 import styles from './styles.module.css';
 
 interface Props {
@@ -13,7 +13,7 @@ export const Carousel = ({ children, viewportWidth: initialViewportWidth, startI
     const [currentIndex, setIndex] = useState(startIndex);
     const [viewportWidth, setViewportWidth] = useState(initialViewportWidth);
 
-    const handleViewportWidth = useCallback((node) => {
+    const handleViewportWidth = useCallback((node: HTMLDivElement) => {
         if (node && !initialViewportWidth) {
             const { width } = node.getBoundingClientRect();
 
@@ -21,26 +21,22 @@ export const Carousel = ({ children, viewportWidth: initialViewportWidth, startI
         }
     }, [initialViewportWidth]);
 
-    const onForward = () => setIndex(lastIndex === currentIndex ? 0 : currentIndex + 1);
-    const onBackward = () => setIndex(currentIndex === 0 ? lastIndex : currentIndex - 1);
+    const onForward = useCallback(() => setIndex(index => lastIndex === index ? 0 : index + 1), [lastIndex]);
+
+    const onBackward = useCallback(() => setIndex(index => index === 0 ? lastIndex : index - 1), [lastIndex]);
 
     const offset = viewportWidth * currentIndex;
 
-    const handleKeyboardClick = useCallback((event: KeyboardEvent) => {
-        if (event.code === 'ArrowLeft') {
-            onBackward();
-        }
-
-        if (event.code === 'ArrowRight') {
-            onForward();
-        }
-    }, [currentIndex])
-
     useEffect(() => {
+        const handleKeyboardClick = (event: KeyboardEvent) => {
+            if (event.code === 'ArrowLeft') onBackward();
+            if (event.code === 'ArrowRight') onForward();
+        };
+
         document.addEventListener('keydown', handleKeyboardClick);
 
         return () => document.removeEventListener('keydown', handleKeyboardClick);
-    }, [handleKeyboardClick])
+    }, [onForward, onBackward]);
 
     return (
         <div className={styles.root}>
