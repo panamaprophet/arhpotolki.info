@@ -6,3 +6,4 @@ vendor/
 .env
 cdk.out/
 cdk-outputs.json
+.pnp.*
