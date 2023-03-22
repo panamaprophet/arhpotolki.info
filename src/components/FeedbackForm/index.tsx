@@ -17,8 +17,6 @@ export const FeedbackForm = ({ onSubmit }: Props) => {
     const [text, setText] = useState('');
     const [picture, setPicture] = useState('');
 
-    const onUpload = ([url]: string[]) => setPicture(url);
-
     const isDisabled = !author.length || !city.length || !text.length;
 
     return (
@@ -27,7 +25,7 @@ export const FeedbackForm = ({ onSubmit }: Props) => {
             <InputText placeholder="Ваш город" value={city} onChange={setCity} />
             <InputText placeholder="Отзыв" value={text} onChange={setText} />
 
-            <AwsFileUploader onUpload={onUpload} />
+            <AwsFileUploader onUpload={setPicture} />
 
             <ButtonWithStatus
                 theme="green"
