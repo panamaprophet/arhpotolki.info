@@ -5,9 +5,11 @@ import { ButtonWithStatus } from '../ButtonWithStatus';
 import { InputText } from '../Input';
 import styles from './index.module.css';
 
+
 interface Props {
     onSubmit: (data: Omit<Feedback, 'id' | 'date'>) => void;
 }
+
 
 export const FeedbackForm = ({ onSubmit }: Props) => {
     const [author, setAuthor] = useState('');
@@ -17,7 +19,7 @@ export const FeedbackForm = ({ onSubmit }: Props) => {
 
     const onUpload = ([url]: string[]) => setPicture(url);
     
-    const isDisabled = !name.length || !city.length || !text.length;
+    const isDisabled = !author.length || !city.length || !text.length;
 
     return (
         <form className={styles.root}>
