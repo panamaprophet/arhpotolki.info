@@ -51,6 +51,7 @@ export const Gallery = ({ items }: Props) => {
                     <div key={item.url} className={styles.preview}>
                         <Image
                             src={item.url}
+                            quality={1}
                             alt=""
                             onClick={() => openModal(index)}
                             fill
@@ -60,13 +61,17 @@ export const Gallery = ({ items }: Props) => {
             </List>
 
             <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
-                <Carousel startIndex={currentIndex}>
-                    {filteredItems.map(item => (
-                        <div key={item.url} className={styles.image}>
-                            <Image key={item.id} src={item.url} fill alt="" />
-                        </div>
-                    ))}
-                </Carousel>
+                <div className={styles.wrapper}>
+                    <Carousel startIndex={currentIndex}>
+                        {filteredItems.map(item => (
+                            <div key={item.id} className={styles.imageWrapper}>
+                                <div className={styles.image}>
+                                    <Image key={item.id} src={item.url} fill alt="" />
+                                </div>
+                            </div>
+                        ))}
+                    </Carousel>
+                </div>
             </Modal>
         </>
     )
