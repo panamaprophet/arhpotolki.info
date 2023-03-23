@@ -8,7 +8,7 @@ import { Feedback } from '../../types';
 const FEEDBACK_TABLE = String(process.env.FEEDBACK_TABLE)
 
 
-export const saveFeedback = async (data: any) => {
+export const saveFeedback = async (data: Partial<Feedback>) => {
     const { id = randomUUID(), text, author, picture, date = Date.now() } = data;
 
     const result = await db.send(new PutItemCommand({
