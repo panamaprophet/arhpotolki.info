@@ -7,3 +7,4 @@ vendor/
 cdk.out/
 cdk-outputs.json
 .pnp.*
+.vscode/
