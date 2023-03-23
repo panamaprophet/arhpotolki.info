@@ -13,6 +13,16 @@ export const Modal = ({ children, isOpen, onClose }: Props) => {
         document.body.style.overflow = isOpen ? 'hidden' : 'visible';
     }, [isOpen]);
 
+    useEffect(() => {
+        const handleKeyboardClick = (event: KeyboardEvent) => {
+            if (event.code === 'Escape') onClose();
+        };
+
+        document.addEventListener('keydown', handleKeyboardClick);
+
+        return () => document.removeEventListener('keydown', handleKeyboardClick);
+    }, []);
+
     if (isOpen) {
         return createPortal(
             <div className={styles.root}>
