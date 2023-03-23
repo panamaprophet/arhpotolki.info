@@ -12,8 +12,6 @@ interface Props {
     items: Picture[],
 }
 
-const IMAGE_WIDTH = 568;
-const IMAGE_HEIGHT = 400;
 
 export const Gallery = ({ items }: Props) => {
     const [isModalOpen, setModalOpen] = useState(false);
@@ -50,28 +48,23 @@ export const Gallery = ({ items }: Props) => {
 
             <List align='center'>
                 {filteredItems.map((item, index) => (
-                    <div key={item.url} className={styles.image}>
+                    <div key={item.url} className={styles.preview}>
                         <Image
                             src={item.url}
                             alt=""
                             onClick={() => openModal(index)}
                             fill
-                            />
+                        />
                     </div>
                 ))}
             </List>
 
             <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
-                <Carousel viewportWidth={IMAGE_WIDTH} startIndex={currentIndex}>
+                <Carousel startIndex={currentIndex}>
                     {filteredItems.map(item => (
-                        <Image
-                            className={styles.onLoad}
-                            key={item.id}
-                            src={item.url}
-                            width={IMAGE_WIDTH}
-                            height={IMAGE_HEIGHT}
-                            alt=""
-                        />
+                        <div key={item.url} className={styles.image}>
+                            <Image key={item.id} src={item.url} fill alt="" />
+                        </div>
                     ))}
                 </Carousel>
             </Modal>
