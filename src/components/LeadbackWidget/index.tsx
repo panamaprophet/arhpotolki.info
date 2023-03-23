@@ -1,13 +1,13 @@
 import Script from 'next/script';
+import { useEffect } from 'react';
+
+
+const url = 'https://leadback.ru/js/leadback.js';
 
 export const LeadbackWidget = () => {
-    const url = 'https://leadback.ru/js/leadback.js';
-    
-    if (!globalThis._emv) {
-        globalThis._emv = {};
-    }
-    
-    globalThis._emv['campaign'] = 'leadback_campaign_id';
-    
+    useEffect(() => {
+        globalThis._emv = { campaign: 'leadback_campaign_id' };
+    }, [])
+
     return <Script src={url} defer />;
 }
