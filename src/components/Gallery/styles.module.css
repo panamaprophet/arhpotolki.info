@@ -1,16 +1,30 @@
+.preview,
 .image {
     position: relative;
     animation: load 2s alternate-reverse infinite;
-    width: 220px;
-    height: 140px;
     object-fit: contain;
     overflow: hidden;
 }
 
+.preview {
+    width: 220px;
+    height: 140px;
+}
+
+.image {
+    width: 568px;
+    height: 400px;
+}
+
 @media screen and (max-width: 700px) {
-    .image {
+    .preview {
         width: 140px;
         height: 100px;
+    }
+
+    .image {
+        width: 190px;
+        height: 140px;
     }
 }
 
