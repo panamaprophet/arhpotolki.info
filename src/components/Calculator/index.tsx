@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-
 import { ReactNode, useState } from 'react';
 import { ColorPicker } from '../ColorPicker';
 import { InputNumber, InputRange, InputText } from '../Input';

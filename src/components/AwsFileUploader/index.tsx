@@ -1,11 +1,23 @@
+import { useEffect, useState } from 'react';
 import { InputFile } from '../Input';
 
 
-type Props = Omit<React.ComponentProps<typeof InputFile>, 'uploaderFunction'>;
+interface SingleFileProps {
+    multiple?: false,
+    onUpload: (url: string) => void,
+}
+interface MultiFileProps {
+    multiple: true,
+    onUpload: (urls: string[]) => void,
+}
+
+type Props = SingleFileProps | MultiFileProps;
 
 
-export const AwsFileUploader = ({ multiple, onUpload }: Props) => {
-    const uploaderFunction = async (file: File) => {
+export const AwsFileUploader = ({ multiple = false, onUpload }: Props) => {
+    const [files, setFiles] = useState<FileList>();
+
+    const upload = async (file: File) => {
         try {
             const name = encodeURIComponent(file.name);
             const response = await fetch(`/api/upload/${name}`);
@@ -21,5 +33,17 @@ export const AwsFileUploader = ({ multiple, onUpload }: Props) => {
         }
     };
 
-    return <InputFile multiple={multiple} onUpload={onUpload} uploaderFunction={uploaderFunction} />
+    useEffect(() => {
+        if (!files) return;
+
+        (async () => {
+            const fileList = Array.from(files);
+            const promises = fileList.map(upload);
+            const urls = await Promise.all(promises);
+
+            onUpload(multiple ? urls : urls[0]);
+        })();
+    }, [files, multiple, onUpload]);
+
+    return <InputFile multiple={multiple} onChange={setFiles} />
 };
