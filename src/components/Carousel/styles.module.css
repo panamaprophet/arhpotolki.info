@@ -41,7 +41,7 @@
     display: flex;
     flex-flow: row nowrap;
     white-space: nowrap;
-    transition: all 150ms ease;
+    transition: all 400ms ease;;
 }
 
 .list > * {

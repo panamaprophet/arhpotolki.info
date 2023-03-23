@@ -17,7 +17,7 @@ export const Carousel = ({ children, viewportWidth: initialViewportWidth, startI
         if (node && !initialViewportWidth) {
             const { width } = node.getBoundingClientRect();
 
-            return setViewportWidth(width / childrenCount);
+            return setViewportWidth(width);
         }
     }, [initialViewportWidth]);
 
