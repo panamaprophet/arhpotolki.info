@@ -66,7 +66,7 @@ export const Gallery = ({ items }: Props) => {
                     {filteredItems.map(item => (
                         <Image
                             className={styles.onLoad}
-                            key={item.url}
+                            key={item.id}
                             src={item.url}
                             width={IMAGE_WIDTH}
                             height={IMAGE_HEIGHT}

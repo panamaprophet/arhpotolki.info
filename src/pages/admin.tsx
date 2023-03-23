@@ -1,4 +1,4 @@
-import { useReducer, useState } from 'react';
+import { useCallback, useReducer, useState } from 'react';
 import Image from 'next/image';
 import { signOut, getSession } from 'next-auth/react';
 import { Title } from '../components/Text';
@@ -10,11 +10,7 @@ import { Section } from '../components/Section';
 import { Carousel } from '../components/Carousel';
 import { Button } from '../components/Button';
 import { AwsFileUploader } from '../components/AwsFileUploader';
-import {
-    PictureEditor,
-    FeedbackEditor,
-    PriceEditor,
-} from '../components/Editor';
+import { PictureEditor, FeedbackEditor, PriceEditor } from '../components/Editor';
 
 import { getFeedbacks } from '../resolvers/feedback';
 import { getPictures } from '../resolvers/pictures';
@@ -44,6 +40,11 @@ const AdminPage = (props: Props) => {
     const [state, dispatch] = useReducer(reducer, { ...props });
     const [urls, setUrls] = useState([]);
     const [tags, setTags] = useState([]);
+
+    const addUrls = useCallback((newUrls: string[]) => setUrls(urls => [
+        ...urls, 
+        ...newUrls,
+    ]), []);
 
     const onPictureUpdate = createUpdatePictureAction(dispatch);
     const onFeedbackUpdate = createUpdateFeedbackAction(dispatch);
@@ -135,7 +136,7 @@ const AdminPage = (props: Props) => {
                 </List>
 
                 <Column>
-                    <AwsFileUploader multiple onUpload={newUrls => setUrls([...urls, ...newUrls])} />
+                    <AwsFileUploader multiple onUpload={addUrls} />
                     <List align="flex-start" wrap={false}>
                         {urls && urls.map((url) => <Image src={url} key={url} alt="" width="120" height="120" />)}
                     </List>

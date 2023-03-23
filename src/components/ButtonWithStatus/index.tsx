@@ -1,6 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { ComponentProps, useEffect, useState } from "react";
-import { Button } from "../Button";
+import { ComponentProps, useEffect, useState } from 'react';
+import { Button } from '../Button';
 
 interface Props extends ComponentProps<typeof Button> {
     status: string[],
@@ -22,7 +21,7 @@ export const ButtonWithStatus = (props: Props) => {
         if (isFinished) {
             setTimeout(handleStates, 2000);
         }
-    }, [isFinished]);
+    }, [idle, isFinished]);
 
     const handleClick = async () => {
         try {

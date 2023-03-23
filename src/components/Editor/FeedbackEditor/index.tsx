@@ -1,10 +1,9 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-
-import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { useState } from 'react';
 import { Feedback } from '../../../types';
 import { Button } from '../../Button';
 import { InputDate, InputTextLazy } from '../../Input';
-import { Row } from '../../Layout';
+import { Column, Row } from '../../Layout';
 import { Section } from '../../Section';
 
 
@@ -23,29 +22,32 @@ export const FeedbackEditor = ({ onUpdate, onRemove, ...props }: Props) => {
         setSaved(false);
     };
 
-    useEffect(() => {
-        if (!isSaved) {
-            onUpdate(state);
-            setSaved(true);
-        }
-    }, [isSaved]);
+    if (!isSaved) {
+        onUpdate(state);
+        setSaved(true);
+    }
 
     return (
         <Section>
             <Row>
-                <strong>Имя:</strong>
-                <InputTextLazy value={state.author} onChange={author => onChange({ author })} />
-            </Row>
-            <Row>
-                <strong>Текст:</strong>
-                <InputTextLazy value={state.text} onChange={text => onChange({ text })} />
-            </Row>
-            <Row>
-                <strong>Дата:</strong>
-                <InputDate value={state.date} onChange={date => onChange({ date })} />
-            </Row>
+                {props.picture && <Image width="160" height="160" src={props.picture} alt="" />}
+                <Column>
+                    <Row>
+                        <strong>Имя:</strong>
+                        <InputTextLazy value={state.author} onChange={author => onChange({ author })} />
+                    </Row>
+                    <Row>
+                        <strong>Текст:</strong>
+                        <InputTextLazy value={state.text} onChange={text => onChange({ text })} />
+                    </Row>
+                    <Row>
+                        <strong>Дата:</strong>
+                        <InputDate value={state.date} onChange={date => onChange({ date })} />
+                    </Row>
 
-            <Button theme="orange" onClick={() => onRemove(state)}>Удалить</Button>
+                    <Button theme="orange" onClick={() => onRemove(state)}>Удалить</Button>
+                </Column>
+            </Row>
         </Section>
     );
 };
