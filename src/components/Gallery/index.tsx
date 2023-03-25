@@ -48,7 +48,7 @@ export const Gallery = ({ items }: Props) => {
 
             <List align='center'>
                 {filteredItems.map((item, index) => (
-                    <div key={item.url} className={styles.preview}>
+                    <div key={item.id} className={styles.preview}>
                         <Image
                             src={item.url}
                             quality={1}
@@ -66,7 +66,7 @@ export const Gallery = ({ items }: Props) => {
                         {filteredItems.map(item => (
                             <div key={item.id} className={styles.imageWrapper}>
                                 <div className={styles.image}>
-                                    <Image key={item.id} src={item.url} fill alt="" />
+                                    <Image src={item.url} fill alt="" />
                                 </div>
                             </div>
                         ))}
