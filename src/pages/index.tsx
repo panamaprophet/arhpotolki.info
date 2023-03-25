@@ -48,7 +48,7 @@ const App = (props: Props) => {
 
             <FooterWidget {...settings} />
 
-            <LeadbackWidget campaignKey="0a656cc19f3f5b27324bfa32" />
+            <LeadbackWidget campaign="0a656cc19f3f5b27324bfa32" />
         </>
     );
 };

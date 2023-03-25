@@ -5,12 +5,12 @@ import { useEffect } from 'react';
 const url = 'https://leadback.ru/js/leadback.js';
 
 interface Props {
-    campaignKey: string;
+    campaign: string;
 }
 
-export const LeadbackWidget = ({ campaignKey }: Props) => {
+export const LeadbackWidget = ({ campaign }: Props) => {
     useEffect(() => {
-        globalThis._emv = { campaign: campaignKey };
+        globalThis._emv = { campaign };
     }, [])
 
     return <Script src={url} defer />;
