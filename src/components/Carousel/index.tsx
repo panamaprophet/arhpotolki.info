@@ -12,11 +12,13 @@ export const Carousel = ({ children, viewportWidth: initialViewportWidth, startI
     const lastIndex = childrenCount - 1;
     const [currentIndex, setIndex] = useState(startIndex);
     const [viewportWidth, setViewportWidth] = useState(initialViewportWidth);
+    const [height, setHeight] = useState(0);
 
     const handleViewportWidth = useCallback((node: HTMLDivElement) => {
         if (node && !initialViewportWidth) {
-            const { width } = node.getBoundingClientRect();
+            const { width, height } = node.getBoundingClientRect();
 
+            setHeight(height);
             return setViewportWidth(width);
         }
     }, [initialViewportWidth]);
@@ -40,7 +42,7 @@ export const Carousel = ({ children, viewportWidth: initialViewportWidth, startI
 
     return (
         <div className={styles.root}>
-            <div className={styles.container}>
+            <div className={styles.container} style={{ height: height }}>
                 <div className={styles.prev} onClick={onBackward}>
                     «
                 </div>
