@@ -35,8 +35,9 @@
     }
 
     .image {
-        width: 190px;
-        height: 140px;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4/3;
     }
 }
 
