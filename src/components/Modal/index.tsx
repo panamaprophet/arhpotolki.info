@@ -1,14 +1,16 @@
 import { ReactNode, useEffect } from 'react';
 import styles from './styles.module.css';
 import { createPortal } from 'react-dom';
+import { cx } from '../../helpers';
 
 interface Props {
     children: ReactNode;
     isOpen: boolean;
     onClose?: () => void;
+    size: 'small' | 'medium' | 'large';
 }
 
-export const Modal = ({ children, isOpen, onClose }: Props) => {
+export const Modal = ({ children, size, isOpen, onClose }: Props) => {
     useEffect(() => {
         document.body.style.overflow = isOpen ? 'hidden' : 'visible';
     }, [isOpen]);
@@ -27,7 +29,7 @@ export const Modal = ({ children, isOpen, onClose }: Props) => {
         return createPortal(
             <div className={styles.root}>
                 <div className={styles.overlay} onClick={onClose} />
-                <div className={styles.modal}>{children}</div>
+                <div className={cx(styles.modal, styles[`size_${size}`])}>{children}</div>
             </div>,
             document.body
         );
