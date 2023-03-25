@@ -6,6 +6,7 @@
 }
 
 .modal {
+    width: 100%;
     position: fixed;
     display: flex;
     align-items: center;
@@ -22,4 +23,12 @@
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.9);
+}
+
+@media screen and (max-width: 700px) {
+    .modal {
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+    }
 }
