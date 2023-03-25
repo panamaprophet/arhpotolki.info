@@ -16,6 +16,19 @@
     transform: translate(-50%, -50%);
 }
 
+.size_small {
+    width: 25%;
+}
+
+.size_medium {
+    width: 100%;
+    max-width: 940px;
+}
+
+.size_medium {
+    width: 100%;
+}
+
 .overlay {
     position: fixed;
     top: 0;
