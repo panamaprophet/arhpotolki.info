@@ -28,8 +28,8 @@ export const Gallery = ({ items }: Props) => {
         .filter((item, index, items) => items.indexOf(item) === index);
 
     const openModal = (index) => {
-        setModalOpen(true)
-        setCurrentIndex(index)
+        setModalOpen(true);
+        setCurrentIndex(index);
     }
 
     return (
@@ -60,18 +60,16 @@ export const Gallery = ({ items }: Props) => {
                 ))}
             </List>
 
-            <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
-                <div className={styles.wrapper}>
-                    <Carousel startIndex={currentIndex}>
-                        {filteredItems.map(item => (
-                            <div key={item.id} className={styles.imageWrapper}>
-                                <div className={styles.image}>
-                                    <Image src={item.url} fill alt="" />
-                                </div>
+            <Modal size="medium" isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
+                <Carousel startIndex={currentIndex}>
+                    {filteredItems.map(item => (
+                        <div key={item.id} className={styles.imageWrapper}>
+                            <div className={styles.image}>
+                                <Image src={item.url} fill alt="" />
                             </div>
-                        ))}
-                    </Carousel>
-                </div>
+                        </div>
+                    ))}
+                </Carousel>
             </Modal>
         </>
     )
