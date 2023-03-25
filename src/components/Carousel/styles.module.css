@@ -64,17 +64,16 @@
     .prev,
     .next {
         position: absolute;
-        z-index: 1;
         top: 50%;
         transform: translateY(-50%);
     }
 
     .prev {
-        left: 3%;
+        left: 10px;
     }
 
     .next {
-        right: 3%;
+        right: 10px;
     }
 
     .viewport {
