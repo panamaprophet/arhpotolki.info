@@ -8,7 +8,7 @@ export interface Feedback {
     id: string,
     author: string,
     text: string,
-    picture?: File,
+    picture?: string,
     date: number,
     city: string,
 };
