@@ -41,13 +41,13 @@ export const Carousel = ({ children, viewportWidth: initialViewportWidth, startI
     return (
         <div className={styles.root}>
             <div className={styles.container}>
+                <div className={styles.prev} onClick={onBackward}>
+                    «
+                </div>
                 <div className={styles.viewport} ref={handleViewportWidth} style={{ width: viewportWidth }}>
                     <div className={styles.list} style={{ transform: `translateX(-${offset}px)` }}>
                         {children}
                     </div>
-                </div>
-                <div className={styles.prev} onClick={onBackward}>
-                    «
                 </div>
                 <div className={styles.next} onClick={onForward}>
                     »
