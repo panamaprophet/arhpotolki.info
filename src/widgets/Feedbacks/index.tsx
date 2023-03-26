@@ -17,7 +17,7 @@ interface Props {
 
 export type PrefetchFeedback = Omit<Feedback, 'id' | 'picture' | 'date'> & { picture: File }
 
-const upload = async (file: File) => {
+const upload = async (file: File): Promise<string | null> => {
     try {
         const name = encodeURIComponent(file.name);
         const response = await fetch(`/api/upload/${name}`);
