@@ -1,3 +1,7 @@
+.prev {
+    order: -1;
+}
+
 .next,
 .prev {
     display: flex;
@@ -14,6 +18,7 @@
     user-select: none;
     border-radius: 50%;
     transition: all 250ms;
+    margin: 0 8px;
 }
 
 .prev:hover,
@@ -28,7 +33,7 @@
     align-items: center;
     gap: 1rem;
     width: 100%;
-    padding: 8px;
+    padding: 8px 0;
 }
 
 .viewport {
@@ -57,10 +62,6 @@
 }
 
 @media screen and (max-width: 700px) {
-    .container {
-        position: relative;
-    }
-
     .prev,
     .next {
         position: absolute;
@@ -74,12 +75,5 @@
 
     .next {
         right: 10px;
-    }
-
-    .viewport {
-        width: 100%;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
     }
 }
