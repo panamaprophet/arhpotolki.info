@@ -1,0 +1,33 @@
+.root {
+    width: 100%;
+    position: relative;
+    aspect-ratio: 1 / 1;
+}
+
+.image {
+    object-fit: contain;
+}
+
+.closeButton {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+    border: 2px solid #f7a136;
+    width: 25px;
+    height: 25px;
+    line-height: 15px;
+    color: #f7a136;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 50%;
+    transition: all 250ms;
+    z-index: 1;
+}
+
+.closeButton:hover {
+    background-color: #f7a136;
+    color: #fff;
+}
