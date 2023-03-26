@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Feedback } from '../../types';
+import { PrefetchFeedback } from '../../widgets/Feedbacks';
 import { ButtonWithStatus } from '../ButtonWithStatus';
 import { ImagePreview } from '../Image';
 import { InputFile, InputText } from '../Input';
@@ -7,7 +7,7 @@ import styles from './index.module.css';
 
 
 interface Props {
-    onSubmit: (data: Omit<Feedback, 'id' | 'date'>) => void;
+    onSubmit: (data: PrefetchFeedback) => void;
 }
 
 
