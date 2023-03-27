@@ -51,7 +51,7 @@ export const Gallery = ({ items }: Props) => {
                     <div key={item.id} className={styles.preview}>
                         <Image
                             src={item.url}
-                            quality={1}
+                            sizes="30vw"
                             alt=""
                             onClick={() => openModal(index)}
                             fill
@@ -65,7 +65,12 @@ export const Gallery = ({ items }: Props) => {
                     {filteredItems.map(item => (
                         <div key={item.id} className={styles.imageWrapper}>
                             <div className={styles.image}>
-                                <Image src={item.url} fill alt="" />
+                                <Image
+                                    src={item.url}
+                                    sizes="100vw"
+                                    fill
+                                    alt=""
+                                />
                             </div>
                         </div>
                     ))}
