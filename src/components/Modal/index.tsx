@@ -10,7 +10,7 @@ interface Props {
     size: 'small' | 'medium' | 'large';
 }
 
-export const Modal = ({ children, size, isOpen, onClose }: Props) => {
+export const Modal = ({ children, size, isOpen, onClose = () => {} }: Props) => {
     useEffect(() => {
         document.body.style.overflow = isOpen ? 'hidden' : 'visible';
     }, [isOpen]);
@@ -23,7 +23,7 @@ export const Modal = ({ children, size, isOpen, onClose }: Props) => {
         document.addEventListener('keydown', handleKeyboardClick);
 
         return () => document.removeEventListener('keydown', handleKeyboardClick);
-    }, []);
+    }, [onClose]);
 
     if (isOpen) {
         return createPortal(
