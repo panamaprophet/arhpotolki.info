@@ -15,6 +15,7 @@ import { Advantages } from '../widgets/Advantages';
 import { Description } from '../widgets/Description';
 import { Certificates } from '../widgets/Certificates';
 import { FeedbacksWidget } from '../widgets/Feedbacks';
+import { LeadbackWidget } from '../components/LeadbackWidget';
 
 interface Props {
     feedbacks: Feedback[];
@@ -46,6 +47,8 @@ const App = (props: Props) => {
             <FeedbacksWidget feedbacks={feedbacks} />
 
             <FooterWidget {...settings} />
+
+            <LeadbackWidget campaign="0a656cc19f3f5b27324bfa32" />
         </>
     );
 };

@@ -12,8 +12,6 @@ interface Props {
     items: Picture[],
 }
 
-const IMAGE_WIDTH = 568;
-const IMAGE_HEIGHT = 400;
 
 export const Gallery = ({ items }: Props) => {
     const [isModalOpen, setModalOpen] = useState(false);
@@ -30,8 +28,8 @@ export const Gallery = ({ items }: Props) => {
         .filter((item, index, items) => items.indexOf(item) === index);
 
     const openModal = (index) => {
-        setModalOpen(true)
-        setCurrentIndex(index)
+        setModalOpen(true);
+        setCurrentIndex(index);
     }
 
     return (
@@ -50,28 +48,31 @@ export const Gallery = ({ items }: Props) => {
 
             <List align='center'>
                 {filteredItems.map((item, index) => (
-                    <div key={item.url} className={styles.image}>
+                    <div key={item.id} className={styles.previewContainer}>
                         <Image
+                            className={styles.preview}
                             src={item.url}
+                            sizes="30vw"
                             alt=""
                             onClick={() => openModal(index)}
                             fill
-                            />
+                        />
                     </div>
                 ))}
             </List>
 
-            <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
-                <Carousel viewportWidth={IMAGE_WIDTH} startIndex={currentIndex}>
+            <Modal size="medium" isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
+                <Carousel startIndex={currentIndex}>
                     {filteredItems.map(item => (
-                        <Image
-                            className={styles.onLoad}
-                            key={item.id}
-                            src={item.url}
-                            width={IMAGE_WIDTH}
-                            height={IMAGE_HEIGHT}
-                            alt=""
-                        />
+                        <div key={item.id} className={styles.imageContainer}>
+                            <Image
+                                className={styles.image}
+                                src={item.url}
+                                sizes="100vw"
+                                fill
+                                alt=""
+                            />
+                        </div>
                     ))}
                 </Carousel>
             </Modal>
