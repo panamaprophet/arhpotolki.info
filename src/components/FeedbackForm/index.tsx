@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { PrefetchFeedback } from '../../widgets/Feedbacks';
 import { Button } from '../Button';
 import { ButtonWithStatus } from '../ButtonWithStatus';
 import { InputFile, InputText } from '../Input';
@@ -8,7 +7,7 @@ import styles from './index.module.css';
 
 
 interface Props {
-    onSubmit: (data: PrefetchFeedback) => void;
+    onSubmit: (data: { author: string, city: string, text: string, picture?: File }) => void;
 }
 
 
@@ -16,7 +15,7 @@ export const FeedbackForm = ({ onSubmit }: Props) => {
     const [author, setAuthor] = useState('');
     const [city, setCity] = useState('');
     const [text, setText] = useState('');
-    const [picture, setPicture] = useState<File>(null);
+    const [picture, setPicture] = useState<File>();
 
     const isDisabled = !author.length || !city.length || !text.length;
 
@@ -29,7 +28,7 @@ export const FeedbackForm = ({ onSubmit }: Props) => {
             {picture ? (
                 <Row>
                     <strong className={styles.text}>{picture.name}</strong>
-                    <Button size="small" onClick={() => setPicture(null)} theme="orange">
+                    <Button size="small" onClick={() => setPicture(undefined)} theme="orange">
                         &#10539;
                     </Button>
                 </Row>

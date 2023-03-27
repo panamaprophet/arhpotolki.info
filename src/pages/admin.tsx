@@ -2,14 +2,13 @@ import { useCallback, useReducer, useState } from 'react';
 import Image from 'next/image';
 import { signOut, getSession } from 'next-auth/react';
 import { Title } from '../components/Text';
-import { InputTextLazy, InputList } from '../components/Input';
+import { InputTextLazy, InputList, InputFile } from '../components/Input';
 import { List } from '../components/List';
 import { Column, Row } from '../components/Layout';
 import { Card } from '../components/Card';
 import { Section } from '../components/Section';
 import { Carousel } from '../components/Carousel';
 import { Button } from '../components/Button';
-import { AwsFileUploader } from '../components/AwsFileUploader';
 import { PictureEditor, FeedbackEditor, PriceEditor } from '../components/Editor';
 
 import { getFeedbacks } from '../resolvers/feedback';
@@ -26,12 +25,13 @@ import {
     createAddPictureAction,
 } from '../store/admin/action-creators';
 
-import { Feedback, Picture, Settings } from '../types';
+import { Feedback, Picture, Setting } from '../types';
 import { GetServerSideProps } from 'next';
+import { uploadMultiple } from '../resolvers/storage';
 
 
 type Props = {
-    settings: Settings,
+    settings: Setting,
     pictures: Picture[],
     feedback: Feedback[],
 };
@@ -42,10 +42,14 @@ const AdminPage = (props: Props) => {
     const [urls, setUrls] = useState<string[]>([]);
     const [tags, setTags] = useState<string[]>([]);
 
-    const addUrls = useCallback((newUrls: string[]) => setUrls((urls: string[]) => [
-        ...urls, 
-        ...newUrls,
-    ]), []);
+    const addUrls = useCallback(async (files: File[]) => {
+        const newUrls = await uploadMultiple(files);
+
+        return setUrls(urls => [
+            ...urls,
+            ...newUrls,
+        ])
+    }, [])
 
     const onPictureUpdate = createUpdatePictureAction(dispatch);
     const onFeedbackUpdate = createUpdateFeedbackAction(dispatch);
@@ -142,7 +146,7 @@ const AdminPage = (props: Props) => {
                 </List>
 
                 <Column>
-                    <AwsFileUploader multiple onUpload={addUrls} />
+                    <InputFile multiple={true} onChange={addUrls} />
                     <List align="flex-start" wrap={false}>
                         {urls && urls.map((url) => <Image src={url} key={url} alt="" width="120" height="120" />)}
                     </List>
