@@ -21,7 +21,7 @@ export const FeedbacksWidget = ({ feedbacks }: Props) => {
     const showFeedbackForm = () => setFeedbackFormVisible(true);
     const hideFeedbackForm = () => setFeedbackFormVisible(false);
 
-    const onFeedbackSubmit = (feedback: Omit<Feedback, 'id'>) => 
+    const onFeedbackSubmit = (feedback: Omit<Feedback, 'id'>) =>
         fetch('/api/feedback', {
             method: 'POST',
             body: JSON.stringify(feedback),
@@ -39,7 +39,7 @@ export const FeedbacksWidget = ({ feedbacks }: Props) => {
                 <Button theme="orange" onClick={showFeedbackForm}>
                     Оставить отзыв
                 </Button>
-                <Modal isOpen={isFeedbackFormVisible} onClose={hideFeedbackForm}>
+                <Modal size='small' isOpen={isFeedbackFormVisible} onClose={hideFeedbackForm}>
                     <div className={styles.closeButton} onClick={hideFeedbackForm}>
                         x
                     </div>

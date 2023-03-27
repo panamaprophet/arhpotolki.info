@@ -4,9 +4,13 @@ import { useEffect } from 'react';
 
 const url = 'https://leadback.ru/js/leadback.js';
 
-export const LeadbackWidget = () => {
+interface Props {
+    campaign: string;
+}
+
+export const LeadbackWidget = ({ campaign }: Props) => {
     useEffect(() => {
-        globalThis._emv = { campaign: 'leadback_campaign_id' };
+        globalThis._emv = { campaign };
     }, [])
 
     return <Script src={url} defer />;
