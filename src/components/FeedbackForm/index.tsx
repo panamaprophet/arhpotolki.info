@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { PrefetchFeedback } from '../../widgets/Feedbacks';
+import { Button } from '../Button';
 import { ButtonWithStatus } from '../ButtonWithStatus';
-import { ImagePreview } from '../Image';
 import { InputFile, InputText } from '../Input';
+import { Row } from '../Layout';
 import styles from './index.module.css';
 
 
@@ -26,7 +27,12 @@ export const FeedbackForm = ({ onSubmit }: Props) => {
             <InputText placeholder="Отзыв" value={text} onChange={setText} />
 
             {picture ? (
-                <ImagePreview src={picture} alt={'Your image'} onRemove={() => setPicture(null)} />
+                <Row>
+                    <strong className={styles.text}>{picture.name}</strong>
+                    <Button size="small" onClick={() => setPicture(null)} theme="orange">
+                        &#10539;
+                    </Button>
+                </Row>
             ) : (
                 <InputFile multiple={false} onChange={files => setPicture(files[0])} />
             )
