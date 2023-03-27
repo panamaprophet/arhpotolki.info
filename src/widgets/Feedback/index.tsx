@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Button } from '../../components/Button';
 import { Carousel } from '../../components/Carousel';
 import { FeedbackForm } from '../../components/FeedbackForm';
@@ -7,16 +7,14 @@ import { Row } from '../../components/Layout';
 import { Modal } from '../../components/Modal';
 import { Section } from '../../components/Section';
 import { Title } from '../../components/Text';
+import { Context } from '../../context';
 import { Feedback } from '../../types';
 import styles from './styles.module.css';
 
 
-interface Props {
-    feedbacks: Feedback[];
-}
+export const FeedbackWidget = () => {
+    const { feedback: items } = useContext(Context);
 
-
-export const FeedbacksWidget = ({ feedbacks }: Props) => {
     const [isFeedbackFormVisible, setFeedbackFormVisible] = useState(false);
     const showFeedbackForm = () => setFeedbackFormVisible(true);
     const hideFeedbackForm = () => setFeedbackFormVisible(false);
@@ -28,10 +26,10 @@ export const FeedbacksWidget = ({ feedbacks }: Props) => {
         });
 
     return (
-        <Section id="feedbacks">
+        <Section id="feedback">
             <Title>Отзывы:</Title>
             <Carousel>
-                {feedbacks.map(item => (
+                {items.map(item => (
                     <FeedbackItem key={item.id} {...item} />
                 ))}
             </Carousel>

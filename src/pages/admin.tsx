@@ -26,11 +26,11 @@ import {
     createAddPictureAction,
 } from '../store/admin/action-creators';
 
-import { Feedback, Picture, Setting } from '../types';
+import { Feedback, Picture, Settings } from '../types';
 
 
 type Props = {
-    settings: Setting[],
+    settings: Settings,
     pictures: Picture[],
     feedback: Feedback[],
 };
@@ -96,6 +96,11 @@ const AdminPage = (props: Props) => {
                 <Row>
                     <strong>Цена за цвет:</strong>
                     <InputTextLazy value={state.settings.colorPrice} onChange={value => onSettingsUpdate('colorPrice', value)} />
+                </Row>
+
+                <Row>
+                    <strong>Leadback Campaign Id:</strong>
+                    <InputTextLazy value={state.settings.leadbackCampaign} onChange={value => onSettingsUpdate('leadbackCampaign', value)} />
                 </Row>
             </Section>
 
