@@ -1,55 +1,46 @@
-import { Gallery } from '../widgets/Gallery';
-import { Separator } from '../components/Separator';
-
 import { getSettings } from '../resolvers/settings';
 import { getPictures } from '../resolvers/pictures';
 import { getFeedbacks } from '../resolvers/feedback';
 
-import { Feedback, Picture } from '../types';
+import { Separator } from '../components/Separator';
+import { LeadbackWidget } from '../components/LeadbackWidget';
 
 import { Order } from '../widgets/Order';
-import { Steps } from '../widgets/StepsList';
-import { HeaderWidget } from '../widgets/Header';
-import { FooterWidget } from '../widgets/Footer';
+import { Steps } from '../widgets/Steps';
 import { Advantages } from '../widgets/Advantages';
 import { Description } from '../widgets/Description';
 import { Certificates } from '../widgets/Certificates';
-import { FeedbacksWidget } from '../widgets/Feedbacks';
-import { LeadbackWidget } from '../components/LeadbackWidget';
+import { HeaderWidget as Header } from '../widgets/Header';
+import { FooterWidget as Footer } from '../widgets/Footer';
+import { GalleryWidget as Gallery } from '../widgets/Gallery';
+import { FeedbackWidget as Feedback } from '../widgets/Feedback';
+
+import { Context } from '../context';
+import * as Types from '../types';
 
 interface Props {
-    feedbacks: Feedback[];
-    gallery: Picture[];
-    settings: any;
+    feedback: Types.Feedback[];
+    pictures: Types.Picture[];
+    settings: Types.Settings;
 }
 
 const App = (props: Props) => {
-    const { feedbacks, settings, gallery } = props;
+    const { feedback, settings, pictures } = props;
 
     return (
-        <>
-            <HeaderWidget {...settings} />
-
+        <Context.Provider value={{ feedback, settings, pictures }}>
+            <Header />
             <Description />
-
             <Advantages />
-
-            <Gallery gallery={gallery} />
-
+            <Gallery />
             <Separator text="Изготовление - от одного дня, монтаж - от двух часов." />
-
-            <Order {...settings} />
-
+            <Order />
             <Steps />
-
             <Certificates />
-
-            <FeedbacksWidget feedbacks={feedbacks} />
-
-            <FooterWidget {...settings} />
-
-            <LeadbackWidget campaign="0a656cc19f3f5b27324bfa32" />
-        </>
+            <Feedback />
+            <Footer />
+            <LeadbackWidget campaign={settings.leadbackCampaign} />
+        </Context.Provider>
     );
 };
 
@@ -59,8 +50,8 @@ export default App;
 
 export const getServerSideProps = async () => ({
     props: {
-        feedbacks: await getFeedbacks(),
+        feedback: await getFeedbacks(),
         settings: await getSettings(),
-        gallery: await getPictures(),
+        pictures: await getPictures(),
     },
 })

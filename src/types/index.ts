@@ -13,7 +13,22 @@ export interface Feedback {
     city: string,
 };
 
-export interface Setting {
-    key: string,
-    value: string,
-};
+interface DefaultSettings {
+    costBySquare: number,
+    colorPrice: number,
+    lightPrice: number,
+    prices: {
+        [k: string]: {
+            [k: number]: number,
+        },
+    },
+    materials: string[],
+    headerNotification: string,
+    phone: string,
+    address: string,
+    companyName: string,
+    links: string[],
+    leadbackCampaign: string,
+}
+
+export type Settings = Partial<DefaultSettings>;

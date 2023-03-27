@@ -1,7 +1,7 @@
 import { PutItemCommand, DeleteItemCommand, ScanCommand } from '@aws-sdk/client-dynamodb';
 import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
 import { client as db } from '../../services/db';
-import { Setting } from '../../types';
+import { Settings } from '../../types';
 
 
 const SETTINGS_TABLE = String(process.env.SETTINGS_TABLE);
@@ -31,7 +31,7 @@ export const removeSetting = async (key: string) => {
     };
 };
 
-export const getSettings = async () => {
+export const getSettings = async (): Promise<Settings> => {
     const result = await db.send(new ScanCommand({
         TableName: SETTINGS_TABLE,
         Limit: 100,
@@ -39,7 +39,7 @@ export const getSettings = async () => {
 
     const items =
         result.Count > 0
-            ? result.Items.map(item => unmarshall(item) as Setting)
+            ? result.Items.map(item => unmarshall(item))
             : [];
 
     return items.reduce((result, item) => ({

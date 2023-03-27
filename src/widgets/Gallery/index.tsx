@@ -1,19 +1,17 @@
 import { Title } from '../../components/Text';
 import { Section } from '../../components/Section';
-import { Gallery as Images } from '../../components/Gallery';
-import { Picture } from '../../types';
+import { Gallery } from '../../components/Gallery';
+import { useContext } from 'react';
+import { Context } from '../../context';
 
 
-interface Props {
-    gallery: Picture[],
-}
+export const GalleryWidget = () => {
+    const { pictures: items } = useContext(Context);
 
-
-export const Gallery = ({ gallery }: Props) => {
     return (
         <Section id="examples">
             <Title>Наши работы</Title>
-            <Images items={gallery} />
+            <Gallery items={items} />
         </Section>
   );
 };
