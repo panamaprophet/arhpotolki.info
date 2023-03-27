@@ -48,8 +48,9 @@ export const Gallery = ({ items }: Props) => {
 
             <List align='center'>
                 {filteredItems.map((item, index) => (
-                    <div key={item.id} className={styles.preview}>
+                    <div key={item.id} className={styles.previewContainer}>
                         <Image
+                            className={styles.preview}
                             src={item.url}
                             sizes="30vw"
                             alt=""
@@ -63,15 +64,14 @@ export const Gallery = ({ items }: Props) => {
             <Modal size="medium" isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
                 <Carousel startIndex={currentIndex}>
                     {filteredItems.map(item => (
-                        <div key={item.id} className={styles.imageWrapper}>
-                            <div className={styles.image}>
-                                <Image
-                                    src={item.url}
-                                    sizes="100vw"
-                                    fill
-                                    alt=""
-                                />
-                            </div>
+                        <div key={item.id} className={styles.imageContainer}>
+                            <Image
+                                className={styles.image}
+                                src={item.url}
+                                sizes="100vw"
+                                fill
+                                alt=""
+                            />
                         </div>
                     ))}
                 </Carousel>
