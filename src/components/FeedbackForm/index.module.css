@@ -6,6 +6,12 @@
     gap: 8px;
 }
 
+.text {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
 .submitButton {
     width: 100%;
 }
