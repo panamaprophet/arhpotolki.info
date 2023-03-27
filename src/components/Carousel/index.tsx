@@ -1,4 +1,4 @@
-import { Children, ReactNode, useCallback, useEffect, useState } from 'react';
+import { Children, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import styles from './styles.module.css';
 
 interface Props {
@@ -12,14 +12,13 @@ export const Carousel = ({ children, viewportWidth: initialViewportWidth, startI
     const lastIndex = childrenCount - 1;
     const [currentIndex, setIndex] = useState(startIndex);
     const [viewportWidth, setViewportWidth] = useState(initialViewportWidth);
+    const ref = useRef(null);
 
-    const handleViewportWidth = useCallback((node: HTMLDivElement) => {
-        if (node && !initialViewportWidth) {
-            const { width } = node.getBoundingClientRect();
+    const handleViewportWidth = (node: HTMLDivElement) => {
+        const { width } = node.getBoundingClientRect();
 
-            return setViewportWidth(width);
-        }
-    }, [initialViewportWidth]);
+        return setViewportWidth(width);
+    };
 
     const onForward = useCallback(() => setIndex(index => lastIndex === index ? 0 : index + 1), [lastIndex]);
 
@@ -33,18 +32,28 @@ export const Carousel = ({ children, viewportWidth: initialViewportWidth, startI
             if (event.code === 'ArrowRight') onForward();
         };
 
-        document.addEventListener('keydown', handleKeyboardClick);
+        const handleResize = () => handleViewportWidth(ref.current);
 
-        return () => document.removeEventListener('keydown', handleKeyboardClick);
+        document.addEventListener('keydown', handleKeyboardClick);
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyboardClick);
+            window.removeEventListener('resize', handleResize);
+        };
     }, [onForward, onBackward]);
+
+    useEffect(() => {
+        handleViewportWidth(ref.current);
+    }, []);
 
     return (
         <div className={styles.root}>
-            <div className={styles.container}>
+            <div className={styles.container} ref={ref}>
                 <div className={styles.prev} onClick={onBackward}>
                     «
                 </div>
-                <div className={styles.viewport} ref={handleViewportWidth} style={{ width: viewportWidth }}>
+                <div className={styles.viewport} style={{ width: viewportWidth }}>
                     <div className={styles.list} style={{ transform: `translateX(-${offset}px)` }}>
                         {children}
                     </div>
