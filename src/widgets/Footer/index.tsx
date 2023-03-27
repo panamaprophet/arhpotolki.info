@@ -1,6 +1,5 @@
 import { Footer } from '../../components/Footer';
 import { Column } from '../../components/Layout';
-import { LeadbackWidget } from '../../components/LeadbackWidget';
 import { Link } from '../../components/Link';
 import { Map } from '../../components/Map';
 import { Text } from '../../components/Text';
@@ -40,7 +39,6 @@ export const FooterWidget = ({ companyName, address, phone, links }: Props) => {
                     ))}
                 </Text>}
 
-                <LeadbackWidget />
                 <VKWidget />
 
                 <Text>

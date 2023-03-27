@@ -34,7 +34,7 @@ export const HeaderWidget = ({ phone, headerNotification }: Props) => {
                     <Button onClick={openMenu}>
                         <Burger />
                     </Button>
-                    <Modal isOpen={isMenuOpen} onClose={closeMenu}>
+                    <Modal size="large" isOpen={isMenuOpen} onClose={closeMenu}>
                         <Menu links={menuLinks} onClick={closeMenu} />
                     </Modal>
                 </Row>
