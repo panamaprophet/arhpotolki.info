@@ -9,7 +9,7 @@ export const GalleryWidget = () => {
     const { pictures: items } = useContext(Context);
 
     return (
-        <Section id="examples">
+        <Section id="gallery">
             <Title>Наши работы</Title>
             <Gallery items={items} />
         </Section>
