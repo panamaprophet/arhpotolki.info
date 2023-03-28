@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useMemo, useState } from 'react';
 import { ColorPicker } from '../ColorPicker';
 import { InputNumber, InputRange, InputText } from '../Input';
 import { Column, Layout, Row } from '../Layout';
@@ -63,31 +63,34 @@ export const Calculator = ({ prices, lightPrice, colorPrice, defaultMeterPrice, 
         });
     };
 
-    const totalColorPrice = state.colors.ceil !== '#ffffff' ? state.area * colorPrice : 0;
-    const totalLightPrice = state.lights > 1 ? state.lights * lightPrice : 0;
-
     const priceGroup = prices[state.type];
+    const isClouds = state.material === materials[3];
 
-    const [max] = Object.keys(priceGroup).map(Number).sort((a, b) => b - a);
+    const price = useMemo(() => {
+        const totalColorPrice = state.colors.ceil !== '#ffffff' ? state.area * colorPrice : 0;
+        const totalLightPrice = state.lights > 1 ? state.lights * lightPrice : 0;
 
+        const [max] = Object.keys(priceGroup).map(Number).sort((a, b) => b - a);
 
-    let price = 0;
+        let price = 0;
 
-    if (state.area > max) {
-        price = priceGroup[max] + defaultMeterPrice * (state.area - max);
-    } else {
-        price = priceGroup[state.area];
-    }
+        if (state.area > max) {
+            price = priceGroup[max] + defaultMeterPrice * (state.area - max);
+        } else {
+            price = priceGroup[state.area];
+        }
 
-    price =
-        state.material === materials[3]
+        return isClouds
             ? (price * 1.5 + totalLightPrice)
             : (price + totalColorPrice + totalLightPrice);
+    }, [state, lightPrice, colorPrice, isClouds, priceGroup, defaultMeterPrice]);
 
-    if (isChanged) {
-        setChanged(false);
-        onCalc({ ...state, price });
-    }
+    useEffect(() => {
+        if (isChanged) {
+            setChanged(false);
+            onCalc({ ...state, price });
+        }
+    }, [price, state, isChanged, onCalc]);
 
     const discount = 0;
     const installment = price / 3;
