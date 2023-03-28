@@ -18,7 +18,7 @@ export const FooterWidget = () => {
     const { companyName, address, phone, links } = settings;
 
     return (
-        <Footer>
+        <Footer id="footer">
             <Column style={{ alignItems: 'center', textAlign: 'center', gap: 16 }}>
                 <Map />
                 <Text>
