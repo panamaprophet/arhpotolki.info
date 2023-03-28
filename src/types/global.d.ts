@@ -2,13 +2,15 @@ export { };
 
 declare global {
     interface Window {
-        _emv: { [k: string]: unknown },
+        _emv: {
+            [k: string]: unknown,
+        },
         VK: {
             Widgets: {
                 Group: (
                     elementId: string,
                     options: Partial<{ mode: number, color3: string }>,
-                    ownerId: number
+                    groupId: string,
                 ) => void,
             },
         },

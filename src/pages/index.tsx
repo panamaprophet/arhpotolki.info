@@ -3,7 +3,7 @@ import { getPictures } from '../resolvers/pictures';
 import { getFeedbacks } from '../resolvers/feedback';
 
 import { Separator } from '../components/Separator';
-import { LeadbackWidget } from '../components/LeadbackWidget';
+import { Leadback } from '../components/Leadback';
 
 import { Order } from '../widgets/Order';
 import { Steps } from '../widgets/Steps';
@@ -39,7 +39,7 @@ const App = (props: Props) => {
             <Certificates />
             <Feedback />
             <Footer />
-            {settings.leadbackCampaign && <LeadbackWidget campaign={settings.leadbackCampaign} />}
+            {settings.leadbackCampaign && <Leadback campaign={settings.leadbackCampaign} />}
         </Context.Provider>
     );
 };

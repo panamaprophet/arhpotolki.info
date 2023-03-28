@@ -29,6 +29,7 @@ interface DefaultSettings {
     companyName: string,
     links: string[],
     leadbackCampaign: string,
+    vkGroupId: string,
 }
 
 export type Settings = Partial<DefaultSettings>;

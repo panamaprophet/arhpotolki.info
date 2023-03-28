@@ -8,7 +8,7 @@ interface Props {
     campaign: string;
 }
 
-export const LeadbackWidget = ({ campaign }: Props) => {
+export const Leadback = ({ campaign }: Props) => {
     useEffect(() => {
         window._emv = { campaign };
     }, [campaign]);
