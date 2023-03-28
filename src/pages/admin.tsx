@@ -25,13 +25,13 @@ import {
     createAddPictureAction,
 } from '../store/admin/action-creators';
 
-import { Feedback, Picture, Setting } from '../types';
+import { Feedback, Picture, Settings } from '../types';
 import { GetServerSideProps } from 'next';
 import { uploadMultiple } from '../resolvers/storage';
 
 
 type Props = {
-    settings: Setting,
+    settings: Settings,
     pictures: Picture[],
     feedback: Feedback[],
 };
