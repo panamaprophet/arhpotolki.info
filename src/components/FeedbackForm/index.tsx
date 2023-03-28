@@ -25,17 +25,18 @@ export const FeedbackForm = ({ onSubmit }: Props) => {
             <InputText placeholder="Ваш город" value={city} onChange={setCity} />
             <InputText placeholder="Отзыв" value={text} onChange={setText} />
 
-            {picture ? (
-                <Row>
+            {picture && (
+                <Row style={{ alignSelf: 'center' }}>
                     <strong className={styles.text}>{picture.name}</strong>
                     <Button size="small" onClick={() => setPicture(undefined)} theme="orange">
                         &#10539;
                     </Button>
                 </Row>
-            ) : (
+            )}
+
+            {!picture && (
                 <InputFile multiple={false} onChange={files => setPicture(files[0])} />
-            )
-            }
+            )}
 
             <ButtonWithStatus
                 theme="green"
