@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { Feedback } from '../../types';
-import { AwsFileUploader } from '../AwsFileUploader';
+import { Button } from '../Button';
 import { ButtonWithStatus } from '../ButtonWithStatus';
-import { InputText } from '../Input';
+import { InputFile, InputText } from '../Input';
+import { Row } from '../Layout';
 import styles from './index.module.css';
 
 
 interface Props {
-    onSubmit: (data: Omit<Feedback, 'id' | 'date'>) => void;
+    onSubmit: (data: { author: string, city: string, text: string, picture?: File }) => void;
 }
 
 
@@ -15,7 +15,7 @@ export const FeedbackForm = ({ onSubmit }: Props) => {
     const [author, setAuthor] = useState('');
     const [city, setCity] = useState('');
     const [text, setText] = useState('');
-    const [picture, setPicture] = useState('');
+    const [picture, setPicture] = useState<File>();
 
     const isDisabled = !author.length || !city.length || !text.length;
 
@@ -25,7 +25,18 @@ export const FeedbackForm = ({ onSubmit }: Props) => {
             <InputText placeholder="Ваш город" value={city} onChange={setCity} />
             <InputText placeholder="Отзыв" value={text} onChange={setText} />
 
-            <AwsFileUploader onUpload={setPicture} />
+            {picture && (
+                <Row>
+                    <strong>{picture.name}</strong>
+                    <Button size="small" onClick={() => setPicture(undefined)} theme="orange">
+                        &#10539;
+                    </Button>
+                </Row>
+            )}
+
+            {!picture && (
+                <InputFile multiple={false} onChange={files => setPicture(files[0])} />
+            )}
 
             <ButtonWithStatus
                 theme="green"
