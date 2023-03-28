@@ -26,8 +26,8 @@ export const FeedbackForm = ({ onSubmit }: Props) => {
             <InputText placeholder="Отзыв" value={text} onChange={setText} />
 
             {picture && (
-                <Row style={{ alignSelf: 'center' }}>
-                    <strong className={styles.text}>{picture.name}</strong>
+                <Row>
+                    <strong>{picture.name}</strong>
                     <Button size="small" onClick={() => setPicture(undefined)} theme="orange">
                         &#10539;
                     </Button>
