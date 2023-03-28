@@ -18,6 +18,7 @@ export const FeedbackItem = ({ picture, author, date, text }: Omit<Feedback, 'id
                 className={styles.picture}
                 src={picture}
                 alt="author"
+                sizes="33vw"
                 fill
             />}
         </div>

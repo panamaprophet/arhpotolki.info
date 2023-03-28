@@ -11,7 +11,7 @@ import { Modal } from '../../components/Modal';
 import { Subtitle } from '../../components/Text';
 import { Context } from '../../context';
 import { menuLinks } from './data';
-
+import ImageEco from './images/eco.png';
 
 export const HeaderWidget = () => {
     const { settings } = useContext(Context);
@@ -24,7 +24,7 @@ export const HeaderWidget = () => {
     return (
         <Header>
             <Row style={{ width: '100%', justifyContent: 'space-between' }}>
-                <Image src="/icons/eco.png" width="80" height="96" alt="" />
+                <Image src={ImageEco} width="80" height="96" alt="" />
                 <Row>
                     <Subtitle color="#a6c719">
                         {phone}
