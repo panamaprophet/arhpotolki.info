@@ -4,7 +4,7 @@ import { Column } from '../../components/Layout';
 import { Link } from '../../components/Link';
 import { Map } from '../../components/Map';
 import { Text } from '../../components/Text';
-import { VKWidget } from '../../components/VKWidget';
+import { Vk } from '../../components/Vk';
 import { Context } from '../../context';
 
 
@@ -15,7 +15,7 @@ const formatLink = (link: string) => link.replaceAll(/^(mailto:|\/\/|http:\/\/|h
 
 export const FooterWidget = () => {
     const { settings } = useContext(Context);
-    const { companyName, address, phone, links } = settings;
+    const { companyName, address, phone, links, vkGroupId } = settings;
 
     return (
         <Footer id="footer">
@@ -37,7 +37,7 @@ export const FooterWidget = () => {
                     ))}
                 </Text>}
 
-                <VKWidget />
+                {vkGroupId && <Vk groupId={vkGroupId} />}
 
                 <Text>
                     Copyright © {companyName}, 2014 - {getFullYear()} | <Link target="_blank" href="/privacy">Защита персональной информации</Link>
