@@ -6,7 +6,7 @@ import { Preview } from '../Preview';
 import styles from './styles.module.css';
 
 
-const MaterialToOpacityMap = {
+const MaterialToOpacityMap: { [k: string]: number } = {
     'Глянец': 1,
     'Матовый': 0,
     'Сатин': 0.4,

@@ -1,7 +1,13 @@
 import { cx } from '../../../helpers';
 import styles from './styles.module.css';
 
-export const InputRange = ({ options, currentItem, onClick }) => {
+interface Props {
+    options: string[],
+    currentItem: string,
+    onClick: (selectedItem: string) => void,
+}
+
+export const InputRange = ({ options, currentItem, onClick }: Props) => {
     return (
         <div className={styles.settings__buttons}>
             {options.map(item => (
@@ -11,7 +17,7 @@ export const InputRange = ({ options, currentItem, onClick }) => {
                         item === currentItem && styles.buttonActive
                     )}
                     key={item}
-                    onClick={event => onClick(item)}
+                    onClick={() => onClick(item)}
                 >
                     {item}
                 </div>

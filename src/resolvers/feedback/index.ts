@@ -35,7 +35,7 @@ export const getFeedbacks = async () => {
     }));
 
     const items =
-        result.Count > 0
+        result.Items
             ? result.Items.map(item => unmarshall(item) as Feedback)
             : [];
 

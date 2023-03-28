@@ -19,7 +19,7 @@ export const FeedbackWidget = () => {
     const showFeedbackForm = () => setFeedbackFormVisible(true);
     const hideFeedbackForm = () => setFeedbackFormVisible(false);
 
-    const onFeedbackSubmit = (feedback: Omit<Feedback, 'id'>) =>
+    const onFeedbackSubmit = (feedback: Omit<Feedback, 'id' | 'date'>) =>
         fetch('/api/feedback', {
             method: 'POST',
             body: JSON.stringify(feedback),

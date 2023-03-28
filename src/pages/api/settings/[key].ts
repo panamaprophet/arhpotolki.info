@@ -9,7 +9,7 @@ const handler = async ({ method, body, query: { key } }: NextApiRequest, respons
     if (method === 'PUT') {
         const { value } = JSON.parse(body);
 
-        result = await setSetting({ key, value });
+        result = await setSetting({ key, value } as { key: string, value: any });
     }
 
     if (method === 'DELETE') {

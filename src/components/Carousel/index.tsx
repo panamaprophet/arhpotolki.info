@@ -12,7 +12,7 @@ export const Carousel = ({ children, viewportWidth: initialViewportWidth, startI
     const lastIndex = childrenCount - 1;
     const [currentIndex, setIndex] = useState(startIndex);
     const [viewportWidth, setViewportWidth] = useState(initialViewportWidth);
-    const ref = useRef(null);
+    const ref = useRef<HTMLDivElement>(null);
 
     const handleViewportWidth = (node: HTMLDivElement) => {
         const { width } = node.getBoundingClientRect();
@@ -24,7 +24,7 @@ export const Carousel = ({ children, viewportWidth: initialViewportWidth, startI
 
     const onBackward = useCallback(() => setIndex(index => index === 0 ? lastIndex : index - 1), [lastIndex]);
 
-    const offset = viewportWidth * currentIndex;
+    const offset = (viewportWidth ?? 0) * currentIndex;
 
     useEffect(() => {
         const handleKeyboardClick = (event: KeyboardEvent) => {
@@ -32,7 +32,11 @@ export const Carousel = ({ children, viewportWidth: initialViewportWidth, startI
             if (event.code === 'ArrowRight') onForward();
         };
 
-        const handleResize = () => handleViewportWidth(ref.current);
+        const handleResize = () => {
+            if (ref.current) {
+                handleViewportWidth(ref.current);
+            }
+        };
 
         document.addEventListener('keydown', handleKeyboardClick);
         window.addEventListener('resize', handleResize);
@@ -44,7 +48,9 @@ export const Carousel = ({ children, viewportWidth: initialViewportWidth, startI
     }, [onForward, onBackward]);
 
     useEffect(() => {
-        handleViewportWidth(ref.current);
+        if (ref.current) {
+            handleViewportWidth(ref.current);
+        }
     }, []);
 
     return (
