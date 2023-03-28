@@ -15,7 +15,7 @@ interface Props {
 
 export const Gallery = ({ items }: Props) => {
     const [isModalOpen, setModalOpen] = useState(false);
-    const [filter, setFilter] = useState(null);
+    const [filter, setFilter] = useState<string | null>(null);
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const filteredItems = filter === null
@@ -27,7 +27,7 @@ export const Gallery = ({ items }: Props) => {
         .flat()
         .filter((item, index, items) => items.indexOf(item) === index);
 
-    const openModal = (index) => {
+    const openModal = (index: number) => {
         setModalOpen(true);
         setCurrentIndex(index);
     }

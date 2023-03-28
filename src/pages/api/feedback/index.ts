@@ -1,8 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getFeedbacks, saveFeedback } from '../../../resolvers/feedback';
+import { Feedback } from '../../../types';
 
 
-const handler = async ({ method, body }: NextApiRequest, response: NextApiResponse<{ success: true } | null>) => {
+const handler = async ({ method, body }: NextApiRequest, response: NextApiResponse<{ success: boolean } | Feedback | Feedback[] | null>) => {
     let result = null;
 
     if (method === 'POST') {

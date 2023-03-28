@@ -15,7 +15,7 @@ type Props = SingleFileProps | MultiFileProps;
 
 
 export const AwsFileUploader = ({ multiple = false, onUpload }: Props) => {
-    const [files, setFiles] = useState<FileList>();
+    const [files, setFiles] = useState<File[]>();
 
     const upload = async (file: File) => {
         try {

@@ -4,7 +4,7 @@ import { savePicture } from '../../../resolvers/pictures';
 import { Picture } from '../../../types';
 
 
-const handler = async ({ method, body }: NextApiRequest, response: NextApiResponse<{ success: boolean } | Picture[]>) => {
+const handler = async ({ method, body }: NextApiRequest, response: NextApiResponse<{ success: boolean } | Picture[] | null>) => {
     let result = null;
 
     if (method === 'POST') {

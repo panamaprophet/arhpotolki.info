@@ -7,7 +7,7 @@ import { Settings } from '../../types';
 const SETTINGS_TABLE = String(process.env.SETTINGS_TABLE);
 
 
-export const setSetting = async ({ key, value }) => {
+export const setSetting = async ({ key, value }: { key: string, value: unknown }) => {
     const result = await db.send(new PutItemCommand({
         TableName: SETTINGS_TABLE,
         Item: marshall({ key, value }),
@@ -38,7 +38,7 @@ export const getSettings = async (): Promise<Settings> => {
     }));
 
     const items =
-        result.Count > 0
+        result.Items
             ? result.Items.map(item => unmarshall(item))
             : [];
 

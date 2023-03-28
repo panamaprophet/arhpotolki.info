@@ -10,7 +10,7 @@ interface Props {
 
 export const LeadbackWidget = ({ campaign }: Props) => {
     useEffect(() => {
-        globalThis._emv = { campaign };
+        window._emv = { campaign };
     }, [campaign]);
 
     return <Script src={url} defer />;
