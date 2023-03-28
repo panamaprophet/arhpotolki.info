@@ -5,7 +5,7 @@ export const menuLinks = [
     },
     {
         title: 'Наши работы',
-        id: 'examples'
+        id: 'gallery'
     },
     {
         title: 'Расчёт стоимости',
@@ -13,7 +13,7 @@ export const menuLinks = [
     },
     {
         title: 'Оставить заявку',
-        id: 'application'
+        id: 'order'
     },
     {
         title: 'Контакты',

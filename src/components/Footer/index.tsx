@@ -2,8 +2,8 @@ import { ReactNode } from 'react';
 import styles from './index.module.css';
 
 
-export const Footer = ({ children }: { children: ReactNode }) => (
-    <div className={styles.root}>
+export const Footer = ({ id, children }: { id?: string, children: ReactNode }) => (
+    <div id={id} className={styles.root}>
         {children}
     </div>
 );

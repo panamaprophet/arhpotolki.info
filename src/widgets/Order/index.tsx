@@ -39,7 +39,7 @@ export const Order = () => {
                 />
             </Section>
 
-            <Section id="application" style={{ background: '#f7a136' }}>
+            <Section id="order" style={{ background: '#f7a136' }}>
                 <Title condenced={true}>Оставить заявку:</Title>
                 <OrderForm onSubmit={onOrderSubmit} />
             </Section>
