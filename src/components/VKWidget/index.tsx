@@ -13,7 +13,7 @@ export const VKWidget = () => {
 
     useEffect(() => {
         if (ready) {
-            globalThis.VK.Widgets.Group("vk_groups", {
+            window.VK.Widgets.Group("vk_groups", {
                 mode: 3,
                 color3: 'F7A136'
             }, 53659209)

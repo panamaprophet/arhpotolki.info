@@ -7,19 +7,19 @@ import { Button } from '../../Button';
 import styles from './index.module.css';
 
 
-interface Props extends Partial<Picture> {
+interface Props extends Picture {
     onUpdate: (item: Picture) => void,
-    onRemove: (item: Pick<Picture, 'id'>) => void,
+    onRemove: (item: Picture) => void,
 };
 
 const IMAGE_SIZE = 120;
 
 export const PictureEditor = (props: Props) => {
-    const { id = null, url = '', tags = [], onUpdate, onRemove } = props;
+    const { id, url, tags = [], onUpdate, onRemove } = props;
     const [state, setState] = useState<Picture>({ id, url, tags });
     const [isSaved, setSaved] = useState(true);
 
-    const onChange = (changes) => {
+    const onChange = (changes: Partial<Picture>) => {
         setState({ ...state, ...changes });
         setSaved(false);
     };
@@ -31,7 +31,7 @@ export const PictureEditor = (props: Props) => {
 
     return (
         <Column>
-            <Image src={state.url} alt={id} width={IMAGE_SIZE} height={IMAGE_SIZE} />
+            <Image src={state.url} alt="" width={IMAGE_SIZE} height={IMAGE_SIZE} />
             <InputList placeholder="категории" onChange={tags => onChange({ tags })} value={state.tags} />
             <Button theme="orange" size="small" className={styles.buttonRemove} onClick={() => onRemove(state)}>⤫</Button>
         </Column>
