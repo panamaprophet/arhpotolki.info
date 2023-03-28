@@ -1,4 +1,4 @@
-import { FocusEventHandler, KeyboardEventHandler, useState } from 'react';
+import { ChangeEventHandler, FocusEventHandler, KeyboardEventHandler, useState } from 'react';
 import styles from './styles.module.css';
 
 
@@ -10,6 +10,12 @@ type Props = {
 
 
 export const InputText = ({ value, placeholder, onChange }: Props) => {
+    const _onChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+        if (onChange) {
+            onChange(String(event.target.value));
+        }
+    }
+
     return (
         <input
             placeholder={placeholder}
@@ -17,7 +23,7 @@ export const InputText = ({ value, placeholder, onChange }: Props) => {
             value={String(value)}
             readOnly={onChange ? false : true}
             className={styles.root}
-            onChange={event => onChange(event.target.value)}
+            onChange={_onChange}
         />
     );
 };
@@ -27,13 +33,13 @@ export const InputTextLazy = ({ value: initialValue, placeholder, onChange }: Pr
     const isChanged = value !== initialValue;
 
     const onBlur: FocusEventHandler<HTMLInputElement> = () => {
-        if (isChanged) {
+        if (isChanged && onChange) {
             onChange(value);
         }
     };
 
     const onKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
-        if (isChanged && event.key === 'Enter') {
+        if (isChanged && onChange && event.key === 'Enter') {
             onChange(value);
         }
     };

@@ -8,20 +8,20 @@ import { Context } from '../../context';
 
 export const Order = () => {
     const { settings } = useContext(Context);
-    const { prices, materials, lightPrice, colorPrice, costBySquare } = settings;
+    const { prices, materials, lightPrice, colorPrice, defaultMeterPrice } = settings;
 
     const [calculation, setCalculation] = useState({});
 
-    const onOrderSubmit = clientData => 
+    const onOrderSubmit = (clientData: { name: string, phone: string }) =>
         fetch('/api/order', {
             method: 'POST',
-            body: JSON.stringify({ 
-                ...calculation, 
-                ...clientData 
+            body: JSON.stringify({
+                ...calculation,
+                ...clientData
             }),
         });
 
-    if (!prices && !materials) {
+    if (!prices || !materials || !lightPrice || !colorPrice || !defaultMeterPrice) {
         return null;
     }
 
@@ -35,7 +35,7 @@ export const Order = () => {
                     prices={prices}
                     lightPrice={lightPrice}
                     colorPrice={colorPrice}
-                    defaultMeterPrice={costBySquare}
+                    defaultMeterPrice={defaultMeterPrice}
                 />
             </Section>
 

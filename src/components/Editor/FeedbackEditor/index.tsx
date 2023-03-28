@@ -9,15 +9,15 @@ import { Section } from '../../Section';
 
 interface Props extends Feedback {
     onUpdate: (item: Feedback) => void,
-    onRemove: (item: Pick<Feedback, 'id'>) => void,
+    onRemove: (item: Feedback) => void,
 };
 
 
 export const FeedbackEditor = ({ onUpdate, onRemove, ...props }: Props) => {
-    const [state, setState] = useState(props);
+    const [state, setState] = useState<Feedback>(props);
     const [isSaved, setSaved] = useState(true);
 
-    const onChange = (changes) => {
+    const onChange = (changes: Partial<Feedback>) => {
         setState({ ...state, ...changes });
         setSaved(false);
     };

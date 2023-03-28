@@ -39,7 +39,7 @@ const App = (props: Props) => {
             <Certificates />
             <Feedback />
             <Footer />
-            <LeadbackWidget campaign={settings.leadbackCampaign} />
+            {settings.leadbackCampaign && <LeadbackWidget campaign={settings.leadbackCampaign} />}
         </Context.Provider>
     );
 };

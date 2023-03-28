@@ -14,9 +14,13 @@ export const InputNumber = ({ value, min = 0, onChange }: Props) => {
             type="number"
             min={min}
             value={String(value)}
-            readOnly={onChange ? false : true}
+            readOnly={!onChange}
             className={styles.root}
-            onChange={event => onChange(Number(event.target.value))}
+            onChange={(event) => {
+                if (onChange) {
+                    onChange(Number(event.target.value));
+                }
+            }}
         />
     );
 };

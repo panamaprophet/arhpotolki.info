@@ -3,7 +3,7 @@ import { decorateWithAuthentification } from '../../../decorators';
 import { getSettings } from '../../../resolvers/settings';
 
 
-const handler = async ({ method }: NextApiRequest, response: NextApiResponse<{ [k: string]: unknown }>) => {
+const handler = async ({ method }: NextApiRequest, response: NextApiResponse<{ [k: string]: unknown } | null>) => {
     let result = null;
 
     if (method === 'GET') {
