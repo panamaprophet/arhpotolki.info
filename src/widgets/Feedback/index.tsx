@@ -45,7 +45,7 @@ export const FeedbackWidget = () => {
                 <Button theme="orange" onClick={showFeedbackForm}>
                     Оставить отзыв
                 </Button>
-                <Modal size='small' isOpen={isFeedbackFormVisible} onClose={hideFeedbackForm}>
+                <Modal size='medium' isOpen={isFeedbackFormVisible} onClose={hideFeedbackForm}>
                     <Button size="small" onClick={hideFeedbackForm} theme="orange" className={styles.closeButton}>
                         &#10539;
                     </Button>
