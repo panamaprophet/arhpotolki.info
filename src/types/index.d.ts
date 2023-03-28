@@ -14,7 +14,7 @@ export interface Feedback {
 };
 
 interface DefaultSettings {
-    costBySquare: number,
+    defaultMeterPrice: number,
     colorPrice: number,
     lightPrice: number,
     prices: {

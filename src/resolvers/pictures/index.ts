@@ -8,7 +8,7 @@ import { Picture } from '../../types';
 const PICTURES_TABLE = String(process.env.PICTURES_TABLE);
 
 
-export const savePicture = async ({ id = randomUUID(), url, tags = [] }) => {
+export const savePicture = async ({ id = randomUUID(), url, tags = [] }: Picture) => {
     const result = await db.send(new PutItemCommand({
         TableName: PICTURES_TABLE,
         Item: marshall({ id, url, tags }),
@@ -39,7 +39,7 @@ export const getPictures = async () => {
     }));
 
     const items =
-        result.Count > 0
+        result.Items
             ? result.Items.map(item => unmarshall(item) as Picture)
             : [];
 

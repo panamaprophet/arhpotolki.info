@@ -1,3 +1,3 @@
-export const omit = <T extends { [k: string | number]: any }>(keys: (keyof T)[], obj: T) => Object.fromEntries(Object.entries(obj).filter(([key]) => !keys.includes(key)));
+export const omit = <T extends object, K extends keyof T>(keys: K[], obj: T) => Object.fromEntries(Object.entries(obj).filter(([key]) => (key in keys)));
 
-export const cx = (...classnames: string[]) => classnames.filter(Boolean).join(' ');
+export const cx = (...classnames: any[]) => classnames.filter(Boolean).join(' ');

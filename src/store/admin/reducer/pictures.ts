@@ -1,11 +1,8 @@
-export const ACTION_PICTURES_REMOVE = 'actions/pictures/remove';
-
-export const ACTION_PICTURES_CHANGE = 'actions/pictures/change';
-
-export const ACTION_PICTURES_ADD = 'actions/pictures/add';
+import { Picture } from '../../../types';
+import { ACTION, ACTION_PICTURES_ADD, ACTION_PICTURES_CHANGE, ACTION_PICTURES_REMOVE } from './action-types';
 
 
-export const reducer = (state, { type, payload }) => {
+export const reducer = (state: Picture[], { type, payload }: ACTION) => {
     switch (type) {
         case ACTION_PICTURES_REMOVE:
             return state.filter(item => item.id !== payload.id);
