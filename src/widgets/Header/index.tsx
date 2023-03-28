@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
 import { ArrowDown, Burger } from '../../components/Icon';
@@ -9,16 +9,14 @@ import { Logo } from '../../components/Logo';
 import { Menu } from '../../components/Menu';
 import { Modal } from '../../components/Modal';
 import { Subtitle } from '../../components/Text';
+import { Context } from '../../context';
 import { menuLinks } from './data';
 
 
-interface Props {
-    phone: string;
-    headerNotification: string;
-}
+export const HeaderWidget = () => {
+    const { settings } = useContext(Context);
+    const { phone, headerNotification } = settings;
 
-
-export const HeaderWidget = ({ phone, headerNotification }: Props) => {
     const [isMenuOpen, setMenuOpen] = useState(false);
     const openMenu = () => setMenuOpen(true);
     const closeMenu = () => setMenuOpen(false);
