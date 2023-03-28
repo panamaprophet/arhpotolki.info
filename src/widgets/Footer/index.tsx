@@ -1,24 +1,22 @@
+import { useContext } from 'react';
 import { Footer } from '../../components/Footer';
 import { Column } from '../../components/Layout';
 import { Link } from '../../components/Link';
 import { Map } from '../../components/Map';
 import { Text } from '../../components/Text';
 import { VKWidget } from '../../components/VKWidget';
+import { Context } from '../../context';
 
 
 const getFullYear = () => (new Date()).getFullYear();
 
 const formatLink = (link: string) => link.replaceAll(/^(mailto:|\/\/|http:\/\/|https:\/\/)/gi, '');
 
-interface Props {
-    companyName: string;
-    address: string;
-    phone: string;
-    links: string[];
-}
 
+export const FooterWidget = () => {
+    const { settings } = useContext(Context);
+    const { companyName, address, phone, links } = settings;
 
-export const FooterWidget = ({ companyName, address, phone, links }: Props) => {
     return (
         <Footer>
             <Column style={{ alignItems: 'center', textAlign: 'center', gap: 16 }}>

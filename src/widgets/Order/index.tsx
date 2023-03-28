@@ -1,23 +1,15 @@
-import { useState } from 'react';
-import { Calculator as Calc } from '../../components/Calculator';
+import { useContext, useState } from 'react';
+import { Calculator } from '../../components/Calculator';
 import { OrderForm } from '../../components/OrderForm';
 import { Section } from '../../components/Section';
 import { Title } from '../../components/Text';
+import { Context } from '../../context';
 
 
-interface Props {
-    prices: { 
-        [type: string]: { 
-            [k: number]: number 
-        } 
-    };
-    materials: string[];
-    lightPrice: number;
-    colorPrice: number;
-    costBySquare: number;
-}
+export const Order = () => {
+    const { settings } = useContext(Context);
+    const { prices, materials, lightPrice, colorPrice, costBySquare } = settings;
 
-export const Order = ({ prices, materials, lightPrice, colorPrice, costBySquare }: Props) => {
     const [calculation, setCalculation] = useState({});
 
     const onOrderSubmit = clientData => 
@@ -37,7 +29,7 @@ export const Order = ({ prices, materials, lightPrice, colorPrice, costBySquare 
         <>
             <Section id="calculator">
                 <Title>Рассчитать стоимость:</Title>
-                <Calc
+                <Calculator
                     onCalc={setCalculation}
                     materials={materials}
                     prices={prices}
