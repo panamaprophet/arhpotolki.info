@@ -107,6 +107,11 @@ const AdminPage = (props: Props) => {
                     <strong>Leadback Campaign Id:</strong>
                     <InputTextLazy value={state.settings.leadbackCampaign} onChange={value => onSettingsUpdate('leadbackCampaign', value)} />
                 </Row>
+
+                <Row>
+                    <strong>Vk Group Id:</strong>
+                    <InputTextLazy value={state.settings.vkGroupId} onChange={value => onSettingsUpdate('vkGroupId', value)} />
+                </Row>
             </Section>
 
             <Section id="contacts">
