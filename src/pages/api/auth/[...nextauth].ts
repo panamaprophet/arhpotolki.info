@@ -6,10 +6,12 @@ export const authOptions = {
     providers: [
         CredentialsProvider({
             async authorize(credentials) {
-                // @todo: replace with actual backend stuff when it will be ready
-
                 const username = String(process.env.ADMIN_USERNAME);
                 const password = String(process.env.ADMIN_PASSWORD);
+
+                if (!credentials || !credentials.username || !credentials.password) {
+                    return null;
+                }
 
                 if (credentials.username === username && credentials.password === password) {
                     return { id: 'admin' };

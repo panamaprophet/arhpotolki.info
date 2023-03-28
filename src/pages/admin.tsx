@@ -27,6 +27,7 @@ import {
 } from '../store/admin/action-creators';
 
 import { Feedback, Picture, Settings } from '../types';
+import { GetServerSideProps } from 'next';
 
 
 type Props = {
@@ -38,10 +39,10 @@ type Props = {
 
 const AdminPage = (props: Props) => {
     const [state, dispatch] = useReducer(reducer, { ...props });
-    const [urls, setUrls] = useState([]);
-    const [tags, setTags] = useState([]);
+    const [urls, setUrls] = useState<string[]>([]);
+    const [tags, setTags] = useState<string[]>([]);
 
-    const addUrls = useCallback((newUrls: string[]) => setUrls(urls => [
+    const addUrls = useCallback((newUrls: string[]) => setUrls((urls: string[]) => [
         ...urls, 
         ...newUrls,
     ]), []);
@@ -165,7 +166,7 @@ const AdminPage = (props: Props) => {
 };
 
 
-export const getServerSideProps = async (ctx) => {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const session = await getSession({ req: ctx.req });
     const destination = ctx.req.url;
 
