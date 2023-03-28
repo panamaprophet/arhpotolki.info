@@ -8,22 +8,30 @@ import { Modal } from '../../components/Modal';
 import { Section } from '../../components/Section';
 import { Title } from '../../components/Text';
 import { Context } from '../../context';
-import { Feedback } from '../../types';
+import { uploadFile } from '../../resolvers/storage';
 import styles from './styles.module.css';
 
 
 export const FeedbackWidget = () => {
     const { feedback: items } = useContext(Context);
 
+
     const [isFeedbackFormVisible, setFeedbackFormVisible] = useState(false);
     const showFeedbackForm = () => setFeedbackFormVisible(true);
     const hideFeedbackForm = () => setFeedbackFormVisible(false);
 
-    const onFeedbackSubmit = (feedback: Omit<Feedback, 'id' | 'date'>) =>
-        fetch('/api/feedback', {
+    const onFeedbackSubmit = async (formData: { author: string, city: string, text: string, picture?: File }) => {
+        const picture = formData.picture
+            ? await uploadFile(formData.picture)
+            : null;
+
+        const feedback = { ...formData, picture };
+
+        return fetch('/api/feedback', {
             method: 'POST',
             body: JSON.stringify(feedback),
         });
+    }
 
     return (
         <Section id="feedback">
@@ -37,10 +45,10 @@ export const FeedbackWidget = () => {
                 <Button theme="orange" onClick={showFeedbackForm}>
                     Оставить отзыв
                 </Button>
-                <Modal size='small' isOpen={isFeedbackFormVisible} onClose={hideFeedbackForm}>
-                    <div className={styles.closeButton} onClick={hideFeedbackForm}>
-                        x
-                    </div>
+                <Modal size='medium' isOpen={isFeedbackFormVisible} onClose={hideFeedbackForm}>
+                    <Button size="small" onClick={hideFeedbackForm} theme="orange" className={styles.closeButton}>
+                        &#10539;
+                    </Button>
                     <FeedbackForm onSubmit={onFeedbackSubmit} />
                 </Modal>
             </Row>
