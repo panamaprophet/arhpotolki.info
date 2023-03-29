@@ -14,7 +14,7 @@ export const Title = ({ children, condenced = false }: { children: ReactNode, co
     </h2>
 );
 
-export const Subtitle = ({ color, children }: { children: ReactNode, color: string }) => (
+export const Subtitle = ({ color, children }: { children: ReactNode, color?: string }) => (
     <h3 className={styles.subtitle} style={{ color }}>
         {children}
     </h3>

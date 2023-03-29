@@ -27,7 +27,7 @@ export const HeaderWidget = () => {
                 <Image src={ImageEco} width="80" height="96" alt="" />
                 <Row>
                     <Subtitle color="#a6c719">
-                        {phone}
+                        <Link href={`tel:${phone}`}>{phone}</Link>
                     </Subtitle>
                     <Button onClick={openMenu}>
                         <Burger />
