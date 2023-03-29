@@ -6,11 +6,10 @@
 
 .pictureContainer {
     position: relative;
-    max-width: 204px;
-    aspect-ratio: 1 / 1;
+    max-width: 160px;
     width: 100%;
-    float: left;
-    margin-right: 8px;
+    aspect-ratio: 3/4;
+    margin-right: 26px;
 }
 
 .pictureContainer:empty {
@@ -19,7 +18,8 @@
 
 .picture {
     object-fit: cover;
-    border-radius: 6px; 
+    object-position: center;
+    border-radius: 6px;
 }
 
 .author {
@@ -31,7 +31,6 @@
 }
 .text {
     margin-top: 16px;
-    /* height: 140px; */
     overflow: hidden;
     text-overflow: ellipsis;
 }
