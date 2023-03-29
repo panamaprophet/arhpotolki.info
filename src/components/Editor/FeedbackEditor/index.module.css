@@ -1,0 +1,8 @@
+.image {
+    object-fit: contain;
+    margin-right: 16px;
+    max-height: 160px;
+    height: auto;
+    background: #eee;
+    border-radius: 6px;
+}

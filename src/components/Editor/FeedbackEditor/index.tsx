@@ -5,6 +5,7 @@ import { Button } from '../../Button';
 import { InputDate, InputTextLazy } from '../../Input';
 import { Column, Row } from '../../Layout';
 import { Section } from '../../Section';
+import styles from './index.module.css';
 
 
 interface Props extends Feedback {
@@ -30,7 +31,7 @@ export const FeedbackEditor = ({ onUpdate, onRemove, ...props }: Props) => {
     return (
         <Section>
             <Row>
-                {props.picture && <Image width="160" height="160" src={props.picture} alt="" />}
+                {props.picture && <Image width="160" height="160" src={props.picture} className={styles.image} alt="" />}
                 <Column>
                     <Row>
                         <strong>Имя:</strong>
