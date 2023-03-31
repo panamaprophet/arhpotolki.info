@@ -1,0 +1,7 @@
+#!/bin/sh
+
+echo "running eslint check..."
+yarn lint
+
+echo "running typescript check..."
+yarn typescript-check

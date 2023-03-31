@@ -11,6 +11,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "typescript-check": "git diff --staged --name-only '*.ts' '*.tsx' | tsc --noEmit",
     "cdk": "cdk",
     "bootstrap": "cdk bootstrap",
     "deploy": "cdk deploy --outputs-file ./cdk-outputs.json",
