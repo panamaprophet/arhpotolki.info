@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
 import { Button } from '../../components/Buttons/Button';
+import { RoundButton } from '../../components/Buttons/RoundButton';
 import { Carousel } from '../../components/Carousel';
 import { FeedbackForm } from '../../components/FeedbackForm';
 import { FeedbackItem } from '../../components/FeedbackItem/FeedbackItem';
@@ -46,9 +47,9 @@ export const FeedbackWidget = () => {
                     Оставить отзыв
                 </Button>
                 <Modal size='medium' isOpen={isFeedbackFormVisible} onClose={hideFeedbackForm}>
-                    <Button size="small" onClick={hideFeedbackForm} theme="orange" className={styles.closeButton}>
+                    <RoundButton className={[styles.closeButton]} onClick={hideFeedbackForm}>
                         &#10539;
-                    </Button>
+                    </RoundButton>
                     <FeedbackForm onSubmit={onFeedbackSubmit} />
                 </Modal>
             </Row>

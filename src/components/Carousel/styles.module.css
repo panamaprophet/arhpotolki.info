@@ -8,29 +8,11 @@
 
 .next,
 .prev {
-    display: flex;
-    justify-content: center;
-    flex-shrink: 0;
-    background-color: transparent;
-    border: 2px solid #f7a136;
     width: 42px;
     height: 42px;
-    line-height: 34px;
-    color: #f7a136;
-    font-size: 1.4em;
-    cursor: pointer;
-    user-select: none;
-    border-radius: 50%;
-    transition: all 250ms;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-}
-
-.prev:hover,
-.next:hover {
-    background-color: #f7a136;
-    color: #fff;
 }
 
 .prev {

@@ -1,22 +1,8 @@
 .closeButton {
     position: absolute;
-    top: -43px;
     right: 0;
-    display: flex;
-    justify-content: center;
-    background-color: transparent;
-    border: 2px solid #f7a136;
+    top: -43px;
     width: 32px;
     height: 32px;
     line-height: 25px;
-    color: #f7a136;
-    cursor: pointer;
-    user-select: none;
-    border-radius: 50%;
-    transition: all 250ms;
-}
-
-.closeButton:hover {
-    background-color: #f7a136;
-    color: #fff;
 }

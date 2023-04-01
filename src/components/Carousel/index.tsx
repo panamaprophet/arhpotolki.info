@@ -1,4 +1,5 @@
 import { Children, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import { RoundButton } from '../Buttons/RoundButton';
 import styles from './styles.module.css';
 
 interface Props {
@@ -56,16 +57,20 @@ export const Carousel = ({ children, viewportWidth: initialViewportWidth, startI
     return (
         <div className={styles.root}>
             <div className={styles.container} ref={ref}>
-                <div className={styles.prev} onClick={onBackward}>
-                    «
+                <div className={styles.prev}>
+                    <RoundButton className={[styles.prev]} onClick={onBackward}>
+                        «
+                    </RoundButton>
                 </div>
                 <div className={styles.viewport} style={{ width: viewportWidth }}>
                     <div className={styles.list} style={{ transform: `translateX(-${offset}px)` }}>
                         {children}
                     </div>
                 </div>
-                <div className={styles.next} onClick={onForward}>
-                    »
+                <div className={styles.next}>
+                    <RoundButton className={[styles.prev]} onClick={onForward}>
+                        »
+                    </RoundButton>
                 </div>
             </div>
         </div>
