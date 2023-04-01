@@ -10,7 +10,7 @@ interface Props {
 }
 
 
-export const InputList = withAnimation(({ value: initialValue, placeholder = '', onChange }: Props) => {
+const _InputList = ({ value: initialValue, placeholder = '', onChange }: Props) => {
     const [value, setValue] = useState(initialValue);
 
     const onBlur: FocusEventHandler<HTMLInputElement> = () => {
@@ -36,4 +36,6 @@ export const InputList = withAnimation(({ value: initialValue, placeholder = '',
             onBlur={onBlur}
         />
     );
-});
+};
+
+export const InputList = withAnimation(_InputList);
