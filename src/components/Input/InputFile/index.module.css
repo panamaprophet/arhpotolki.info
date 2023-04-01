@@ -17,6 +17,10 @@
     background: #ee9090;
 }
 
+.error:hover {
+    background: #f7c8c8;
+}
+
 .input {
     position: absolute;
     opacity: 0;
