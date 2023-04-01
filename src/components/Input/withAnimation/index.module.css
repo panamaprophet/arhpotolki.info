@@ -1,0 +1,28 @@
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+.root {
+    display: flex;
+    flex-grow: 1;
+    position: relative;
+}
+
+.root_animated:after {
+    animation: fadeOut 2s ease-in-out 1 forwards;
+    content: 'изменено';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 27px;
+    color: green;
+    background: #fff;
+    padding: 4px;
+}
