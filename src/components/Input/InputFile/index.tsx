@@ -5,13 +5,12 @@ import styles from './index.module.css';
 
 interface Props {
     multiple?: boolean,
+    maxSize?: number,
     onChange: (files: File[]) => void,
 };
 
-const megabyteSize = 1049000;
 
-
-export const InputFile = ({ multiple = false, onChange }: Props) => {
+export const InputFile = ({ multiple = false, onChange, maxSize = 1049000 }: Props) => {
     const [isError, setIsError] = useState(false);
 
     const _onChange: ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -20,7 +19,7 @@ export const InputFile = ({ multiple = false, onChange }: Props) => {
             return;
         }
 
-        if (event.target.files[0].size > megabyteSize) {
+        if (event.target.files[0].size > maxSize) {
             setIsError(true);
 
             setTimeout(() => setIsError(false), 4200);
