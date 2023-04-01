@@ -1,4 +1,4 @@
-import { Button } from '../../../../Button';
+import { Button } from '../../../../Buttons/Button';
 import { InputTextLazy } from '../../../../Input';
 import styles from '../../index.module.css';
 

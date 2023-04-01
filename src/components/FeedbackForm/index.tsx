@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Button } from '../Button';
-import { ButtonWithStatus } from '../ButtonWithStatus';
+import { Button } from '../Buttons/Button';
+import { ButtonWithStatus } from '../Buttons/ButtonWithStatus';
 import { InputFile, InputText } from '../Input';
 import { Row } from '../Layout';
 import styles from './index.module.css';

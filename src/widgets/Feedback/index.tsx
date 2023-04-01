@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { Button } from '../../components/Button';
+import { Button } from '../../components/Buttons/Button';
 import { Carousel } from '../../components/Carousel';
 import { FeedbackForm } from '../../components/FeedbackForm';
 import { FeedbackItem } from '../../components/FeedbackItem/FeedbackItem';

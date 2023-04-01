@@ -1,5 +1,5 @@
 import { useReducer, useState } from 'react';
-import { Button } from '../../Button';
+import { Button } from '../../Buttons/Button';
 import { InputTextLazy } from '../../Input';
 
 import {
