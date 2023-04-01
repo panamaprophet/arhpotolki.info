@@ -2,7 +2,7 @@ import { ComponentType, useState } from 'react'
 import { cx } from '../../../helpers';
 import styles from './index.module.css';
 
-export const withAnimation = <P extends object>(Component: ComponentType<P>) => {
+export const withAnimation = <P extends { onChange?: Function }>(Component: ComponentType<P>) => {
     const WrappedComponent = (props: P) => {
         const [isChanged, setChanged] = useState(false);
 
@@ -13,8 +13,10 @@ export const withAnimation = <P extends object>(Component: ComponentType<P>) => 
 
         const onChange = (value: unknown) => {
             setChanged(true);
-            // @ts-ignore
-            props.onChange(value);
+
+            if (props.onChange) {
+                props.onChange(value);
+            }
         };
 
         return (

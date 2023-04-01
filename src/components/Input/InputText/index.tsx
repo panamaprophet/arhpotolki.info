@@ -29,7 +29,7 @@ export const InputText = ({ value, placeholder, onChange }: Props) => {
     );
 };
 
-export const InputTextLazy = withAnimation(({ value: initialValue, placeholder, onChange }: Props) => {
+export const _InputTextLazy = ({ value: initialValue, placeholder, onChange }: Props) => {
     const [value, setValue] = useState(initialValue);
     const isValueChanged = value !== initialValue;
 
@@ -56,4 +56,6 @@ export const InputTextLazy = withAnimation(({ value: initialValue, placeholder, 
             onBlur={onBlur}
         />
     );
-});
+};
+
+export const InputTextLazy = withAnimation(_InputTextLazy);
