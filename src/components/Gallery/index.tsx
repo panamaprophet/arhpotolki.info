@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Picture } from '../../types';
 import { Button } from '../Buttons/Button';
 import { Carousel } from '../Carousel';
+import { Column } from '../Layout';
 import { List } from '../List';
 import { Modal } from '../Modal';
 import styles from './styles.module.css';
@@ -64,15 +65,18 @@ export const Gallery = ({ items }: Props) => {
             <Modal size="medium" isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
                 <Carousel startIndex={currentIndex}>
                     {filteredItems.map(item => (
-                        <div key={item.id} className={styles.imageContainer}>
-                            <Image
-                                className={styles.image}
-                                src={item.url}
-                                sizes="100vw"
-                                fill
-                                alt=""
-                            />
-                        </div>
+                        <Column key={item.id}>
+                            <div className={styles.imageContainer}>
+                                <Image
+                                    className={styles.image}
+                                    src={item.url}
+                                    sizes="100vw"
+                                    fill
+                                    alt=""
+                                />
+                            </div>
+                            <p className={styles.text}>{item.tags}</p>
+                        </Column>
                     ))}
                 </Carousel>
             </Modal>
