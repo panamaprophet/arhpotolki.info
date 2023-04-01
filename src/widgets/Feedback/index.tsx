@@ -1,6 +1,5 @@
 import { useContext, useState } from 'react';
 import { Button } from '../../components/Buttons/Button';
-import { RoundButton } from '../../components/Buttons/RoundButton';
 import { Carousel } from '../../components/Carousel';
 import { FeedbackForm } from '../../components/FeedbackForm';
 import { FeedbackItem } from '../../components/FeedbackItem/FeedbackItem';
@@ -32,7 +31,7 @@ export const FeedbackWidget = () => {
             method: 'POST',
             body: JSON.stringify(feedback),
         });
-    }
+    };
 
     return (
         <Section id="feedback">
@@ -47,9 +46,9 @@ export const FeedbackWidget = () => {
                     Оставить отзыв
                 </Button>
                 <Modal size='medium' isOpen={isFeedbackFormVisible} onClose={hideFeedbackForm}>
-                    <RoundButton className={[styles.closeButton]} onClick={hideFeedbackForm}>
+                    <Button className={styles.closeButton} theme="orange" onClick={hideFeedbackForm}>
                         &#10539;
-                    </RoundButton>
+                    </Button>
                     <FeedbackForm onSubmit={onFeedbackSubmit} />
                 </Modal>
             </Row>
