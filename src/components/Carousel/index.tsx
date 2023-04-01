@@ -1,4 +1,5 @@
 import { Children, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import { Button } from '../Buttons/Button';
 import { ArrowLeft, ArrowRight } from '../Icon';
 import styles from './styles.module.css';
 
@@ -57,17 +58,17 @@ export const Carousel = ({ children, viewportWidth: initialViewportWidth, startI
     return (
         <div className={styles.root}>
             <div className={styles.container} ref={ref}>
-                <div className={styles.prev} onClick={onBackward}>
+                <Button className={styles.prev} theme="none" onClick={onBackward}>
                     <ArrowLeft />
-                </div>
+                </Button>
                 <div className={styles.viewport} style={{ width: viewportWidth }}>
                     <div className={styles.list} style={{ transform: `translateX(-${offset}px)` }}>
                         {children}
                     </div>
                 </div>
-                <div className={styles.next} onClick={onForward}>
+                <Button className={styles.next} theme="none" onClick={onForward}>
                     <ArrowRight />
-                </div>
+                </Button>
             </div>
         </div>
     );
