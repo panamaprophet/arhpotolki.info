@@ -1,5 +1,5 @@
 import { Children, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
-import { Button } from '../Buttons/Button';
+import { Button } from '../Button';
 import { ArrowLeft, ArrowRight } from '../Icon';
 import styles from './styles.module.css';
 
