@@ -9,9 +9,22 @@ interface Props {
     onChange: (files: File[]) => void,
 };
 
+const getSize = (maxSize: number) => {
+    const isMegabyte = maxSize >= 1049000;
+
+    if (isMegabyte) {
+        const size = Math.round(maxSize / (1024 * 1024));
+
+        return [size, 'MB'].join('');
+    } else {
+        const size = (maxSize / 1000).toFixed(2);
+
+        return [size, 'kB'].join('');
+    }
+}
 
 export const InputFile = ({ multiple = false, onChange, maxSize = 1049000 }: Props) => {
-    const [isError, setIsError] = useState(false);
+    const [isError, setError] = useState(false);
 
     const _onChange: ChangeEventHandler<HTMLInputElement> = (event) => {
         if (!event.target.files) {
@@ -20,15 +33,23 @@ export const InputFile = ({ multiple = false, onChange, maxSize = 1049000 }: Pro
         }
 
         if (event.target.files[0].size > maxSize) {
-            setIsError(true);
+            setError(true);
 
-            setTimeout(() => setIsError(false), 4200);
+            setTimeout(() => setError(false), 4200);
 
             return;
         }
 
         onChange(Array.from(event.target.files));
     }
+
+    const header = isError
+        ? 'Ошибка при загрузке'
+        : 'Прикрепить файл';
+
+    const caption = isError
+        ? `Выбранный файл превышает допустимый размер в ${getSize(maxSize)}`
+        : 'Перетащите сюда или нажмите для выбора';
 
     return (
         <label className={cx(styles.root, isError && styles.error)}>
@@ -38,18 +59,10 @@ export const InputFile = ({ multiple = false, onChange, maxSize = 1049000 }: Pro
                 className={styles.input}
                 onChange={_onChange}
             />
-            {isError && (
-                <div className={styles.meta}>
-                    <div>Ошибка при загрузке</div>
-                    <div className={styles.text}>Выбранный файл превышает допустимый размер в 1 мегабайт</div>
-                </div>
-            )}
-            {!isError && (
-                <div className={styles.meta}>
-                    <div>Прикрепить файл</div>
-                    <div className={styles.text}>Перетащите сюда или нажмите для выбора</div>
-                </div>
-            )}
+            <div className={styles.meta}>
+                <div>{header}</div>
+                <div className={styles.text}>{caption}</div>
+            </div>
         </label>
     );
 };
