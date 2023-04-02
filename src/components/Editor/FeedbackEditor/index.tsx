@@ -49,13 +49,13 @@ export const FeedbackEditor = ({ onUpdate, onRemove, ...props }: Props) => {
                     </Row>
                 </Column>
             </Row>
-
-            <Row>
-                <Button theme="orange" onClick={() => onChange({ isPublished: !state.isPublished })}>
+            <Row style={{ justifyContent: 'center' }}>
+                <Button theme="orange" className={styles.button} onClick={() => onChange({ isPublished: !state.isPublished })}>
                     {buttonText}
                 </Button>
-                <Button theme="orange" onClick={() => onRemove(state)}>Удалить</Button>
+                <Button theme="orange" className={styles.button} onClick={() => onRemove(state)}>Удалить</Button>
             </Row>
+
         </Section>
     );
 };
