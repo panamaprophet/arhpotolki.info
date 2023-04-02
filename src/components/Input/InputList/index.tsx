@@ -1,5 +1,6 @@
 import { FocusEventHandler, KeyboardEventHandler, useState } from 'react';
 import styles from './index.module.css';
+import { withAnimation } from '../withAnimation';
 
 
 interface Props {
@@ -9,7 +10,7 @@ interface Props {
 }
 
 
-export const InputList = ({ value: initialValue, placeholder = '', onChange }: Props) => {
+const _InputList = ({ value: initialValue, placeholder = '', onChange }: Props) => {
     const [value, setValue] = useState(initialValue);
 
     const onBlur: FocusEventHandler<HTMLInputElement> = () => {
@@ -36,3 +37,5 @@ export const InputList = ({ value: initialValue, placeholder = '', onChange }: P
         />
     );
 };
+
+export const InputList = withAnimation(_InputList);

@@ -1,5 +1,6 @@
 import { ChangeEventHandler, FocusEventHandler, KeyboardEventHandler, useState } from 'react';
 import styles from './styles.module.css';
+import { withAnimation } from '../withAnimation';
 
 
 type Props = {
@@ -28,18 +29,18 @@ export const InputText = ({ value, placeholder, onChange }: Props) => {
     );
 };
 
-export const InputTextLazy = ({ value: initialValue, placeholder, onChange }: Props) => {
+export const _InputTextLazy = ({ value: initialValue, placeholder, onChange }: Props) => {
     const [value, setValue] = useState(initialValue);
-    const isChanged = value !== initialValue;
+    const isValueChanged = value !== initialValue;
 
     const onBlur: FocusEventHandler<HTMLInputElement> = () => {
-        if (isChanged && onChange) {
+        if (isValueChanged && onChange) {
             onChange(value);
         }
     };
 
     const onKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
-        if (isChanged && onChange && event.key === 'Enter') {
+        if (isValueChanged && onChange && event.key === 'Enter') {
             onChange(value);
         }
     };
@@ -56,3 +57,5 @@ export const InputTextLazy = ({ value: initialValue, placeholder, onChange }: Pr
         />
     );
 };
+
+export const InputTextLazy = withAnimation(_InputTextLazy);
