@@ -17,7 +17,8 @@ interface Props extends Feedback {
 export const FeedbackEditor = ({ onUpdate, onRemove, ...props }: Props) => {
     const [state, setState] = useState<Feedback>(props);
     const [isSaved, setSaved] = useState(true);
-    const [isPublished, setIsPublished] = useState(false);
+
+    const buttonText = props.isPublished ? 'Скрыть публикацию' : 'Опубликовать';
 
     const onChange = (changes: Partial<Feedback>) => {
         setState({ ...state, ...changes });
@@ -46,18 +47,12 @@ export const FeedbackEditor = ({ onUpdate, onRemove, ...props }: Props) => {
                         <strong>Дата:</strong>
                         <InputDate value={state.date} onChange={date => onChange({ date })} />
                     </Row>
-                    <Row>
-                        <strong>Опубликовано:</strong>
-                        <InputText value={isPublished ? 'Да' : 'Нет'} />
-                    </Row>
-
                 </Column>
             </Row>
 
             <Row>
-                <Button theme="orange" onClick={() => setIsPublished(!isPublished)}>
-                    {isPublished && 'Скрыть со страницы'}
-                    {!isPublished && 'Показать на странице'}
+                <Button theme="orange" onClick={() => onChange({ isPublished: !state.isPublished })}>
+                    {buttonText}
                 </Button>
                 <Button theme="orange" onClick={() => onRemove(state)}>Удалить</Button>
             </Row>
