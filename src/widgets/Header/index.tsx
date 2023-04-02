@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useContext, useState } from 'react';
-import { Button } from '../../components/Buttons/Button';
+import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
 import { ArrowDown, Burger } from '../../components/Icon';
 import { Row } from '../../components/Layout';
