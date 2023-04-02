@@ -8,7 +8,7 @@ import { Column, Row } from '../components/Layout';
 import { Card } from '../components/Card';
 import { Section } from '../components/Section';
 import { Carousel } from '../components/Carousel';
-import { Button } from '../components/Buttons/Button';
+import { Button } from '../components/Button';
 import { PictureEditor, FeedbackEditor, PriceEditor } from '../components/Editor';
 
 import { getFeedbacks } from '../resolvers/feedback';

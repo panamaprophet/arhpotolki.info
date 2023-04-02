@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { Picture } from '../../types';
-import { Button } from '../Buttons/Button';
+import { Button } from '../Button';
 import { Carousel } from '../Carousel';
 import { Column } from '../Layout';
 import { List } from '../List';

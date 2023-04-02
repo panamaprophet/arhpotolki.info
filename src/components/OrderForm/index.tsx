@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { Button } from '../Buttons/Button';
-import { ButtonWithStatus } from '../Buttons/ButtonWithStatus';
+import { ButtonWithStatus } from '../Button';
 import { InputText } from '../Input';
 import styles from './styles.module.css';
 
@@ -37,11 +36,11 @@ export const OrderForm = (props: Props) => {
       <InputText placeholder="Телефон" value={phone} onChange={setPhone} />
 
       <ButtonWithStatus
-          disabled={isDisabled} 
-          theme="green" 
-          className={styles.submitButton} 
-          onClick={onSubmit} 
-          status={['Отправить', 'Отправляется', 'Отправлено', 'Ошибка']} 
+        disabled={isDisabled}
+        theme="green"
+        className={styles.submitButton}
+        onClick={onSubmit}
+        status={['Отправить', 'Отправляется', 'Отправлено', 'Ошибка']}
       />
 
       <p className={styles.disclaimer}>

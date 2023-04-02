@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { Feedback } from '../../../types';
-import { Button } from '../../Buttons/Button';
+import { Button } from '../../Button';
 import { InputDate, InputTextLazy } from '../../Input';
 import { Column, Row } from '../../Layout';
 import { Section } from '../../Section';
