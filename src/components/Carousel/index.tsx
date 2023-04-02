@@ -58,7 +58,7 @@ export const Carousel = ({ children, viewportWidth: initialViewportWidth, startI
     return (
         <div className={styles.root}>
             <div className={styles.container} ref={ref}>
-                <Button className={styles.prev} theme="none" onClick={onBackward}>
+                <Button className={styles.prev} onClick={onBackward}>
                     <ArrowLeft />
                 </Button>
                 <div className={styles.viewport} style={{ width: viewportWidth }}>
@@ -66,7 +66,7 @@ export const Carousel = ({ children, viewportWidth: initialViewportWidth, startI
                         {children}
                     </div>
                 </div>
-                <Button className={styles.next} theme="none" onClick={onForward}>
+                <Button className={styles.next} onClick={onForward}>
                     <ArrowRight />
                 </Button>
             </div>
