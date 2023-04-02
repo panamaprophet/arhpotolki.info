@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { Feedback } from '../../../types';
 import { Button } from '../../Button';
-import { InputDate, InputTextLazy } from '../../Input';
+import { InputDate, InputText, InputTextLazy } from '../../Input';
 import { Column, Row } from '../../Layout';
 import { Section } from '../../Section';
 import styles from './index.module.css';
@@ -17,6 +17,8 @@ interface Props extends Feedback {
 export const FeedbackEditor = ({ onUpdate, onRemove, ...props }: Props) => {
     const [state, setState] = useState<Feedback>(props);
     const [isSaved, setSaved] = useState(true);
+
+    const buttonText = props.isPublished ? 'Скрыть публикацию' : 'Опубликовать';
 
     const onChange = (changes: Partial<Feedback>) => {
         setState({ ...state, ...changes });
@@ -45,9 +47,14 @@ export const FeedbackEditor = ({ onUpdate, onRemove, ...props }: Props) => {
                         <strong>Дата:</strong>
                         <InputDate value={state.date} onChange={date => onChange({ date })} />
                     </Row>
-
-                    <Button theme="orange" onClick={() => onRemove(state)}>Удалить</Button>
                 </Column>
+            </Row>
+
+            <Row>
+                <Button theme="orange" onClick={() => onChange({ isPublished: !state.isPublished })}>
+                    {buttonText}
+                </Button>
+                <Button theme="orange" onClick={() => onRemove(state)}>Удалить</Button>
             </Row>
         </Section>
     );
