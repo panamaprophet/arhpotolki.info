@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useState } from 'react';
+import { ChangeEventHandler, useEffect, useState } from 'react';
 import { cx } from '../../../helpers';
 import styles from './index.module.css';
 
@@ -23,6 +23,8 @@ const getSize = (maxSize: number) => {
     }
 }
 
+const MESSAGE_RESET_TIMEOUT = 4200;
+
 export const InputFile = ({ multiple = false, onChange, maxSize = 1049000 }: Props) => {
     const [isError, setError] = useState(false);
 
@@ -35,13 +37,19 @@ export const InputFile = ({ multiple = false, onChange, maxSize = 1049000 }: Pro
         if (event.target.files[0].size > maxSize) {
             setError(true);
 
-            setTimeout(() => setError(false), 4200);
-
             return;
         }
 
         onChange(Array.from(event.target.files));
     }
+
+    useEffect(() => {
+        if (!isError) { return };
+
+        const id = setTimeout(() => setError(false), MESSAGE_RESET_TIMEOUT);
+
+        return () => clearTimeout(id);
+    }, [isError])
 
     const header = isError
         ? 'Ошибка при загрузке'
