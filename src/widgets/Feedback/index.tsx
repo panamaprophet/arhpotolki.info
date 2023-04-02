@@ -37,9 +37,10 @@ export const FeedbackWidget = () => {
         <Section id="feedback">
             <Title>Отзывы:</Title>
             <Carousel>
-                {items.map(item => (
-                    <FeedbackItem key={item.id} {...item} />
-                ))}
+                {items
+                    .filter((item) => item.isPublished)
+                    .map(item => (<FeedbackItem key={item.id} {...item} />))
+                }
             </Carousel>
             <Row>
                 <Button theme="orange" onClick={showFeedbackForm}>
