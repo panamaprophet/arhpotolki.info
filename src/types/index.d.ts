@@ -9,6 +9,7 @@ export interface Feedback {
     author: string,
     text: string,
     picture?: string,
+    isPublished: boolean,
     date: number,
     city: string,
 };
