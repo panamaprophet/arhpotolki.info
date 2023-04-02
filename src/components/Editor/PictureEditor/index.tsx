@@ -3,7 +3,7 @@ import { InputList } from '../../Input';
 import Image from 'next/image';
 import { Picture } from '../../../types';
 import { Column } from '../../Layout';
-import { Button } from '../../Buttons/Button';
+import { Button } from '../../Button';
 import styles from './index.module.css';
 
 
