@@ -9,23 +9,22 @@ interface Props {
     onChange: (files: File[]) => void,
 };
 
-const getSize = (maxSize: number) => {
-    const isMegabyte = maxSize >= 1049000;
+function formatBytes(bytes: number, decimals = 2) {
+    if (bytes === 0) return 'n/a';
 
-    if (isMegabyte) {
-        const size = Math.round(maxSize / (1024 * 1024));
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ['Bytes', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
 
-        return [size, 'MB'].join('');
-    } else {
-        const size = (maxSize / 1000).toFixed(2);
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
 
-        return [size, 'kB'].join('');
-    }
+    return `${(bytes / Math.pow(k, i)).toFixed(dm)} ${sizes[i]}`;
 }
 
 const MESSAGE_RESET_TIMEOUT = 4200;
+const DEFAULT_MAX_SIZE = 1024 * 1024
 
-export const InputFile = ({ multiple = false, onChange, maxSize = 1049000 }: Props) => {
+export const InputFile = ({ multiple = false, onChange, maxSize = DEFAULT_MAX_SIZE }: Props) => {
     const [isError, setError] = useState(false);
 
     const _onChange: ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -51,12 +50,12 @@ export const InputFile = ({ multiple = false, onChange, maxSize = 1049000 }: Pro
         return () => clearTimeout(id);
     }, [isError])
 
-    const header = isError
+    const title = isError
         ? 'Ошибка при загрузке'
         : 'Прикрепить файл';
 
-    const caption = isError
-        ? `Выбранный файл превышает допустимый размер в ${getSize(maxSize)}`
+    const subtitle = isError
+        ? `Выбранный файл превышает допустимый размер в ${formatBytes(maxSize)}`
         : 'Перетащите сюда или нажмите для выбора';
 
     return (
@@ -68,8 +67,8 @@ export const InputFile = ({ multiple = false, onChange, maxSize = 1049000 }: Pro
                 onChange={_onChange}
             />
             <div className={styles.meta}>
-                <div>{header}</div>
-                <div className={styles.text}>{caption}</div>
+                <div>{title}</div>
+                <div className={styles.text}>{subtitle}</div>
             </div>
         </label>
     );
