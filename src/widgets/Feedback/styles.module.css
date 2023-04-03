@@ -1,8 +1,4 @@
-.closeButton {
-    border-radius: 50%;
-    border: 2px solid #f1a136;
-    color: #f1a136;
-    background: transparent;
+.button {
     position: absolute;
     right: 0;
     top: -43px;

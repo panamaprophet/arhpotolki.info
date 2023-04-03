@@ -3,6 +3,7 @@ import { Button } from '../../components/Button';
 import { Carousel } from '../../components/Carousel';
 import { FeedbackForm } from '../../components/FeedbackForm';
 import { FeedbackItem } from '../../components/FeedbackItem/FeedbackItem';
+import { Cross } from '../../components/Icon';
 import { Row } from '../../components/Layout';
 import { Modal } from '../../components/Modal';
 import { Section } from '../../components/Section';
@@ -46,8 +47,8 @@ export const FeedbackWidget = () => {
                     Оставить отзыв
                 </Button>
                 <Modal size='medium' isOpen={isFeedbackFormVisible} onClose={hideFeedbackForm}>
-                    <Button className={styles.closeButton} theme="orange" onClick={hideFeedbackForm}>
-                        &#10539;
+                    <Button className={styles.button} onClick={hideFeedbackForm}>
+                        <Cross />
                     </Button>
                     <FeedbackForm onSubmit={onFeedbackSubmit} />
                 </Modal>
