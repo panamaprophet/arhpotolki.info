@@ -1,5 +1,6 @@
 import { MouseEventHandler, ReactNode } from 'react';
 import styles from './index.module.css';
+import { withStatus } from './withStatus';
 
 
 interface Props {
@@ -29,3 +30,5 @@ export const Button = ({
         {children}
     </button>
 );
+
+export const ButtonWithStatus = withStatus(Button)
